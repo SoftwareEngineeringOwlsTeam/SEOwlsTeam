@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">TreasureHunter</string>
+    <string name="open"></string>
+    <string name="close"></string>
 </resources>
