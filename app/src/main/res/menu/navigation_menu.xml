@@ -17,4 +17,8 @@
         android:title="Create Pin"
         android:onClick="pinsClicked" />
 
+    <item android:id="@+id/nav_tester"
+        android:title="Tester"
+        android:onClick="testClicked" />
+
 </menu>

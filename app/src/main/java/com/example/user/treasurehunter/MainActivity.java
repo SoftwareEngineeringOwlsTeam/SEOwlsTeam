@@ -84,5 +84,9 @@ public class MainActivity extends AppCompatActivity
         startActivity(pinIntent);
     }
 
-
+    public void testClicked(MenuItem menuItem)
+    {
+        Intent locIntent = new Intent(this, LocationTester.class);
+        startActivity(locIntent);
+    }
 }
