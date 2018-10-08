@@ -6,5 +6,71 @@
     android:layout_height="match_parent"
     tools:context=".PinCreateActivity">
 
+    <EditText
+        android:id="@+id/etLocationLat"
+        android:layout_width="304dp"
+        android:layout_height="55dp"
+        android:layout_gravity="center_vertical"
+        android:text="Latitude"
+        android:textAlignment="center"
+        android:textSize="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/etLocationLong"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/editText"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/etLocationLong"
+        android:layout_width="304dp"
+        android:layout_height="52dp"
+        android:layout_gravity="center_vertical"
+        android:text="Longitude"
+        android:textAlignment="center"
+        android:textSize="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/etAltitude"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/editText3"
+        app:layout_constraintTop_toBottomOf="@+id/etLocationLat" />
+
+    <EditText
+        android:id="@+id/etAltitude"
+        android:layout_width="292dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center_vertical"
+        android:text="Altitude"
+        android:textAlignment="center"
+        android:textSize="24dp"
+        app:layout_constraintStart_toEndOf="@+id/editText4"
+        app:layout_constraintTop_toBottomOf="@+id/etLocationLong" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="92dp"
+        android:layout_height="55dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Latitude: "
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <EditText
+        android:id="@+id/editText3"
+        android:layout_width="92dp"
+        android:layout_height="55dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Longitude:"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="52dp" />
+
+    <EditText
+        android:id="@+id/editText4"
+        android:layout_width="92dp"
+        android:layout_height="55dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Altitude:"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="100dp" />
 
 </android.support.constraint.ConstraintLayout>
