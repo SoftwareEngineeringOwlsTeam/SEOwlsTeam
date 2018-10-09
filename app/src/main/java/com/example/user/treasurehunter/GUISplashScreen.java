@@ -7,7 +7,7 @@ import android.os.Bundle;
 
 public class GUISplashScreen extends AppCompatActivity
 {
-    private int TIMEOUT = 3000;
+    private int TIMEOUT = 2000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
