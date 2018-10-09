@@ -9,12 +9,19 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+//import android.text.format.DateFormat;
 import android.widget.EditText;
+import android.widget.TextView;
+import java.util.Calendar;
+import java.util.Date;
+import java.text.DateFormat;
+import android.text.format.Time;
 
 public class PinCreateActivity extends AppCompatActivity
 {
     static final int REQUEST_LOCATION = 1;
     LocationManager locationManager;
+    private Date time = Calendar.getInstance().getTime();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -23,6 +30,12 @@ public class PinCreateActivity extends AppCompatActivity
         setContentView(R.layout.activity_pin_create);
         locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
         getLocation();
+        ((TextView)findViewById(R.id.etTime)).setText("Time: " + time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds());
+
+
+        Calendar calendar = Calendar.getInstance();
+        String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
+        ((TextView)findViewById(R.id.etDate)).setText("Date: " + currentDate);
     }
 
     void getLocation()
@@ -43,14 +56,14 @@ public class PinCreateActivity extends AppCompatActivity
                 double latti = location.getLatitude();
                 double longi = location.getLongitude();
                 double altii = location.getAltitude();
-                ((EditText)findViewById(R.id.etLocationLat)).setText("Latitude: " + latti);
-                ((EditText)findViewById(R.id.etLocationLong)).setText("Longitude: " + longi);
-                ((EditText)findViewById(R.id.etAltitude)).setText("Altitude: " + altii + " m");
+                ((TextView)findViewById(R.id.etLocationLat)).setText("Latitude: " + latti);
+                ((TextView)findViewById(R.id.etLocationLong)).setText("Longitude: " + longi);
+                ((TextView)findViewById(R.id.etAltitude)).setText("Altitude: " + altii + " m");
             }
             else {
-                ((EditText)findViewById(R.id.etLocationLat)).setText("Unable to find correct location.");
-                ((EditText)findViewById(R.id.etLocationLong)).setText("Unable to find correct location. ");
-                ((EditText)findViewById(R.id.etAltitude)).setText("Unable to find correct location. ");
+                ((TextView)findViewById(R.id.etLocationLat)).setText("Unable to find correct location.");
+                ((TextView)findViewById(R.id.etLocationLong)).setText("Unable to find correct location. ");
+                ((TextView)findViewById(R.id.etAltitude)).setText("Unable to find correct location. ");
             }
         }
 
