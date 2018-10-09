@@ -1,6 +1,7 @@
 package com.example.user.treasurehunter;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +17,7 @@ public class MainActivity extends AppCompatActivity
 {
     private DrawerLayout nDrawerLayout;
     private ActionBarDrawerToggle nToggle;
+    //private int TIMEOUT = 3000;
     //ListView listView;
 
 
@@ -23,6 +25,8 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+        //Intent mainIntent = new Intent(this, GUISplashScreen.class);
+        //startActivity(mainIntent);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         nDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
@@ -32,8 +36,6 @@ public class MainActivity extends AppCompatActivity
         nToggle.syncState();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-
 
         /*
 

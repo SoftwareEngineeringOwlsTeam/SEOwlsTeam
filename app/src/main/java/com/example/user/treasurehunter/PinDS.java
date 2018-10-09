@@ -12,13 +12,11 @@ public class PinDS
     private String description;
     private String namePublisher;
     private String color;
-    private LocalDateTime time;
-    private Location location;
 
-    public PinDS(double latitude)
+    public PinDS(double latitude, double longitude, double altitude,
+                 String namePin, String description, String namePublisher, String color)
     {
-        String l = location.getProvider();
-        //location = new LocationManager();
+
     }
 
     // All the Setters and Getters
@@ -34,8 +32,6 @@ public class PinDS
     public void setNamePublisher(String namePublisher) { this.namePublisher = namePublisher; }
     public String getColor() { return color; }
     public void setColor(String color) { this.color = color; }
-    public LocalDateTime getTime() { return time; }
-    public void setTime(LocalDateTime time) { this.time = time; }
     public double getAltitude() { return altitude; }
     public void setAltitude(double altitude) { this.altitude = altitude; }
 }
