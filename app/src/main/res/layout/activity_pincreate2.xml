@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TableRow
+        android:id="@+id/Row1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="133dp"
+            android:layout_height="wrap_content"
+            android:text="User Name:"
+            android:textAlignment="textEnd"
+            android:textColor="@color/colorPrimary"
+
+            android:textSize="20dp" />
+
+        <EditText
+            android:layout_width="251dp"
+            android:layout_height="wrap_content"
+            android:hint="Enter User Name"
+
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20dp"
+
+            />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/Row2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Pin Name:"
+            android:textSize="20dp"
+            android:textAlignment="textEnd"
+            android:textColor="@color/colorPrimary"
+            />
+
+        <EditText
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:hint="Enter Pin Name"
+            android:textSize="20dp"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+
+            />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/Row3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Description:"
+            android:textSize="20dp"
+            android:textAlignment="viewEnd"
+            android:textColor="@color/colorPrimary"
+            />
+
+        <EditText
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+
+            android:hint="Enter Description"
+            android:textSize="20dp"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+
+            />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/Row4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Color:"
+            android:textSize="20dp"
+            android:textAlignment="textEnd"
+            android:textColor="@color/colorPrimary"
+            />
+
+        <EditText
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:hint="Enter Color"
+            android:textSize="20dp"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+
+            />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/Row5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Radius:"
+            android:textSize="20dp"
+            android:textAlignment="textEnd"
+            android:textColor="@color/colorPrimary"
+            />
+
+        <EditText
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:hint="Enter Radius in meters"
+            android:textAlignment="center"
+            android:textSize="20dp"
+            android:textColor="@color/colorPrimary"
+
+            />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/Row6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="Latitude:"
+            android:textAlignment="textEnd"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/etLocationLat"
+            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:textSize="20dp"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+
+            />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/Row7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Longitude:"
+            android:textAlignment="viewEnd"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/etLocationLong"
+            android:layout_height="40dp"
+            android:layout_width="wrap_content"
+            android:text=""
+            android:textAlignment="center"
+            android:textSize="20dp"
+            android:textColor="@color/colorPrimary"
+
+            />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/Row8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Altitude:"
+            android:textAlignment="viewEnd"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/etAltitude"
+            android:layout_height="40dp"
+            android:layout_width="wrap_content"
+            android:text=""
+            android:textAlignment="center"
+            android:textSize="20dp"
+            android:textColor="@color/colorPrimary"
+
+            />
+    </TableRow>
+
+
+    <TableRow
+        android:id="@+id/Row9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|right"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+
+            android:text="Time:"
+            android:textAlignment="textEnd"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/etTime"
+            android:layout_height="40dp"
+            android:layout_width="wrap_content"
+            android:text=""
+            android:textSize="20dp"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+
+            />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/Row10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Date:"
+            android:textAlignment="textEnd"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/etDate"
+            android:layout_height="40dp"
+            android:layout_width="wrap_content"
+            android:text=""
+            android:textSize="20dp"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+
+            />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/Row11"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+
+    </TableRow>
+
+
+
+
+
+</TableLayout>

@@ -34,15 +34,15 @@ public class PinCreateActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pin_create);
+        setContentView(R.layout.activity_pincreate2);
         locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
         getLocation();
-        ((TextView)findViewById(R.id.etTime)).setText("Time: " + time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds());
+        ((TextView)findViewById(R.id.etTime)).setText(time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds());
 
 
         Calendar calendar = Calendar.getInstance();
         String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
-        ((TextView)findViewById(R.id.etDate)).setText("Date: " + currentDate);
+        ((TextView)findViewById(R.id.etDate)).setText(currentDate);
     }
 
     void getLocation()
@@ -63,9 +63,9 @@ public class PinCreateActivity extends AppCompatActivity
                 double latti = location.getLatitude();
                 double longi = location.getLongitude();
                 double altii = location.getAltitude();
-                ((TextView)findViewById(R.id.etLocationLat)).setText("Latitude: " + latti);
-                ((TextView)findViewById(R.id.etLocationLong)).setText("Longitude: " + longi);
-                ((TextView)findViewById(R.id.etAltitude)).setText("Altitude: " + altii + " m");
+                ((TextView)findViewById(R.id.etLocationLat)).setText("" + latti);
+                ((TextView)findViewById(R.id.etLocationLong)).setText("" + longi);
+                ((TextView)findViewById(R.id.etAltitude)).setText("" + altii + " m");
             }
             else {
                 ((TextView)findViewById(R.id.etLocationLat)).setText("Unable to find correct location.");
