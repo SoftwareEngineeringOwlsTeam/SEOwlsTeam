@@ -15,6 +15,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 import java.text.DateFormat;
@@ -22,74 +24,83 @@ import android.text.format.Time;
 
 public class PinCreateActivity extends AppCompatActivity
 {
-    static final int REQUEST_LOCATION = 1;
-    LocationManager locationManager;
-    private Date time = Calendar.getInstance().getTime();
-    //private double latitude;
-    //private double latti;
-    //private double longi;
-    //private double altii;
+//    static final int REQUEST_LOCATION = 1;
+//    LocationManager locationManager;
+//    private Date time = Calendar.getInstance().getTime();
+    public PinDS pin;
+//    private double latitude;
+//    private double latti;
+//    private double longi;
+//    private double altii;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pin_create);
-        locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
-        getLocation();
-        ((TextView)findViewById(R.id.etTime)).setText("Time: " + time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds());
+//        locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+
+        pin = (TreasurePin) getIntent().getSerializableExtra("pin");
+//        Bundle extras = getIntent().getExtras();
+//            String a = extras.getString("pin");
+
+        ((TextView)findViewById(R.id.etTime)).setText("Time: " + pin.getTime());
+        ((TextView)findViewById(R.id.etDate)).setText("Date: " + pin.getDate());
+        ((TextView)findViewById(R.id.etLocationLat)).setText("Lat: " + pin.getLatitude());
+        ((TextView)findViewById(R.id.etLocationLong)).setText("Long: " + pin.getLongitude());
+        ((TextView)findViewById(R.id.etAltitude)).setText("Alt: " + pin.getAltitude());
 
 
-        Calendar calendar = Calendar.getInstance();
-        String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
-        ((TextView)findViewById(R.id.etDate)).setText("Date: " + currentDate);
+//        Calendar calendar = Calendar.getInstance();
+//        String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
     }
 
-    void getLocation()
-    {
-        if(ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION) !=
-                PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission
-                (this, Manifest.permission.ACCESS_COARSE_LOCATION) !=
-                PackageManager.PERMISSION_GRANTED)
-        {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
-        }
-        else
-        {
-            Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-
-            if (location != null)
-            {
-                double latti = location.getLatitude();
-                double longi = location.getLongitude();
-                double altii = location.getAltitude();
-                ((TextView)findViewById(R.id.etLocationLat)).setText("Latitude: " + latti);
-                ((TextView)findViewById(R.id.etLocationLong)).setText("Longitude: " + longi);
-                ((TextView)findViewById(R.id.etAltitude)).setText("Altitude: " + altii + " m");
-            }
-            else {
-                ((TextView)findViewById(R.id.etLocationLat)).setText("Unable to find correct location.");
-                ((TextView)findViewById(R.id.etLocationLong)).setText("Unable to find correct location. ");
-                ((TextView)findViewById(R.id.etAltitude)).setText("Unable to find correct location. ");
-            }
-        }
-
-    }
-
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        switch (requestCode) {
-            case REQUEST_LOCATION:
-                getLocation();
-                break;
-        }
-    }
+//    void getLocation()
+//    {
+//        if(ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION) !=
+//                PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission
+//                (this, Manifest.permission.ACCESS_COARSE_LOCATION) !=
+//                PackageManager.PERMISSION_GRANTED)
+//        {
+//            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
+//        }
+//        else
+//        {
+//            Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+//
+//            if (location != null)
+//            {
+//                double latti = location.getLatitude();
+//                double longi = location.getLongitude();
+//                double altii = location.getAltitude();
+//                ((TextView)findViewById(R.id.etLocationLat)).setText("Latitude: " + latti);
+//                ((TextView)findViewById(R.id.etLocationLong)).setText("Longitude: " + longi);
+//                ((TextView)findViewById(R.id.etAltitude)).setText("Altitude: " + altii + " m");
+//            }
+//            else {
+//                ((TextView)findViewById(R.id.etLocationLat)).setText("Unable to find correct location.");
+//                ((TextView)findViewById(R.id.etLocationLong)).setText("Unable to find correct location. ");
+//                ((TextView)findViewById(R.id.etAltitude)).setText("Unable to find correct location. ");
+//            }
+//        }
+//
+//    }
+//
+//
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//
+//        switch (requestCode) {
+//            case REQUEST_LOCATION:
+//                getLocation();
+//                break;
+//        }
+//    }
 
     public void createClicked(View view)
     {
+
         //PinDS thePin = new PinDS(location.getLatitude(), );
         Intent mainIntent = new Intent(this, MainActivity.class);
         startActivity(mainIntent);
