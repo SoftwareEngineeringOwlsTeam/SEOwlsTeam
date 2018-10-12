@@ -1,8 +1,8 @@
 package com.example.user.treasurehunter;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
@@ -10,39 +10,21 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-//import android.text.format.DateFormat;
-import android.view.MenuItem;
-import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
-import java.util.Calendar;
-import java.util.Date;
-import java.text.DateFormat;
-import android.text.format.Time;
 
-public class PinCreateActivity extends AppCompatActivity
+public class LocationTester extends AppCompatActivity
 {
     static final int REQUEST_LOCATION = 1;
     LocationManager locationManager;
-    private Date time = Calendar.getInstance().getTime();
-    //private double latitude;
-    //private double latti;
-    //private double longi;
-    //private double altii;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pin_create);
+        setContentView(R.layout.activity_location_tester);
+
         locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
         getLocation();
-        ((TextView)findViewById(R.id.etTime)).setText("Time: " + time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds());
-
-
-        Calendar calendar = Calendar.getInstance();
-        String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
-        ((TextView)findViewById(R.id.etDate)).setText("Date: " + currentDate);
     }
 
     void getLocation()
@@ -55,7 +37,7 @@ public class PinCreateActivity extends AppCompatActivity
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
         }
         else
-        {
+            {
             Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
 
             if (location != null)
@@ -63,16 +45,16 @@ public class PinCreateActivity extends AppCompatActivity
                 double latti = location.getLatitude();
                 double longi = location.getLongitude();
                 double altii = location.getAltitude();
-                ((TextView)findViewById(R.id.etLocationLat)).setText("Latitude: " + latti);
-                ((TextView)findViewById(R.id.etLocationLong)).setText("Longitude: " + longi);
-                ((TextView)findViewById(R.id.etAltitude)).setText("Altitude: " + altii + " m");
+                ((EditText)findViewById(R.id.etLocationLat)).setText("Latitude: " + latti);
+                ((EditText)findViewById(R.id.etLocationLong)).setText("Longitude: " + longi);
+                ((EditText)findViewById(R.id.etAltitude)).setText("Altitude: " + altii + " m");
             }
             else {
-                ((TextView)findViewById(R.id.etLocationLat)).setText("Unable to find correct location.");
-                ((TextView)findViewById(R.id.etLocationLong)).setText("Unable to find correct location. ");
-                ((TextView)findViewById(R.id.etAltitude)).setText("Unable to find correct location. ");
+                ((EditText)findViewById(R.id.etLocationLat)).setText("Unable to find correct location.");
+                ((EditText)findViewById(R.id.etLocationLong)).setText("Unable to find correct location. ");
+                ((EditText)findViewById(R.id.etAltitude)).setText("Unable to find correct location. ");
+                }
             }
-        }
 
     }
 
@@ -86,12 +68,5 @@ public class PinCreateActivity extends AppCompatActivity
                 getLocation();
                 break;
         }
-    }
-
-    public void createClicked(View view)
-    {
-        //PinDS thePin = new PinDS(location.getLatitude(), );
-        Intent mainIntent = new Intent(this, MainActivity.class);
-        startActivity(mainIntent);
     }
 }
