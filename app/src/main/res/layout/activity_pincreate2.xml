@@ -18,15 +18,16 @@
             android:textAlignment="textEnd"
             android:textColor="@color/colorPrimary"
 
+
             android:textSize="20dp" />
 
         <EditText
             android:layout_width="251dp"
             android:layout_height="wrap_content"
             android:hint="Enter User Name"
-
             android:textAlignment="center"
-            android:textColor="@color/colorPrimary"
+
+            android:textColor="@android:color/black"
             android:textSize="20dp"
 
             />
@@ -35,15 +36,18 @@
     <TableRow
         android:id="@+id/Row2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        >
 
         <TextView
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:text="Pin Name:"
             android:textSize="20dp"
-            android:textAlignment="textEnd"
             android:textColor="@color/colorPrimary"
+
+            android:textAlignment="textEnd"
+
             />
 
         <EditText
@@ -52,7 +56,7 @@
             android:hint="Enter Pin Name"
             android:textSize="20dp"
             android:textAlignment="center"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@android:color/black"
 
             />
     </TableRow>
@@ -78,7 +82,7 @@
             android:hint="Enter Description"
             android:textSize="20dp"
             android:textAlignment="center"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@android:color/black"
 
             />
     </TableRow>
@@ -103,8 +107,7 @@
             android:hint="Enter Color"
             android:textSize="20dp"
             android:textAlignment="center"
-            android:textColor="@color/colorPrimary"
-
+            android:textColor="@android:color/black"
             />
     </TableRow>
 
@@ -128,8 +131,7 @@
             android:hint="Enter Radius in meters"
             android:textAlignment="center"
             android:textSize="20dp"
-            android:textColor="@color/colorPrimary"
-
+            android:textColor="@android:color/black"
             />
     </TableRow>
 
@@ -152,8 +154,7 @@
             android:layout_width="wrap_content"
             android:textSize="20dp"
             android:textAlignment="center"
-            android:textColor="@color/colorPrimary"
-
+            android:textColor="@android:color/black"
             />
     </TableRow>
 
@@ -179,8 +180,7 @@
             android:text=""
             android:textAlignment="center"
             android:textSize="20dp"
-            android:textColor="@color/colorPrimary"
-
+            android:textColor="@android:color/black"
             />
     </TableRow>
 
@@ -204,8 +204,7 @@
             android:text=""
             android:textAlignment="center"
             android:textSize="20dp"
-            android:textColor="@color/colorPrimary"
-
+            android:textColor="@android:color/black"
             />
     </TableRow>
 
@@ -233,8 +232,7 @@
             android:text=""
             android:textSize="20dp"
             android:textAlignment="center"
-            android:textColor="@color/colorPrimary"
-
+            android:textColor="@android:color/black"
             />
     </TableRow>
 
@@ -258,8 +256,7 @@
             android:text=""
             android:textSize="20dp"
             android:textAlignment="center"
-            android:textColor="@color/colorPrimary"
-
+            android:textColor="@android:color/black"
             />
     </TableRow>
 
