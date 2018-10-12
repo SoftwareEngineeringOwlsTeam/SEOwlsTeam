@@ -1,7 +1,11 @@
 package com.example.user.treasurehunter;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Handler;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +23,7 @@ public class MainActivity extends AppCompatActivity
     private ActionBarDrawerToggle nToggle;
     //private int TIMEOUT = 3000;
     //ListView listView;
+    static final int REQUEST_LOCATION = 1;
 
 
 
@@ -36,6 +41,14 @@ public class MainActivity extends AppCompatActivity
         nToggle.syncState();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        if(ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION) !=
+                PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission
+                (this, Manifest.permission.ACCESS_COARSE_LOCATION) !=
+                PackageManager.PERMISSION_GRANTED)
+        {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
+        }
 
         /*
 
@@ -91,4 +104,17 @@ public class MainActivity extends AppCompatActivity
         Intent locIntent = new Intent(this, LocationTester.class);
         startActivity(locIntent);
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        switch (requestCode) {
+            case REQUEST_LOCATION:
+               // getLocation();
+                break;
+        }
+    }
+
+
 }

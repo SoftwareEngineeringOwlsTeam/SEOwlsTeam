@@ -38,7 +38,7 @@ public class PinCreateActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_pin_create);
+        setContentView(R.layout.activity_pincreate2);
 //        locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
 
 
@@ -47,11 +47,11 @@ public class PinCreateActivity extends AppCompatActivity
 //            String a = extras.getString("pin");
 
 
-        ((TextView)findViewById(R.id.etTime)).setText("Time: " + pin.getTime());
-        ((TextView)findViewById(R.id.etDate)).setText("Date: " + pin.getDate());
-        ((TextView)findViewById(R.id.etLocationLat)).setText("Lat: " + pin.getLatitude());
-        ((TextView)findViewById(R.id.etLocationLong)).setText("Long: " + pin.getLongitude());
-        ((TextView)findViewById(R.id.etAltitude)).setText("Alt: " + pin.getAltitude());
+        ((TextView)findViewById(R.id.etTime)).setText(pin.getTime());
+        ((TextView)findViewById(R.id.etDate)).setText(pin.getDate());
+        ((TextView)findViewById(R.id.etLocationLat)).setText(""+ pin.getLatitude());
+        ((TextView)findViewById(R.id.etLocationLong)).setText("" + pin.getLongitude());
+        ((TextView)findViewById(R.id.etAltitude)).setText("" + pin.getAltitude());
 
 
 //        Calendar calendar = Calendar.getInstance();
