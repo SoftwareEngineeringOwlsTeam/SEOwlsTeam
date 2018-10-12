@@ -23,14 +23,14 @@ public class PinActivity extends AppCompatActivity
 
     public void classClicked(MenuItem menuItem)
     {
-        Intent classIntent = new Intent(this, PinCreateActivity.class);
+        Intent classIntent = new Intent(this, location_generation.class);
         startActivity(classIntent);
     }
 
     public void buttonOnClick(View v)
     {
         Button button = (Button) v;
-        Intent pinIntent = new Intent(this, PinCreateActivity.class);
+        Intent pinIntent = new Intent(this, location_generation.class);
         startActivity(pinIntent);
     }
 }
