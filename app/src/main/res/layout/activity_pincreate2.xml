@@ -22,6 +22,7 @@
             android:textSize="20dp" />
 
         <EditText
+            android:id="@+id/publisher"
             android:layout_width="251dp"
             android:layout_height="wrap_content"
             android:hint="Enter User Name"
@@ -51,6 +52,7 @@
             />
 
         <EditText
+            android:id="@+id/pinName"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:hint="Enter Pin Name"
@@ -76,6 +78,7 @@
             />
 
         <EditText
+            android:id="@+id/description"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
 
@@ -102,6 +105,7 @@
             />
 
         <EditText
+            android:id="@+id/color"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:hint="Enter Color"
@@ -126,6 +130,7 @@
             />
 
         <EditText
+            android:id="@+id/radius"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:hint="Enter Radius in meters"

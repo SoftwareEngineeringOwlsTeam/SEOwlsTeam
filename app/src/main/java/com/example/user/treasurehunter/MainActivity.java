@@ -15,7 +15,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -24,6 +27,7 @@ public class MainActivity extends AppCompatActivity
     //private int TIMEOUT = 3000;
     //ListView listView;
     static final int REQUEST_LOCATION = 1;
+    PinDS pin;
 
 
 
@@ -48,6 +52,23 @@ public class MainActivity extends AppCompatActivity
                 PackageManager.PERMISSION_GRANTED)
         {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
+        }
+
+        if(!((pinArray) this.getApplication()).pins.isEmpty())
+        {
+            ArrayList<PinDS> pins = ((pinArray) this.getApplication()).pins;
+            EditText et2 = (EditText) findViewById(R.id.editText2);
+            et2.setText("");
+            for(int i = 0; i < pins.size(); i++)
+            {
+                pin = pins.get(i);
+                et2.setText(et2.getText().toString() + pin.getPublisher() + " " + pin.getPinName() + " " + pin.getDescription() + " " + pin.getColor() + " " + pin.getRadius() + " AND ");
+            }
+        }
+        else
+        {
+            EditText et2 = (EditText)findViewById(R.id.editText2);
+            et2.setText("There are no pins");
         }
 
         /*

@@ -22,7 +22,7 @@ import java.util.Date;
 import java.text.DateFormat;
 import android.text.format.Time;
 
-public class PinCreateActivity extends AppCompatActivity
+public class PinCreateActivity extends AppCompatActivity implements Serializable
 {
 //    static final int REQUEST_LOCATION = 1;
 //    LocationManager locationManager;
@@ -104,8 +104,22 @@ public class PinCreateActivity extends AppCompatActivity
     public void createClicked(View view)
     {
 
-        //PinDS thePin = new PinDS(location.getLatitude(), );
+        EditText et = (EditText)findViewById(R.id.publisher);
+        pin.setPublisher(et.getText().toString());
+        et = (EditText)findViewById(R.id.pinName);
+        pin.setPinName(et.getText().toString());
+        et = (EditText)findViewById(R.id.description);
+        pin.setDescription(et.getText().toString());
+        et = (EditText)findViewById(R.id.color);
+        pin.setColor(et.getText().toString());
+        et = (EditText)findViewById(R.id.radius);
+        pin.setRadius(et.getText().toString());
+//        EditText et2 = (EditText)findViewById(R.id.editText2);
+//        et2.clearComposingText();
+//        et2.setText("1");
         Intent mainIntent = new Intent(this, MainActivity.class);
+//        mainIntent.putExtra("pin", pin);
+        ((pinArray) this.getApplication()).pins.add(pin);
         startActivity(mainIntent);
     }
 }
