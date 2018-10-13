@@ -5,8 +5,11 @@
     <string name="close"></string>
     <string-array name="color_picker">
         <item>Red</item>
+        <item>Purple</item>
         <item>Blue</item>
+        <item>Yellow</item>
         <item>Green</item>
+        <item>Orange</item>
     </string-array>
 </resources>
 
