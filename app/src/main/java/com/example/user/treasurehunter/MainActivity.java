@@ -17,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -24,12 +25,8 @@ public class MainActivity extends AppCompatActivity
 {
     private DrawerLayout nDrawerLayout;
     private ActionBarDrawerToggle nToggle;
-    //private int TIMEOUT = 3000;
-    //ListView listView;
     static final int REQUEST_LOCATION = 1;
     PinDS pin;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -57,51 +54,21 @@ public class MainActivity extends AppCompatActivity
         if(!((pinArray) this.getApplication()).pins.isEmpty())
         {
             ArrayList<PinDS> pins = ((pinArray) this.getApplication()).pins;
-            EditText et2 = (EditText) findViewById(R.id.editText2);
+            TextView et2 = (TextView) findViewById(R.id.editText2);
             et2.setText("");
             for(int i = 0; i < pins.size(); i++)
             {
+                String a = " \n";
                 pin = pins.get(i);
-                et2.setText(et2.getText().toString() + pin.getPublisher() + " " + pin.getPinName() + " " + pin.getDescription() + " " + pin.getColor() + " " + pin.getRadius() + " AND ");
+                et2.setText(et2.getText().toString() + pin.getPublisher() + " " + pin.getPinName() + " " +
+                        pin.getDescription() + " " + pin.getColor() + " " + pin.getRadius() + " \n");
             }
         }
         else
         {
-            EditText et2 = (EditText)findViewById(R.id.editText2);
+            TextView et2 = (TextView)findViewById(R.id.editText2);
             et2.setText("There are no pins");
         }
-
-        /*
-
-        listView = (ListView)findViewById(R.id.Listview);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.activity_list_item,android.R.id.text1,values);
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
-        {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id)
-            {
-                if(position == 0)
-                {
-                    Intent myIntent = new Intent(view.getContext(),Main2Activity.class);
-                    startActivityForResult(myintent,0);
-                }
-                if(position == 1)
-                {
-                    Intent myIntent = new Intent(view.getContext(),Main2Activity.class);
-                    startActivityForResult(myintent,1);
-                }
-                if(position == 2)
-                {
-                    Intent myIntent = new Intent(view.getContext(),Main2Activity.class);
-                    startActivityForResult(myintent,2);
-                }
-            }
-        });
-
-        */
     }
 
     @Override
@@ -132,10 +99,12 @@ public class MainActivity extends AppCompatActivity
 
         switch (requestCode) {
             case REQUEST_LOCATION:
-               // getLocation();
+                // getLocation();
                 break;
         }
     }
 
 
 }
+
+

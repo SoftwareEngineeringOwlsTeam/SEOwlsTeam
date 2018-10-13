@@ -1,9 +1,11 @@
+
 package com.example.user.treasurehunter;
 
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Typeface;
 import android.location.Location;
 import android.location.LocationManager;
 import android.support.annotation.NonNull;
@@ -13,9 +15,11 @@ import android.os.Bundle;
 //import android.text.format.DateFormat;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
-
+import android.widget.AdapterView.OnItemSelectedListener;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
@@ -24,28 +28,17 @@ import android.text.format.Time;
 
 public class PinCreateActivity extends AppCompatActivity implements Serializable
 {
-//    static final int REQUEST_LOCATION = 1;
-//    LocationManager locationManager;
-//    private Date time = Calendar.getInstance().getTime();
     public PinDS pin;
-//    private double latitude;
-//    private double latti;
-//    private double longi;
-//    private double altii;
+    public Spinner spin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_pincreate2);
-//        locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
-
 
         pin = (TreasurePin) getIntent().getSerializableExtra("pin");
-//        Bundle extras = getIntent().getExtras();
-//            String a = extras.getString("pin");
-
+        spin = findViewById(R.id.spinner);
 
         ((TextView)findViewById(R.id.etTime)).setText(pin.getTime());
         ((TextView)findViewById(R.id.etDate)).setText(pin.getDate());
@@ -53,73 +46,41 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
         ((TextView)findViewById(R.id.etLocationLong)).setText("" + pin.getLongitude());
         ((TextView)findViewById(R.id.etAltitude)).setText("" + pin.getAltitude());
 
-
-//        Calendar calendar = Calendar.getInstance();
-//        String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.color_picker, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spin.setAdapter(adapter);
     }
-
-//    void getLocation()
-//    {
-//        if(ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION) !=
-//                PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission
-//                (this, Manifest.permission.ACCESS_COARSE_LOCATION) !=
-//                PackageManager.PERMISSION_GRANTED)
-//        {
-//            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
-//        }
-//        else
-//        {
-//            Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-//
-//            if (location != null)
-//            {
-//                double latti = location.getLatitude();
-//                double longi = location.getLongitude();
-//                double altii = location.getAltitude();
-//                ((TextView)findViewById(R.id.etLocationLat)).setText("Latitude: " + latti);
-//                ((TextView)findViewById(R.id.etLocationLong)).setText("Longitude: " + longi);
-//                ((TextView)findViewById(R.id.etAltitude)).setText("Altitude: " + altii + " m");
-//            }
-//            else {
-//                ((TextView)findViewById(R.id.etLocationLat)).setText("Unable to find correct location.");
-//                ((TextView)findViewById(R.id.etLocationLong)).setText("Unable to find correct location. ");
-//                ((TextView)findViewById(R.id.etAltitude)).setText("Unable to find correct location. ");
-//            }
-//        }
-//
-//    }
-//
-//
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-//
-//        switch (requestCode) {
-//            case REQUEST_LOCATION:
-//                getLocation();
-//                break;
-//        }
-//    }
 
     public void createClicked(View view)
     {
-
         EditText et = (EditText)findViewById(R.id.publisher);
         pin.setPublisher(et.getText().toString());
         et = (EditText)findViewById(R.id.pinName);
         pin.setPinName(et.getText().toString());
         et = (EditText)findViewById(R.id.description);
         pin.setDescription(et.getText().toString());
-        et = (EditText)findViewById(R.id.color);
-        pin.setColor(et.getText().toString());
+
+
+
+        //et = (EditText)findViewById(R.id.color);
+        pin.setColor(spin.getSelectedItem().toString());
+
+
+
+
         et = (EditText)findViewById(R.id.radius);
         pin.setRadius(et.getText().toString());
-//        EditText et2 = (EditText)findViewById(R.id.editText2);
-//        et2.clearComposingText();
-//        et2.setText("1");
         Intent mainIntent = new Intent(this, MainActivity.class);
-//        mainIntent.putExtra("pin", pin);
         ((pinArray) this.getApplication()).pins.add(pin);
         startActivity(mainIntent);
     }
 }
+
+
+
+
+
+
+
+

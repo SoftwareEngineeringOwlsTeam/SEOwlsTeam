@@ -104,15 +104,13 @@
             android:textColor="@color/colorPrimary"
             />
 
-        <EditText
-            android:id="@+id/color"
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:hint="Enter Color"
-            android:textSize="20dp"
             android:textAlignment="center"
-            android:textColor="@android:color/black"
-            />
+            android:outlineAmbientShadowColor="@color/colorPrimaryDark"/>
+
     </TableRow>
 
     <TableRow
@@ -265,9 +263,9 @@
             />
     </TableRow>
 
-        android:id="@+id/Row11"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    android:id="@+id/Row11"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <Button
         android:layout_width="wrap_content"
@@ -285,3 +283,17 @@
 
 
 </TableLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

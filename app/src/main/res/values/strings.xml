@@ -1,5 +1,14 @@
+
 <resources>
     <string name="app_name">TreasureHunter</string>
     <string name="open"></string>
     <string name="close"></string>
+    <string-array name="color_picker">
+        <item>Red</item>
+        <item>Blue</item>
+        <item>Green</item>
+    </string-array>
 </resources>
+
+
+
