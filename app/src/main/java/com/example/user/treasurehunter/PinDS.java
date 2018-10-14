@@ -9,15 +9,16 @@ public abstract class PinDS implements Serializable
     private double latitude;
     private double longitude;
     private double altitude;
-    private String namePin;
     private String description;
-    private String namePublisher;
     private String color;
     private String time;
     private String date;
+    private String publisher = "";
+    private String pinName;
+    private String radius;
 
     public PinDS(double latitude, double longitude, double altitude,
-                 String namePin, String description, String namePublisher, String color)
+                 String pinName, String description, String publisher, String color)
     {
 
     }
@@ -34,18 +35,10 @@ public abstract class PinDS implements Serializable
         { return longitude; }
     public void setLongitude(double longitude)
         { this.longitude = longitude; }
-    public String getNamePin()
-        { return namePin; }
-    public void setNamePin(String namePin)
-        { this.namePin = namePin; }
     public String getDescription()
         { return description; }
     public void setDescription(String description)
         { this.description = description; }
-    public String getNamePublisher()
-        { return namePublisher; }
-    public void setNamePublisher(String namePublisher)
-        { this.namePublisher = namePublisher; }
     public String getColor()
         { return color; }
     public void setColor(String color)
@@ -62,4 +55,29 @@ public abstract class PinDS implements Serializable
         {this.date = date;}
         public String getDate()
         {return date;}
+        public void setPublisher(String publisher)
+        {
+            this.publisher = publisher;
+        }
+        public String getPublisher()
+        {
+            return publisher;
+        }
+        public void setPinName(String pinName)
+        {
+            this.pinName = pinName;
+        }
+        public String getPinName()
+        {
+            return this.pinName;
+        }
+        public void setRadius(String radius)
+        {
+            this.radius = radius;
+        }
+        public String getRadius()
+        {
+            return radius;
+        }
+
 }

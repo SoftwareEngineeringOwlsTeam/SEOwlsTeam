@@ -23,6 +23,7 @@
             android:textSize="20dp" />
 
         <EditText
+            android:id="@+id/publisher"
             android:layout_width="251dp"
             android:layout_height="wrap_content"
             android:hint="Enter User Name"
@@ -52,6 +53,7 @@
             />
 
         <EditText
+            android:id="@+id/pinName"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:hint="Enter Pin Name"
@@ -77,6 +79,7 @@
             />
 
         <EditText
+            android:id="@+id/description"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
 
@@ -102,14 +105,13 @@
             android:textColor="@color/colorPrimary"
             />
 
-        <EditText
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:hint="Enter Color"
-            android:textSize="20dp"
             android:textAlignment="center"
-            android:textColor="@android:color/black"
-            />
+            android:outlineAmbientShadowColor="@color/colorPrimaryDark"/>
+
     </TableRow>
 
     <TableRow
@@ -127,6 +129,7 @@
             />
 
         <EditText
+            android:id="@+id/radius"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:hint="Enter Radius in meters"
@@ -261,7 +264,13 @@
             />
     </TableRow>
 
+<<<<<<< HEAD
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+=======
+    android:id="@+id/Row11"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+>>>>>>> master
 
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -289,3 +298,17 @@
 
 
 </TableLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
