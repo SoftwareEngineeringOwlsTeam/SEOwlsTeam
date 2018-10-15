@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -8,8 +9,7 @@
     <TableRow
         android:id="@+id/Row1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center">
+        android:layout_height="wrap_content">
 
         <TextView
             android:layout_width="133dp"
@@ -27,7 +27,6 @@
             android:layout_height="wrap_content"
             android:hint="Enter User Name"
             android:textAlignment="center"
-
             android:textColor="@android:color/black"
             android:textSize="20dp"
 
@@ -54,7 +53,7 @@
         <EditText
             android:id="@+id/pinName"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
+            android:layout_width="40dp"
             android:hint="Enter Pin Name"
             android:textSize="20dp"
             android:textAlignment="center"
@@ -79,13 +78,14 @@
 
         <EditText
             android:id="@+id/description"
+            android:layout_width="40dp"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
 
             android:hint="Enter Description"
-            android:textSize="20dp"
+
             android:textAlignment="center"
             android:textColor="@android:color/black"
+            android:textSize="20dp"
 
             />
     </TableRow>
@@ -104,15 +104,13 @@
             android:textColor="@color/colorPrimary"
             />
 
-        <EditText
-            android:id="@+id/color"
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:hint="Enter Color"
-            android:textSize="20dp"
             android:textAlignment="center"
-            android:textColor="@android:color/black"
-            />
+            android:outlineAmbientShadowColor="@color/colorPrimaryDark"/>
+
     </TableRow>
 
     <TableRow
@@ -123,7 +121,7 @@
         <TextView
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="Radius:"
+            android:text="Radius(m):"
             android:textSize="20dp"
             android:textAlignment="textEnd"
             android:textColor="@color/colorPrimary"
@@ -131,8 +129,10 @@
 
         <EditText
             android:id="@+id/radius"
+            android:inputType="number"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
+            android:layout_width="50sp"
+
             android:hint="Enter Radius in meters"
             android:textAlignment="center"
             android:textSize="20dp"
@@ -265,23 +265,51 @@
             />
     </TableRow>
 
-        android:id="@+id/Row11"
+
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:id="@+id/Row11"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    <Button
-        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:background="@color/colorAccent"
-        android:text="Place Pin"
-        android:textColor="@android:color/background_light"
-        android:textSize="28sp"
-        android:onClick="createClicked"
-        />
+        tools:context=".LocationTester">
 
+        <Button
+            android:id="@+id/button16"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="23dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginEnd="23dp"
+            android:background="@color/colorAccent"
+            android:text="Place Pin"
+            android:textColor="@android:color/white"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:onClick="createClicked"/>
 
-
-
+    </android.support.constraint.ConstraintLayout>
 
 
 </TableLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
