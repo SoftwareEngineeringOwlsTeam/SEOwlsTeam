@@ -17,207 +17,163 @@
         android:textSize="30dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text">
 
 
-        <ScrollView
-            android:id="@+id/classesList"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbarStyle="insideOverlay"
-            android:visibility="visible">
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
 
-            <android.support.constraint.ConstraintLayout
-                android:id="@+id/linearLayout2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="bottom"
-                app:layout_constraintBottom_toBottomOf="@+id/button7"
-                app:layout_constraintTop_toBottomOf="@+id/button7">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
 
-                <Button
-                    android:id="@+id/button"
-                    android:layout_width="301dp"
-                    android:textSize="20dp"
-                    android:textColor="@android:color/white"
-                    android:layout_height="60dp"
-                    android:layout_marginStart="42dp"
-                    android:layout_marginEnd="41dp"
-                    android:onClick="buttonOnClick"
-                    android:text="Scavanger Hunt"
-                    android:textAlignment="center"
-                    android:background="@drawable/button_design"
-                    app:layout_constraintBottom_toTopOf="@+id/button1"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+            tools:layout_conversion_absoluteHeight="363dp"
+            tools:layout_conversion_absoluteWidth="384dp">
 
-                <Button
-                    android:id="@+id/button1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:onClick="buttonOnClick"
-                    android:text="Shipwreck"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/button" />
+            <Button
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
 
-                <Button
-                    android:id="@+id/button2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:onClick="buttonOnClick"
-                    android:text="Survivor"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/button1" />
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/buttonshape"
+                android:onClick="buttonOnClick"
+                android:text="Scavanger Hunt"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toTopOf="@+id/button1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/guideline"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_conversion_absoluteHeight="60dp"
+                tools:layout_conversion_absoluteWidth="301dp" />
 
-                <Button
-                    android:id="@+id/button3"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:onClick="buttonOnClick"
-                    android:text="Treasure"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/button2" />
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
 
-                <Button
-                    android:id="@+id/button4"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:onClick="buttonOnClick"
-                    android:text="Whale"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/button3" />
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/buttonshape"
+                android:onClick="buttonOnClick"
+                android:text="Shipwreck"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toTopOf="@+id/button2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/guideline"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/button"
+                tools:layout_conversion_absoluteHeight="60dp"
+                tools:layout_conversion_absoluteWidth="301dp" />
 
-                <Button
-                    android:id="@+id/button5"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:onClick="buttonOnClick"
-                    android:text="Other"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/button4" />
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
 
-                <Button
-                    android:id="@+id/button6"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:onClick="buttonOnClick"
-                    android:text="Class 6"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/button5" />
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/buttonshape"
+                android:onClick="buttonOnClick"
+                android:text="Survivor"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toTopOf="@+id/button3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/guideline"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/button1"
+                tools:layout_conversion_absoluteHeight="60dp"
+                tools:layout_conversion_absoluteWidth="301dp" />
 
-                <Button
-                    android:id="@+id/button7"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:onClick="buttonOnClick"
-                    android:text="Class 7"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/button6" />
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/buttonshape"
+                android:onClick="buttonOnClick"
+                android:text="Treasure"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toTopOf="@+id/button4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/guideline"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/button2"
+                tools:layout_conversion_absoluteHeight="60dp"
+                tools:layout_conversion_absoluteWidth="301dp" />
 
-                <Button
-                    android:id="@+id/button8"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:onClick="buttonOnClick"
-                    android:text="Class 8"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/button7" />
+            <Button
+                android:id="@+id/button4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/buttonshape"
+                android:onClick="buttonOnClick"
+                android:text="Whale"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/guideline"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/button3"
+                tools:layout_conversion_absoluteHeight="60dp"
+                tools:layout_conversion_absoluteWidth="301dp" />
 
-                <Button
-                    android:id="@+id/button9"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:onClick="buttonOnClick"
-                    android:text="Class 9"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/button8" />
-
-                <Button
-                    android:id="@+id/button10"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:onClick="buttonOnClick"
-                    android:text="Class 10"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/button9" />
-
-                <Button
-                    android:id="@+id/button11"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:onClick="buttonOnClick"
-                    android:text="Class 11"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/button10" />
-
-                <Button
-                    android:id="@+id/button12"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:onClick="buttonOnClick"
-                    android:text="Class 12"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/button11" />
-
-                <Button
-                    android:id="@+id/button13"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:onClick="buttonOnClick"
-                    android:text="Class 13"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/button12" />
-
-                <Button
-                    android:id="@+id/button14"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:onClick="buttonOnClick"
-                    android:text="Class 14"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/button13" />
-
-                <Button
-                    android:id="@+id/button15"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:onClick="buttonOnClick"
-                    android:text="Class 15"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/button14" />
+            <android.support.constraint.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="20dp"
+                tools:layout_conversion_absoluteHeight="1dp"
+                tools:layout_conversion_absoluteWidth="1dp"
+                tools:layout_editor_absoluteX="20dp"
+                tools:layout_editor_absoluteY="51dp" />
 
 
-            </android.support.constraint.ConstraintLayout>
+        </android.support.constraint.ConstraintLayout>
 
-        </ScrollView>
 
-    </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp" />
 
 </android.support.constraint.ConstraintLayout>
