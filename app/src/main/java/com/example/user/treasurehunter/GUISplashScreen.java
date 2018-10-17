@@ -7,7 +7,7 @@ import android.os.Bundle;
 
 public class GUISplashScreen extends AppCompatActivity
 {
-    private int TIMEOUT = 2000;
+    private int TIMEOUT = 50;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -18,7 +18,7 @@ public class GUISplashScreen extends AppCompatActivity
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent homeIntent = new Intent(GUISplashScreen.this, LogInScreen.class);
+                Intent homeIntent = new Intent(GUISplashScreen.this, MainActivity.class);
                 startActivity(homeIntent);
                 finish();
             }

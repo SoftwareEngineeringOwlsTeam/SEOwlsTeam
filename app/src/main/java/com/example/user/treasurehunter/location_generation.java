@@ -31,7 +31,7 @@ public class location_generation extends AppCompatActivity
     String currentDate;
     String currentTime;
     private Date time = Calendar.getInstance().getTime();
-    PinDS pin = new TreasurePin();
+    PinDS pin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -39,6 +39,9 @@ public class location_generation extends AppCompatActivity
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_tester);
+
+
+        pin = (PinDS) getIntent().getSerializableExtra("pin");
 
         locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
         getLocation();

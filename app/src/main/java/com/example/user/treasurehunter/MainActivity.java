@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.text.Layout;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -52,6 +53,9 @@ public class MainActivity extends AppCompatActivity
         {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
         }
+        Window window = this.getWindow();
+        window.setStatusBarColor(this.getResources().getColor(R.color.colorPrimary));
+
     }
 
     /*

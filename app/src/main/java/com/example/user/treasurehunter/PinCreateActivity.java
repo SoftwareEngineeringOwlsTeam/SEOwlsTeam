@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
+import android.inputmethodservice.Keyboard;
 import android.location.Location;
 import android.location.LocationManager;
 import android.support.annotation.NonNull;
@@ -18,6 +19,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import java.io.Serializable;
@@ -30,6 +32,12 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
 {
     public PinDS pin;
     public Spinner spin;
+    EditText text;
+
+    TableRow degreeRow;
+    TableRow speedRow;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -37,7 +45,17 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pincreate2);
 
-        pin = (TreasurePin) getIntent().getSerializableExtra("pin");
+        pin = (PinDS) getIntent().getSerializableExtra("pin");
+        degreeRow = findViewById(R.id.Row10);
+        speedRow = findViewById(R.id.Row11);
+
+
+        if(!(pin instanceof MoveablePin))
+        {
+            degreeRow.setVisibility(View.GONE);
+            speedRow.setVisibility(View.GONE);
+
+        }
         spin = findViewById(R.id.spinner);
 
         ((TextView)findViewById(R.id.etTime)).setText(pin.getTime());

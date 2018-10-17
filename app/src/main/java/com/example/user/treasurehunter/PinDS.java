@@ -16,6 +16,7 @@ public abstract class PinDS implements Serializable
     private String publisher = "";
     private String pinName;
     private String radius;
+    private String className;
 
     public PinDS(double latitude, double longitude, double altitude,
                  String pinName, String description, String publisher, String color)
@@ -80,4 +81,7 @@ public abstract class PinDS implements Serializable
             return radius;
         }
 
+    public String getClassName() {
+        return className;
+    }
 }

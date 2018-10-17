@@ -249,6 +249,54 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:text="Degree:"
+            android:textAlignment="textEnd"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/etDegree"
+            android:layout_height="40dp"
+            android:layout_width="wrap_content"
+            android:text=""
+            android:textSize="20dp"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/Row11"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Speed:"
+            android:textAlignment="textEnd"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/etSpeed"
+            android:layout_height="40dp"
+            android:layout_width="wrap_content"
+            android:text=""
+            android:textSize="20dp"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/Row12"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:text="Date:"
             android:textAlignment="textEnd"
             android:textColor="@color/colorPrimary"
@@ -265,9 +313,11 @@
             />
     </TableRow>
 
+
+
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
-    android:id="@+id/Row11"
+    android:id="@+id/Row13"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
