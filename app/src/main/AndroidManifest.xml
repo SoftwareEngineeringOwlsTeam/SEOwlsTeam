@@ -19,9 +19,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PinActivity" />
-        <activity android:name=".PinCreateActivity" />
-        <activity android:name=".LocationTester" />
+        <activity android:name=".PinActivity"
+            android:label="Pin Selection" />
+        <activity android:name=".PinCreateActivity"
+            android:label="Pin Creation"/>
+        <activity android:name=".LocationTester"
+            android:label="Location Tester"/>
         <activity android:name=".MainActivity" />
         <activity android:name=".location_generation"></activity>
     </application>

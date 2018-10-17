@@ -44,7 +44,7 @@ public class location_generation extends AppCompatActivity
         getLocation();
 
         Calendar calendar = Calendar.getInstance();
-        currentTime = time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds();
+        currentTime = time.getHours() + "h:" + time.getMinutes() + "m:" + time.getSeconds() + "s";
         pin.setTime(currentTime);
         currentDate = DateFormat.getDateInstance().format(calendar.getTime());
         pin.setDate(currentDate);
