@@ -3,18 +3,22 @@
 
     <item android:id="@+id/nav_account"
         android:title="Account"
+        android:onClick="accountClicked"
         android:icon="@mipmap/baseline_account_circle_black_48"/>
 
     <item android:id="@+id/nav_logout"
         android:title="Log Out"
+        android:onClick="logoutClicked"
         android:icon="@mipmap/baseline_subdirectory_arrow_left_black_48"/>
 
     <item android:id="@+id/nav_settings"
         android:title="Settings"
+        android:onClick="settingsClicked"
         android:icon="@mipmap/baseline_settings_black_48"/>
 
     <item android:id="@+id/nav_groups"
         android:title="Groups"
+        android:onClick="groupsClicked"
         android:icon="@mipmap/baseline_people_black_48"/>
 
     <item android:id="@+id/nav_pin"
@@ -25,6 +29,11 @@
     <item android:id="@+id/nav_tester"
         android:title="Test Location"
         android:onClick="testClicked"
+        android:icon="@mipmap/baseline_gps_fixed_black_48"/>
+
+    <item android:id="@+id/nav_auditlog"
+        android:title="Audit Log"
+        android:onClick="auditClicked"
         android:icon="@mipmap/baseline_gps_fixed_black_48"/>
 
 </menu>

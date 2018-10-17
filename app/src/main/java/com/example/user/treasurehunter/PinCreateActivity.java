@@ -42,9 +42,9 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
 
         ((TextView)findViewById(R.id.etTime)).setText(pin.getTime());
         ((TextView)findViewById(R.id.etDate)).setText(pin.getDate());
-        ((TextView)findViewById(R.id.etLocationLat)).setText(""+ pin.getLatitude());
-        ((TextView)findViewById(R.id.etLocationLong)).setText("" + pin.getLongitude());
-        ((TextView)findViewById(R.id.etAltitude)).setText("" + pin.getAltitude());
+        ((EditText)findViewById(R.id.etLocationLat)).setText(""+ pin.getLatitude());
+        ((EditText)findViewById(R.id.etLocationLong)).setText("" + pin.getLongitude());
+        ((EditText)findViewById(R.id.etAltitude)).setText("" + pin.getAltitude());
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.color_picker, android.R.layout.simple_spinner_item);

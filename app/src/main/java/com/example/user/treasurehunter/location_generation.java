@@ -44,16 +44,14 @@ public class location_generation extends AppCompatActivity
         getLocation();
 
         Calendar calendar = Calendar.getInstance();
-        currentTime = time.getHours() + "h:" + time.getMinutes() + "m:" + time.getSeconds() + "s";
+        currentTime = time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds();
         pin.setTime(currentTime);
         currentDate = DateFormat.getDateInstance().format(calendar.getTime());
         pin.setDate(currentDate);
 
         Intent mainIntent = new Intent(this, PinCreateActivity.class);
-        //mainIntent.putExtra("pin", "hello");
         mainIntent.putExtra("pin", pin);
         startActivity(mainIntent);
-
     }
 
     void getLocation()
@@ -74,35 +72,13 @@ public class location_generation extends AppCompatActivity
                 pin.setLatitude(location.getLatitude());
                 pin.setLongitude(location.getLongitude());
                 pin.setAltitude(location.getAltitude());
-                //lati = location.getLatitude();
-                //longi = location.getLongitude();
-                //alti = location.getAltitude();
-                //((EditText)findViewById(R.id.etLocationLat)).setText("Latitude: " + latti);
-                //((EditText)findViewById(R.id.etLocationLong)).setText("Longitude: " + longi);
-                //((EditText)findViewById(R.id.etAltitude)).setText("Altitude: " + altii + " m");
             }
             else {
                 pin.setLatitude(-1);
                 pin.setLongitude(-1);
                 pin.setAltitude(-1);
-                //((EditText)findViewById(R.id.etLocationLat)).setText("Unable to find correct location.");
-                //((EditText)findViewById(R.id.etLocationLong)).setText("Unable to find correct location. ");
-                //((EditText)findViewById(R.id.etAltitude)).setText("Unable to find correct location. ");
             }
         }
 
     }
-
-
-
-    /*public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        switch (requestCode) {
-            case REQUEST_LOCATION:
-                getLocation();
-                break;
-        }
-    }
-    */
 }
