@@ -265,12 +265,16 @@
             />
     </TableRow>
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
     android:id="@+id/Row11"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
+<<<<<<< HEAD
 
 
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -278,6 +282,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".LocationTester">
+=======
+>>>>>>> master
 
         <Button
             android:id="@+id/button16"
