@@ -22,6 +22,8 @@ import android.widget.Spinner;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemSelectedListener;
+
+import java.io.FileNotFoundException;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
@@ -70,8 +72,8 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
         spin.setAdapter(adapter);
     }
 
-    public void createClicked(View view)
-    {
+    public void createClicked(View view) throws FileNotFoundException {
+        PinWriter writer = new PinWriter();
         EditText et = (EditText)findViewById(R.id.publisher);
         pin.setPublisher(et.getText().toString());
         et = (EditText)findViewById(R.id.pinName);
@@ -90,7 +92,8 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
         et = (EditText)findViewById(R.id.radius);
         pin.setRadius(et.getText().toString());
         Intent mainIntent = new Intent(this, MainActivity.class);
-        ((pinArray) this.getApplication()).pins.add(pin);
+        //((pinArray) this.getApplication()).pins.add(pin);
+        writer.writePin(pin);
         startActivity(mainIntent);
     }
 }

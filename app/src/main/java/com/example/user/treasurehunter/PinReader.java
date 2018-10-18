@@ -4,6 +4,6 @@ public class PinReader
 {
 
     public PinReader(){
-        
+
     }
 }

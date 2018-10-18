@@ -10,6 +10,7 @@
         <item>Green</item>
         <item>Orange</item>
     </string-array>
+    <string name="title_activity_iotester">IOtester</string>
 </resources>
 
 

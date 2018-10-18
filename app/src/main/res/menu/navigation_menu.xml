@@ -1,39 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/nav_account"
-        android:title="Account"
+    <item
+        android:id="@+id/nav_account"
+        android:icon="@mipmap/baseline_account_circle_black_48"
         android:onClick="accountClicked"
-        android:icon="@mipmap/baseline_account_circle_black_48"/>
+        android:title="Account" />
 
-    <item android:id="@+id/nav_logout"
-        android:title="Log Out"
+    <item
+        android:id="@+id/nav_logout"
+        android:icon="@mipmap/baseline_subdirectory_arrow_left_black_48"
         android:onClick="logoutClicked"
-        android:icon="@mipmap/baseline_subdirectory_arrow_left_black_48"/>
+        android:title="Log Out" />
 
-    <item android:id="@+id/nav_settings"
-        android:title="Settings"
+    <item
+        android:id="@+id/nav_settings"
+        android:icon="@mipmap/baseline_settings_black_48"
         android:onClick="settingsClicked"
-        android:icon="@mipmap/baseline_settings_black_48"/>
+        android:title="Settings" />
 
-    <item android:id="@+id/nav_groups"
-        android:title="Groups"
+    <item
+        android:id="@+id/nav_groups"
+        android:icon="@mipmap/baseline_people_black_48"
         android:onClick="groupsClicked"
-        android:icon="@mipmap/baseline_people_black_48"/>
+        android:title="Groups" />
 
-    <item android:id="@+id/nav_pin"
-        android:title="Create Pin"
+    <item
+        android:id="@+id/nav_pin"
+        android:icon="@mipmap/baseline_pin_drop_black_48"
         android:onClick="pinsClicked"
-        android:icon="@mipmap/baseline_pin_drop_black_48"/>
+        android:title="Create Pin" />
 
-    <item android:id="@+id/nav_tester"
-        android:title="Test File I/O"
+    <item
+        android:id="@+id/nav_tester"
+        android:layout_width="match_parent"
+        android:icon="@mipmap/baseline_gps_fixed_black_48"
         android:onClick="testClicked"
-        android:icon="@mipmap/baseline_gps_fixed_black_48"/>
+        android:title="Test File I/O" />
 
-    <item android:id="@+id/nav_auditlog"
-        android:title="Audit Log"
+    <item
+        android:id="@+id/nav_auditlog"
+        android:icon="@mipmap/baseline_gps_fixed_black_48"
         android:onClick="auditClicked"
-        android:icon="@mipmap/baseline_gps_fixed_black_48"/>
+        android:title="Audit Log" />
 
 </menu>

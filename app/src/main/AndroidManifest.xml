@@ -28,9 +28,6 @@
             android:name=".PinCreateActivity"
             android:label="Pin Creation" />
         <activity
-            android:name=".LocationTester"
-            android:label="Location Tester" />
-        <activity
             android:name=".AuditLog"
             android:label="Audit Log" />
         <activity
@@ -41,16 +38,20 @@
             android:label="ERROR LEAVE LEAVE ERROR" />
         <activity
             android:name=".LogInScreen"
-            android:label="Log In"/>
+            android:label="Log In" />
         <activity
             android:name=".GroupManager"
-            android:label="Group Manager"/>
+            android:label="Group Manager" />
         <activity
             android:name=".Settings"
-            android:label="Settings"/>
+            android:label="Settings" />
         <activity
             android:name=".AccountManager"
-            android:label="Account Manager"></activity>
+            android:label="Account Manager" />
+        <activity
+            android:name=".IOtester"
+            android:label="@string/title_activity_iotester"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

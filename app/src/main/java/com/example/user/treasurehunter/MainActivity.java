@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity
 
     public void testClicked(MenuItem menuItem)
     {
-        Intent locIntent = new Intent(this, LocationTester.class);
+        Intent locIntent = new Intent(this, IOtester.class);
         startActivity(locIntent);
     }
 
