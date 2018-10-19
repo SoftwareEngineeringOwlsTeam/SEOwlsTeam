@@ -18,32 +18,45 @@ public class PinWriter extends AppCompatActivity implements Serializable
 
     private PinDS pin;
 
-    public PinWriter()
-    {
+    public PinWriter() { }
 
-    }
-
-    public void writePin(PinDS pin) throws FileNotFoundException {
+    public void writePin(PinDS pin, String previousText) throws FileNotFoundException {
         BufferedWriter writer = null;
         try {
             FileOutputStream fileOutputStream = openFileOutput("pins.txt", Context.MODE_WORLD_READABLE);
-            String data = ("Pin: " + pin.getPublisher() + "*" + pin.getDescription() + "*" + pin.getRadius() + "*" + pin.getLatitude() + "*"
-            + pin.getLongitude() + "*" + pin.getAltitude() + "*" + pin.getTime() + "*" + pin.getDate());
-            if(pin instanceof MoveablePin)
-            {
+            String data = (previousText + pin.getPinID() + "*" + pin.getPinName() + "*" + pin.getPublisher() + "*" +
+                      pin.getDescription() + "*" + pin.getRadius() + "*" + pin.getLatitude() + "*"
+                    + pin.getLongitude() + "*" + pin.getAltitude() + "*" + pin.getTime() + "*" + pin.getDate());
+            if (pin instanceof MoveablePin) {
                 data += ("*" + ((MoveablePin) pin).getDegree() + "*" + ((MoveablePin) pin).getSpeed());
             }
-
-            writer = new BufferedWriter(new OutputStreamWriter(fileOutputStream));
-            writer.write(data);
-            writer.flush();
+            data += ("\nEOF");
+            fileOutputStream.write(data.getBytes());
+            fileOutputStream.close();
+            //writer = new BufferedWriter(new OutputStreamWriter(fileOutputStream));
+            //writer.write(data);
+            //writer.flush();
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        finally
+        {
+            if (writer != null)
+            {
+                try
+                {
+                    writer.close();
+                }
+                catch (IOException e)
+                {
+                    System.err.println("Error close writer");
+                    e.printStackTrace();
+                }
+            }
+        }
     }
-
 }
 

@@ -2,16 +2,11 @@ package com.example.user.treasurehunter;
 
 public class TreasurePin extends PinDS
 {
-
+    private final String pinName = "TREASUREPIN";
 
     @Override
-    public String getClassName() {
-        return super.getClassName();
-    }
-
-    public TreasurePin()
+    public String getPinName()
     {
-        super();
+        return pinName;
     }
-
 }

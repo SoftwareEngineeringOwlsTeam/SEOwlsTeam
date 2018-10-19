@@ -8,7 +8,7 @@ public class Group
     private String groupID;
     private ArrayList<String> membersID;
     private String adminID;
-    private pinArray groupPins;
+    private ArrayList<String> groupPinID;
     private String groupDescription;
     private String groupName;
     private String adminName;
@@ -71,11 +71,6 @@ public class Group
         return groupID;
     }
 
-    public void setGroupID(String groupID)
-    {
-        this.groupID = groupID;
-    }
-
     public ArrayList<String> getMembersID()
     {
         return membersID;
@@ -96,14 +91,14 @@ public class Group
         this.adminID = adminID;
     }
 
-    public pinArray getGroupPins()
+    public ArrayList<String> getGroupPins()
     {
-        return groupPins;
+        return groupPinID;
     }
 
-    public void setGroupPins(pinArray groupPins)
+    public void setGroupPins(ArrayList<String> groupPins)
     {
-        this.groupPins = groupPins;
+        this.groupPinID = groupPins;
     }
 
     public String getGroupDescription()

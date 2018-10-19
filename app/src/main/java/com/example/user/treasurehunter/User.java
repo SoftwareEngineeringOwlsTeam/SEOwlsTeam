@@ -7,11 +7,12 @@ public class User
     private String userID;
     private String userName;
     private String password;
-    private pinArray personalPins;
-    private ArrayList<Group> associatedGroups;
+    private ArrayList<String> personalPinID;
+    private ArrayList<String> associatedGroupID;
 
-    public User(String userName, String password)
+    public User(String userID, String userName, String password)
     {
+        this.userID = userID;
         // Sets the username that you stated when creating account
         this.userName = userName;
         // Sets the password that you stated when creating account
@@ -26,26 +27,11 @@ public class User
     }
     */
 
-    public void addGroup(Group newGroup)
-    {
-        associatedGroups.add(newGroup);
-    }
-
-
-
-
-
-
     // All the getters and setters
 
     public String getUserID()
     {
         return userID;
-    }
-
-    public void setUserID(String userID)
-    {
-        this.userID = userID;
     }
 
     public String getUserName()
@@ -68,23 +54,19 @@ public class User
         this.password = password;
     }
 
-    public pinArray getPersonalPins()
-    {
-        return personalPins;
+    public ArrayList<String> getPersonalPinID() {
+        return personalPinID;
     }
 
-    public void setPersonalPins(pinArray personalPins)
-    {
-        this.personalPins = personalPins;
+    public void setPersonalPinID(ArrayList<String> personalPinID) {
+        this.personalPinID = personalPinID;
     }
 
-    public ArrayList<Group> getAssociatedGroups()
-    {
-        return associatedGroups;
+    public ArrayList<String> getAssociatedGroupID() {
+        return associatedGroupID;
     }
 
-    public void setAssociatedGroups(ArrayList<Group> associatedGroups)
-    {
-        this.associatedGroups = associatedGroups;
+    public void setAssociatedGroupID(ArrayList<String> associatedGroupID) {
+        this.associatedGroupID = associatedGroupID;
     }
 }

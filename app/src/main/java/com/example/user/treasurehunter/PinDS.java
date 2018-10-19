@@ -2,10 +2,14 @@ package com.example.user.treasurehunter;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Random;
+
 import android.location.*;
 
 public abstract class PinDS implements Serializable
 {
+    private String pinID;
     private double latitude;
     private double longitude;
     private double altitude;
@@ -17,16 +21,39 @@ public abstract class PinDS implements Serializable
     private String pinName;
     private String radius;
     private String className;
+    private static ArrayList<String> existingPinIDs = new ArrayList<>();
 
     public PinDS(double latitude, double longitude, double altitude,
-                 String pinName, String description, String publisher, String color)
+                 String pinName, String description, String publisher, String color,
+                 String className, String time, String date, String radius)
     {
-
+        boolean generated = false;
+        while (!generated)
+        {
+            pinID = "";
+            Random rand = new Random();
+            for(int j = 0; j <= 9; j++)
+            {
+                pinID += String.valueOf(rand.nextInt(9));
+            }
+            generated = true;
+            for(int i = 0; i < existingPinIDs.size(); i++)
+            {
+                if(existingPinIDs.get(i).equals(pinID))
+                {
+                    generated = false;
+                }
+            }
+        }
     }
 
     public PinDS(){}
 
     // All the Setters and Getters
+    public String getPinID()
+    { return pinID; }
+    public void setPinID(String pinID)
+    { this.pinID = pinID; }
     public double getLatitude()
 
         { return latitude; }
