@@ -1,6 +1,7 @@
 package com.example.user.treasurehunter;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Group
 {
@@ -11,12 +12,31 @@ public class Group
     private String groupDescription;
     private String groupName;
     private String adminName;
+    private static ArrayList<String> existingIDs = new ArrayList<>();
     // Maybe a field that gives out certain permissions to speccific users
 
     public Group(ArrayList<String> membersID, String groupDescription, String groupName, String adminName)
     {
         // Check all existing groups in database and generate a unique ID for this group
-        groupID = "Test Group";
+        boolean generated = false;
+        while (!generated)
+        {
+            groupID = "";
+            Random rand = new Random();
+            for(int j = 0; j <= 9; j++)
+            {
+                groupID += String.valueOf(rand.nextInt(9));
+            }
+            generated = true;
+            for(int i = 0; i < existingIDs.size(); i++)
+            {
+                if(existingIDs.get(i).equals(groupID))
+                {
+                    generated = false;
+                }
+            }
+        }
+
         // Automatically fill in the adminID with the users who created the apps ID's
         // When group created you initially state the users you want in there (their ID's)
         this.membersID = membersID;

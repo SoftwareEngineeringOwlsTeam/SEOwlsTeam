@@ -59,7 +59,7 @@ public class IOtester extends AppCompatActivity {
 
     public void readFile(View view) throws FileNotFoundException
     {
-        FileInputStream fileInputStream = openFileInput("pins");
+        FileInputStream fileInputStream = openFileInput("pins.txt");
         String words = "Wrong";
         StringBuilder resultStringBuilder = new StringBuilder();
         try (BufferedReader br = new BufferedReader(new InputStreamReader(fileInputStream)))
@@ -88,7 +88,7 @@ public class IOtester extends AppCompatActivity {
 //                file.createNewFile();
 //            }
 //            FileOutputStream fileOutputStream = new FileOutputStream(file);
-            FileOutputStream fileOutputStream = openFileOutput("pins", Context.MODE_PRIVATE);
+            FileOutputStream fileOutputStream = openFileOutput("pins.txt", Context.MODE_PRIVATE);
             String data = (et1.getText().toString() + " and " + et2.getText().toString());
             //writer = new BufferedWriter((new OutputStreamWriter(fileOutputStream, "utf-8")));
             fileOutputStream.write(data.getBytes());
