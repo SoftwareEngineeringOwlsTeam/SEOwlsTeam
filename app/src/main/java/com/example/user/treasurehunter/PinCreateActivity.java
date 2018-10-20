@@ -17,6 +17,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TableRow;
@@ -39,6 +40,8 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
     TableRow degreeRow;
     TableRow speedRow;
 
+    Button goBackButton;
+
 
 
     @Override
@@ -50,6 +53,7 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
         pin = (PinDS) getIntent().getSerializableExtra("pin");
         degreeRow = findViewById(R.id.Row10);
         speedRow = findViewById(R.id.Row11);
+        goBackButton = findViewById(R.id.goBack);
 
 
         if(!(pin instanceof MoveablePin))
@@ -93,7 +97,16 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
         pin.setRadius(et.getText().toString());
         Intent mainIntent = new Intent(this, MainActivity.class);
         //((pinArray) this.getApplication()).pins.add(pin);
-        writer.writePin(pin);
+        //writer.writePin(pin);
+        startActivity(mainIntent);
+    }
+
+    public void clickPinSelect(View v)
+    {
+        goBackButton = (Button) v;
+
+
+        Intent mainIntent = new Intent(this, PinActivity.class);
         startActivity(mainIntent);
     }
 }

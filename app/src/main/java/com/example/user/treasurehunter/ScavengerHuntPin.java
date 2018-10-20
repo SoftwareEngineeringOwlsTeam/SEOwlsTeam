@@ -1,6 +1,6 @@
 package com.example.user.treasurehunter;
 
-public class ScavengerHunt extends PinDS
+public class ScavengerHuntPin extends PinDS
 {
     private final String pinName = "SCAVANGERHUNTPIN";
 
