@@ -25,6 +25,7 @@ import android.widget.TextView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Toast;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class GroupManager extends Activity implements OnItemSelectedListener
@@ -38,26 +39,15 @@ public class GroupManager extends Activity implements OnItemSelectedListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group_manager);
 
+        PinWriter writer = new PinWriter();
+        PinReader reader = new PinReader();
+
         TextView groupIDs = (TextView) findViewById(R.id.groupIDs);
         groupIDs.setText("The Groups");
         Spinner idselector = (Spinner) findViewById(R.id.spinner2);
         idselector.setOnItemSelectedListener(this);
 
-        if(!((pinArray) this.getApplication()).groups.isEmpty())
-        {
-            ArrayList<Group> groups = ((pinArray) this.getApplication()).groups;
-            for(int i = 0; i < groups.size(); i++)
-            {
-                Group group = groups.get(i);
-                groupSpinner.add(group.getGroupID());
-            }
-
-
-        }
-        else
-        {
-            groupIDs.setText("There are no groups");
-        }
+        groupSpinner = reader.existingIDs(this, "groups");
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 this,

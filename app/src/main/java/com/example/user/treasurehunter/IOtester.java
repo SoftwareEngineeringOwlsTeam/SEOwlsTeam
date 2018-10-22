@@ -80,9 +80,10 @@ public class IOtester extends AppCompatActivity
         membersID.add("1510105971");
         membersID.add("1050177092");
         String groupDescription = "The Description";
+        String adminID = "9468350125";
         String groupName = "The Name of Group";
         String adminName = "Creators Name";
-        Group group = new Group(membersID, groupDescription, groupName, adminName);
+        Group group = new Group(membersID, adminID, groupDescription, groupName, adminName);
         try
         {
             pinWriter.writeGroup(group, pinReader.read(this, "Groups", ""), this);

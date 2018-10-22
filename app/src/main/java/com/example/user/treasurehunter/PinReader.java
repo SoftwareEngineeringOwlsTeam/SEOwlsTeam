@@ -176,9 +176,8 @@ public class PinReader extends AppCompatActivity
                     {
                         allMembers.add(eachMember[j]);
                     }
-                    retreavedGroup = new Group(allMembers, foundLine[4], foundLine[3], foundLine[2]);
+                    retreavedGroup = new Group(allMembers, foundLine[1], foundLine[4], foundLine[3], foundLine[2]);
                     retreavedGroup.setGroupID(foundLine[0]);
-                    retreavedGroup.setAdminID(foundLine[1]);
                 }
             }
         }
@@ -221,12 +220,24 @@ public class PinReader extends AppCompatActivity
         return retreavedUser;
     }
 
-    public ArrayList<String> existingPinIDs (Context context)
+    public ArrayList<String> existingIDs (Context context, String whatOf)
     {
         ArrayList<String> existingIDs = new ArrayList<String>();
         try
         {
-            String everything = read(context,"PersonalPins","");
+            String everything = "";
+            if(whatOf.equals("ppins"))
+            {
+                everything = read(context,"PersonalPins","");
+            }
+            else if(whatOf.equals("groups"))
+            {
+                everything = read(context,"Groups","");
+            }
+            else if(whatOf.equals("users"))
+            {
+                everything = read(context,"Users","");
+            }
             String[] eachLine = everything.split("\n", 1000);
             for(int i = 0; i < eachLine.length; i++)
             {

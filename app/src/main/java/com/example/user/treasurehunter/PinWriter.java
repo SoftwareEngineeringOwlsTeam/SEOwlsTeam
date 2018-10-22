@@ -147,6 +147,88 @@ public class PinWriter extends AppCompatActivity implements Serializable
         }
     }
 
+    public void removeObject(Context context, String whatOf, String id)
+    {
+        PinReader reader = new PinReader();
+        String everything = "";
+        try
+        {
+            if(whatOf.equals("ppins"))
+            {
+                everything = reader.read(context,"PersonalPins","");
+            }
+            else if(whatOf.equals("groups"))
+            {
+                everything = reader.read(context,"Groups","");
+            }
+            else if(whatOf.equals("users"))
+            {
+                everything = reader.read(context,"Users","");
+            }
+        }
+        catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+        String newEverything = "";
+        String[] eachLine = everything.split("\n", 1000);
+        for(int i = 0; i < eachLine.length; i++)
+        {
+            String[] foundLine = eachLine[i].split("\\*",14);
+            if(!foundLine[0].equals(id))
+            {
+                newEverything += eachLine[i] + "\n";
+            }
+        }
+
+
+
+        ///////////////////////////////////////////////////BAD CODE
+
+
+
+        String dir = context.getFilesDir() + "/groups.txt";
+        File file = new File(dir);
+
+        try
+        {
+            if(!file.exists())
+            {
+                file.createNewFile();
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println("FileOutputStream exception: - " + e.toString());
+        }
+
+        try
+        {
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(file.getName(), Context.MODE_WORLD_READABLE));
+            String data = newEverything;
+            data += "\nEOF";
+            outputStreamWriter.write(data);
+            outputStreamWriter.close();
+        }
+        catch (IOException e)
+        {
+            System.out.println("File write failed: " + e.toString());
+        }
+
+        /////////////////////////////////////////////////////////////////////////BAD CODE
+
+
+
+
+
+
+
+
+
+
+
+    }
+
     public void clearData(Context context)
     {
         String dir = context.getFilesDir() + "/pins.txt";

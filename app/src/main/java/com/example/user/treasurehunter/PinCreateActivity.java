@@ -104,9 +104,9 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
                 pinID += String.valueOf(rand.nextInt(9));
             }
             generated = true;
-            for(int i = 0; i < reader.existingPinIDs(this).size(); i++)
+            for(int i = 0; i < reader.existingIDs(this, "ppins").size(); i++)
             {
-                if(reader.existingPinIDs(this).get(i).equals(pinID))
+                if(reader.existingIDs(this, "ppins").get(i).equals(pinID))
                 {
                     generated = false;
                 }

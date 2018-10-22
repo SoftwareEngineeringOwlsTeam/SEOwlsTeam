@@ -15,7 +15,7 @@ public class Group
     private static ArrayList<String> existingIDs = new ArrayList<>();
     // Maybe a field that gives out certain permissions to speccific users
 
-    public Group(ArrayList<String> membersID, String groupDescription, String groupName, String adminName)
+    public Group(ArrayList<String> membersID, String adminID, String groupDescription, String groupName, String adminName)
     {
         // Check all existing groups in database and generate a unique ID for this group
         boolean generated = false;
@@ -43,6 +43,7 @@ public class Group
         this.groupDescription = groupDescription;
         this.groupName = groupName;
         this.adminName = adminName;
+        this.adminID = adminID;
     }
 
     // Add a new user ID to array

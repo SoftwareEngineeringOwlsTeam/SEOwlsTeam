@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class GroupCreator extends AppCompatActivity
@@ -22,14 +23,23 @@ public class GroupCreator extends AppCompatActivity
 
     public void createGroup(View view)
     {
-        ArrayList<Group> groups = ((pinArray) this.getApplication()).groups;
-        EditText etUsername = (EditText)findViewById(R.id.username);
-        EditText etGroupname = (EditText)findViewById(R.id.groupname);
-        EditText etDescription = (EditText)findViewById(R.id.description);
+        PinWriter writer = new PinWriter();
+        PinReader reader = new PinReader();
+        EditText etUsername = (EditText)findViewById(R.id.etUsername);
+        EditText etUserID = (EditText)findViewById(R.id.etUserID);
+        EditText etDescription = (EditText)findViewById(R.id.etDescription);
+        EditText etTitle = (EditText)findViewById(R.id.etTitle);
         ArrayList<String> memberID = new ArrayList<String>();
-        Group newGroup = new Group(memberID, etDescription.getText().toString(),
-                                    etGroupname.getText().toString(), etUsername.getText().toString());
-        groups.add(newGroup);
+        Group newGroup = new Group(memberID, etUserID.getText().toString(), etDescription.getText().toString(),
+                                    etTitle.getText().toString(), etUsername.getText().toString());
+        try
+        {
+            writer.writeGroup(newGroup, reader.read(this, "Groups", ""), this);
+        }
+        catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+        }
         Intent locIntent = new Intent(this, GroupManager.class);
         startActivity(locIntent);
     }

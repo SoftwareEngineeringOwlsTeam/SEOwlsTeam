@@ -13,28 +13,24 @@ import java.util.ArrayList;
 public class ViewGroup extends AppCompatActivity
 {
     Group currentGroup;
+    String passedID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+        PinWriter writer = new PinWriter();
+        PinReader reader = new PinReader();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_group);
 
-        String passedID = (String) getIntent().getSerializableExtra("id");
+        passedID = (String) getIntent().getSerializableExtra("id");
 
         TextView tvUsername = (TextView)findViewById(R.id.tvUserName);
         TextView tvGroupname = (TextView)findViewById(R.id.tvGroupName);
         TextView tvDescription = (TextView)findViewById(R.id.tvDescription);
 
-        ArrayList<Group> groups = ((pinArray) this.getApplication()).groups;
+        currentGroup = reader.retreaveGroup(this, passedID);
 
-        for(int i = 0; i < groups.size(); i++)
-        {
-            if(groups.get(i).getGroupID().equals(passedID))
-            {
-                currentGroup = groups.get(i);
-            }
-        }
         tvUsername.setText(currentGroup.getAdminName());
         tvGroupname.setText(currentGroup.getGroupName());
         tvDescription.setText(currentGroup.getGroupDescription());
@@ -42,15 +38,8 @@ public class ViewGroup extends AppCompatActivity
 
     public void deleteGroup(View view)
     {
-        ArrayList<Group> groups = ((pinArray) this.getApplication()).groups;
-
-        for(int i = 0; i < groups.size(); i++)
-        {
-            if(groups.get(i).getGroupID().equals(currentGroup.getGroupID()))
-            {
-                groups.remove(groups.get(i));
-            }
-        }
+        PinWriter writer = new PinWriter();
+        writer.removeObject(this, "groups", passedID);
         Intent locIntent = new Intent(this, GroupManager.class);
         startActivity(locIntent);
     }
