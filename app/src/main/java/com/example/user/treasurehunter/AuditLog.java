@@ -37,8 +37,8 @@ public class AuditLog extends AppCompatActivity
                 et2.setText(data);
                 try
                 {
-                    previousText = pReader.read();
-                    pWriter.writePin(pin, previousText);
+                    previousText = pReader.read(this, "", "");
+                    pWriter.writePin(pin, previousText, this);
                 }
                 catch (FileNotFoundException e)
                 {

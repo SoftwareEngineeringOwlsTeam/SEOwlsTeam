@@ -36,13 +36,9 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
     public PinDS pin;
     public Spinner spin;
     EditText text;
-
     TableRow degreeRow;
     TableRow speedRow;
-
     Button goBackButton;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState)

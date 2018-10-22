@@ -91,6 +91,7 @@ public abstract class PinDS implements Serializable
         {
             return publisher;
         }
+
         public void setPinName(String pinName)
         {
             this.pinName = pinName;
@@ -99,6 +100,7 @@ public abstract class PinDS implements Serializable
         {
             return this.pinName;
         }
+
         public void setRadius(String radius)
         {
             this.radius = radius;
@@ -110,5 +112,9 @@ public abstract class PinDS implements Serializable
 
     public String getClassName() {
         return className;
+    }
+
+    public void setClassName(String className) {
+        this.className = className;
     }
 }

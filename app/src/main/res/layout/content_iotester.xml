@@ -6,75 +6,78 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".IOtester"
-    tools:layout_editor_absoluteY="25dp"
-    >
+    tools:layout_editor_absoluteY="25dp">
 
-    <EditText
-        android:id="@+id/eddt1"
+    <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="54dp"
-        android:layout_marginEnd="18dp"
-        android:layout_marginBottom="31dp"
-        android:hint="Testing"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/et2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="31dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="390dp"
-        android:hint="Testing"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-         />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
-    <Button
-        android:id="@+id/buttonwrite"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="18dp"
-        android:layout_marginEnd="278dp"
-        android:text="Write"
-        android:onClick="writeFile"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <Button
-        android:id="@+id/buttonread"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="173dp"
-        android:layout_marginEnd="17dp"
-        android:text="Read"
-        android:onClick="readFile"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+            <Button
+                android:id="@+id/pinGenerate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Generate Pin"
+                android:onClick="generatePin"/>
 
-        app:layout_constraintTop_toTopOf="parent" />
+            <Button
+                android:id="@+id/groupGenerate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Generate Group"
+                android:onClick="generateGroup"/>
 
-    <TextView
-        android:id="@+id/tv1"
-        android:layout_width="0dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="65dp"
-        android:layout_marginEnd="18dp"
-        android:layout_marginBottom="154dp"
-        android:text="Will display here"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-         />
+            <Button
+                android:id="@+id/userGenerate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Generate User"
+                android:onClick="generateUser"/>
+
+            <Button
+                android:id="@+id/update"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Update List"
+                android:onClick="update"/>
+
+            <Button
+                android:id="@+id/clear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Clear All"
+                android:onClick="clear"/>
+
+            <TextView
+                android:id="@+id/pinView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pin Viewer" />
+
+            <TextView
+                android:id="@+id/groupView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Group Viewer" />
+
+            <TextView
+                android:id="@+id/userView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="User Viewer" />
+
+        </LinearLayout>
+    </ScrollView>
 
 </android.support.constraint.ConstraintLayout>
