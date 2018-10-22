@@ -49,7 +49,7 @@ public class PinWriter extends AppCompatActivity implements Serializable
         try
         {
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(file.getName(), Context.MODE_WORLD_READABLE));
-            String data = (previousText + pin.getPinID() + "*" + pin.getPinName() + "*" + pin.getClassName() + "*" + pin.getPublisher() + "*" +
+            String data = (previousText + pin.getPinID() + "*" + pin.getPinName() + "*" + pin.getPinTitle() + "*" + pin.getPublisher() + "*" +
                     pin.getDescription() + "*" + pin.getRadius() + "*" + pin.getLatitude() + "*"
                     + pin.getLongitude() + "*" + pin.getAltitude() + "*" + pin.getTime() + "*" + pin.getDate());
             if (pin instanceof MoveablePin)
@@ -92,9 +92,9 @@ public class PinWriter extends AppCompatActivity implements Serializable
                                         group.getGroupDescription() + "*");
             if(group.getMembersID() != null)
             {
-                for(int i = 0; i > group.getMembersID().size(); i++)
+                for(int i = 0; i < group.getMembersID().size(); i++)
                 {
-                    data += group.getMembersID().get(i);
+                    data += group.getMembersID().get(i) + "/";
                 }
             }
             data += "\nEOF";

@@ -20,31 +20,14 @@ public abstract class PinDS implements Serializable
     private String publisher = "";
     private String pinName;
     private String radius;
-    private String className;
+    private String pinTitle;
     private static ArrayList<String> existingPinIDs = new ArrayList<>();
 
-    public PinDS(double latitude, double longitude, double altitude,
+    public PinDS(String pinID, double latitude, double longitude, double altitude,
                  String pinName, String description, String publisher, String color,
-                 String className, String time, String date, String radius)
+                 String pinTitle, String time, String date, String radius)
     {
-        boolean generated = false;
-        while (!generated)
-        {
-            pinID = "";
-            Random rand = new Random();
-            for(int j = 0; j <= 9; j++)
-            {
-                pinID += String.valueOf(rand.nextInt(9));
-            }
-            generated = true;
-            for(int i = 0; i < existingPinIDs.size(); i++)
-            {
-                if(existingPinIDs.get(i).equals(pinID))
-                {
-                    generated = false;
-                }
-            }
-        }
+
     }
 
     public PinDS(){}
@@ -110,11 +93,11 @@ public abstract class PinDS implements Serializable
             return radius;
         }
 
-    public String getClassName() {
-        return className;
+    public String getPinTitle() {
+        return pinTitle;
     }
 
-    public void setClassName(String className) {
-        this.className = className;
+    public void setPinTitle(String pinTitle) {
+        this.pinTitle = pinTitle;
     }
 }

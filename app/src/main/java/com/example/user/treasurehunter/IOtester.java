@@ -1,11 +1,13 @@
 package com.example.user.treasurehunter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,6 +32,12 @@ public class IOtester extends AppCompatActivity
     TextView pinView;
     TextView groupView;
     TextView userView;
+    TextView retreavedPin;
+    TextView retreavedGroup;
+    TextView retreavedUser;
+    EditText pinIDer;
+    EditText groupIDer;
+    EditText userIDer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -39,6 +47,12 @@ public class IOtester extends AppCompatActivity
         pinView =  findViewById(R.id.pinView);
         groupView = findViewById(R.id.groupView);
         userView = findViewById(R.id.userView);
+        retreavedPin = findViewById(R.id.retreavedPin);
+        retreavedGroup = findViewById(R.id.retreavedGroup);
+        retreavedUser = findViewById(R.id.retreavedUser);
+        pinIDer = findViewById(R.id.pinIDer);
+        groupIDer = findViewById(R.id.groupIDer);
+        userIDer = findViewById(R.id.userIDer);
 
         pinWriter = new PinWriter();
         pinReader = new PinReader();
@@ -84,7 +98,7 @@ public class IOtester extends AppCompatActivity
         TreasurePin pin = new TreasurePin();
         pin.setPinID("0386579654");
         pin.setPinName("Pin Name");
-        pin.setClassName("The Name");
+        pin.setPinTitle("The Name");
         pin.setPublisher("Publisher");
         pin.setColor("Color");
         pin.setDescription("Description");
@@ -120,5 +134,61 @@ public class IOtester extends AppCompatActivity
     public void clear(View view)
     {
         pinWriter.clearData(this);
+    }
+
+    public void retreavePin(View view)
+    {
+        PinDS pin = pinReader.retreavePin(this,pinIDer.getText().toString());
+        String theLines =   ("Pin ID: "      + pin.getPinID()       + "\n" +
+                             "Pin Name: "    + pin.getPinName()     + "\n" +
+                             "Pin Title: "   + pin.getPinTitle()    + "\n" +
+                             "Publisher: "   + pin.getPublisher()   + "\n" +
+                             "Description: " + pin.getDescription() + "\n" +
+                             "Radius: "      + pin.getRadius()      + "\n" +
+                             "Latitude: "    + pin.getLatitude()    + "\n" +
+                             "Longitude: "   + pin.getLongitude()   + "\n" +
+                             "Altitude: "    + pin.getAltitude()    + "\n" +
+                             "Time: "        + pin.getTime()        + "\n" +
+                             "Date: "        + pin.getDate());
+        if(pin instanceof MoveablePin)
+        {
+            theLines += "\n" + "Pin Degrees: " + ((MoveablePin) pin).getDegree() + "\n" +
+                               "Pin Speed: "   + ((MoveablePin) pin).getSpeed();
+        }
+        retreavedPin.setText(theLines);
+    }
+
+    public void retreaveGroup(View view)
+    {
+        Group group = pinReader.retreaveGroup(this,groupIDer.getText().toString());
+        String theLines =   ("Group ID: "           + group.getGroupID()            + "\n" +
+                             "Admin ID: "           + group.getAdminID()            + "\n" +
+                             "Admin Name: "         + group.getAdminName()          + "\n" +
+                             "Group Name: "         + group.getGroupName()          + "\n" +
+                             "Group Description: "  + group.getGroupDescription()   + "\n" +
+                             "Group Memebr ID's "   + group.getMembersID());
+        retreavedGroup.setText(theLines);
+    }
+
+    public void retreaveUser(View view)
+    {
+        User user = pinReader.retreaveUser(this,userIDer.getText().toString());
+        String theLines =   ("User ID: "           + user.getUserID()       + "\n" +
+                             "Username: "          + user.getUserName()     + "\n" +
+                             "Password: "          + user.getPassword()     + "\n" +
+                             "Associated Groups: " + user.getAssociatedGroupID());
+        retreavedUser.setText(theLines);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if (keyCode == KeyEvent.KEYCODE_BACK )
+        {
+            Intent mainIntent = new Intent(this, MainActivity.class);
+            startActivity(mainIntent);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

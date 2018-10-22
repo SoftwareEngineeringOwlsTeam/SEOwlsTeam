@@ -71,6 +71,11 @@ public class Group
         return groupID;
     }
 
+    public void setGroupID(String groupID)
+    {
+        this.groupID = groupID;
+    }
+
     public ArrayList<String> getMembersID()
     {
         return membersID;

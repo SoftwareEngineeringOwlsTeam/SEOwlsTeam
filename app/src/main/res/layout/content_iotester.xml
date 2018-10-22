@@ -77,6 +77,69 @@
                 android:layout_height="wrap_content"
                 android:text="User Viewer" />
 
+            <EditText
+                android:id="@+id/pinIDer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Type in the Pin ID"
+                android:inputType="textPersonName" />
+
+            <Button
+                android:id="@+id/retreavePin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Retreave Pin"
+                android:onClick="retreavePin"/>
+
+            <TextView
+                android:id="@+id/retreavedPin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="The Retreaved Pin" />
+
+            <EditText
+                android:id="@+id/groupIDer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Type in the Group ID"
+                android:inputType="textPersonName" />
+
+            <Button
+                android:id="@+id/retreaveGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Retreave Group"
+                android:onClick="retreaveGroup"/>
+
+            <TextView
+                android:id="@+id/retreavedGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="The Retreaved Group" />
+
+            <EditText
+                android:id="@+id/userIDer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Type in the User ID"
+                android:inputType="textPersonName" />
+
+            <Button
+                android:id="@+id/retreaveUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Retreave User"
+                android:onClick="retreaveUser"/>
+
+            <TextView
+                android:id="@+id/retreavedUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="The Retreaved User" />
+
         </LinearLayout>
     </ScrollView>
 

@@ -14,6 +14,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 //import android.text.format.DateFormat;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -29,6 +30,8 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 import java.text.DateFormat;
+import java.util.Random;
+
 import android.text.format.Time;
 
 public class PinCreateActivity extends AppCompatActivity implements Serializable
@@ -72,28 +75,63 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
         spin.setAdapter(adapter);
     }
 
-    public void createClicked(View view) throws FileNotFoundException {
+    public void createClicked(View view) throws FileNotFoundException
+    {
         PinWriter writer = new PinWriter();
+        PinReader reader = new PinReader();
+
         EditText et = (EditText)findViewById(R.id.publisher);
         pin.setPublisher(et.getText().toString());
         et = (EditText)findViewById(R.id.pinName);
-        pin.setPinName(et.getText().toString());
+        pin.setPinTitle(et.getText().toString());
         et = (EditText)findViewById(R.id.description);
         pin.setDescription(et.getText().toString());
+        et = (EditText)findViewById(R.id.etLocationLat);
+        pin.setLatitude(Double.parseDouble(et.getText().toString()));
+        et = (EditText)findViewById(R.id.etLocationLong);
+        pin.setLongitude(Double.parseDouble(et.getText().toString()));
+        et = (EditText)findViewById(R.id.etAltitude);
+        pin.setAltitude(Double.parseDouble(et.getText().toString()));
 
+        String pinID = "";
+        boolean generated = false;
+        while (!generated)
+        {
+            pinID = "";
+            Random rand = new Random();
+            for(int j = 0; j <= 9; j++)
+            {
+                pinID += String.valueOf(rand.nextInt(9));
+            }
+            generated = true;
+            for(int i = 0; i < reader.existingPinIDs(this).size(); i++)
+            {
+                if(reader.existingPinIDs(this).get(i).equals(pinID))
+                {
+                    generated = false;
+                }
+            }
+        }
+        pin.setPinID(pinID);
 
 
         //et = (EditText)findViewById(R.id.color);
         pin.setColor(spin.getSelectedItem().toString());
 
-
+        if(pin instanceof MoveablePin)
+        {
+            et = (EditText)findViewById(R.id.etDegree);
+            ((MoveablePin) pin).setDegree(Double.parseDouble(et.getText().toString()));
+            et = (EditText)findViewById(R.id.etSpeed);
+            ((MoveablePin) pin).setSpeed(Double.parseDouble(et.getText().toString()));
+        }
 
 
         et = (EditText)findViewById(R.id.radius);
         pin.setRadius(et.getText().toString());
         Intent mainIntent = new Intent(this, MainActivity.class);
         //((pinArray) this.getApplication()).pins.add(pin);
-        //writer.writePin(pin);
+        writer.writePin(pin, reader.read(this, "PersonalPins", ""), this);
         startActivity(mainIntent);
     }
 
@@ -104,6 +142,18 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
 
         Intent mainIntent = new Intent(this, PinActivity.class);
         startActivity(mainIntent);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if (keyCode == KeyEvent.KEYCODE_BACK )
+        {
+            Intent mainIntent = new Intent(this, MainActivity.class);
+            startActivity(mainIntent);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }
 
