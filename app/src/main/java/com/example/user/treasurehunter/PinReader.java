@@ -86,9 +86,9 @@ public class PinReader extends AppCompatActivity
         return fin;
     }
 
-    public PinDS retreavePin(Context context, String pinID)
+    public PinDS retrievePin(Context context, String pinID)
     {
-        PinDS retreavedPin = null;
+        PinDS retrievedPin = null;
         try
         {
             String everything = read(context,"PersonalPins","");
@@ -100,54 +100,54 @@ public class PinReader extends AppCompatActivity
                 {
                     if(foundLine[1].equals("TREASUREPIN"))
                     {
-                        retreavedPin = new TreasurePin();
+                        retrievedPin = new TreasurePin();
                     }
                     else if(foundLine[1].equals("SHIPWRECKPIN"))
                     {
-                        retreavedPin = new Shipwreck();
+                        retrievedPin = new Shipwreck();
                     }
                     else if(foundLine[1].equals("SCAVENGERHUNTPIN"))
                     {
-                        retreavedPin = new ScavengerHuntPin();
+                        retrievedPin = new ScavengerHuntPin();
                     }
                     else if(foundLine[1].equals("SURVIVORPIN"))
                     {
-                        retreavedPin = new SurvivorPin();
-                        ((SurvivorPin) retreavedPin).setDegree(Double.parseDouble(foundLine[11]));
-                        ((SurvivorPin) retreavedPin).setSpeed(Double.parseDouble(foundLine[12]));
+                        retrievedPin = new SurvivorPin();
+                        ((SurvivorPin) retrievedPin).setDegree(Double.parseDouble(foundLine[11]));
+                        ((SurvivorPin) retrievedPin).setSpeed(Double.parseDouble(foundLine[12]));
                     }
                     else if(foundLine[1].equals("FORESTFIREPIN"))
                     {
-                        retreavedPin = new ForestFirePin();
-                        ((ForestFirePin) retreavedPin).setDegree(Double.parseDouble(foundLine[11]));
-                        ((ForestFirePin) retreavedPin).setSpeed(Double.parseDouble(foundLine[12]));
+                        retrievedPin = new ForestFirePin();
+                        ((ForestFirePin) retrievedPin).setDegree(Double.parseDouble(foundLine[11]));
+                        ((ForestFirePin) retrievedPin).setSpeed(Double.parseDouble(foundLine[12]));
                     }
                     else if(foundLine[1].equals("WHALEPIN"))
                     {
-                        retreavedPin = new WhalePin();
-                        ((WhalePin) retreavedPin).setDegree(Double.parseDouble(foundLine[11]));
-                        ((WhalePin) retreavedPin).setSpeed(Double.parseDouble(foundLine[12]));
+                        retrievedPin = new WhalePin();
+                        ((WhalePin) retrievedPin).setDegree(Double.parseDouble(foundLine[11]));
+                        ((WhalePin) retrievedPin).setSpeed(Double.parseDouble(foundLine[12]));
                     }
                     else if(foundLine[1].equals("HUNTINGPIN"))
                     {
-                        retreavedPin = new Hunting();
-                        ((Hunting) retreavedPin).setDegree(Double.parseDouble(foundLine[11]));
-                        ((Hunting) retreavedPin).setSpeed(Double.parseDouble(foundLine[12]));
+                        retrievedPin = new Hunting();
+                        ((Hunting) retrievedPin).setDegree(Double.parseDouble(foundLine[11]));
+                        ((Hunting) retrievedPin).setSpeed(Double.parseDouble(foundLine[12]));
                     }
                     else
                     {
-                        retreavedPin = new CustomPin();
+                        retrievedPin = new CustomPin();
                     }
-                    retreavedPin.setPinID(foundLine[0]);
-                    retreavedPin.setPinTitle(foundLine[2]);
-                    retreavedPin.setPublisher(foundLine[3]);
-                    retreavedPin.setDescription(foundLine[4]);
-                    retreavedPin.setRadius(foundLine[5]);
-                    retreavedPin.setLatitude(Double.parseDouble(foundLine[6]));
-                    retreavedPin.setLongitude(Double.parseDouble(foundLine[7]));
-                    retreavedPin.setAltitude(Double.parseDouble(foundLine[8]));
-                    retreavedPin.setTime(foundLine[9]);
-                    retreavedPin.setDate(foundLine[10]);
+                    retrievedPin.setPinID(foundLine[0]);
+                    retrievedPin.setPinTitle(foundLine[2]);
+                    retrievedPin.setPublisher(foundLine[3]);
+                    retrievedPin.setDescription(foundLine[4]);
+                    retrievedPin.setRadius(foundLine[5]);
+                    retrievedPin.setLatitude(Double.parseDouble(foundLine[6]));
+                    retrievedPin.setLongitude(Double.parseDouble(foundLine[7]));
+                    retrievedPin.setAltitude(Double.parseDouble(foundLine[8]));
+                    retrievedPin.setTime(foundLine[9]);
+                    retrievedPin.setDate(foundLine[10]);
                 }
             }
         }
@@ -155,12 +155,12 @@ public class PinReader extends AppCompatActivity
         {
             e.printStackTrace();
         }
-        return retreavedPin;
+        return retrievedPin;
     }
 
-    public Group retreaveGroup(Context context, String groupID)
+    public Group retrieveGroup(Context context, String groupID)
     {
-        Group retreavedGroup = null;
+        Group retrievedGroup = null;
         try
         {
             String everything = read(context,"Groups","");
@@ -176,8 +176,8 @@ public class PinReader extends AppCompatActivity
                     {
                         allMembers.add(eachMember[j]);
                     }
-                    retreavedGroup = new Group(allMembers, foundLine[1], foundLine[4], foundLine[3], foundLine[2]);
-                    retreavedGroup.setGroupID(foundLine[0]);
+                    retrievedGroup = new Group(allMembers, foundLine[1], foundLine[4], foundLine[3], foundLine[2]);
+                    retrievedGroup.setGroupID(foundLine[0]);
                 }
             }
         }
@@ -185,14 +185,14 @@ public class PinReader extends AppCompatActivity
         {
             e.printStackTrace();
         }
-        return retreavedGroup;
+        return retrievedGroup;
     }
 
 
 
-    public User retreaveUser(Context context, String userID)
+    public User retrieveUser(Context context, String userID)
     {
-        User retreavedUser = null;
+        User retrievedUser = null;
         try
         {
             String everything = read(context,"Users","");
@@ -208,8 +208,8 @@ public class PinReader extends AppCompatActivity
                     {
                         allAssociations.add(eachAssociation[j]);
                     }
-                    retreavedUser = new User(foundLine[0], foundLine[1], foundLine[2]);
-                    retreavedUser.setAssociatedGroupID(allAssociations);
+                    retrievedUser = new User(foundLine[0], foundLine[1], foundLine[2]);
+                    retrievedUser.setAssociatedGroupID(allAssociations);
                 }
             }
         }
@@ -217,7 +217,7 @@ public class PinReader extends AppCompatActivity
         {
             e.printStackTrace();
         }
-        return retreavedUser;
+        return retrievedUser;
     }
 
     public ArrayList<String> existingIDs (Context context, String whatOf)

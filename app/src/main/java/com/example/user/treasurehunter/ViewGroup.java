@@ -29,7 +29,7 @@ public class ViewGroup extends AppCompatActivity
         TextView tvGroupname = (TextView)findViewById(R.id.tvGroupName);
         TextView tvDescription = (TextView)findViewById(R.id.tvDescription);
 
-        currentGroup = reader.retreaveGroup(this, passedID);
+        currentGroup = reader.retrieveGroup(this, passedID);
 
         tvUsername.setText(currentGroup.getAdminName());
         tvGroupname.setText(currentGroup.getGroupName());

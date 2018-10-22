@@ -32,9 +32,9 @@ public class IOtester extends AppCompatActivity
     TextView pinView;
     TextView groupView;
     TextView userView;
-    TextView retreavedPin;
-    TextView retreavedGroup;
-    TextView retreavedUser;
+    TextView retrievedPin;
+    TextView retrievedGroup;
+    TextView retrievedUser;
     EditText pinIDer;
     EditText groupIDer;
     EditText userIDer;
@@ -47,9 +47,9 @@ public class IOtester extends AppCompatActivity
         pinView =  findViewById(R.id.pinView);
         groupView = findViewById(R.id.groupView);
         userView = findViewById(R.id.userView);
-        retreavedPin = findViewById(R.id.retreavedPin);
-        retreavedGroup = findViewById(R.id.retreavedGroup);
-        retreavedUser = findViewById(R.id.retreavedUser);
+        retrievedPin = findViewById(R.id.retrievedPin);
+        retrievedGroup = findViewById(R.id.retrievedGroup);
+        retrievedUser = findViewById(R.id.retrievedUser);
         pinIDer = findViewById(R.id.pinIDer);
         groupIDer = findViewById(R.id.groupIDer);
         userIDer = findViewById(R.id.userIDer);
@@ -137,9 +137,9 @@ public class IOtester extends AppCompatActivity
         pinWriter.clearData(this);
     }
 
-    public void retreavePin(View view)
+    public void retrievePin(View view)
     {
-        PinDS pin = pinReader.retreavePin(this,pinIDer.getText().toString());
+        PinDS pin = pinReader.retrievePin(this,pinIDer.getText().toString());
         String theLines =   ("Pin ID: "      + pin.getPinID()       + "\n" +
                              "Pin Name: "    + pin.getPinName()     + "\n" +
                              "Pin Title: "   + pin.getPinTitle()    + "\n" +
@@ -156,29 +156,29 @@ public class IOtester extends AppCompatActivity
             theLines += "\n" + "Pin Degrees: " + ((MoveablePin) pin).getDegree() + "\n" +
                                "Pin Speed: "   + ((MoveablePin) pin).getSpeed();
         }
-        retreavedPin.setText(theLines);
+        retrievedPin.setText(theLines);
     }
 
-    public void retreaveGroup(View view)
+    public void retrieveGroup(View view)
     {
-        Group group = pinReader.retreaveGroup(this,groupIDer.getText().toString());
+        Group group = pinReader.retrieveGroup(this,groupIDer.getText().toString());
         String theLines =   ("Group ID: "           + group.getGroupID()            + "\n" +
                              "Admin ID: "           + group.getAdminID()            + "\n" +
                              "Admin Name: "         + group.getAdminName()          + "\n" +
                              "Group Name: "         + group.getGroupName()          + "\n" +
                              "Group Description: "  + group.getGroupDescription()   + "\n" +
                              "Group Memebr ID's "   + group.getMembersID());
-        retreavedGroup.setText(theLines);
+        retrievedGroup.setText(theLines);
     }
 
-    public void retreaveUser(View view)
+    public void retrieveUser(View view)
     {
-        User user = pinReader.retreaveUser(this,userIDer.getText().toString());
+        User user = pinReader.retrieveUser(this,userIDer.getText().toString());
         String theLines =   ("User ID: "           + user.getUserID()       + "\n" +
                              "Username: "          + user.getUserName()     + "\n" +
                              "Password: "          + user.getPassword()     + "\n" +
                              "Associated Groups: " + user.getAssociatedGroupID());
-        retreavedUser.setText(theLines);
+        retrievedUser.setText(theLines);
     }
 
     @Override

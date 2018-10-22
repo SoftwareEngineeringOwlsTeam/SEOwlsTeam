@@ -86,17 +86,17 @@
                 android:inputType="textPersonName" />
 
             <Button
-                android:id="@+id/retreavePin"
+                android:id="@+id/retrievePin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Retreave Pin"
-                android:onClick="retreavePin"/>
+                android:onClick="retrievePin"
+                android:text="Retrieve Pin" />
 
             <TextView
-                android:id="@+id/retreavedPin"
+                android:id="@+id/retrievedPin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="The Retreaved Pin" />
+                android:text="The Retrieved Pin" />
 
             <EditText
                 android:id="@+id/groupIDer"
@@ -107,17 +107,17 @@
                 android:inputType="textPersonName" />
 
             <Button
-                android:id="@+id/retreaveGroup"
+                android:id="@+id/retrieveGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Retreave Group"
-                android:onClick="retreaveGroup"/>
+                android:onClick="retrieveGroup"
+                android:text="Retrieve Group" />
 
             <TextView
-                android:id="@+id/retreavedGroup"
+                android:id="@+id/retrievedGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="The Retreaved Group" />
+                android:text="The Retrieved Group" />
 
             <EditText
                 android:id="@+id/userIDer"
@@ -128,17 +128,17 @@
                 android:inputType="textPersonName" />
 
             <Button
-                android:id="@+id/retreaveUser"
+                android:id="@+id/retrieveUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Retreave User"
-                android:onClick="retreaveUser"/>
+                android:onClick="retrieveUser"
+                android:text="Retrieve User" />
 
             <TextView
-                android:id="@+id/retreavedUser"
+                android:id="@+id/retrievedUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="The Retreaved User" />
+                android:text="The Retrieved User" />
 
         </LinearLayout>
     </ScrollView>
