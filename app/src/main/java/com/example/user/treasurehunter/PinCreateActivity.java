@@ -42,6 +42,7 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
     TableRow degreeRow;
     TableRow speedRow;
     Button goBackButton;
+    TextView tvBanner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -54,7 +55,11 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
         speedRow = findViewById(R.id.Row11);
         goBackButton = findViewById(R.id.goBack);
         tvColor = findViewById(R.id.tvcolor);
+        tvColor.setTextColor(pin.getDefaultColor());
         tvColor.setText(pin.getColor());
+        tvBanner = findViewById(R.id.tvBanner);
+        tvBanner.setBackgroundColor(pin.getDefaultColor());
+        tvBanner.setText("   " + pin.getPinName());
 
 
         if(!(pin instanceof MoveablePin))
@@ -133,13 +138,13 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
         Intent mainIntent = new Intent(this, MainActivity.class);
         //((pinArray) this.getApplication()).pins.add(pin);
         writer.writePin(pin, reader.read(this, "PersonalPins", ""), this);
-        writer.writeAuditTest(1,pin,reader.read(this, "PersonalAudit", ""),this);
         startActivity(mainIntent);
     }
 
     public void clickPinSelect(View v)
     {
         goBackButton = (Button) v;
+
 
         Intent mainIntent = new Intent(this, PinActivity.class);
         startActivity(mainIntent);
@@ -157,11 +162,3 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
         return super.onKeyDown(keyCode, event);
     }
 }
-
-
-
-
-
-
-
-
