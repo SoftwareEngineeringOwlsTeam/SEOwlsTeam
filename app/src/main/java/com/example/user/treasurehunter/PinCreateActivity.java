@@ -37,7 +37,7 @@ import android.text.format.Time;
 public class PinCreateActivity extends AppCompatActivity implements Serializable
 {
     public PinDS pin;
-    public Spinner spin;
+    public TextView tvColor;
     EditText text;
     TableRow degreeRow;
     TableRow speedRow;
@@ -53,6 +53,8 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
         degreeRow = findViewById(R.id.Row10);
         speedRow = findViewById(R.id.Row11);
         goBackButton = findViewById(R.id.goBack);
+        tvColor = findViewById(R.id.tvcolor);
+        tvColor.setText(pin.getColor());
 
 
         if(!(pin instanceof MoveablePin))
@@ -61,7 +63,7 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
             speedRow.setVisibility(View.GONE);
 
         }
-        spin = findViewById(R.id.spinner);
+
 
         ((TextView)findViewById(R.id.etTime)).setText(pin.getTime());
         ((TextView)findViewById(R.id.etDate)).setText(pin.getDate());
@@ -72,7 +74,6 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.color_picker, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spin.setAdapter(adapter);
     }
 
     public void createClicked(View view) throws FileNotFoundException
@@ -116,7 +117,7 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
 
 
         //et = (EditText)findViewById(R.id.color);
-        pin.setColor(spin.getSelectedItem().toString());
+        pin.setColor(pin.getColor());
 
         if(pin instanceof MoveablePin)
         {
