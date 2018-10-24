@@ -22,6 +22,7 @@ public abstract class PinDS implements Serializable
     private String radius;
     private String pinTitle;
     private static ArrayList<String> existingPinIDs = new ArrayList<>();
+    protected String defaultColor;
 
     public PinDS(String pinID, double latitude, double longitude, double altitude,
                  String pinName, String description, String publisher, String color,

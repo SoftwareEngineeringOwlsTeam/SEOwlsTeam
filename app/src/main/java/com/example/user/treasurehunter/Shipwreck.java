@@ -9,4 +9,9 @@ public class Shipwreck extends PinDS
     {
         return pinName;
     }
+
+    Shipwreck()
+    {
+
+    }
 }

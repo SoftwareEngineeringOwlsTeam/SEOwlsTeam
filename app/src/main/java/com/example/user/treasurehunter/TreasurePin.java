@@ -9,4 +9,8 @@ public class TreasurePin extends PinDS
     {
         return pinName;
     }
+
+    TreasurePin()
+    {
+    }
 }

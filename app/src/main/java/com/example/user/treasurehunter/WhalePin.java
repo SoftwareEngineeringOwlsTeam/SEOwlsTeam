@@ -9,4 +9,8 @@ public class WhalePin extends MoveablePin
     {
         return pinName;
     }
+
+    WhalePin()
+    {
+    }
 }
