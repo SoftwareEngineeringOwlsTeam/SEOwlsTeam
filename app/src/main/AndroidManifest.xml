@@ -54,7 +54,9 @@
             android:label="@string/title_activity_iotester"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".GroupCreator" />
-        <activity android:name=".ViewGroup"></activity>
+        <activity android:name=".ViewGroup" />
+        <activity android:name=".GroupAuditLog" />
+        <activity android:name=".GroupMembers"></activity>
     </application>
 
 </manifest>

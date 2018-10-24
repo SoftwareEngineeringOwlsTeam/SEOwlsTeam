@@ -132,13 +132,13 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
         Intent mainIntent = new Intent(this, MainActivity.class);
         //((pinArray) this.getApplication()).pins.add(pin);
         writer.writePin(pin, reader.read(this, "PersonalPins", ""), this);
+        writer.writeAuditTest(1,pin,reader.read(this, "PersonalAudit", ""),this);
         startActivity(mainIntent);
     }
 
     public void clickPinSelect(View v)
     {
         goBackButton = (Button) v;
-
 
         Intent mainIntent = new Intent(this, PinActivity.class);
         startActivity(mainIntent);

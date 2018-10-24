@@ -30,11 +30,19 @@ public class GroupCreator extends AppCompatActivity
         EditText etDescription = (EditText)findViewById(R.id.etDescription);
         EditText etTitle = (EditText)findViewById(R.id.etTitle);
         ArrayList<String> memberID = new ArrayList<String>();
+
+        /// As a test
+        memberID.add("Aldin");
+        memberID.add("Deborion");
+        memberID.add("Estemoor");
+
+
         Group newGroup = new Group(memberID, etUserID.getText().toString(), etDescription.getText().toString(),
                                     etTitle.getText().toString(), etUsername.getText().toString());
         try
         {
             writer.writeGroup(newGroup, reader.read(this, "Groups", ""), this);
+            writer.writeMembersTest(newGroup.getGroupID(), reader.readGroupMembers(this, newGroup.getGroupID()), this);
         }
         catch (FileNotFoundException e)
         {
