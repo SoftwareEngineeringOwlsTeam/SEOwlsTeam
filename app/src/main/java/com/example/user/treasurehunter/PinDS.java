@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Random;
+import android.graphics.Color;
 
 import android.location.*;
 
@@ -14,7 +15,7 @@ public abstract class PinDS implements Serializable
     private double longitude;
     private double altitude;
     private String description;
-    private String color;
+    protected String color;
     private String time;
     private String date;
     private String publisher = "";
@@ -22,7 +23,7 @@ public abstract class PinDS implements Serializable
     private String radius;
     private String pinTitle;
     private static ArrayList<String> existingPinIDs = new ArrayList<>();
-    protected String defaultColor;
+    protected int defaultColor;
 
     public PinDS(String pinID, double latitude, double longitude, double altitude,
                  String pinName, String description, String publisher, String color,
@@ -100,5 +101,10 @@ public abstract class PinDS implements Serializable
 
     public void setPinTitle(String pinTitle) {
         this.pinTitle = pinTitle;
+    }
+
+    public int getDefaultColor()
+    {
+        return defaultColor;
     }
 }

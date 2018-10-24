@@ -27,7 +27,8 @@
             android:label="Pin Selection" />
         <activity
             android:name=".PinCreateActivity"
-            android:label="Pin Creation" />
+            android:label="Pin Creation"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".AuditLog"
             android:label="Audit Log" />
@@ -57,6 +58,10 @@
         <activity android:name=".ViewGroup" />
         <activity android:name=".GroupAuditLog" />
         <activity android:name=".GroupMembers"></activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
