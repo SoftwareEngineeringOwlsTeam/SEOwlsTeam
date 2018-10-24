@@ -19,15 +19,23 @@ import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.text.DateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 public class PinWriter extends AppCompatActivity implements Serializable
 {
 
-    //private PinDS pin;
-    //private Group group;
-    //private User user;
+    private String currentDate;
+    private String currentTime;
+    private Date time = Calendar.getInstance().getTime();
 
-    public PinWriter() { }
+    public PinWriter()
+    {
+        Calendar calendar = Calendar.getInstance();
+        currentTime = time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds();
+        currentDate = DateFormat.getDateInstance().format(calendar.getTime());
+    }
 
     public void writePin(PinDS pin, String previousText, Context context)
     {
@@ -98,12 +106,41 @@ public class PinWriter extends AppCompatActivity implements Serializable
                 }
             }
             data += "\nEOF";
+            System.out.println(data);
             outputStreamWriter.write(data);
             outputStreamWriter.close();
         }
         catch (IOException e)
         {
             System.out.println("File write failed: " + e.toString());
+        }
+
+
+
+        dir = context.getFilesDir() + "/" + group.getGroupID() + "group_audit.txt";
+        file = new File(dir);
+        try
+        {
+            if(!file.exists())
+            {
+                file.createNewFile();
+                try
+                {
+                    OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(file.getName(), Context.MODE_WORLD_READABLE));
+                    String data = ("0*" + currentTime + "*" + currentDate + "*" + group.getAdminName() + "*" + group.getAdminID());
+                    data += "\nEOF";
+                    outputStreamWriter.write(data);
+                    outputStreamWriter.close();
+                }
+                catch (IOException e)
+                {
+                    System.out.println("File write failed: " + e.toString());
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println("FileOutputStream exception: - " + e.toString());
         }
     }
 
@@ -248,6 +285,190 @@ public class PinWriter extends AppCompatActivity implements Serializable
         if(file.exists())
         {
             file.delete();
+        }
+        dir = context.getFilesDir() + "/personal_audit.txt";
+        file = new File(dir);
+        if(file.exists())
+        {
+            file.delete();
+        }
+    }
+
+
+
+    public void removeGroupAudit(Context context, String groupID)
+    {
+        String dir = context.getFilesDir() + "/" + groupID + "users.txt";
+        File file = new File(dir);
+        if(file.exists())
+        {
+            file.delete();
+        }
+    }
+
+
+
+
+    ////////////////////////////////////////////////////////////Actual Method
+
+    public void writeAudit(String groupID, int action, User user, User deletedUser, PinDS pin, String previousText, Context context)
+    {
+        String dir = context.getFilesDir() + "/" + groupID + "group_audit.txt";
+        File file = new File(dir);
+        try
+        {
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(file.getName(), Context.MODE_WORLD_READABLE));
+            String data = (previousText + action + "*" + currentTime + "*" + currentDate + "*" + user.getUserName() + "*" + user.getUserID());
+            if(action == 2)
+            {
+                data += ("*" + pin.getPinTitle());
+                if(action == 1)
+                {
+                    data += ("*" + pin.getPinID());
+                }
+            }
+            else {
+                data += ("*" + deletedUser.getUserName() + "*" + deletedUser.getUserID());
+            }
+            data += "\nEOF";
+            outputStreamWriter.write(data);
+            outputStreamWriter.close();
+        }
+        catch (IOException e)
+        {
+            System.out.println("File write failed: " + e.toString());
+        }
+    }
+
+
+
+    ///////////////////////////////////////////////////////////Testing Method
+
+    public void writeAuditTest(int action, PinDS pin, String previousText, Context context)
+    {
+        String dir = context.getFilesDir() + "/personal_audit.txt";
+        File file = new File(dir);
+        try
+        {
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(file.getName(), Context.MODE_WORLD_READABLE));
+            String data = (previousText + action + "*" + currentTime + "*" + currentDate + "*" + pin.getPublisher());
+            if(action == 2 || action == 1)
+            {
+                data += ("*" + pin.getPinTitle());
+                if(action == 1)
+                {
+                    data += ("*" + pin.getPinID());
+                }
+            }
+            data += "\nEOF";
+            System.out.println(data);
+            outputStreamWriter.write(data);
+            outputStreamWriter.close();
+        }
+        catch (IOException e)
+        {
+            System.out.println("File write failed: " + e.toString());
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////////Actual Method
+
+    public void writeMembers(String groupID, int action, User user, User deletedUser, PinDS pin, String previousText, Context context)
+    {
+        String dir = context.getFilesDir() + "/" + groupID + "group_audit.txt";
+        File file = new File(dir);
+        try
+        {
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(file.getName(), Context.MODE_WORLD_READABLE));
+            String data = (previousText + action + "*" + currentTime + "*" + currentDate + "*" + user.getUserName() + "*" + user.getUserID());
+            if(action == 2)
+            {
+                data += ("*" + pin.getPinTitle());
+                if(action == 1)
+                {
+                    data += ("*" + pin.getPinID());
+                }
+            }
+            else {
+                data += ("*" + deletedUser.getUserName() + "*" + deletedUser.getUserID());
+            }
+            data += "\nEOF";
+            outputStreamWriter.write(data);
+            outputStreamWriter.close();
+        }
+        catch (IOException e)
+        {
+            System.out.println("File write failed: " + e.toString());
+        }
+    }
+
+
+
+    ///////////////////////////////////////////////////////////Testing Method
+
+    public void writeMembersTest(String groupID, String previousText, Context context)
+    {
+        String dir = context.getFilesDir() + "/" + groupID + "members.txt";
+        File file = new File(dir);
+        try
+        {
+            if(!file.exists())
+            {
+                file.createNewFile();
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println("FileOutputStream exception: - " + e.toString());
+        }
+
+        try
+        {
+            PinReader reader = new PinReader();
+            Group group = reader.retrieveGroup(context, groupID);
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(file.getName(), Context.MODE_WORLD_READABLE));
+            String data = "";
+            if(!group.getMembersID().isEmpty())
+            {
+                for(int i = 0; i > group.getMembersID().size(); i++)
+                {
+                    //test
+                    data += group.getMembersID().get(i);
+
+                    //actual
+                    //String anid = group.getMembersID().get(i);
+                    //data += reader.retrieveUser(context, anid).getUserName() + "\n";
+                }
+            }
+            data += "EOF";
+            outputStreamWriter.write(data);
+            outputStreamWriter.close();
+        }
+        catch (IOException e)
+        {
+            System.out.println("File write failed: " + e.toString());
         }
     }
 }

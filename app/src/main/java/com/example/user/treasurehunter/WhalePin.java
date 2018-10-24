@@ -11,11 +11,7 @@ public class WhalePin extends MoveablePin
         return pinName;
     }
 
-    @Override
-    public String getColor()
+    WhalePin()
     {
-        return color;
     }
-
-
 }

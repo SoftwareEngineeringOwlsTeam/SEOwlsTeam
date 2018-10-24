@@ -40,7 +40,22 @@ public class ViewGroup extends AppCompatActivity
     {
         PinWriter writer = new PinWriter();
         writer.removeObject(this, "groups", passedID);
+        writer.removeGroupAudit(this, passedID);
         Intent locIntent = new Intent(this, GroupManager.class);
+        startActivity(locIntent);
+    }
+
+    public void viewGroupAudit(View view)
+    {
+        Intent locIntent = new Intent(this, GroupAuditLog.class);
+        locIntent.putExtra("id", passedID);
+        startActivity(locIntent);
+    }
+
+    public void viewGroupMembers(View view)
+    {
+        Intent locIntent = new Intent(this, GroupMembers.class);
+        locIntent.putExtra("id", passedID);
         startActivity(locIntent);
     }
 

@@ -26,13 +26,13 @@
             android:textColor="@color/colorPrimary"
 
 
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
         <EditText
             android:id="@+id/publisher"
             android:layout_width="251dp"
             android:layout_height="wrap_content"
-            android:hint="Enter User Name"
+            android:hint="@string/enter_user_name"
             android:textAlignment="center"
             android:textColor="@android:color/black"
             android:textSize="20dp"
@@ -111,6 +111,8 @@
 
         <TextView
             android:id="@+id/tvcolor"
+            android:text="Color"
+            android:textSize="20dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textAlignment="center"

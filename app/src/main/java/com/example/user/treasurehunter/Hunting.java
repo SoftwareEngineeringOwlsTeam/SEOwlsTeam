@@ -9,4 +9,8 @@ public class Hunting extends MoveablePin
     {
         return pinName;
     }
+
+    Hunting()
+    {
+    }
 }

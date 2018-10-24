@@ -4,29 +4,30 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.View;
 import android.widget.TextView;
 
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-
-public class AuditLog extends AppCompatActivity
+public class GroupAuditLog extends AppCompatActivity
 {
-    PinDS pin;
-    PinReader pReader = new PinReader();
-    PinWriter pWriter = new PinWriter();
-
-    public AuditLog() throws FileNotFoundException {
-    }
+    private String passedID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
-        String previousText = "";
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_audit_log);
+        setContentView(R.layout.activity_group_audit_log);
+
+        passedID = (String) getIntent().getSerializableExtra("id");
         PinReader reader = new PinReader();
-        TextView et2 = (TextView)findViewById(R.id.editText2);
-        et2.setText(reader.readPersonalAudit(this));
+        TextView tvAudit = (TextView)findViewById(R.id.tvGroupAudit);
+        tvAudit.setText(reader.readGroupAudit(this, passedID));
+    }
+
+    public void returnToView(View view)
+    {
+        Intent locIntent = new Intent(this, ViewGroup.class);
+        locIntent.putExtra("id", passedID);
+        startActivity(locIntent);
     }
 
     @Override

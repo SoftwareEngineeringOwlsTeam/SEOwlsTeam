@@ -7,4 +7,8 @@ public class ForestFirePin extends MoveablePin {
     public String getPinName() {
         return pinName;
     }
+
+    ForestFirePin()
+    {
+    }
 }

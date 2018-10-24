@@ -38,6 +38,11 @@ public class PinReader extends AppCompatActivity
         {
             dir = context.getFilesDir() + "/pins.txt";
         }
+        else if (findWhat.equals("PersonalAudit"))
+        {
+            dir = context.getFilesDir() + "/personal_audit.txt";
+
+        }
         else if (findWhat.equals("Groups"))
         {
             dir = context.getFilesDir() + "/groups.txt";
@@ -46,6 +51,14 @@ public class PinReader extends AppCompatActivity
         else if (findWhat.equals("GroupPins"))
         {
             dir = context.getFilesDir() + "/" + groupID + "pins.txt";
+        }
+        else if (findWhat.equals("GroupAudit"))
+        {
+            dir = context.getFilesDir() + "/" + groupID + "group_audit.txt";
+        }
+        else if (findWhat.equals("GroupMembers"))
+        {
+            dir = context.getFilesDir() + "/" + groupID + "members.txt";
         }
         else {
             dir = context.getFilesDir() + "/users.txt";
@@ -250,5 +263,104 @@ public class PinReader extends AppCompatActivity
             e.printStackTrace();
         }
         return existingIDs;
+    }
+
+    public String readGroupAudit(Context context, String groupID)
+    {
+        String fullAudit = "";
+        try
+        {
+            String everything = read(context,"GroupAudit",groupID);
+            String[] eachLine = everything.split("\n", 1000);
+            for(int i = 0; i < eachLine.length - 1; i++)
+            {
+                String[] foundLine = eachLine[i].split("\\*",7);
+                System.out.println(foundLine[3]);
+                fullAudit += foundLine[1] + " " + foundLine[2] + " - " + foundLine[3];
+                if(foundLine[0].equals("0"))
+                {
+                    fullAudit += " Created This Group";
+                }
+                else if (foundLine[0].equals("1"))
+                {
+                    fullAudit += (" Placed Pin: " + foundLine[5] + " ID: " + foundLine[6]);
+                }
+                else if (foundLine[0].equals("2"))
+                {
+                    fullAudit += (" Removed Pin: " + foundLine[5]);
+                }
+                else if (foundLine[0].equals("3"))
+                {
+                    fullAudit += (" Added Member: " + foundLine[5] + " ID: " + foundLine[6]);
+                }
+                else
+                {
+                    fullAudit += (" Deleted Member: " + foundLine[5] + " ID: " + foundLine[6]);
+                }
+                fullAudit += "\n";
+            }
+        }
+        catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+        return fullAudit;
+    }
+
+
+
+    public String readGroupMembers(Context context, String groupID)
+    {
+        String fullAudit = "";
+        try
+        {
+            String everything = read(context,"GroupMembers",groupID);
+            String[] eachLine = everything.split("\n", 1000);
+            for(int i = 0; i < eachLine.length - 1; i++)
+            {
+                String[] foundLine = eachLine[i].split("\\*",7);
+                System.out.println(foundLine[3]);
+                fullAudit += foundLine[1] + " is recognized as a " + foundLine[2];
+                fullAudit += "\n";
+            }
+        }
+        catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+        return fullAudit;
+    }
+
+
+
+
+    public String readPersonalAudit(Context context)
+    {
+        String fullAudit = "";
+        try
+        {
+            String everything = read(context,"PersonalAudit","");
+            System.out.println(everything);
+            String[] eachLine = everything.split("\n", 1000);
+            for(int i = 0; i < eachLine.length - 1; i++)
+            {
+                String[] foundLine = eachLine[i].split("\\*",7);
+                fullAudit += foundLine[1] + " " + foundLine[2] + " - " + foundLine[3];
+                if (foundLine[0].equals("1"))
+                {
+                    fullAudit += (" Placed Pin: " + foundLine[4] + " ID: " + foundLine[5]);
+                }
+                else
+                {
+                    fullAudit += (" Removed Pin: " + foundLine[4]);
+                }
+                fullAudit += "\n";
+            }
+        }
+        catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+        return fullAudit;
     }
 }
