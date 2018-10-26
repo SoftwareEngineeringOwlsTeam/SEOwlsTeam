@@ -12,12 +12,10 @@ public class PinClassTreasure extends PinDS
         return pinName;
     }
 
-    PinClassTreasure()
+    public PinClassTreasure()
     {
-        color = "Gold";
-
-        Color colorr = new Color();
-        defaultColor = Color.parseColor("#ffbf00");
+        setColor("Gold");
+        setDefaultColor("#ffbf00");
     }
 
     @Override

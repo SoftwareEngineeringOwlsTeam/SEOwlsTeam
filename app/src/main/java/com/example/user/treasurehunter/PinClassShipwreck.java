@@ -1,5 +1,7 @@
 package com.example.user.treasurehunter;
 
+import android.graphics.Color;
+
 public class PinClassShipwreck extends PinDS
 {
     private final String pinName = "Shipwreck Pin";
@@ -10,8 +12,9 @@ public class PinClassShipwreck extends PinDS
         return pinName;
     }
 
-    PinClassShipwreck()
+    public PinClassShipwreck()
     {
-
+        setColor("Blue");
+        setDefaultColor("#0000CC");
     }
 }

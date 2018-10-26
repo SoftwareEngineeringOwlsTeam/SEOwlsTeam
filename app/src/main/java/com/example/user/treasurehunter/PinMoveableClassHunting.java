@@ -1,5 +1,7 @@
 package com.example.user.treasurehunter;
 
+import android.graphics.Color;
+
 public class PinMoveableClassHunting extends PinMoveable
 {
     private final String pinName = "Hunting Pin";
@@ -10,7 +12,9 @@ public class PinMoveableClassHunting extends PinMoveable
         return pinName;
     }
 
-    PinMoveableClassHunting()
+    public PinMoveableClassHunting()
     {
+        setColor("Green");
+        setDefaultColor("#228B22");
     }
 }

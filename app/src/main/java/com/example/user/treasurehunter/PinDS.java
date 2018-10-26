@@ -107,4 +107,9 @@ public abstract class PinDS implements Serializable
     {
         return defaultColor;
     }
+
+    protected void setDefaultColor(String hexColor)
+    {
+        defaultColor = Color.parseColor(hexColor);
+    }
 }
