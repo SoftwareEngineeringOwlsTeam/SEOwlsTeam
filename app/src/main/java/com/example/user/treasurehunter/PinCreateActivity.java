@@ -24,7 +24,7 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
     EditText text;
     TableRow degreeRow;
     TableRow speedRow;
-    Button goBackButton;
+    Button goBackButton, placePinButton;
     TextView tvBanner;
 
     @Override
@@ -37,12 +37,15 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
         degreeRow = findViewById(R.id.Row10);
         speedRow = findViewById(R.id.Row11);
         goBackButton = findViewById(R.id.goBack);
+        placePinButton = findViewById(R.id.button16);
         tvColor = findViewById(R.id.tvcolor);
         tvColor.setTextColor(pin.getDefaultColor());
         tvColor.setText(pin.getColor());
         tvBanner = findViewById(R.id.tvBanner);
         tvBanner.setBackgroundColor(pin.getDefaultColor());
         tvBanner.setText("   " + pin.getPinName());
+        goBackButton.setBackgroundColor(pin.getDefaultColor());
+        placePinButton.setBackgroundColor(pin.getDefaultColor());
 
 
         if(!(pin instanceof PinMoveable))
