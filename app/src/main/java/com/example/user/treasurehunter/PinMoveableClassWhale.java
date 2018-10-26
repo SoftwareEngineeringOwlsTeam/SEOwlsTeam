@@ -1,8 +1,8 @@
 package com.example.user.treasurehunter;
 
-public class WhalePin extends MoveablePin
+public class PinMoveableClassWhale extends PinMoveable
 {
-    private final String pinName = "WHALEPIN";
+    private final String pinName = "Whale Pin";
 
     @Override
     public String getPinName()
@@ -10,7 +10,7 @@ public class WhalePin extends MoveablePin
         return pinName;
     }
 
-    WhalePin()
+    PinMoveableClassWhale()
     {
     }
 }

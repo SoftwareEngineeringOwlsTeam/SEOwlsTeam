@@ -15,8 +15,8 @@ public class GroupMembers extends AppCompatActivity
         setContentView(R.layout.activity_group_members);
 
         passedID = (String) getIntent().getSerializableExtra("id");
-        PinReader reader = new PinReader();
-        TextView tvMembers = (TextView)findViewById(R.id.tvMembers);
-        tvMembers.setText(reader.readGroupMembers(this, passedID));
+        IOread reader = new IOread();
+        TextView tvMembers = findViewById(R.id.tvMembers);
+        tvMembers.setText(reader.readGroupMembers(passedID, this));
     }
 }

@@ -17,8 +17,8 @@ public class LogInScreen extends AppCompatActivity {
 
     public void loginClicked(View view)
     {
-        EditText et = (EditText)findViewById(R.id.password);
-        EditText et2 = (EditText)findViewById(R.id.username);
+        EditText et = findViewById(R.id.password);
+        EditText et2 = findViewById(R.id.username);
         if(et.getText().toString().equals("owls"))
         {
             if(!(et2.getText().toString().equals("")))

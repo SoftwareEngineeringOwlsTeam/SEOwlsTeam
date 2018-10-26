@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 
-public class AccountManager extends AppCompatActivity
+public class UserAccountManager extends AppCompatActivity
 {
     @Override
     protected void onCreate(Bundle savedInstanceState)

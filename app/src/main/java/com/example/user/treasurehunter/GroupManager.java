@@ -1,31 +1,17 @@
 package com.example.user.treasurehunter;
 
-import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.app.Activity;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.method.LinkMovementMethod;
-import android.text.style.ClickableSpan;
 import android.view.KeyEvent;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Toast;
 
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class GroupManager extends Activity implements OnItemSelectedListener
@@ -39,15 +25,15 @@ public class GroupManager extends Activity implements OnItemSelectedListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group_manager);
 
-        PinWriter writer = new PinWriter();
-        PinReader reader = new PinReader();
+        IOwrite writer = new IOwrite();
+        IOread reader = new IOread();
 
-        TextView groupIDs = (TextView) findViewById(R.id.groupIDs);
+        TextView groupIDs = findViewById(R.id.groupIDs);
         groupIDs.setText("The Groups");
-        Spinner idselector = (Spinner) findViewById(R.id.spinner2);
+        Spinner idselector = findViewById(R.id.spinner2);
         idselector.setOnItemSelectedListener(this);
 
-        groupSpinner = reader.existingIDs(this, "groups");
+        groupSpinner = reader.existingIDs("groups", this);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 this,
@@ -79,7 +65,7 @@ public class GroupManager extends Activity implements OnItemSelectedListener
 
     public void enterView(View view)
     {
-        Intent locIntent = new Intent(this, ViewGroup.class);
+        Intent locIntent = new Intent(this, GroupView.class);
         locIntent.putExtra("id", selected);
         startActivity(locIntent);
     }

@@ -5,12 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-
-public class ViewGroup extends AppCompatActivity
+public class GroupView extends AppCompatActivity
 {
     Group currentGroup;
     String passedID;
@@ -18,18 +15,18 @@ public class ViewGroup extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
-        PinWriter writer = new PinWriter();
-        PinReader reader = new PinReader();
+        IOwrite writer = new IOwrite();
+        IOread reader = new IOread();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_group);
 
         passedID = (String) getIntent().getSerializableExtra("id");
 
-        TextView tvUsername = (TextView)findViewById(R.id.tvUserName);
-        TextView tvGroupname = (TextView)findViewById(R.id.tvGroupName);
-        TextView tvDescription = (TextView)findViewById(R.id.tvDescription);
+        TextView tvUsername = findViewById(R.id.tvUserName);
+        TextView tvGroupname = findViewById(R.id.tvGroupName);
+        TextView tvDescription = findViewById(R.id.tvDescription);
 
-        currentGroup = reader.retrieveGroup(this, passedID);
+        currentGroup = reader.retrieveGroup(passedID, this);
 
         tvUsername.setText(currentGroup.getAdminName());
         tvGroupname.setText(currentGroup.getGroupName());
@@ -38,9 +35,9 @@ public class ViewGroup extends AppCompatActivity
 
     public void deleteGroup(View view)
     {
-        PinWriter writer = new PinWriter();
-        writer.removeObject(this, "groups", passedID);
-        writer.removeGroupAudit(this, passedID);
+        IOwrite writer = new IOwrite();
+        writer.removeObject("groups", passedID, passedID, this);
+        writer.removeFile("groupaudit", passedID, this);
         Intent locIntent = new Intent(this, GroupManager.class);
         startActivity(locIntent);
     }

@@ -2,7 +2,7 @@ package com.example.user.treasurehunter;
 
 import android.graphics.Color;
 
-public class TreasurePin extends PinDS
+public class PinClassTreasure extends PinDS
 {
     private final String pinName = "Treasure Pin";
 
@@ -12,12 +12,12 @@ public class TreasurePin extends PinDS
         return pinName;
     }
 
-    TreasurePin()
+    PinClassTreasure()
     {
         color = "Gold";
 
         Color colorr = new Color();
-        defaultColor = colorr.parseColor("#ffbf00");
+        defaultColor = Color.parseColor("#ffbf00");
     }
 
     @Override

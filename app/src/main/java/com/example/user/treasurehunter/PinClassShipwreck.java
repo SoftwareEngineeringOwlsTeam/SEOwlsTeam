@@ -1,8 +1,8 @@
 package com.example.user.treasurehunter;
 
-public class Shipwreck extends PinDS
+public class PinClassShipwreck extends PinDS
 {
-    private final String pinName = "SHIPWRECKPIN";
+    private final String pinName = "Shipwreck Pin";
 
     @Override
     public String getPinName()
@@ -10,7 +10,7 @@ public class Shipwreck extends PinDS
         return pinName;
     }
 
-    Shipwreck()
+    PinClassShipwreck()
     {
 
     }

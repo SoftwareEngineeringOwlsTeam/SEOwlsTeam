@@ -1,8 +1,8 @@
 package com.example.user.treasurehunter;
 
-public class SurvivorPin extends MoveablePin
+public class PinClassScavengerHunt extends PinDS
 {
-    private final String pinName = "SURVIVORPIN";
+    private final String pinName = "Scavenger Hunt Pin";
 
     @Override
     public String getPinName()

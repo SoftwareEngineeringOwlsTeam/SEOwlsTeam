@@ -1,7 +1,7 @@
 package com.example.user.treasurehunter;
 
-public class CustomPin extends MoveablePin {
-    private final String pinName = "CUSTOMPIN";
+public class PinMoveableClassCustom extends PinMoveable {
+    private final String pinName = "Custom Pin";
 
     @Override
     public String getPinName() {

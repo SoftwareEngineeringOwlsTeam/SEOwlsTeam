@@ -1,38 +1,21 @@
 
 package com.example.user.treasurehunter;
 
-import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Typeface;
-import android.inputmethodservice.Keyboard;
-import android.location.Location;
-import android.location.LocationManager;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 //import android.text.format.DateFormat;
 import android.view.KeyEvent;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemSelectedListener;
 
 import java.io.FileNotFoundException;
 import java.io.Serializable;
-import java.util.Calendar;
-import java.util.Date;
-import java.text.DateFormat;
 import java.util.Random;
-
-import android.text.format.Time;
 
 public class PinCreateActivity extends AppCompatActivity implements Serializable
 {
@@ -62,7 +45,7 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
         tvBanner.setText("   " + pin.getPinName());
 
 
-        if(!(pin instanceof MoveablePin))
+        if(!(pin instanceof PinMoveable))
         {
             degreeRow.setVisibility(View.GONE);
             speedRow.setVisibility(View.GONE);
@@ -81,22 +64,21 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     }
 
-    public void createClicked(View view) throws FileNotFoundException
-    {
-        PinWriter writer = new PinWriter();
-        PinReader reader = new PinReader();
+    public void createClicked(View view) {
+        IOwrite writer = new IOwrite();
+        IOread reader = new IOread();
 
-        EditText et = (EditText)findViewById(R.id.publisher);
+        EditText et = findViewById(R.id.publisher);
         pin.setPublisher(et.getText().toString());
-        et = (EditText)findViewById(R.id.pinName);
+        et = findViewById(R.id.pinName);
         pin.setPinTitle(et.getText().toString());
-        et = (EditText)findViewById(R.id.description);
+        et = findViewById(R.id.description);
         pin.setDescription(et.getText().toString());
-        et = (EditText)findViewById(R.id.etLocationLat);
+        et = findViewById(R.id.etLocationLat);
         pin.setLatitude(Double.parseDouble(et.getText().toString()));
-        et = (EditText)findViewById(R.id.etLocationLong);
+        et = findViewById(R.id.etLocationLong);
         pin.setLongitude(Double.parseDouble(et.getText().toString()));
-        et = (EditText)findViewById(R.id.etAltitude);
+        et = findViewById(R.id.etAltitude);
         pin.setAltitude(Double.parseDouble(et.getText().toString()));
 
         String pinID = "";
@@ -110,9 +92,9 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
                 pinID += String.valueOf(rand.nextInt(9));
             }
             generated = true;
-            for(int i = 0; i < reader.existingIDs(this, "ppins").size(); i++)
+            for(int i = 0; i < reader.existingIDs("pins", this).size(); i++)
             {
-                if(reader.existingIDs(this, "ppins").get(i).equals(pinID))
+                if(reader.existingIDs("pins", this).get(i).equals(pinID))
                 {
                     generated = false;
                 }
@@ -124,20 +106,20 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
         //et = (EditText)findViewById(R.id.color);
         pin.setColor(pin.getColor());
 
-        if(pin instanceof MoveablePin)
+        if(pin instanceof PinMoveable)
         {
-            et = (EditText)findViewById(R.id.etDegree);
-            ((MoveablePin) pin).setDegree(Double.parseDouble(et.getText().toString()));
-            et = (EditText)findViewById(R.id.etSpeed);
-            ((MoveablePin) pin).setSpeed(Double.parseDouble(et.getText().toString()));
+            et = findViewById(R.id.etDegree);
+            ((PinMoveable) pin).setDegree(Double.parseDouble(et.getText().toString()));
+            et = findViewById(R.id.etSpeed);
+            ((PinMoveable) pin).setSpeed(Double.parseDouble(et.getText().toString()));
         }
 
 
-        et = (EditText)findViewById(R.id.radius);
+        et = findViewById(R.id.radius);
         pin.setRadius(et.getText().toString());
         Intent mainIntent = new Intent(this, MainActivity.class);
         //((pinArray) this.getApplication()).pins.add(pin);
-        writer.writePin(pin, reader.read(this, "PersonalPins", ""), this);
+        writer.writePin(pin, this);
         startActivity(mainIntent);
     }
 

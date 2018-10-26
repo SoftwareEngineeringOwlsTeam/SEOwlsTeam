@@ -18,14 +18,14 @@ public class GroupAuditLog extends AppCompatActivity
         setContentView(R.layout.activity_group_audit_log);
 
         passedID = (String) getIntent().getSerializableExtra("id");
-        PinReader reader = new PinReader();
-        TextView tvAudit = (TextView)findViewById(R.id.tvGroupAudit);
-        tvAudit.setText(reader.readGroupAudit(this, passedID));
+        IOread reader = new IOread();
+        TextView tvAudit = findViewById(R.id.tvGroupAudit);
+        tvAudit.setText(reader.readGroupAudit(passedID, this));
     }
 
     public void returnToView(View view)
     {
-        Intent locIntent = new Intent(this, ViewGroup.class);
+        Intent locIntent = new Intent(this, GroupView.class);
         locIntent.putExtra("id", passedID);
         startActivity(locIntent);
     }

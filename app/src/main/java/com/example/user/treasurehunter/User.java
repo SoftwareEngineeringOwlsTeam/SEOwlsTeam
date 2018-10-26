@@ -54,11 +54,13 @@ public class User
         this.password = password;
     }
 
-    public ArrayList<String> getPersonalPinID() {
+    public ArrayList<String> getPersonalPinID()
+    {
         return personalPinID;
     }
 
-    public void setPersonalPinID(ArrayList<String> personalPinID) {
+    public void setPersonalPinID(ArrayList<String> personalPinID)
+    {
         this.personalPinID = personalPinID;
     }
 

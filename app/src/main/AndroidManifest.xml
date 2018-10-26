@@ -7,7 +7,6 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:name=".pinArray"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -30,13 +29,13 @@
             android:label="Pin Creation"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".AuditLog"
+            android:name=".UserAuditLog"
             android:label="Audit Log" />
         <activity
             android:name=".MainActivity"
             android:label="Main Screen" />
         <activity
-            android:name=".location_generation"
+            android:name=".LocationGeneration"
             android:label="ERROR LEAVE LEAVE ERROR" />
         <activity
             android:name=".LogInScreen"
@@ -45,17 +44,17 @@
             android:name=".GroupManager"
             android:label="Group Manager" />
         <activity
-            android:name=".Settings"
+            android:name=".UserSettings"
             android:label="Settings" />
         <activity
-            android:name=".AccountManager"
+            android:name=".UserAccountManager"
             android:label="Account Manager" />
         <activity
             android:name=".IOtester"
             android:label="@string/title_activity_iotester"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".GroupCreator" />
-        <activity android:name=".ViewGroup" />
+        <activity android:name=".GroupView" />
         <activity android:name=".GroupAuditLog" />
         <activity android:name=".GroupMembers"></activity>
 

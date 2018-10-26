@@ -1,6 +1,6 @@
 package com.example.user.treasurehunter;
 
-public abstract class MoveablePin extends PinDS
+public abstract class PinMoveable extends PinDS
 {
     private double degree;
     private double speed;

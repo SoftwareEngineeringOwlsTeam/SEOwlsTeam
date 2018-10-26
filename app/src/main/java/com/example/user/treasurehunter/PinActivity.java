@@ -36,7 +36,7 @@ public class PinActivity extends AppCompatActivity
 
     public void classClicked(MenuItem menuItem)
     {
-        Intent classIntent = new Intent(this, location_generation.class);
+        Intent classIntent = new Intent(this, LocationGeneration.class);
         startActivity(classIntent);
     }
 
@@ -45,9 +45,9 @@ public class PinActivity extends AppCompatActivity
     {
 
         whaleButton = (Button) v;
-        WhalePin pin = new WhalePin();
+        PinMoveableClassWhale pin = new PinMoveableClassWhale();
 
-        Intent mainIntent = new Intent(this, location_generation.class);
+        Intent mainIntent = new Intent(this, LocationGeneration.class);
         mainIntent.putExtra("pin", pin);
         startActivity(mainIntent);
     }
@@ -56,9 +56,9 @@ public class PinActivity extends AppCompatActivity
     {
 
         treasureButton = (Button) v;
-        TreasurePin pin = new TreasurePin();
+        PinClassTreasure pin = new PinClassTreasure();
 
-        Intent mainIntent = new Intent(this, location_generation.class);
+        Intent mainIntent = new Intent(this, LocationGeneration.class);
         mainIntent.putExtra("pin", pin);
         startActivity(mainIntent);
     }
@@ -66,9 +66,9 @@ public class PinActivity extends AppCompatActivity
     public void shipwreckClick(View v)
     {
         shipwreckButton = (Button) v;
-        Shipwreck pin = new Shipwreck();
+        PinClassShipwreck pin = new PinClassShipwreck();
 
-        Intent mainIntent = new Intent(this, location_generation.class);
+        Intent mainIntent = new Intent(this, LocationGeneration.class);
         mainIntent.putExtra("pin", pin);
         startActivity(mainIntent);
     }
@@ -76,9 +76,9 @@ public class PinActivity extends AppCompatActivity
     public void survivorClick(View v)
     {
         survivorButton = (Button) v;
-        SurvivorPin pin = new SurvivorPin();
+        PinMoveableClassSurvivor pin = new PinMoveableClassSurvivor();
 
-        Intent mainIntent = new Intent(this, location_generation.class);
+        Intent mainIntent = new Intent(this, LocationGeneration.class);
         mainIntent.putExtra("pin", pin);
         startActivity(mainIntent);
     }
@@ -86,9 +86,9 @@ public class PinActivity extends AppCompatActivity
     public void scavengerHuntClick(View v)
     {
         scavengerHuntButton = (Button) v;
-        ScavengerHuntPin pin = new ScavengerHuntPin();
+        PinClassScavengerHunt pin = new PinClassScavengerHunt();
 
-        Intent mainIntent = new Intent(this, location_generation.class);
+        Intent mainIntent = new Intent(this, LocationGeneration.class);
         mainIntent.putExtra("pin", pin);
         startActivity(mainIntent);
     }
@@ -96,9 +96,9 @@ public class PinActivity extends AppCompatActivity
     public void forestFireClick(View v)
     {
         forestFireButton = (Button) v;
-        ForestFirePin pin = new ForestFirePin();
+        PinMoveableClassForestFire pin = new PinMoveableClassForestFire();
 
-        Intent mainIntent = new Intent(this, location_generation.class);
+        Intent mainIntent = new Intent(this, LocationGeneration.class);
         mainIntent.putExtra("pin", pin);
         startActivity(mainIntent);
     }
@@ -106,9 +106,9 @@ public class PinActivity extends AppCompatActivity
     public void customClick(View v)
     {
         customButton = (Button) v;
-        CustomPin pin = new CustomPin();
+        PinMoveableClassCustom pin = new PinMoveableClassCustom();
 
-        Intent mainIntent = new Intent(this, location_generation.class);
+        Intent mainIntent = new Intent(this, LocationGeneration.class);
         mainIntent.putExtra("pin", pin);
         startActivity(mainIntent);
     }
@@ -116,9 +116,9 @@ public class PinActivity extends AppCompatActivity
     public void huntingClick(View v)
     {
         huntingButton = (Button) v;
-        Hunting pin = new Hunting();
+        PinMoveableClassHunting pin = new PinMoveableClassHunting();
 
-        Intent mainIntent = new Intent(this, location_generation.class);
+        Intent mainIntent = new Intent(this, LocationGeneration.class);
         mainIntent.putExtra("pin", pin);
         startActivity(mainIntent);
     }

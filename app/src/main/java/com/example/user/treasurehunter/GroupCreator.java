@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
@@ -23,12 +22,12 @@ public class GroupCreator extends AppCompatActivity
 
     public void createGroup(View view)
     {
-        PinWriter writer = new PinWriter();
-        PinReader reader = new PinReader();
-        EditText etUsername = (EditText)findViewById(R.id.etUsername);
-        EditText etUserID = (EditText)findViewById(R.id.etUserID);
-        EditText etDescription = (EditText)findViewById(R.id.etDescription);
-        EditText etTitle = (EditText)findViewById(R.id.etTitle);
+        IOwrite writer = new IOwrite();
+        IOread reader = new IOread();
+        EditText etUsername = findViewById(R.id.etUsername);
+        EditText etUserID = findViewById(R.id.etUserID);
+        EditText etDescription = findViewById(R.id.etDescription);
+        EditText etTitle = findViewById(R.id.etTitle);
         ArrayList<String> memberID = new ArrayList<String>();
 
         /// As a test
@@ -39,15 +38,8 @@ public class GroupCreator extends AppCompatActivity
 
         Group newGroup = new Group(memberID, etUserID.getText().toString(), etDescription.getText().toString(),
                                     etTitle.getText().toString(), etUsername.getText().toString());
-        try
-        {
-            writer.writeGroup(newGroup, reader.read(this, "Groups", ""), this);
-            writer.writeMembersTest(newGroup.getGroupID(), reader.readGroupMembers(this, newGroup.getGroupID()), this);
-        }
-        catch (FileNotFoundException e)
-        {
-            e.printStackTrace();
-        }
+        writer.writeGroup(newGroup, this);
+        writer.writeMembersTest(newGroup.getGroupID(), reader.readGroupMembers(newGroup.getGroupID(), this), this);
         Intent locIntent = new Intent(this, GroupManager.class);
         startActivity(locIntent);
     }

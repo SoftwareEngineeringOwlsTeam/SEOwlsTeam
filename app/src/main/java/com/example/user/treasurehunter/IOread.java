@@ -1,70 +1,28 @@
 package com.example.user.treasurehunter;
 
 import android.content.Context;
-import android.content.res.AssetManager;
-import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
-import static java.lang.System.out;
-
-public class PinReader extends AppCompatActivity
+public class IOread extends AppCompatActivity
 {
     PinDS pin;
     Group group;
     User user;
 
-    public PinReader() { }
+    public IOread() { }
 
-    public String read(Context context, String findWhat, String groupID) throws FileNotFoundException
+    public String read(String searchingFor, String id, Context context) throws FileNotFoundException
     {
-        String dir = "";
-        if(findWhat.equals("PersonalPins"))
-        {
-            dir = context.getFilesDir() + "/pins.txt";
-        }
-        else if (findWhat.equals("PersonalAudit"))
-        {
-            dir = context.getFilesDir() + "/personal_audit.txt";
-
-        }
-        else if (findWhat.equals("Groups"))
-        {
-            dir = context.getFilesDir() + "/groups.txt";
-
-        }
-        else if (findWhat.equals("GroupPins"))
-        {
-            dir = context.getFilesDir() + "/" + groupID + "pins.txt";
-        }
-        else if (findWhat.equals("GroupAudit"))
-        {
-            dir = context.getFilesDir() + "/" + groupID + "group_audit.txt";
-        }
-        else if (findWhat.equals("GroupMembers"))
-        {
-            dir = context.getFilesDir() + "/" + groupID + "members.txt";
-        }
-        else {
-            dir = context.getFilesDir() + "/users.txt";
-        }
+        String dir = context.getFilesDir() + "/" + id + searchingFor + ".txt";
         File file = new File(dir);
-
         try
         {
             if(!file.exists())
@@ -77,7 +35,7 @@ public class PinReader extends AppCompatActivity
             System.out.println("FileOutputStream exception: - " + e.toString());
         }
         FileInputStream fileInputStream = context.openFileInput(file.getName());
-        String words = "Wrong";
+        String words = "";
         StringBuilder resultStringBuilder = new StringBuilder();
         try (BufferedReader br = new BufferedReader(new InputStreamReader(fileInputStream)))
         {
@@ -90,66 +48,66 @@ public class PinReader extends AppCompatActivity
         {
             e.printStackTrace();
         }
-
         String fin = resultStringBuilder.toString();
         if(!fin.isEmpty())
         {
             fin = fin.substring(0, fin.length() - 4);
         }
+
         return fin;
     }
 
-    public PinDS retrievePin(Context context, String pinID)
+    public PinDS retrievePin(String pinID, Context context)
     {
         PinDS retrievedPin = null;
         try
         {
-            String everything = read(context,"PersonalPins","");
+            String everything = read("pins","", context);
             String[] eachLine = everything.split("\n", 1000);
             for(int i = 0; i < eachLine.length; i++)
             {
                 String[] foundLine = eachLine[i].split("\\*",14);
                 if(foundLine[0].equals(pinID))
                 {
-                    if(foundLine[1].equals("TREASUREPIN"))
+                    if(foundLine[1].equals("Treasure Pin"))
                     {
-                        retrievedPin = new TreasurePin();
+                        retrievedPin = new PinClassTreasure();
                     }
-                    else if(foundLine[1].equals("SHIPWRECKPIN"))
+                    else if(foundLine[1].equals("PinClassShipwreck Pin"))
                     {
-                        retrievedPin = new Shipwreck();
+                        retrievedPin = new PinClassShipwreck();
                     }
-                    else if(foundLine[1].equals("SCAVENGERHUNTPIN"))
+                    else if(foundLine[1].equals("Scavenger Hunt Pin"))
                     {
-                        retrievedPin = new ScavengerHuntPin();
+                        retrievedPin = new PinClassScavengerHunt();
                     }
-                    else if(foundLine[1].equals("SURVIVORPIN"))
+                    else if(foundLine[1].equals("Survivor Pin"))
                     {
-                        retrievedPin = new SurvivorPin();
-                        ((SurvivorPin) retrievedPin).setDegree(Double.parseDouble(foundLine[11]));
-                        ((SurvivorPin) retrievedPin).setSpeed(Double.parseDouble(foundLine[12]));
+                        retrievedPin = new PinMoveableClassSurvivor();
+                        ((PinMoveableClassSurvivor) retrievedPin).setDegree(Double.parseDouble(foundLine[11]));
+                        ((PinMoveableClassSurvivor) retrievedPin).setSpeed(Double.parseDouble(foundLine[12]));
                     }
-                    else if(foundLine[1].equals("FORESTFIREPIN"))
+                    else if(foundLine[1].equals("Forest Fire Pin"))
                     {
-                        retrievedPin = new ForestFirePin();
-                        ((ForestFirePin) retrievedPin).setDegree(Double.parseDouble(foundLine[11]));
-                        ((ForestFirePin) retrievedPin).setSpeed(Double.parseDouble(foundLine[12]));
+                        retrievedPin = new PinMoveableClassForestFire();
+                        ((PinMoveableClassForestFire) retrievedPin).setDegree(Double.parseDouble(foundLine[11]));
+                        ((PinMoveableClassForestFire) retrievedPin).setSpeed(Double.parseDouble(foundLine[12]));
                     }
-                    else if(foundLine[1].equals("WHALEPIN"))
+                    else if(foundLine[1].equals("Whale Pin"))
                     {
-                        retrievedPin = new WhalePin();
-                        ((WhalePin) retrievedPin).setDegree(Double.parseDouble(foundLine[11]));
-                        ((WhalePin) retrievedPin).setSpeed(Double.parseDouble(foundLine[12]));
+                        retrievedPin = new PinMoveableClassWhale();
+                        ((PinMoveableClassWhale) retrievedPin).setDegree(Double.parseDouble(foundLine[11]));
+                        ((PinMoveableClassWhale) retrievedPin).setSpeed(Double.parseDouble(foundLine[12]));
                     }
-                    else if(foundLine[1].equals("HUNTINGPIN"))
+                    else if(foundLine[1].equals("PinMoveableClassHunting Pin"))
                     {
-                        retrievedPin = new Hunting();
-                        ((Hunting) retrievedPin).setDegree(Double.parseDouble(foundLine[11]));
-                        ((Hunting) retrievedPin).setSpeed(Double.parseDouble(foundLine[12]));
+                        retrievedPin = new PinMoveableClassHunting();
+                        ((PinMoveableClassHunting) retrievedPin).setDegree(Double.parseDouble(foundLine[11]));
+                        ((PinMoveableClassHunting) retrievedPin).setSpeed(Double.parseDouble(foundLine[12]));
                     }
                     else
                     {
-                        retrievedPin = new CustomPin();
+                        retrievedPin = new PinMoveableClassCustom();
                     }
                     retrievedPin.setPinID(foundLine[0]);
                     retrievedPin.setPinTitle(foundLine[2]);
@@ -171,12 +129,12 @@ public class PinReader extends AppCompatActivity
         return retrievedPin;
     }
 
-    public Group retrieveGroup(Context context, String groupID)
+    public Group retrieveGroup(String groupID, Context context)
     {
         Group retrievedGroup = null;
         try
         {
-            String everything = read(context,"Groups","");
+            String everything = read("groups","", context);
             String[] eachLine = everything.split("\n", 1000);
             for(int i = 0; i < eachLine.length; i++)
             {
@@ -203,12 +161,12 @@ public class PinReader extends AppCompatActivity
 
 
 
-    public User retrieveUser(Context context, String userID)
+    public User retrieveUser(String userID, Context context)
     {
         User retrievedUser = null;
         try
         {
-            String everything = read(context,"Users","");
+            String everything = read("users","", context);
             String[] eachLine = everything.split("\n", 1000);
             for(int i = 0; i < eachLine.length; i++)
             {
@@ -233,24 +191,12 @@ public class PinReader extends AppCompatActivity
         return retrievedUser;
     }
 
-    public ArrayList<String> existingIDs (Context context, String whatOf)
+    public ArrayList<String> existingIDs (String searchingFor, Context context)
     {
-        ArrayList<String> existingIDs = new ArrayList<String>();
+        ArrayList<String> existingIDs = new ArrayList<>();
         try
         {
-            String everything = "";
-            if(whatOf.equals("ppins"))
-            {
-                everything = read(context,"PersonalPins","");
-            }
-            else if(whatOf.equals("groups"))
-            {
-                everything = read(context,"Groups","");
-            }
-            else if(whatOf.equals("users"))
-            {
-                everything = read(context,"Users","");
-            }
+            String everything =  read(searchingFor, "", context);
             String[] eachLine = everything.split("\n", 1000);
             for(int i = 0; i < eachLine.length; i++)
             {
@@ -265,12 +211,12 @@ public class PinReader extends AppCompatActivity
         return existingIDs;
     }
 
-    public String readGroupAudit(Context context, String groupID)
+    public String readGroupAudit(String groupID, Context context)
     {
         String fullAudit = "";
         try
         {
-            String everything = read(context,"GroupAudit",groupID);
+            String everything = read("groupaudit", groupID, context);
             String[] eachLine = everything.split("\n", 1000);
             for(int i = 0; i < eachLine.length - 1; i++)
             {
@@ -309,12 +255,12 @@ public class PinReader extends AppCompatActivity
 
 
 
-    public String readGroupMembers(Context context, String groupID)
+    public String readGroupMembers(String groupID, Context context)
     {
         String fullAudit = "";
         try
         {
-            String everything = read(context,"GroupMembers",groupID);
+            String everything = read("members", groupID, context);
             String[] eachLine = everything.split("\n", 1000);
             for(int i = 0; i < eachLine.length - 1; i++)
             {
@@ -331,16 +277,12 @@ public class PinReader extends AppCompatActivity
         return fullAudit;
     }
 
-
-
-
-    public String readPersonalAudit(Context context)
+    public String readUserAudit(String userID, Context context)
     {
         String fullAudit = "";
         try
         {
-            String everything = read(context,"PersonalAudit","");
-            System.out.println(everything);
+            String everything = read("useraudit",userID, context);
             String[] eachLine = everything.split("\n", 1000);
             for(int i = 0; i < eachLine.length - 1; i++)
             {
@@ -354,7 +296,6 @@ public class PinReader extends AppCompatActivity
                 {
                     fullAudit += (" Removed Pin: " + foundLine[4]);
                 }
-                fullAudit += "\n";
             }
         }
         catch (FileNotFoundException e)
