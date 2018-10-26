@@ -21,24 +21,26 @@ public class IOwrite extends AppCompatActivity implements Serializable
     private Date time = Calendar.getInstance().getTime();
     private IOread reader;
 
-    // Instantiate time as soon as IOwrite is created
+    /**
+     *  Instantiate time as soon as IOwrite is created
+     */
     public IOwrite()
     {
         Calendar calendar = Calendar.getInstance();
         currentTime = time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds();
         currentDate = DateFormat.getDateInstance().format(calendar.getTime());
-        IOread reader = new IOread();
     }
 
-    // Use this to write to a file
-    // Specify file directory with fileDir
-    // Specify what to write with data
-    // Specify what data type you are writing in
-    // Specify the context in which you are working in
+    /**
+     *                  Use this method to write to a file
+     * @param data      Specify what to write with data
+     * @param searchingFor Specify what data type you are writing in
+     * @param context   Specify the context in which you are working in
+    */
     public void write(String data, String searchingFor, Context context)
     {
+        reader = new IOread();
         String dir = context.getFilesDir() + "/" + searchingFor + ".txt";
-        System.out.println(dir);
         File file = new File(dir);
         try
         {
@@ -46,8 +48,6 @@ public class IOwrite extends AppCompatActivity implements Serializable
             {
                 file.createNewFile();
             }
-            System.out.println(data);
-            System.out.println(context.toString());
             data = reader.read(searchingFor, "", context) + data;
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(file.getName(), Context.MODE_WORLD_READABLE));
             data += "\nEOF";
@@ -60,9 +60,11 @@ public class IOwrite extends AppCompatActivity implements Serializable
         }
     }
 
-    // Use this to write down a new pin that has been created
-    // Set the pin you wish to write down in pin
-    // Set the context in which you are working in
+    /**
+     *                Use this method to write down a new pin that has been created
+     * @param pin     Set the pin you wish to write down in pin
+     * @param context Set the context in which you are working in
+     */
     public void writePin(PinDS pin, Context context)
     {
         String data = (pin.getPinID()       + "*" + pin.getPinName() + "*" + pin.getPinTitle() + "*" + pin.getPublisher() + "*"
@@ -75,9 +77,11 @@ public class IOwrite extends AppCompatActivity implements Serializable
         write(data,"pins", context);
     }
 
-    // Use this to write down a new group that has been created
-    // Set the group you wish to write down in group
-    // Set the context in which you are working in
+    /**
+     *                Use this method to write down a new group that has been created
+     * @param group   Set the group you wish to write down in group
+     * @param context Set the context in which you are working in
+     */
     public void writeGroup(Group group, Context context)
     {
         String data = (group.getGroupID() + "*" + group.getGroupName() + "*" + group.getAdminID() + "*"
@@ -88,22 +92,27 @@ public class IOwrite extends AppCompatActivity implements Serializable
         write(data,group.getGroupID() + "groupaudit", context);
     }
 
-    // Use this to write down a new user that has been created
-    // Set the user you wish to write down in user
-    // Set the context in which you are working in
+    /**
+     *                Use this to write down a new user that has been created
+     * @param user    Set the user you wish to write down in user
+     * @param context Set the context in which you are working in
+     */
     public void writeUser(User user, Context context)
     {
         String data = (user.getUserID() + "*" + user.getUserName() + "*" + user.getPassword());
         write(data,"users", context);
     }
 
-    // Remove an object from one of the three general lists or member list
-    // Include the specific file name you are searching for
-    // Include the specific ID to remove
-    // Include the groupID of a members list, leave blank if not looking for members list
-    // Include the context you are working in
+    /**
+     *                     Remove an object from one of the three general lists or member list
+     * @param searchingFor Include the specific file name you are searching for
+     * @param idToRemove   Include the specific ID of object to remove
+     * @param groupID      Include the groupID of a members list, leave blank if not looking for members list
+     * @param context      Include the context you are working in
+     */
     public void removeObject(String searchingFor, String idToRemove, String groupID, Context context)
     {
+        reader = new IOread();
         String everything = "";
         String newEverything = "";
         try
@@ -126,6 +135,12 @@ public class IOwrite extends AppCompatActivity implements Serializable
         write(newEverything, searchingFor, context);
     }
 
+    /**
+     *                 Use this method to delete an entire file
+     * @param fileName Specify the name of the file you wish to delete
+     * @param id       If file has an id, specify the id
+     * @param context  Include the context you are working in
+     */
     public void removeFile(String fileName, String id, Context context)
     {
         String dir = context.getFilesDir() + "/" + id + fileName + ".txt";
@@ -339,6 +354,7 @@ public class IOwrite extends AppCompatActivity implements Serializable
     // Clear all existing files
     public void clearData(Context context)
     {
+        reader = new IOread();
         ArrayList<String> removeList = reader.existingIDs("groups", context);
         for(int i = 0; i < removeList.size(); i++)
         {

@@ -89,8 +89,8 @@ public class IOtester extends AppCompatActivity
     {
         try {
             pinView.setText(IOread.read("pins", "", this));
-            groupView.setText(IOread.read("group", "", this));
-            userView.setText(IOread.read("user", "", this));
+            groupView.setText(IOread.read("groups", "", this));
+            userView.setText(IOread.read("users", "", this));
         }
         catch (FileNotFoundException e)
         {

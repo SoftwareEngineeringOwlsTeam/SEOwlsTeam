@@ -118,7 +118,6 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
         et = findViewById(R.id.radius);
         pin.setRadius(et.getText().toString());
         Intent mainIntent = new Intent(this, MainActivity.class);
-        //((pinArray) this.getApplication()).pins.add(pin);
         writer.writePin(pin, this);
         startActivity(mainIntent);
     }

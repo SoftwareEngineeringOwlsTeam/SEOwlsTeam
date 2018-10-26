@@ -19,6 +19,13 @@ public class IOread extends AppCompatActivity
 
     public IOread() { }
 
+    /**
+     *                      Use this method to read and return the entire file
+     *  @param searchingFor Include the specific file name you are searching for
+     *  @param id           If the file you are trying to read has an id, specify the id
+     *  @param context      Include the context you are working in
+     *  @return             The contents of specified file with EOF removed at the end
+     */
     public String read(String searchingFor, String id, Context context) throws FileNotFoundException
     {
         String dir = context.getFilesDir() + "/" + id + searchingFor + ".txt";
@@ -57,6 +64,12 @@ public class IOread extends AppCompatActivity
         return fin;
     }
 
+    /**
+     *                      Use this method to retrieve a specific pin from file
+     *  @param pinID        Specify the id of the pin you are trying to retrieve
+     *  @param context      Include the context you are working in
+     *  @return             The pin associated with the id
+     */
     public PinDS retrievePin(String pinID, Context context)
     {
         PinDS retrievedPin = null;
@@ -129,6 +142,12 @@ public class IOread extends AppCompatActivity
         return retrievedPin;
     }
 
+    /**
+     *                      Use this method to retrieve a specific group from file
+     *  @param groupID      Specify the id of the group you are trying to retrieve
+     *  @param context      Include the context you are working in
+     *  @return             The group associated with the id
+     */
     public Group retrieveGroup(String groupID, Context context)
     {
         Group retrievedGroup = null;
@@ -159,8 +178,12 @@ public class IOread extends AppCompatActivity
         return retrievedGroup;
     }
 
-
-
+    /**
+     *                      Use this method to retrieve a specific user from file
+     *  @param userID        Specify the id of the user you are trying to retrieve
+     *  @param context      Include the context you are working in
+     *  @return             The user associated with the id
+     */
     public User retrieveUser(String userID, Context context)
     {
         User retrievedUser = null;
@@ -191,6 +214,12 @@ public class IOread extends AppCompatActivity
         return retrievedUser;
     }
 
+    /**
+     *                      Use this method to get every id that exists in a specified file
+     *  @param searchingFor Specify what file you are searching for
+     *  @param context      Include the context you are working in
+     *  @return             The list of every id that exists in the specified file
+     */
     public ArrayList<String> existingIDs (String searchingFor, Context context)
     {
         ArrayList<String> existingIDs = new ArrayList<>();
@@ -211,6 +240,12 @@ public class IOread extends AppCompatActivity
         return existingIDs;
     }
 
+    /**
+     *                      Use this method to read the audit of the specific group
+     *  @param groupID      Specify the id of the group you are trying to retrieve
+     *  @param context      Include the context you are working in
+     *  @return             The audit log of the group specified by ID
+     */
     public String readGroupAudit(String groupID, Context context)
     {
         String fullAudit = "";
@@ -253,8 +288,12 @@ public class IOread extends AppCompatActivity
         return fullAudit;
     }
 
-
-
+    /**
+     *                      Use this method to get and format for display all the members and their permissions
+     *  @param groupID      Specify the id of the group you are trying to retrieve
+     *  @param context      Include the context you are working in
+     *  @return             The display of all existing members and their permissions
+     */
     public String readGroupMembers(String groupID, Context context)
     {
         String fullAudit = "";
@@ -277,6 +316,12 @@ public class IOread extends AppCompatActivity
         return fullAudit;
     }
 
+    /**
+     *                      Use this method to get the users audit formatted for display
+     *  @param userID       Specify the id of the user you are trying to retrieve
+     *  @param context      Include the context you are working in
+     *  @return             The audit associated with the user
+     */
     public String readUserAudit(String userID, Context context)
     {
         String fullAudit = "";
