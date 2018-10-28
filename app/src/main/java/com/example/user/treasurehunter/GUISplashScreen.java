@@ -6,10 +6,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 
+
+/**
+ *
+ * @author Zach Curll, Matthew Finnegan, Alexander Kulpin, Dominic Marandino, Brandon Ostasewski, Paul Sigloch
+ * @version Sprint 2
+ */
 public class GUISplashScreen extends AppCompatActivity
 {
     private int TIMEOUT = 2000;
 
+    /**
+     * Method that sets the screen to display activity_guisplash_screen. A delay is also put in place to make sure the logo is displayed.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -26,6 +35,9 @@ public class GUISplashScreen extends AppCompatActivity
         }, TIMEOUT);
     }
 
+    /**
+     * Method that allows the user to close the App.
+     */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)
     {

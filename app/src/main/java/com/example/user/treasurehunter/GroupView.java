@@ -7,6 +7,12 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
 
+
+/**
+ *
+ * @author Zach Curll, Matthew Finnegan, Alexander Kulpin, Dominic Marandino, Brandon Ostasewski, Paul Sigloch
+ * @version Sprint 2
+ */
 public class GroupView extends AppCompatActivity
 {
     Group currentGroup;
@@ -33,6 +39,9 @@ public class GroupView extends AppCompatActivity
         tvDescription.setText(currentGroup.getGroupDescription());
     }
 
+    /**
+     * Method that deletes a group.
+     */
     public void deleteGroup(View view)
     {
         IOwrite writer = new IOwrite();
@@ -41,7 +50,9 @@ public class GroupView extends AppCompatActivity
         Intent locIntent = new Intent(this, GroupManager.class);
         startActivity(locIntent);
     }
-
+    /**
+     * Method that displays the group's audit.
+     */
     public void viewGroupAudit(View view)
     {
         Intent locIntent = new Intent(this, GroupAuditLog.class);
@@ -49,6 +60,9 @@ public class GroupView extends AppCompatActivity
         startActivity(locIntent);
     }
 
+    /**
+     * Method that displays the group's members.
+     */
     public void viewGroupMembers(View view)
     {
         Intent locIntent = new Intent(this, GroupMembers.class);
@@ -56,6 +70,9 @@ public class GroupView extends AppCompatActivity
         startActivity(locIntent);
     }
 
+    /**
+     * Method that allows the user to move back to the MainActivity screen.
+     */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)
     {

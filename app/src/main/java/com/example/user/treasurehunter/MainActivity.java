@@ -13,6 +13,11 @@ import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.Window;
 
+/**
+ *
+ * @author Zach Curll, Matthew Finnegan, Alexander Kulpin, Dominic Marandino, Brandon Ostasewski, Paul Sigloch
+ * @version Sprint 2
+ */
 public class MainActivity extends AppCompatActivity
 {
     private DrawerLayout nDrawerLayout;
@@ -123,6 +128,9 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    /**
+     * Method that allows the user to exit the App.
+     */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)
     {

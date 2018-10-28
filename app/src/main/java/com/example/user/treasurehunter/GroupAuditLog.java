@@ -7,10 +7,19 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
 
+/**
+ *
+ * @author Zach Curll, Matthew Finnegan, Alexander Kulpin, Dominic Marandino, Brandon Ostasewski, Paul Sigloch
+ * @version Sprint 2
+ */
 public class GroupAuditLog extends AppCompatActivity
 {
     private String passedID;
 
+
+    /**
+     * Method that sets the screen to display activity_group_audit_log
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -30,6 +39,9 @@ public class GroupAuditLog extends AppCompatActivity
         startActivity(locIntent);
     }
 
+    /**
+     * Method that allows the user to move back to the MainActivity screen.
+     */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)
     {
