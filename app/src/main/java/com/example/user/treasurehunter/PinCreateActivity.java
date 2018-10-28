@@ -122,6 +122,7 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
         pin.setRadius(et.getText().toString());
         Intent mainIntent = new Intent(this, MainActivity.class);
         writer.writePin(pin, this);
+        writer.writeUserAudit("1234567890",4, pinID, pin.getPublisher(), this);
         startActivity(mainIntent);
     }
 
@@ -139,7 +140,7 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
     {
         if (keyCode == KeyEvent.KEYCODE_BACK )
         {
-            Intent mainIntent = new Intent(this, MainActivity.class);
+            Intent mainIntent = new Intent(this, PinActivity.class);
             startActivity(mainIntent);
             return true;
         }

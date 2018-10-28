@@ -160,13 +160,7 @@ public class IOread extends AppCompatActivity
                 String[] foundLine = eachLine[i].split("\\*",6);
                 if(foundLine[0].equals(groupID))
                 {
-                    String[] eachMember = foundLine[5].split("/", 1000);
-                    ArrayList<String> allMembers = new ArrayList<String>();
-                    for(int j = 0; j < eachMember.length; j++)
-                    {
-                        allMembers.add(eachMember[j]);
-                    }
-                    retrievedGroup = new Group(allMembers, foundLine[1], foundLine[4], foundLine[3], foundLine[2]);
+                    retrievedGroup = new Group(foundLine[1], foundLine[4], foundLine[3], foundLine[2]);
                     retrievedGroup.setGroupID(foundLine[0]);
                 }
             }
@@ -180,7 +174,7 @@ public class IOread extends AppCompatActivity
 
     /**
      *                      Use this method to retrieve a specific user from file
-     *  @param userID        Specify the id of the user you are trying to retrieve
+     *  @param userID       Specify the id of the user you are trying to retrieve
      *  @param context      Include the context you are working in
      *  @return             The user associated with the id
      */
@@ -329,17 +323,35 @@ public class IOread extends AppCompatActivity
         {
             String everything = read("useraudit",userID, context);
             String[] eachLine = everything.split("\n", 1000);
+            System.out.println(everything);
             for(int i = 0; i < eachLine.length - 1; i++)
             {
+                System.out.println(eachLine[i]);
                 String[] foundLine = eachLine[i].split("\\*",7);
                 fullAudit += foundLine[1] + " " + foundLine[2] + " - " + foundLine[3];
+                if (foundLine[0].equals("0"))
+                {
+                    fullAudit += (" created the account");
+                }
                 if (foundLine[0].equals("1"))
                 {
-                    fullAudit += (" Placed Pin: " + foundLine[4] + " ID: " + foundLine[5]);
+                    fullAudit += (" created the Group: " + foundLine[4]);
+                }
+                if (foundLine[0].equals("2"))
+                {
+                    fullAudit += (" deleted the Group: " + foundLine[4]);
+                }
+                if (foundLine[0].equals("3"))
+                {
+                    fullAudit += (" left the Group: " + foundLine[4]);
+                }
+                if (foundLine[0].equals("4"))
+                {
+                    fullAudit += (" created the Pin: " + foundLine[5] + " for Group: " + foundLine[4]);
                 }
                 else
                 {
-                    fullAudit += (" Removed Pin: " + foundLine[4]);
+                    fullAudit += (" deleted the Pin: " + foundLine[5] + " for Group: " + foundLine[4]);
                 }
             }
         }
@@ -347,6 +359,6 @@ public class IOread extends AppCompatActivity
         {
             e.printStackTrace();
         }
-        return fullAudit;
+        return fullAudit + "\n";
     }
 }

@@ -20,13 +20,6 @@ public class User
         // Must also generate a unique ID different from other users
     }
 
-    /*
-    public void addPin(PinDS newPin)
-    {
-        personalPins.addPin(newPin);
-    }
-    */
-
     // All the getters and setters
 
     public String getUserID()
@@ -64,11 +57,13 @@ public class User
         this.personalPinID = personalPinID;
     }
 
-    public ArrayList<String> getAssociatedGroupID() {
+    public ArrayList<String> getAssociatedGroupID()
+    {
         return associatedGroupID;
     }
 
-    public void setAssociatedGroupID(ArrayList<String> associatedGroupID) {
+    public void setAssociatedGroupID(ArrayList<String> associatedGroupID)
+    {
         this.associatedGroupID = associatedGroupID;
     }
 }

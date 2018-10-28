@@ -36,7 +36,7 @@ public class GroupCreator extends AppCompatActivity
         memberID.add("Estemoor");
 
 
-        Group newGroup = new Group(memberID, etUserID.getText().toString(), etDescription.getText().toString(),
+        Group newGroup = new Group(etUserID.getText().toString(), etDescription.getText().toString(),
                                     etTitle.getText().toString(), etUsername.getText().toString());
         writer.writeGroup(newGroup, this);
         writer.writeMembersTest(newGroup.getGroupID(), reader.readGroupMembers(newGroup.getGroupID(), this), this);

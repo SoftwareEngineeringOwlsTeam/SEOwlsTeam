@@ -63,7 +63,7 @@ public class IOtester extends AppCompatActivity
         String adminID = "9468350125";
         String groupName = "The Name of Group";
         String adminName = "Creators Name";
-        Group group = new Group(membersID, adminID, groupDescription, groupName, adminName);
+        Group group = new Group(adminID, groupDescription, groupName, adminName);
         IOwrite.writeGroup(group,this);
     }
     public void generatePin(View view)
@@ -132,8 +132,7 @@ public class IOtester extends AppCompatActivity
                              "Admin ID: "           + group.getAdminID()            + "\n" +
                              "Admin Name: "         + group.getAdminName()          + "\n" +
                              "Group Name: "         + group.getGroupName()          + "\n" +
-                             "Group Description: "  + group.getGroupDescription()   + "\n" +
-                             "Group Memebr ID's "   + group.getMembersID());
+                             "Group Description: "  + group.getGroupDescription());
         retrievedGroup.setText(theLines);
     }
 

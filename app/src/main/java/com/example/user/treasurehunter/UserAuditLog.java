@@ -25,7 +25,9 @@ public class UserAuditLog extends AppCompatActivity
         setContentView(R.layout.activity_audit_log);
         IOread reader = new IOread();
         TextView et2 = findViewById(R.id.editText2);
-        et2.setText(reader.readUserAudit("", this));
+
+        //currently random pre set id
+        et2.setText(reader.readUserAudit("1234567890", this));
     }
 
     @Override

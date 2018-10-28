@@ -1,6 +1,7 @@
 package com.example.user.treasurehunter;
 
 import android.content.Context;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 
 import java.io.File;
@@ -20,6 +21,7 @@ public class IOwrite extends AppCompatActivity implements Serializable
     private String currentTime;
     private Date time = Calendar.getInstance().getTime();
     private IOread reader;
+    private File file;
 
     /**
      *  Instantiate time as soon as IOwrite is created
@@ -32,16 +34,16 @@ public class IOwrite extends AppCompatActivity implements Serializable
     }
 
     /**
-     *                  Use this method to write to a file
-     * @param data      Specify what to write with data
+     *                     Use this method to write to a file
+     * @param data         Specify what to write with data
      * @param searchingFor Specify what data type you are writing in
-     * @param context   Specify the context in which you are working in
+     * @param context      Specify the context in which you are working in
     */
     public void write(String data, String searchingFor, Context context)
     {
         reader = new IOread();
         String dir = context.getFilesDir() + "/" + searchingFor + ".txt";
-        File file = new File(dir);
+        file = new File(dir);
         try
         {
             if(!file.exists())
@@ -49,7 +51,7 @@ public class IOwrite extends AppCompatActivity implements Serializable
                 file.createNewFile();
             }
             data = reader.read(searchingFor, "", context) + data;
-            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(file.getName(), Context.MODE_WORLD_READABLE));
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(file.getName(), Context.MODE_PRIVATE));
             data += "\nEOF";
             outputStreamWriter.write(data);
             outputStreamWriter.close();
@@ -151,33 +153,12 @@ public class IOwrite extends AppCompatActivity implements Serializable
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    ////////////////////////////////////////////////////////////Actual Method
-
-    public void writeAudit(String groupID, int action, User user, User deletedUser, PinDS pin, String previousText, Context context)
+    public void writeGroupAudit(String groupID, int action, User user, String deletedUserID, String pinID, Context context)
     {
-        String dir = context.getFilesDir() + "/" + groupID + "group_audit.txt";
-        File file = new File(dir);
-        try
+        String data = (action + "*" + currentTime + "*" + currentDate + "*" + user.getUserName() + "*" + user.getUserID());
+        if(!pinID.equals(""))
         {
-            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(file.getName(), Context.MODE_WORLD_READABLE));
-            String data = (previousText + action + "*" + currentTime + "*" + currentDate + "*" + user.getUserName() + "*" + user.getUserID());
+            PinDS pin = reader.retrievePin(pinID, context);
             if(action == 2)
             {
                 data += ("*" + pin.getPinTitle());
@@ -186,48 +167,48 @@ public class IOwrite extends AppCompatActivity implements Serializable
                     data += ("*" + pin.getPinID());
                 }
             }
-            else {
-                data += ("*" + deletedUser.getUserName() + "*" + deletedUser.getUserID());
-            }
-            data += "\nEOF";
-            outputStreamWriter.write(data);
-            outputStreamWriter.close();
         }
-        catch (IOException e)
+        if(!deletedUserID.equals(""))
         {
-            System.out.println("File write failed: " + e.toString());
+            User dUser = reader.retrieveUser(deletedUserID, context);
+            data += ("*" + dUser.getUserName() + "*" + dUser.getUserID());
         }
+        write(data, (groupID + "groupaudit"), context);
     }
 
-
-
-    ///////////////////////////////////////////////////////////Testing Method
-
-    public void writeAuditTest(int action, PinDS pin, String previousText, Context context)
+    public void writeUserAudit(String userID, int action, String pinID, String groupID, Context context)
     {
-        String dir = context.getFilesDir() + "/personal_audit.txt";
-        File file = new File(dir);
-        try
+        //0. You created account
+        //1. You created a group
+        //2. You created a pin for a group
+        //3. You deleted a group
+        //4. You left a group
+        //5. You deleted a pin for a group
+
+        //for testing
+        String data = (action + "*" + currentTime + "*" + currentDate + "*" + groupID);
+        if(action == 4)
         {
-            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(file.getName(), Context.MODE_WORLD_READABLE));
-            String data = (previousText + action + "*" + currentTime + "*" + currentDate + "*" + pin.getPublisher());
-            if(action == 2 || action == 1)
+            PinDS pin = reader.retrievePin(pinID, context);
+            data += ("*TestGroup*" + pin.getPinTitle());
+        }
+
+        /*
+        User theUser = reader.retrieveUser(userID, context);
+        String data = (action + "*" + currentTime + "*" + currentDate + "*" + theUser.getUserName());
+
+        if(action > 0)
+        {
+            Group group = reader.retrieveGroup(groupID, context);
+            data += ("*" + group.getGroupName());
+            if(action > 3)
             {
+                PinDS pin = reader.retrievePin(pinID, context);
                 data += ("*" + pin.getPinTitle());
-                if(action == 1)
-                {
-                    data += ("*" + pin.getPinID());
-                }
             }
-            data += "\nEOF";
-            System.out.println(data);
-            outputStreamWriter.write(data);
-            outputStreamWriter.close();
         }
-        catch (IOException e)
-        {
-            System.out.println("File write failed: " + e.toString());
-        }
+        */
+        write(data, (userID + "useraudit"), context);
     }
 
 
@@ -309,18 +290,6 @@ public class IOwrite extends AppCompatActivity implements Serializable
             Group group = reader.retrieveGroup(groupID, context);
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(file.getName(), Context.MODE_WORLD_READABLE));
             String data = "";
-            if(!group.getMembersID().isEmpty())
-            {
-                for(int i = 0; i > group.getMembersID().size(); i++)
-                {
-                    //test
-                    data += group.getMembersID().get(i);
-
-                    //actual
-                    //String anid = group.getMembersID().get(i);
-                    //data += reader.retrieveUser(context, anid).getUserName() + "\n";
-                }
-            }
             data += "EOF";
             outputStreamWriter.write(data);
             outputStreamWriter.close();
@@ -394,6 +363,17 @@ public class IOwrite extends AppCompatActivity implements Serializable
             file.delete();
         }
         dir = context.getFilesDir() + "/users.txt";
+        file = new File(dir);
+        if (file.exists())
+        {
+            file.delete();
+        }
+
+
+
+
+        //Deletes test user audit
+        dir = context.getFilesDir() + "/1234567890useraudit.txt";
         file = new File(dir);
         if (file.exists())
         {
