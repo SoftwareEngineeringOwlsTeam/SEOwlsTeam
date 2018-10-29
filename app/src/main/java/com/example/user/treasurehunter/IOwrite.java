@@ -211,93 +211,18 @@ public class IOwrite extends AppCompatActivity implements Serializable
         write(data, (userID + "useraudit"), context);
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    ////////////////////////////////////////////////////////////Actual Method
-
-    public void writeMembers(String groupID, int action, User user, User deletedUser, PinDS pin, String previousText, Context context)
+    public void writeMembers(ArrayList<String> members, ArrayList<String> permissions, String groupID, Context context)
     {
-        String dir = context.getFilesDir() + "/" + groupID + "group_audit.txt";
-        File file = new File(dir);
-        try
+        String data = "";
+        for(int i = 0; i < members.size(); i++)
         {
-            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(file.getName(), Context.MODE_WORLD_READABLE));
-            String data = (previousText + action + "*" + currentTime + "*" + currentDate + "*" + user.getUserName() + "*" + user.getUserID());
-            if(action == 2)
+            data += members.get(i) + "*" + permissions.get(i);
+            if(i != members.size() - 1)
             {
-                data += ("*" + pin.getPinTitle());
-                if(action == 1)
-                {
-                    data += ("*" + pin.getPinID());
-                }
-            }
-            else {
-                data += ("*" + deletedUser.getUserName() + "*" + deletedUser.getUserID());
-            }
-            data += "\nEOF";
-            outputStreamWriter.write(data);
-            outputStreamWriter.close();
-        }
-        catch (IOException e)
-        {
-            System.out.println("File write failed: " + e.toString());
-        }
-    }
-
-
-
-    ///////////////////////////////////////////////////////////Testing Method
-
-    public void writeMembersTest(String groupID, String previousText, Context context)
-    {
-        String dir = context.getFilesDir() + "/" + groupID + "members.txt";
-        File file = new File(dir);
-        try
-        {
-            if(!file.exists())
-            {
-                file.createNewFile();
+                data += "\n";
             }
         }
-        catch (Exception e)
-        {
-            System.out.println("FileOutputStream exception: - " + e.toString());
-        }
-
-        try
-        {
-            IOread reader = new IOread();
-            Group group = reader.retrieveGroup(groupID, context);
-            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(file.getName(), Context.MODE_WORLD_READABLE));
-            String data = "";
-            data += "EOF";
-            outputStreamWriter.write(data);
-            outputStreamWriter.close();
-        }
-        catch (IOException e)
-        {
-            System.out.println("File write failed: " + e.toString());
-        }
+        write(data, (groupID + "members"), context);
     }
 
 

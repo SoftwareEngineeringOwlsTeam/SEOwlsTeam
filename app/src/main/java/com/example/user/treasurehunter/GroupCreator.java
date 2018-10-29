@@ -28,18 +28,23 @@ public class GroupCreator extends AppCompatActivity
         EditText etUserID = findViewById(R.id.etUserID);
         EditText etDescription = findViewById(R.id.etDescription);
         EditText etTitle = findViewById(R.id.etTitle);
-        ArrayList<String> memberID = new ArrayList<String>();
+
 
         /// As a test
-        memberID.add("Aldin");
-        memberID.add("Deborion");
-        memberID.add("Estemoor");
+        ArrayList<String> members = new ArrayList<String>();
+        members.add("Aldin");
+        members.add("Deborion");
+        members.add("Estemoor");
+        ArrayList<String> permissions = new ArrayList<String>();
+        permissions.add("RWAD");
+        permissions.add("RWA");
+        permissions.add("RW");
 
 
         Group newGroup = new Group(etUserID.getText().toString(), etDescription.getText().toString(),
                                     etTitle.getText().toString(), etUsername.getText().toString());
         writer.writeGroup(newGroup, this);
-        writer.writeMembersTest(newGroup.getGroupID(), reader.readGroupMembers(newGroup.getGroupID(), this), this);
+        writer.writeMembers(members, permissions, newGroup.getGroupID(),this);
         Intent locIntent = new Intent(this, GroupManager.class);
         startActivity(locIntent);
     }

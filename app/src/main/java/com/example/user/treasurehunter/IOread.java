@@ -297,10 +297,13 @@ public class IOread extends AppCompatActivity
             String[] eachLine = everything.split("\n", 1000);
             for(int i = 0; i < eachLine.length - 1; i++)
             {
-                String[] foundLine = eachLine[i].split("\\*",7);
-                System.out.println(foundLine[3]);
-                fullAudit += foundLine[1] + " is recognized as a " + foundLine[2];
-                fullAudit += "\n";
+                System.out.println(eachLine[i]);
+                String[] foundLine = eachLine[i].split("\\*",3);
+                fullAudit += (foundLine[0] + " is able to " + foundLine[1]);
+                if(i != eachLine.length - 1)
+                {
+                    fullAudit += "\n";
+                }
             }
         }
         catch (FileNotFoundException e)
