@@ -182,7 +182,8 @@
                 android:textAlignment="center"
                 android:inputType="numberDecimal"
                 android:textColor="@android:color/black"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:maxLength="15"/>
         </TableRow>
 
         <TableRow
@@ -209,6 +210,7 @@
                 android:inputType="numberDecimal"
                 android:textAlignment="center"
                 android:textSize="20dp"
+                android:maxLength="15"
                 android:textColor="@android:color/black"
                 />
         </TableRow>
@@ -235,6 +237,7 @@
                 android:inputType="numberDecimal"
                 android:textAlignment="center"
                 android:textSize="20dp"
+                android:maxLength="15"
                 android:textColor="@android:color/black"
                 />
         </TableRow>
@@ -260,6 +263,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text=""
+                android:maxLength="15"
                 android:textAlignment="center"
                 android:textColor="@android:color/black"
                 android:textSize="20dp" />
@@ -285,6 +289,7 @@
                 android:text=""
                 android:inputType="numberDecimal"
                 android:textSize="20dp"
+                android:maxLength="15"
                 android:textAlignment="center"
                 android:textColor="@android:color/black"
                 />
@@ -312,6 +317,7 @@
                 android:inputType="numberDecimal"
                 android:textAlignment="center"
                 android:textColor="@android:color/black"
+                android:maxLength="15"
                 />
         </TableRow>
 
@@ -326,7 +332,9 @@
                 android:text="Date:"
                 android:textAlignment="textEnd"
                 android:textColor="@color/colorPrimary"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+
+                />
 
             <TextView
                 android:id="@+id/etDate"
@@ -335,6 +343,7 @@
                 android:text=""
                 android:inputType="date"
                 android:textSize="20dp"
+                android:maxLength="15"
                 android:textAlignment="center"
                 android:textColor="@android:color/black"
                 />
