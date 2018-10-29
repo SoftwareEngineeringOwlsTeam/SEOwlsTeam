@@ -38,6 +38,7 @@ public class GroupView extends AppCompatActivity
         IOwrite writer = new IOwrite();
         writer.removeObject("groups", passedID, passedID, this);
         writer.removeFile("groupaudit", passedID, this);
+        writer.removeFile("members", passedID, this);
         Intent locIntent = new Intent(this, GroupManager.class);
         startActivity(locIntent);
     }

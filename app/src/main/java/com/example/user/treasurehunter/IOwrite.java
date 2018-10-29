@@ -119,21 +119,27 @@ public class IOwrite extends AppCompatActivity implements Serializable
         String newEverything = "";
         try
         {
-            everything = reader.read(searchingFor, groupID, context);
+            everything = reader.read(searchingFor, "", context);
         }
         catch (FileNotFoundException e)
         {
             e.printStackTrace();
         }
         String[] eachLine = everything.split("\n", 1000);
-        for(int i = 0; i < eachLine.length; i++)
+        for(int i = 0; i < eachLine.length - 1; i++)
         {
             String[] foundLine = eachLine[i].split("\\*",14);
             if(!foundLine[0].equals(idToRemove))
             {
-                newEverything += eachLine[i] + "\n";
+                newEverything += eachLine[i];
+                if(i != eachLine.length - 2)
+                {
+                    newEverything += "\n";
+                }
             }
+            System.out.println(newEverything + "\nend");
         }
+        removeFile("groups", "", context);
         write(newEverything, searchingFor, context);
     }
 

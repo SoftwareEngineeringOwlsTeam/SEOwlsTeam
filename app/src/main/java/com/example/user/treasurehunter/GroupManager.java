@@ -65,9 +65,12 @@ public class GroupManager extends Activity implements OnItemSelectedListener
 
     public void enterView(View view)
     {
-        Intent locIntent = new Intent(this, GroupView.class);
-        locIntent.putExtra("id", selected);
-        startActivity(locIntent);
+        if(selected != "")
+        {
+            Intent locIntent = new Intent(this, GroupView.class);
+            locIntent.putExtra("id", selected);
+            startActivity(locIntent);
+        }
     }
 
     @Override
