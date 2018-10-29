@@ -25,12 +25,11 @@ public class MainActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         nDrawerLayout = findViewById(R.id.drawerLayout);
         nToggle = new ActionBarDrawerToggle(this, nDrawerLayout, R.string.open, R.string.close);
-
         nDrawerLayout.addDrawerListener(nToggle);
         nToggle.syncState();
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         if(ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION) !=

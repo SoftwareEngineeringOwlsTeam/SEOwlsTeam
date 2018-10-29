@@ -50,7 +50,10 @@ public class IOwrite extends AppCompatActivity implements Serializable
             {
                 file.createNewFile();
             }
-            data = reader.read(searchingFor, "", context) + data;
+            if(!reader.read(searchingFor, "", context).equals(""))
+            {
+                data = reader.read(searchingFor, "", context) + data;
+            }
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(file.getName(), Context.MODE_PRIVATE));
             data += "\nEOF";
             outputStreamWriter.write(data);
