@@ -4,23 +4,93 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AccountManager">
+    tools:context=".UserAccountManager">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textView5"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Account Manager"
-            android:textAlignment="center"
-            android:textSize="30sp" />
-    </LinearLayout>
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/tvHeading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Account Manager"
+                android:textAlignment="center"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/tvUsername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Username"
+                android:textAlignment="textStart"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/tvUserID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="UserID"
+                android:textAlignment="textStart"
+                android:textSize="30sp" />
+
+            <Button
+                android:id="@+id/buChangePassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Change Password"
+                android:onClick="changePassword"/>
+
+            <EditText
+                android:id="@+id/etOriginalPass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Type in current password"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/etOriginalPass2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Type in new password again"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/etOriginalPass3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Type in new password"
+                android:inputType="textPersonName" />
+
+            <Button
+                android:id="@+id/buChangePassword2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="changePassword2"
+                android:text="Next" />
+
+            <Button
+                android:id="@+id/buChangePassword3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="changePassword3"
+                android:text="Set New Password" />
+
+            <Button
+                android:id="@+id/buDeleteUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Delete User"
+                android:onClick="deleteUser"/>
+        </LinearLayout>
+    </ScrollView>
+
 </android.support.constraint.ConstraintLayout>

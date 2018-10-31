@@ -20,7 +20,7 @@ import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class location_generation extends AppCompatActivity
+public class LocationGeneration extends AppCompatActivity
 {
     static final int REQUEST_LOCATION = 1;
     LocationManager locationManager;

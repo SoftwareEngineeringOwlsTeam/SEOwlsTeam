@@ -2,24 +2,32 @@ package com.example.user.treasurehunter;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Random;
+import android.graphics.Color;
+
 import android.location.*;
 
 public abstract class PinDS implements Serializable
 {
+    private String pinID;
     private double latitude;
     private double longitude;
     private double altitude;
     private String description;
-    private String color;
+    protected String color;
     private String time;
     private String date;
     private String publisher = "";
     private String pinName;
     private String radius;
-    private String className;
+    private String pinTitle;
+    private static ArrayList<String> existingPinIDs = new ArrayList<>();
+    protected int defaultColor;
 
-    public PinDS(double latitude, double longitude, double altitude,
-                 String pinName, String description, String publisher, String color)
+    public PinDS(String pinID, double latitude, double longitude, double altitude,
+                 String pinName, String description, String publisher, String color,
+                 String pinTitle, String time, String date, String radius)
     {
 
     }
@@ -27,6 +35,10 @@ public abstract class PinDS implements Serializable
     public PinDS(){}
 
     // All the Setters and Getters
+    public String getPinID()
+    { return pinID; }
+    public void setPinID(String pinID)
+    { this.pinID = pinID; }
     public double getLatitude()
 
         { return latitude; }
@@ -64,6 +76,7 @@ public abstract class PinDS implements Serializable
         {
             return publisher;
         }
+
         public void setPinName(String pinName)
         {
             this.pinName = pinName;
@@ -72,6 +85,7 @@ public abstract class PinDS implements Serializable
         {
             return this.pinName;
         }
+
         public void setRadius(String radius)
         {
             this.radius = radius;
@@ -81,7 +95,21 @@ public abstract class PinDS implements Serializable
             return radius;
         }
 
-    public String getClassName() {
-        return className;
+    public String getPinTitle() {
+        return pinTitle;
+    }
+
+    public void setPinTitle(String pinTitle) {
+        this.pinTitle = pinTitle;
+    }
+
+    public int getDefaultColor()
+    {
+        return defaultColor;
+    }
+
+    protected void setDefaultColor(String hexColor)
+    {
+        defaultColor = Color.parseColor(hexColor);
     }
 }

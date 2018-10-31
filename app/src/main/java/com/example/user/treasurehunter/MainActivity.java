@@ -1,30 +1,17 @@
 package com.example.user.treasurehunter;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.net.Uri;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Layout;
+import android.view.KeyEvent;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.Window;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.TextView;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -38,12 +25,11 @@ public class MainActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        nDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
-        nToggle = new ActionBarDrawerToggle(this, nDrawerLayout, R.string.open, R.string.close);
 
+        nDrawerLayout = findViewById(R.id.drawerLayout);
+        nToggle = new ActionBarDrawerToggle(this, nDrawerLayout, R.string.open, R.string.close);
         nDrawerLayout.addDrawerListener(nToggle);
         nToggle.syncState();
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         if(ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION) !=
@@ -92,13 +78,13 @@ public class MainActivity extends AppCompatActivity
 
     public void testClicked(MenuItem menuItem)
     {
-        Intent locIntent = new Intent(this, LocationTester.class);
+        Intent locIntent = new Intent(this, IOtester.class);
         startActivity(locIntent);
     }
 
     public void auditClicked(MenuItem menuItem)
     {
-        Intent locIntent = new Intent(this, AuditLog.class);
+        Intent locIntent = new Intent(this, UserAuditLog.class);
         startActivity(locIntent);
     }
 
@@ -110,13 +96,13 @@ public class MainActivity extends AppCompatActivity
 
     public void accountClicked(MenuItem menuItem)
     {
-        Intent locIntent = new Intent(this, AccountManager.class);
+        Intent locIntent = new Intent(this, UserAccountManager.class);
         startActivity(locIntent);
     }
 
     public void settingsClicked(MenuItem menuItem)
     {
-        Intent locIntent = new Intent(this, Settings.class);
+        Intent locIntent = new Intent(this, UserSettings.class);
         startActivity(locIntent);
     }
 
@@ -136,7 +122,17 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if (keyCode == KeyEvent.KEYCODE_BACK )
+        {
+            finish();
+            System.exit(0);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 }
 
 
