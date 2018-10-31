@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".IOtester"
+    tools:layout_editor_absoluteY="25dp">
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/pinGenerate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Generate Pin"
+                android:onClick="generatePin"/>
+
+            <Button
+                android:id="@+id/groupGenerate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Generate Group"
+                android:onClick="generateGroup"/>
+
+            <Button
+                android:id="@+id/userGenerate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Generate User"
+                android:onClick="generateUser"/>
+
+            <Button
+                android:id="@+id/update"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Update List"
+                android:onClick="update"/>
+
+            <Button
+                android:id="@+id/clear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Clear All"
+                android:onClick="clear"/>
+
+            <TextView
+                android:id="@+id/pinView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pin Viewer" />
+
+            <TextView
+                android:id="@+id/groupView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Group Viewer" />
+
+            <TextView
+                android:id="@+id/userView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="User Viewer" />
+
+            <EditText
+                android:id="@+id/pinIDer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Type in the Pin ID"
+                android:inputType="textPersonName" />
+
+            <Button
+                android:id="@+id/retrievePin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="retrievePin"
+                android:text="Retrieve Pin" />
+
+            <TextView
+                android:id="@+id/retrievedPin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="The Retrieved Pin" />
+
+            <EditText
+                android:id="@+id/groupIDer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Type in the Group ID"
+                android:inputType="textPersonName" />
+
+            <Button
+                android:id="@+id/retrieveGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="retrieveGroup"
+                android:text="Retrieve Group" />
+
+            <TextView
+                android:id="@+id/retrievedGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="The Retrieved Group" />
+
+            <EditText
+                android:id="@+id/userIDer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Type in the User ID"
+                android:inputType="textPersonName" />
+
+            <Button
+                android:id="@+id/retrieveUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="retrieveUser"
+                android:text="Retrieve User" />
+
+            <TextView
+                android:id="@+id/retrievedUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="The Retrieved User" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>

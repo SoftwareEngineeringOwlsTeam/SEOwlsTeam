@@ -1,321 +1,404 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 
 
-    <TableRow
-        android:id="@+id/Row1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:layout_width="133dp"
-            android:layout_height="wrap_content"
-            android:text="User Name:"
-            android:textAlignment="textEnd"
-            android:textColor="@color/colorPrimary"
 
 
-            android:textSize="20dp" />
 
-        <EditText
-            android:id="@+id/publisher"
-            android:layout_width="251dp"
-            android:layout_height="wrap_content"
-            android:hint="Enter User Name"
-            android:textAlignment="center"
-            android:textColor="@android:color/black"
-            android:textSize="20dp"
-
-            />
-    </TableRow>
-
-    <TableRow
-        android:id="@+id/Row2"
+    <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
 
-        <TextView
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:text="Pin Name:"
-            android:textSize="20dp"
-            android:textColor="@color/colorPrimary"
+        <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/tvBanner"
+            android:layout_width="fill_parent"
+            android:layout_height="53dp"
+            android:fontFamily="@font/roboto"
+            android:gravity="center_vertical"
+            android:text="   Title"
+            android:textColor="@android:color/white"
 
-            android:textAlignment="textEnd"
 
-            />
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/pinName"
-            android:layout_height="wrap_content"
-            android:layout_width="40dp"
-            android:hint="Enter Pin Name"
-            android:textSize="20dp"
-            android:textAlignment="center"
-            android:textColor="@android:color/black"
+        <TableRow
+            android:id="@+id/Row1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-            />
-    </TableRow>
+            <TextView
+                android:layout_width="133dp"
+                android:layout_height="wrap_content"
+                android:text="User Name:"
+                android:textAlignment="textEnd"
+                android:textColor="@color/colorPrimary"
 
-    <TableRow
-        android:id="@+id/Row3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
-        <TextView
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:text="Description:"
-            android:textSize="20dp"
-            android:textAlignment="viewEnd"
-            android:textColor="@color/colorPrimary"
-            />
+                android:textSize="20sp" />
 
-        <EditText
-            android:id="@+id/description"
-            android:layout_width="40dp"
-            android:layout_height="wrap_content"
+            <EditText
+                android:id="@+id/publisher"
+                android:layout_width="251dp"
+                android:layout_height="wrap_content"
+                android:hint="Enter User Name"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="20dp"
 
-            android:hint="Enter Description"
+                />
+        </TableRow>
 
-            android:textAlignment="center"
-            android:textColor="@android:color/black"
-            android:textSize="20dp"
-
-            />
-    </TableRow>
-
-    <TableRow
-        android:id="@+id/Row4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:text="Color:"
-            android:textSize="20dp"
-            android:textAlignment="textEnd"
-            android:textColor="@color/colorPrimary"
-            />
-
-        <Spinner
-            android:id="@+id/spinner"
+        <TableRow
+            android:id="@+id/Row2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:outlineAmbientShadowColor="@color/colorPrimaryDark"/>
+            >
 
-    </TableRow>
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Pin Name:"
+                android:textSize="20dp"
+                android:textColor="@color/colorPrimary"
 
-    <TableRow
-        android:id="@+id/Row5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+                android:textAlignment="textEnd"
 
-        <TextView
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:text="Radius(m):"
-            android:textSize="20dp"
-            android:textAlignment="textEnd"
-            android:textColor="@color/colorPrimary"
-            />
+                />
 
-        <EditText
-            android:id="@+id/radius"
-            android:inputType="number"
-            android:layout_height="wrap_content"
-            android:layout_width="50sp"
+            <EditText
+                android:id="@+id/pinName"
+                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:hint="Enter Pin Name"
+                android:textSize="20dp"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
 
-            android:hint="Enter Radius in meters"
-            android:textAlignment="center"
-            android:textSize="20dp"
-            android:textColor="@android:color/black"
-            />
-    </TableRow>
-
-    <TableRow
-        android:id="@+id/Row6"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:text="Latitude:"
-            android:textAlignment="textEnd"
-            android:textColor="@color/colorPrimary"
-            android:textSize="20dp" />
-
-        <TextView
-            android:id="@+id/etLocationLat"
-            android:layout_height="match_parent"
-            android:layout_width="wrap_content"
-            android:textSize="20dp"
-            android:textAlignment="center"
-            android:textColor="@android:color/black"
-            />
-    </TableRow>
-
-    <TableRow
-        android:id="@+id/Row7"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center">
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="Longitude:"
-            android:textAlignment="viewEnd"
-            android:textColor="@color/colorPrimary"
-            android:textSize="20dp" />
-
-        <TextView
-            android:id="@+id/etLocationLong"
-            android:layout_height="40dp"
-            android:layout_width="wrap_content"
-            android:text=""
-            android:textAlignment="center"
-            android:textSize="20dp"
-            android:textColor="@android:color/black"
-            />
-    </TableRow>
-
-    <TableRow
-        android:id="@+id/Row8"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="Altitude:"
-            android:textAlignment="viewEnd"
-            android:textColor="@color/colorPrimary"
-            android:textSize="20dp" />
-
-        <TextView
-            android:id="@+id/etAltitude"
-            android:layout_height="40dp"
-            android:layout_width="wrap_content"
-            android:text=""
-            android:textAlignment="center"
-            android:textSize="20dp"
-            android:textColor="@android:color/black"
-            />
-    </TableRow>
-
-
-    <TableRow
-        android:id="@+id/Row9"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center|right"
-        >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-
-            android:text="Time:"
-            android:textAlignment="textEnd"
-            android:textColor="@color/colorPrimary"
-            android:textSize="20dp" />
-
-        <TextView
-            android:id="@+id/etTime"
-            android:layout_height="40dp"
-            android:layout_width="wrap_content"
-            android:text=""
-            android:textSize="20dp"
-            android:textAlignment="center"
-            android:textColor="@android:color/black"
-            />
-    </TableRow>
-
-    <TableRow
-        android:id="@+id/Row10"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="Date:"
-            android:textAlignment="textEnd"
-            android:textColor="@color/colorPrimary"
-            android:textSize="20dp" />
-
-        <TextView
-            android:id="@+id/etDate"
-            android:layout_height="40dp"
-            android:layout_width="wrap_content"
-            android:text=""
-            android:textSize="20dp"
-            android:textAlignment="center"
-            android:textColor="@android:color/black"
-            />
-    </TableRow>
-
-<<<<<<< HEAD
-
-=======
->>>>>>> master
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
     android:id="@+id/Row11"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-<<<<<<< HEAD
-
-
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".LocationTester">
 =======
+                />
+        </TableRow>
 >>>>>>> master
 
-        <Button
-            android:id="@+id/button16"
-            android:layout_width="0dp"
+        <TableRow
+            android:id="@+id/Row3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Description:"
+                android:textSize="20dp"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/colorPrimary"
+                />
+
+            <EditText
+                android:id="@+id/description"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:hint="Enter Description"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="20dp"
+
+                />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/Row4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:text="Color:"
+                android:textSize="20dp"
+                android:textAlignment="textEnd"
+                android:textColor="@color/colorPrimary"
+                />
+
+            <TextView
+                android:id="@+id/tvcolor"
+                android:text="Color"
+                android:textSize="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textAlignment="center"
+                />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/Row5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Radius(m):"
+                android:textSize="20dp"
+                android:textAlignment="textEnd"
+                android:textColor="@color/colorPrimary"
+                />
+
+            <EditText
+                android:id="@+id/radius"
+                android:inputType="numberDecimal"
+                android:layout_height="wrap_content"
+                android:layout_width="50sp"
+
+                android:hint="Enter Radius in meters"
+                android:textAlignment="center"
+                android:textSize="20dp"
+                android:textColor="@android:color/black"
+                />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/Row6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="Latitude:"
+
+                android:textAlignment="textEnd"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20dp" />
+
+            <EditText
+                android:id="@+id/etLocationLat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:inputType="numberDecimal"
+                android:textColor="@android:color/black"
+                android:textSize="20dp"
+                android:maxLength="15"/>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/Row7"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="23dp"
-            android:layout_marginTop="7dp"
-            android:layout_marginEnd="23dp"
-            android:background="@color/colorAccent"
-            android:text="Place Pin"
-            android:textColor="@android:color/white"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:onClick="createClicked"/>
-
-    </android.support.constraint.ConstraintLayout>
+            android:layout_gravity="center">
 
 
-</TableLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Longitude:"
+
+                android:textAlignment="viewEnd"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20dp" />
+
+            <EditText
+                android:id="@+id/etLocationLong"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text=""
+                android:inputType="numberDecimal"
+                android:textAlignment="center"
+                android:textSize="20dp"
+                android:maxLength="15"
+                android:textColor="@android:color/black"
+                />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/Row8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Altitude:"
+
+                android:textAlignment="viewEnd"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20dp" />
+
+            <EditText
+                android:id="@+id/etAltitude"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text=""
+                android:inputType="numberDecimal"
+                android:textAlignment="center"
+                android:textSize="20dp"
+                android:maxLength="15"
+                android:textColor="@android:color/black"
+                />
+        </TableRow>
 
 
+        <TableRow
+            android:id="@+id/Row9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|right">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+
+                android:text="Time:"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/etTime"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text=""
+                android:maxLength="15"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="20dp" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/Row10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Degree:"
+                android:textAlignment="textEnd"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20dp" />
+
+            <EditText
+                android:id="@+id/etDegree"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text=""
+                android:inputType="numberDecimal"
+                android:textSize="20dp"
+                android:maxLength="15"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/Row11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Speed:"
+                android:textAlignment="textEnd"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20dp" />
+
+            <EditText
+                android:id="@+id/etSpeed"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text=""
+                android:textSize="20dp"
+                android:inputType="numberDecimal"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:maxLength="15"
+                />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/Row12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Date:"
+                android:textAlignment="textEnd"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20sp"
+
+                />
+
+            <TextView
+                android:id="@+id/etDate"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text=""
+                android:inputType="date"
+                android:textSize="20dp"
+                android:maxLength="15"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                />
+        </TableRow>
 
 
+        <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+            android:id="@+id/Row13"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/button16"
+            app:layout_constraintTop_toBottomOf="@+id/button16">
 
 
+            <Button
+                android:id="@+id/button16"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="23dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginEnd="23dp"
+                android:background="@color/colorAccent"
+                android:onClick="createClicked"
+                android:text="Place Pin"
+                android:textColor="@android:color/white"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/goBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="23dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/colorAccent"
+                android:onClick="clickPinSelect"
+                android:text="Go Back"
+                android:textColor="@android:color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/button16" />
 
 
+        </android.support.constraint.ConstraintLayout>
 
+    </TableLayout>
 
-
-
-
-
+</ScrollView>

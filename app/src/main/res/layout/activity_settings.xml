@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LocationGeneration">
+    tools:context=".UserSettings">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,11 +16,11 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Not Supposed to be here"
+            android:text="Settings Page"
             android:textAlignment="center"
             android:textSize="30sp" />
     </LinearLayout>

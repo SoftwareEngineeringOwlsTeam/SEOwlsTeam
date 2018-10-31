@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimary">#3A4384</color>
     <color name="colorPrimaryDark">#00574b</color>
-    <color name="colorAccent">#d81b60</color>
+    <color name="colorAccent">#B0ADFF</color>
+    <color name="ForestFirePinDefaultColor">#FF8C00</color>
+    <color name="TreasurePinDefaultColor">#ffbf00</color>
+    <color name="WhalePinDefaultColor">#3A4384</color>
+    <color name="HuntingPinDefaultColor">#228B22</color>
+    <color name="ScavengerHuntPinDefaultColor">#A020F0</color>
+    <color name="ShipwreckPinDefaultColor">#0000CC</color>
+    <color name="CustomPinDefaultColor">#696969</color>
+    <color name="SurvivorPinDefaultColor">#FF0000</color>
 </resources>

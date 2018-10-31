@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.user.treasurehunter">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:name =".pinArray"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".GUISplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,14 +21,49 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PinActivity"
+        <activity
+            android:name=".PinActivity"
             android:label="Pin Selection" />
-        <activity android:name=".PinCreateActivity"
-            android:label="Pin Creation"/>
-        <activity android:name=".LocationTester"
-            android:label="Location Tester"/>
-        <activity android:name=".MainActivity" />
-        <activity android:name=".location_generation"></activity>
+        <activity
+            android:name=".PinCreateActivity"
+            android:label="Pin Creation"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".UserAuditLog"
+            android:label="Audit Log" />
+        <activity
+            android:name=".MainActivity"
+            android:label="Main Screen" />
+        <activity
+            android:name=".LocationGeneration"
+            android:label="ERROR LEAVE LEAVE ERROR" />
+        <activity
+            android:name=".LogInScreen"
+            android:label="Log In"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".GroupManager"
+            android:label="Group Manager" />
+        <activity
+            android:name=".UserSettings"
+            android:label="Settings" />
+        <activity
+            android:name=".UserAccountManager"
+            android:label="Account Manager" />
+        <activity
+            android:name=".IOtester"
+            android:label="@string/title_activity_iotester"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".GroupCreator" />
+        <activity android:name=".GroupView" />
+        <activity android:name=".GroupAuditLog" />
+        <activity android:name=".GroupMembers" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+
+        <activity android:name=".UserCreate"></activity>
     </application>
 
 </manifest>
