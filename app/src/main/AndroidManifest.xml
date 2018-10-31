@@ -40,7 +40,7 @@
         <activity
             android:name=".LogInScreen"
             android:label="Log In"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".GroupManager"
             android:label="Group Manager" />
@@ -57,11 +57,13 @@
         <activity android:name=".GroupCreator" />
         <activity android:name=".GroupView" />
         <activity android:name=".GroupAuditLog" />
-        <activity android:name=".GroupMembers"></activity>
+        <activity android:name=".GroupMembers" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        <activity android:name=".UserCreate"></activity>
     </application>
 
 </manifest>

@@ -4,8 +4,13 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.MenuItem;
+import android.widget.TextView;
 
-public class UserSettings extends AppCompatActivity {
+import static com.example.user.treasurehunter.LogInScreen.currentActiveUser;
+
+public class UserSettings extends AppCompatActivity
+{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,4 +29,5 @@ public class UserSettings extends AppCompatActivity {
         }
         return super.onKeyDown(keyCode, event);
     }
+
 }
