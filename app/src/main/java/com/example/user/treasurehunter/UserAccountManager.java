@@ -117,6 +117,8 @@ public class UserAccountManager extends AppCompatActivity
 
     public void deleteUser(View view)
     {
+        IOwrite writer = new IOwrite();
+        writer.removeObject("users", currentActiveUser.getUserID(), "", this);
         Intent pinIntent = new Intent(this, LogInScreen.class);
         startActivity(pinIntent);
     }

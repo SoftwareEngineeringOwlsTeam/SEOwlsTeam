@@ -52,7 +52,7 @@ public class IOwrite extends AppCompatActivity implements Serializable
             }
             if(!reader.read(searchingFor, "", context).equals(""))
             {
-                data = reader.read(searchingFor, "", context) + data;
+                data = reader.read(searchingFor, "", context)  + "\n" + data;
             }
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(file.getName(), Context.MODE_PRIVATE));
             data += "\nEOF";
@@ -129,20 +129,20 @@ public class IOwrite extends AppCompatActivity implements Serializable
             e.printStackTrace();
         }
         String[] eachLine = everything.split("\n", 1000);
-        for(int i = 0; i < eachLine.length - 1; i++)
+        for(int i = 0; i < eachLine.length; i++)
         {
             String[] foundLine = eachLine[i].split("\\*",14);
             if(!foundLine[0].equals(idToRemove))
             {
                 newEverything += eachLine[i];
-                if(i != eachLine.length - 2)
+                if(i != eachLine.length - 1)
                 {
                     newEverything += "\n";
                 }
             }
             System.out.println(newEverything + "\nend");
         }
-        removeFile("groups", "", context);
+        removeFile(searchingFor, "", context);
         write(newEverything, searchingFor, context);
     }
 

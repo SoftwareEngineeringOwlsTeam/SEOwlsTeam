@@ -56,10 +56,23 @@ public class IOread extends AppCompatActivity
             e.printStackTrace();
         }
         String fin = resultStringBuilder.toString();
+        String[] eachLine = fin.split("\n", 1000);
+        fin = "";
+        for(int i = 0; i < eachLine.length - 2; i++)
+        {
+            fin += eachLine[i];
+            if(i != eachLine.length - 3)
+            {
+                fin += "\n";
+            }
+        }
+
+        /*
         if(!fin.isEmpty())
         {
             fin = fin.substring(0, fin.length() - 4);
         }
+        */
 
         return fin;
     }
@@ -221,7 +234,7 @@ public class IOread extends AppCompatActivity
         {
             String everything =  read(searchingFor, "", context);
             String[] eachLine = everything.split("\n", 1000);
-            for(int i = 0; i < eachLine.length - 1; i++)
+            for(int i = 0; i < eachLine.length; i++)
             {
                 String[] foundLine = eachLine[i].split("\\*",14);
                 existingIDs.add(foundLine[0]);
