@@ -9,6 +9,7 @@ import android.widget.EditText;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class GroupCreator extends AppCompatActivity
 {
@@ -41,8 +42,27 @@ public class GroupCreator extends AppCompatActivity
         permissions.add("RW");
 
 
+        boolean generated = false;
+        String newGroupID = "";
+        ArrayList<String> existingIDs = reader.existingIDs("groups", this);
+        while (!generated)
+        {
+            Random rand = new Random();
+            for(int j = 0; j <= 9; j++)
+            {
+                newGroupID += String.valueOf(rand.nextInt(9));
+            }
+            generated = true;
+            for(int i = 0; i < existingIDs.size(); i++)
+            {
+                if(existingIDs.get(i).equals(newGroupID))
+                {
+                    generated = false;
+                }
+            }
+        }
         Group newGroup = new Group(etUserID.getText().toString(), etDescription.getText().toString(),
-                                    etTitle.getText().toString(), etUsername.getText().toString());
+                                    etTitle.getText().toString(), etUsername.getText().toString(), newGroupID);
         writer.writeGroup(newGroup, this);
         writer.writeMembers(members, permissions, newGroup.getGroupID(),this);
         Intent locIntent = new Intent(this, GroupManager.class);

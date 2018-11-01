@@ -12,9 +12,8 @@ public class Group
     private String groupDescription;
     // Maybe a field that gives out certain permissions to speccific users
 
-    public Group(String adminID, String groupDescription, String groupName, String adminName)
+    public Group(String adminID, String groupDescription, String groupName, String adminName, String groupID)
     {
-
 
         // Automatically fill in the adminID with the users who created the apps ID's
         // When group created you initially state the users you want in there (their ID's)
@@ -22,6 +21,7 @@ public class Group
         this.groupName = groupName;
         this.adminName = adminName;
         this.adminID = adminID;
+        this.groupID = groupID;
     }
 
     // All the getters and setters

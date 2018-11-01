@@ -173,8 +173,7 @@ public class IOread extends AppCompatActivity
                 String[] foundLine = eachLine[i].split("\\*",6);
                 if(foundLine[0].equals(groupID))
                 {
-                    retrievedGroup = new Group(foundLine[1], foundLine[4], foundLine[3], foundLine[2]);
-                    retrievedGroup.setGroupID(foundLine[0]);
+                    retrievedGroup = new Group(foundLine[1], foundLine[4], foundLine[3], foundLine[2], foundLine[0]);
                 }
             }
         }
