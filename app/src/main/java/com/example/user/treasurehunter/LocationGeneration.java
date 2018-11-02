@@ -20,6 +20,11 @@ import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+ *
+ * @author Zach Curll, Matthew Finnegan, Alexander Kulpin, Dominic Marandino, Brandon Ostasewski, Paul Sigloch
+ * @version Sprint 2
+ */
 public class LocationGeneration extends AppCompatActivity
 {
     static final int REQUEST_LOCATION = 1;
@@ -57,6 +62,11 @@ public class LocationGeneration extends AppCompatActivity
         startActivity(mainIntent);
     }
 
+    /**
+     * Method to get current GPS location. This information includes, Latitude, Longitude, Altitude.
+     * If the above information is not obtainable the values are set to "-1".
+     * Also asks the user permission to access their GPS.
+     */
     void getLocation()
     {
         if(ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION) !=

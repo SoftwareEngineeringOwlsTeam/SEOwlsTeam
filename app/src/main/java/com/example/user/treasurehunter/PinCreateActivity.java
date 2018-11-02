@@ -17,9 +17,12 @@ import java.io.FileNotFoundException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
-
 import static com.example.user.treasurehunter.LogInScreen.currentActiveUser;
-
+/**
+ *
+ * @author Zach Curll, Matthew Finnegan, Alexander Kulpin, Dominic Marandino, Brandon Ostasewski, Paul Sigloch
+ * @version Sprint 2
+ */
 public class PinCreateActivity extends AppCompatActivity implements Serializable
 {
     public PinDS pin;
@@ -30,6 +33,10 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
     Button goBackButton, placePinButton;
     TextView tvBanner;
 
+    /**
+     * Method displays a screen to the user so they can Create a pin.
+     * Assigns the entered data into the correct fields.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -51,6 +58,7 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
         placePinButton.setBackgroundColor(pin.getDefaultColor());
 
 
+        //Hides the degree and speed rows from displaying if the pin is not Moveable.
         if(!(pin instanceof PinMoveable))
         {
             degreeRow.setVisibility(View.GONE);
@@ -144,6 +152,9 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
         startActivity(mainIntent);
     }
 
+    /**
+     * Method that allows the user to move back to the MainActivity screen.
+     */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)
     {
@@ -156,10 +167,3 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
         return super.onKeyDown(keyCode, event);
     }
 }
-
-
-
-
-
-
-
