@@ -56,10 +56,23 @@ public class IOread extends AppCompatActivity
             e.printStackTrace();
         }
         String fin = resultStringBuilder.toString();
+        String[] eachLine = fin.split("\n", 1000);
+        fin = "";
+        for(int i = 0; i < eachLine.length - 2; i++)
+        {
+            fin += eachLine[i];
+            if(i != eachLine.length - 3)
+            {
+                fin += "\n";
+            }
+        }
+
+        /*
         if(!fin.isEmpty())
         {
             fin = fin.substring(0, fin.length() - 4);
         }
+        */
 
         return fin;
     }
@@ -160,8 +173,7 @@ public class IOread extends AppCompatActivity
                 String[] foundLine = eachLine[i].split("\\*",6);
                 if(foundLine[0].equals(groupID))
                 {
-                    retrievedGroup = new Group(foundLine[1], foundLine[4], foundLine[3], foundLine[2]);
-                    retrievedGroup.setGroupID(foundLine[0]);
+                    retrievedGroup = new Group(foundLine[2], foundLine[4], foundLine[1], foundLine[3], foundLine[0]);
                 }
             }
         }
@@ -190,14 +202,21 @@ public class IOread extends AppCompatActivity
                 String[] foundLine = eachLine[i].split("\\*",6);
                 if(foundLine[0].equals(userID))
                 {
-                    //String[] eachAssociation = foundLine[3].split("/", 1000);
-                    //ArrayList<String> allAssociations = new ArrayList<String>();
-                    //for(int j = 0; j < eachAssociation.length; j++)
-                    //{
-                    //    allAssociations.add(eachAssociation[j]);
-                    //}
+                    String[] eachPersonalPin = foundLine[3].split("/", 1000);
+                    ArrayList<String> allPersonalPins = new ArrayList<String>();
+                    for(int j = 0; j < eachPersonalPin.length; j++)
+                    {
+                        allPersonalPins.add(eachPersonalPin[j]);
+                    }
+                    String[] eachAssociation = foundLine[4].split("/", 1000);
+                    ArrayList<String> allAssociations = new ArrayList<String>();
+                    for(int j = 0; j < eachAssociation.length; j++)
+                    {
+                        allAssociations.add(eachAssociation[j]);
+                    }
                     retrievedUser = new User(foundLine[0], foundLine[1], foundLine[2]);
-                    //retrievedUser.setAssociatedGroupID(allAssociations);
+                    retrievedUser.setPersonalPinID(allPersonalPins);
+                    retrievedUser.setAssociatedGroupID(allAssociations);
                 }
             }
         }
@@ -221,7 +240,7 @@ public class IOread extends AppCompatActivity
         {
             String everything =  read(searchingFor, "", context);
             String[] eachLine = everything.split("\n", 1000);
-            for(int i = 0; i < eachLine.length - 1; i++)
+            for(int i = 0; i < eachLine.length; i++)
             {
                 String[] foundLine = eachLine[i].split("\\*",14);
                 existingIDs.add(foundLine[0]);

@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import static com.example.user.treasurehunter.LogInScreen.currentActiveUser;
+
 public class IOwrite extends AppCompatActivity implements Serializable
 {
 
@@ -52,7 +54,7 @@ public class IOwrite extends AppCompatActivity implements Serializable
             }
             if(!reader.read(searchingFor, "", context).equals(""))
             {
-                data = reader.read(searchingFor, "", context) + data;
+                data = reader.read(searchingFor, "", context)  + "\n" + data;
             }
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(file.getName(), Context.MODE_PRIVATE));
             data += "\nEOF";
@@ -104,7 +106,7 @@ public class IOwrite extends AppCompatActivity implements Serializable
      */
     public void writeUser(User user, Context context)
     {
-        String data = (user.getUserID() + "*" + user.getUserName() + "*" + user.getPassword());
+        String data = (user.getUserID() + "*" + user.getUserName() + "*" + user.getPassword() + "*" + user.getPersonalPinID() + "*" + user.getAssociatedGroupID());
         write(data,"users", context);
     }
 
@@ -129,20 +131,20 @@ public class IOwrite extends AppCompatActivity implements Serializable
             e.printStackTrace();
         }
         String[] eachLine = everything.split("\n", 1000);
-        for(int i = 0; i < eachLine.length - 1; i++)
+        for(int i = 0; i < eachLine.length; i++)
         {
             String[] foundLine = eachLine[i].split("\\*",14);
             if(!foundLine[0].equals(idToRemove))
             {
                 newEverything += eachLine[i];
-                if(i != eachLine.length - 2)
+                if(i != eachLine.length - 1)
                 {
                     newEverything += "\n";
                 }
             }
             System.out.println(newEverything + "\nend");
         }
-        removeFile("groups", "", context);
+        removeFile(searchingFor, "", context);
         write(newEverything, searchingFor, context);
     }
 
@@ -232,6 +234,50 @@ public class IOwrite extends AppCompatActivity implements Serializable
             }
         }
         write(data, (groupID + "members"), context);
+    }
+
+    /**
+     *                     Use this method add a specific association of someone to pin or someone to group
+     * @param addingID     Specify what exactly are you adding
+     * @param addingToWhat Specify if adding, personal pin(ppin), group pin(gpin), or associated group(association)
+     * @param groupID      If adding to a group, or adding a group, specify the group id
+     * @param context      Include the context you are working in
+     */
+    public void addAssociation(ArrayList<String> addingID, String addingToWhat, String groupID, Context context)
+    {
+        if(addingToWhat.equals("gpin"))
+        {
+            Group changedGroup = reader.retrieveGroup(groupID, context);
+            removeObject("groups", groupID, "", context);
+            for(int i = 0; i < changedGroup.getAssociatedPinIDs().size(); i++)
+            {
+                addingID.add(changedGroup.getAssociatedPinIDs().get(i));
+            }
+            changedGroup.setAssociatedPinIDs(addingID);
+            writeGroup(changedGroup, context);
+        }
+        else {
+            User changedUser = currentActiveUser;
+            System.out.println(changedUser.getUserID());
+            removeObject("users", currentActiveUser.getUserID(), "", context);
+            if(addingToWhat.equals("ppin"))
+            {
+                for(int i = 0; i < changedUser.getPersonalPinID().size(); i++)
+                {
+                    addingID.add(changedUser.getPersonalPinID().get(i));
+                }
+                changedUser.setPersonalPinID(addingID);
+            }
+            else{
+                for(int i = 0; i < changedUser.getAssociatedGroupID().size(); i++)
+                {
+                    addingID.add(changedUser.getAssociatedGroupID().get(i));
+                }
+                changedUser.setAssociatedGroupID(addingID);
+            }
+            System.out.println(changedUser.getPersonalPinID().get(0));
+            writeUser(changedUser, context);
+        }
     }
 
 
