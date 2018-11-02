@@ -6,29 +6,38 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Random;
 
+import static com.example.user.treasurehunter.LogInScreen.currentActiveUser;
+
 public class GroupCreator extends AppCompatActivity
 {
+    TextView tvUsername;
+    TextView tvUserID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group_creator);
+        tvUsername = findViewById(R.id.tvUsername);
+        tvUserID = findViewById(R.id.tvUserID);
+        tvUsername.setText(currentActiveUser.getUserName());
+        tvUserID.setText(currentActiveUser.getUserID());
     }
 
     public void createGroup(View view)
     {
         IOwrite writer = new IOwrite();
         IOread reader = new IOread();
-        EditText etUsername = findViewById(R.id.etUsername);
-        EditText etUserID = findViewById(R.id.etUserID);
+
         EditText etDescription = findViewById(R.id.etDescription);
         EditText etTitle = findViewById(R.id.etTitle);
+
 
 
         /// As a test
@@ -61,10 +70,15 @@ public class GroupCreator extends AppCompatActivity
                 }
             }
         }
-        Group newGroup = new Group(etUserID.getText().toString(), etDescription.getText().toString(),
-                                    etTitle.getText().toString(), etUsername.getText().toString(), newGroupID);
+        Group newGroup = new Group(tvUserID.getText().toString(), etDescription.getText().toString(),
+                                    etTitle.getText().toString(), tvUsername.getText().toString(), newGroupID);
         writer.writeGroup(newGroup, this);
         writer.writeMembers(members, permissions, newGroup.getGroupID(),this);
+
+        ArrayList<String> addingAssociation = new ArrayList<>();
+        addingAssociation.add(newGroup.getGroupID());
+        writer.addAssociation(addingAssociation, "group", "", this);
+
         Intent locIntent = new Intent(this, GroupManager.class);
         startActivity(locIntent);
     }
