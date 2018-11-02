@@ -63,7 +63,7 @@ public class IOtester extends AppCompatActivity
         String adminID = "9468350125";
         String groupName = "The Name of Group";
         String adminName = "Creators Name";
-        Group group = new Group(adminID, groupDescription, groupName, adminName);
+        Group group = new Group(adminID, groupDescription, groupName, adminName, "1415112456");
         IOwrite.writeGroup(group,this);
     }
     public void generatePin(View view)

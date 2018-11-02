@@ -6,9 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".MainActivity"
-    tools:openDrawer="right"
-    app:theme="@style/AppTheme" >
+    app:theme="@style/AppTheme"
+    tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/textView2"
