@@ -19,7 +19,7 @@ public class GUISplashScreen extends AppCompatActivity
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent homeIntent = new Intent(GUISplashScreen.this, LogInScreen.class);
+                Intent homeIntent = new Intent(GUISplashScreen.this, MainActivity.class);
                 startActivity(homeIntent);
                 finish();
             }

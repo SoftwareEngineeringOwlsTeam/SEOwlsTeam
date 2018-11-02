@@ -34,6 +34,7 @@ public class UserCreate extends AppCompatActivity
         IOread reader = new IOread();
         boolean generated = false;
         ArrayList<String> existingIDs = reader.existingIDs("users", this);
+        userID = "";
         while (!generated)
         {
             Random rand = new Random();
@@ -50,25 +51,41 @@ public class UserCreate extends AppCompatActivity
                 }
             }
         }
-        // Do we want every username to be unique
-        if(!etPassword1.getText().toString().equals(etPassword2.getText().toString()))
+        boolean userUnique = true;
+        if (!existingIDs.get(0).equals(""))
         {
-            etPassword2.setError("Passwords don't match");
+            for(int i = 0; i < existingIDs.size(); i++)
+            {
+                if(etUsername.getText().toString().equals(reader.retrieveUser(existingIDs.get(i), this).getUserName()))
+                {
+                    userUnique = false;
+                }
+            }
         }
-        else if(etUsername.getText().toString().equals(""))
+        if(userUnique)
         {
-            etPassword2.setError("Username cant be blank");
-        }
-        else if(etPassword1.getText().toString().equals(""))
-        {
-            etPassword2.setError("Password cant be blank");
-        }
-        else {
+            if(!etPassword1.getText().toString().equals(etPassword2.getText().toString()) && userUnique)
+            {
+                etPassword2.setError("Passwords don't match");
+            }
+            else if(etUsername.getText().toString().equals("") && userUnique)
+            {
+                etUsername.setError("Username cant be blank");
+            }
+            else if(etPassword1.getText().toString().equals("") && userUnique)
+            {
+                etPassword1.setError("Password cant be blank");
+            }
+            else {
 
-            User user = new User(userID, etUsername.getText().toString(), etPassword1.getText().toString());
-            writer.writeUser(user, this);
-            Intent pinIntent = new Intent(this, LogInScreen.class);
-            startActivity(pinIntent);
+                User user = new User(userID, etUsername.getText().toString(), etPassword1.getText().toString());
+                writer.writeUser(user, this);
+                Intent pinIntent = new Intent(this, LogInScreen.class);
+                startActivity(pinIntent);
+            }
+        }
+        else{
+            etUsername.setError("Username already exists");
         }
     }
 }
