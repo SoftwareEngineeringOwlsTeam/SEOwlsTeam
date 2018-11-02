@@ -15,7 +15,10 @@ import android.widget.TextView;
 
 import java.io.FileNotFoundException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Random;
+
+import static com.example.user.treasurehunter.LogInScreen.currentActiveUser;
 
 public class PinCreateActivity extends AppCompatActivity implements Serializable
 {
@@ -67,7 +70,8 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     }
 
-    public void createClicked(View view) {
+    public void createClicked(View view)
+    {
         IOwrite writer = new IOwrite();
         IOread reader = new IOread();
 
@@ -122,7 +126,12 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
         pin.setRadius(et.getText().toString());
         Intent mainIntent = new Intent(this, MainActivity.class);
         writer.writePin(pin, this);
-        writer.writeUserAudit("1234567890",4, pinID, pin.getPublisher(), this);
+
+        ArrayList<String> addingAssociation = new ArrayList<>();
+        addingAssociation.add(pin.getPinID());
+        writer.addAssociation(addingAssociation, "ppin", "", this);
+
+        writer.writeUserAudit(currentActiveUser.getUserID(),4, pinID, pin.getPublisher(), this);
         startActivity(mainIntent);
     }
 

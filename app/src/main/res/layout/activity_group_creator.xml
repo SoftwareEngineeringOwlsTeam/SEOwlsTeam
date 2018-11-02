@@ -15,23 +15,21 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-            <EditText
-                android:id="@+id/etUsername"
+            <TextView
+                android:id="@+id/tvUsername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Type Username"
-                android:inputType="textPersonName"
-                android:textAlignment="center" />
+                android:text="Username"
+                android:textAlignment="center"
+                android:textSize="18sp" />
 
-            <EditText
-                android:id="@+id/etUserID"
+            <TextView
+                android:id="@+id/tvUserID"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Type User ID"
-                android:inputType="textPersonName"
-                android:textAlignment="center" />
+                android:text="User ID"
+                android:textAlignment="center"
+                android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/etTitle"

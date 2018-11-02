@@ -22,14 +22,14 @@ public class GroupView extends AppCompatActivity
 
         passedID = (String) getIntent().getSerializableExtra("id");
 
-        TextView tvUsername = findViewById(R.id.tvUserName);
         TextView tvGroupname = findViewById(R.id.tvGroupName);
+        TextView tvUsername = findViewById(R.id.tvUserName);
         TextView tvDescription = findViewById(R.id.tvDescription);
 
         currentGroup = reader.retrieveGroup(passedID, this);
 
-        tvUsername.setText(currentGroup.getAdminName());
         tvGroupname.setText(currentGroup.getGroupName());
+        tvUsername.setText(currentGroup.getAdminName());
         tvDescription.setText(currentGroup.getGroupDescription());
     }
 

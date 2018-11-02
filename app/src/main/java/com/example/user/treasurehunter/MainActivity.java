@@ -13,6 +13,8 @@ import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.Window;
 
+import static com.example.user.treasurehunter.LogInScreen.currentActiveUser;
+
 public class MainActivity extends AppCompatActivity
 {
     private DrawerLayout nDrawerLayout;
@@ -90,6 +92,7 @@ public class MainActivity extends AppCompatActivity
 
     public void logoutClicked(MenuItem menuItem)
     {
+        currentActiveUser = null;
         Intent locIntent = new Intent(this, LogInScreen.class);
         startActivity(locIntent);
     }

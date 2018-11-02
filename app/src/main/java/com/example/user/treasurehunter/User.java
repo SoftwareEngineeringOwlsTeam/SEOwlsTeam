@@ -13,9 +13,7 @@ public class User
     public User(String userID, String userName, String password)
     {
         this.userID = userID;
-        // Sets the username that you stated when creating account
         this.userName = userName;
-        // Sets the password that you stated when creating account
         this.password = password;
         // Must also generate a unique ID different from other users
     }

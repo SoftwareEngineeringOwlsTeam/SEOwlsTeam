@@ -10,18 +10,18 @@ public class Group
     private String adminName;
     private String groupName;
     private String groupDescription;
+    private ArrayList<String> associatedPinIDs;
     // Maybe a field that gives out certain permissions to speccific users
 
-    public Group(String adminID, String groupDescription, String groupName, String adminName)
+    public Group(String adminID, String groupDescription, String groupName, String adminName, String groupID)
     {
-
-
         // Automatically fill in the adminID with the users who created the apps ID's
         // When group created you initially state the users you want in there (their ID's)
         this.groupDescription = groupDescription;
         this.groupName = groupName;
         this.adminName = adminName;
         this.adminID = adminID;
+        this.groupID = groupID;
     }
 
     // All the getters and setters
@@ -74,5 +74,13 @@ public class Group
     public void setAdminName(String adminName)
     {
         this.adminName = adminName;
+    }
+
+    public ArrayList<String> getAssociatedPinIDs() {
+        return associatedPinIDs;
+    }
+
+    public void setAssociatedPinIDs(ArrayList<String> associatedPinIDs) {
+        this.associatedPinIDs = associatedPinIDs;
     }
 }
