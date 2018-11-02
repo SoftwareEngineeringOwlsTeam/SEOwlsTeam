@@ -79,13 +79,12 @@
                 android:textSize="20dp"
                 android:textAlignment="center"
                 android:textColor="@android:color/black"
+                ></EditText>
+
 
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
-    android:id="@+id/Row11"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-=======
+
                 />
         </TableRow>
 >>>>>>> master
