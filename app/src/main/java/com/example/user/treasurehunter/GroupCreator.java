@@ -14,11 +14,20 @@ import java.util.Random;
 
 import static com.example.user.treasurehunter.LogInScreen.currentActiveUser;
 
+
+/**
+ *
+ * @author Zach Curll, Matthew Finnegan, Alexander Kulpin, Dominic Marandino, Brandon Ostasewski, Paul Sigloch
+ * @version Sprint 2
+ */
 public class GroupCreator extends AppCompatActivity
 {
     TextView tvUsername;
     TextView tvUserID;
 
+    /**
+     * Method that sets the screen to display activity_group_creator.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -30,6 +39,9 @@ public class GroupCreator extends AppCompatActivity
         tvUserID.setText(currentActiveUser.getUserID());
     }
 
+    /**
+     * Method that creates a Group.
+     */
     public void createGroup(View view)
     {
         IOwrite writer = new IOwrite();
@@ -83,6 +95,9 @@ public class GroupCreator extends AppCompatActivity
         startActivity(locIntent);
     }
 
+    /**
+     * Method that allows the user to move back to the MainActivity screen.
+     */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)
     {

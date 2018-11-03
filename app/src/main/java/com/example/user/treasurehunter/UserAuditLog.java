@@ -8,6 +8,11 @@ import android.widget.TextView;
 
 import java.io.FileNotFoundException;
 
+/**
+ *
+ * @author Zach Curll, Matthew Finnegan, Alexander Kulpin, Dominic Marandino, Brandon Ostasewski, Paul Sigloch
+ * @version Sprint 2
+ */
 public class UserAuditLog extends AppCompatActivity
 {
     PinDS pin;
@@ -17,6 +22,9 @@ public class UserAuditLog extends AppCompatActivity
     public UserAuditLog() {
     }
 
+    /**
+     * Method that sets the screen to display acivity_audit_log.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -30,6 +38,9 @@ public class UserAuditLog extends AppCompatActivity
         et2.setText(reader.readUserAudit("1234567890", this));
     }
 
+    /**
+     * Method that allows the user to move back to the MainActivity screen.
+     */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)
     {

@@ -22,6 +22,11 @@ import java.util.ArrayList;
 
 import static com.example.user.treasurehunter.LogInScreen.currentActiveUser;
 
+/**
+ *
+ * @author Zach Curll, Matthew Finnegan, Alexander Kulpin, Dominic Marandino, Brandon Ostasewski, Paul Sigloch
+ * @version Sprint 2
+ */
 public class MainActivity extends AppCompatActivity  implements AdapterView.OnItemSelectedListener
 {
     private DrawerLayout nDrawerLayout;
@@ -162,6 +167,9 @@ public class MainActivity extends AppCompatActivity  implements AdapterView.OnIt
         }
     }
 
+    /**
+     * Method that allows the user to exit the App.
+     */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)
     {
@@ -174,5 +182,3 @@ public class MainActivity extends AppCompatActivity  implements AdapterView.OnIt
         return super.onKeyDown(keyCode, event);
     }
 }
-
-

@@ -12,19 +12,28 @@ import android.widget.TextView;
 
 import static com.example.user.treasurehunter.LogInScreen.currentActiveUser;
 
+/**
+ *
+ * @author Zach Curll, Matthew Finnegan, Alexander Kulpin, Dominic Marandino, Brandon Ostasewski, Paul Sigloch
+ * @version Sprint 2
+ */
 public class UserAccountManager extends AppCompatActivity
 {
-    TextView tvHeading;
-    TextView tvUsername;
-    TextView tvID;
-    Button buChangePass1;
-    EditText etOrigin1;
-    EditText etOrigin2;
-    EditText etOrigin3;
-    Button buChangePass2;
-    Button buChangePass3;
-    Button buDeleteUser;
 
+  TextView tvHeading;
+  TextView tvUsername;
+  TextView tvID;
+  Button buChangePass1;
+  EditText etOrigin1;
+  EditText etOrigin2;
+  EditText etOrigin3;
+  Button buChangePass2;
+  Button buChangePass3;
+  Button buDeleteUser;
+
+    /**
+     * Method that sets the screen to display activity_account_manager.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -51,6 +60,9 @@ public class UserAccountManager extends AppCompatActivity
         buChangePass3.setVisibility(View.GONE);
     }
 
+    /**
+     * Method that allows the user to move back to the MainActivity screen.
+     */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)
     {
