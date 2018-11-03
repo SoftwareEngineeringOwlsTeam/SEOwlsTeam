@@ -79,7 +79,7 @@ public class GroupCreator extends AppCompatActivity
         addingAssociation.add(newGroup.getGroupID());
         writer.addAssociation(addingAssociation, "group", "", this);
 
-        Intent locIntent = new Intent(this, GroupManager.class);
+        Intent locIntent = new Intent(this, MainActivity.class);
         startActivity(locIntent);
     }
 

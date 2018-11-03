@@ -106,7 +106,30 @@ public class IOwrite extends AppCompatActivity implements Serializable
      */
     public void writeUser(User user, Context context)
     {
-        String data = (user.getUserID() + "*" + user.getUserName() + "*" + user.getPassword() + "*" + user.getPersonalPinID() + "*" + user.getAssociatedGroupID());
+        String data = (user.getUserID() + "*" + user.getUserName() + "*" + user.getPassword() + "*");
+        if(user.getPersonalPinID() != null)
+        {
+            for(int i = 0; i < user.getPersonalPinID().size(); i++)
+            {
+                if(i != 0)
+                {
+                    data = data + "/";
+                }
+                data = data + user.getPersonalPinID().get(i);
+            }
+        }
+        data += "*";
+        if(user.getAssociatedGroupID() != null)
+        {
+            for (int i = 0; i < user.getAssociatedGroupID().size(); i++)
+            {
+                if (i != 0)
+                {
+                    data = data + "/";
+                }
+                data = data + user.getAssociatedGroupID().get(i);
+            }
+        }
         write(data,"users", context);
     }
 
