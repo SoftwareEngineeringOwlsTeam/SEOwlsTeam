@@ -56,9 +56,11 @@ public class LocationGeneration extends AppCompatActivity
         pin.setTime(currentTime);
         currentDate = DateFormat.getDateInstance().format(calendar.getTime());
         pin.setDate(currentDate);
+        String passedID = (String) getIntent().getSerializableExtra("id");
 
         Intent mainIntent = new Intent(this, PinCreateActivity.class);
         mainIntent.putExtra("pin", pin);
+        mainIntent.putExtra("id", passedID);
         startActivity(mainIntent);
     }
 

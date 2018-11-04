@@ -96,6 +96,17 @@ public class IOwrite extends AppCompatActivity implements Serializable
     {
         String data = (group.getGroupID() + "*" + group.getGroupName() + "*" + group.getAdminID() + "*"
                      + group.getAdminName() + "*" + group.getGroupDescription() + "*");
+        if(group.getAssociatedPinIDs() != null)
+        {
+            for(int i = 0; i < group.getAssociatedPinIDs().size(); i++)
+            {
+                if(i != 0)
+                {
+                    data = data + "/";
+                }
+                data = data + group.getAssociatedPinIDs().get(i);
+            }
+        }
         write(data,"groups", context);
 
         data = ("0*" + currentTime + "*" + currentDate + "*" + group.getAdminName() + "*" + group.getAdminID());
@@ -275,12 +286,15 @@ public class IOwrite extends AppCompatActivity implements Serializable
         {
             Group changedGroup = reader.retrieveGroup(groupID, context);
             removeObject("groups", groupID, "", context);
-            for(int i = 0; i < changedGroup.getAssociatedPinIDs().size(); i++)
+            if(changedGroup.getAssociatedPinIDs() != null)
             {
-                addingID.add(changedGroup.getAssociatedPinIDs().get(i));
+                for(int i = 0; i < changedGroup.getAssociatedPinIDs().size(); i++)
+                {
+                    addingID.add(changedGroup.getAssociatedPinIDs().get(i));
+                }
+                changedGroup.setAssociatedPinIDs(addingID);
+                writeGroup(changedGroup, context);
             }
-            changedGroup.setAssociatedPinIDs(addingID);
-            writeGroup(changedGroup, context);
         }
         else {
             User changedUser = currentActiveUser;

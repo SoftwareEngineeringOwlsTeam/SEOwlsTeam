@@ -32,6 +32,7 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
     TableRow speedRow;
     Button goBackButton, placePinButton;
     TextView tvBanner;
+    String passedID;
 
     /**
      * Method displays a screen to the user so they can Create a pin.
@@ -76,6 +77,8 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.color_picker, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        passedID = (String) getIntent().getSerializableExtra("id");
     }
 
     public void createClicked(View view)
@@ -135,19 +138,24 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
         Intent mainIntent = new Intent(this, MainActivity.class);
         writer.writePin(pin, this);
 
-        ArrayList<String> addingAssociation = new ArrayList<>();
-        addingAssociation.add(pin.getPinID());
-        writer.addAssociation(addingAssociation, "ppin", "", this);
-
         writer.writeUserAudit(currentActiveUser.getUserID(),4, pinID, pin.getPublisher(), this);
+
+        ArrayList<String> addingList = new ArrayList<>();
+        addingList.add(pin.getPinID());
+        if(passedID.equals("personal"))
+        {
+            writer.addAssociation(addingList, "ppin", "", this);
+        }
+        else{
+            writer.addAssociation(addingList, "gpin", passedID, this);
+        }
+
         startActivity(mainIntent);
     }
 
     public void clickPinSelect(View v)
     {
         goBackButton = (Button) v;
-
-
         Intent mainIntent = new Intent(this, PinActivity.class);
         startActivity(mainIntent);
     }

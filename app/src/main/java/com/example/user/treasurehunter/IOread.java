@@ -180,6 +180,13 @@ public class IOread extends AppCompatActivity
                 if(foundLine[0].equals(groupID))
                 {
                     retrievedGroup = new Group(foundLine[2], foundLine[4], foundLine[1], foundLine[3], foundLine[0]);
+                    String[] eachPersonalPin = foundLine[5].split("/", 1000);
+                    ArrayList<String> allGroupPins = new ArrayList<String>();
+                    for(int j = 0; j < eachPersonalPin.length; j++)
+                    {
+                        allGroupPins.add(eachPersonalPin[j]);
+                    }
+                    retrievedGroup.setAssociatedPinIDs(allGroupPins);
                 }
             }
         }

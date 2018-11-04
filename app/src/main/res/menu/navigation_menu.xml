@@ -19,6 +19,12 @@
         android:onClick="pinsClicked"
         android:title="Create Pin" />
 
+    <item
+        android:id="@+id/nav_pin_view"
+        android:icon="@mipmap/baseline_pin_drop_black_48"
+        android:onClick="pinsViewClicked"
+        android:title="View Pins" />
+
 
     <item
         android:id="@+id/nav_auditlog"

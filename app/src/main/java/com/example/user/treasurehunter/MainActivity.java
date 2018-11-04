@@ -107,6 +107,28 @@ public class MainActivity extends AppCompatActivity  implements AdapterView.OnIt
     public void pinsClicked(MenuItem menuItem)
     {
         Intent pinIntent = new Intent(this, PinActivity.class);
+        if(selected.equals("Personal"))
+        {
+            pinIntent.putExtra("id", "personal");
+        }
+        else
+        {
+            pinIntent.putExtra("id", selected);
+        }
+        startActivity(pinIntent);
+    }
+
+    public void pinsViewClicked(MenuItem menuItem)
+    {
+        Intent pinIntent = new Intent(this, PinView.class);
+        if(selected.equals("Personal"))
+        {
+            pinIntent.putExtra("id", "personal");
+        }
+        else
+        {
+            pinIntent.putExtra("id", selected);
+        }
         startActivity(pinIntent);
     }
 

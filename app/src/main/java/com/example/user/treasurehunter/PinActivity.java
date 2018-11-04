@@ -23,6 +23,7 @@ public class PinActivity extends AppCompatActivity
     Button forestFireButton;
     Button customButton;
     Button huntingButton;
+    String passedID;
 
 
     /**
@@ -41,6 +42,8 @@ public class PinActivity extends AppCompatActivity
         forestFireButton = findViewById(R.id.forrestFireButton);
         customButton = findViewById(R.id.customButton);
         huntingButton = findViewById(R.id.huntingButton);
+
+        passedID = (String) getIntent().getSerializableExtra("id");
     }
 
     public void classClicked(MenuItem menuItem)
@@ -61,6 +64,7 @@ public class PinActivity extends AppCompatActivity
 
         Intent mainIntent = new Intent(this, LocationGeneration.class);
         mainIntent.putExtra("pin", pin);
+        mainIntent.putExtra("id", passedID);
         startActivity(mainIntent);
     }
 
@@ -76,6 +80,7 @@ public class PinActivity extends AppCompatActivity
 
         Intent mainIntent = new Intent(this, LocationGeneration.class);
         mainIntent.putExtra("pin", pin);
+        mainIntent.putExtra("id", passedID);
         startActivity(mainIntent);
     }
 
@@ -90,6 +95,7 @@ public class PinActivity extends AppCompatActivity
 
         Intent mainIntent = new Intent(this, LocationGeneration.class);
         mainIntent.putExtra("pin", pin);
+        mainIntent.putExtra("id", passedID);
         startActivity(mainIntent);
     }
 
@@ -104,6 +110,7 @@ public class PinActivity extends AppCompatActivity
 
         Intent mainIntent = new Intent(this, LocationGeneration.class);
         mainIntent.putExtra("pin", pin);
+        mainIntent.putExtra("id", passedID);
         startActivity(mainIntent);
     }
 
@@ -118,6 +125,7 @@ public class PinActivity extends AppCompatActivity
 
         Intent mainIntent = new Intent(this, LocationGeneration.class);
         mainIntent.putExtra("pin", pin);
+        mainIntent.putExtra("id", passedID);
         startActivity(mainIntent);
     }
 
@@ -132,6 +140,7 @@ public class PinActivity extends AppCompatActivity
 
         Intent mainIntent = new Intent(this, LocationGeneration.class);
         mainIntent.putExtra("pin", pin);
+        mainIntent.putExtra("id", passedID);
         startActivity(mainIntent);
     }
 
@@ -146,6 +155,7 @@ public class PinActivity extends AppCompatActivity
 
         Intent mainIntent = new Intent(this, LocationGeneration.class);
         mainIntent.putExtra("pin", pin);
+        mainIntent.putExtra("id", passedID);
         startActivity(mainIntent);
     }
 
@@ -160,6 +170,7 @@ public class PinActivity extends AppCompatActivity
 
         Intent mainIntent = new Intent(this, LocationGeneration.class);
         mainIntent.putExtra("pin", pin);
+        mainIntent.putExtra("id", passedID);
         startActivity(mainIntent);
     }
 
