@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 import java.io.FileNotFoundException;
 
+import static com.example.user.treasurehunter.LogInScreen.currentActiveUser;
+
 /**
  *
  * @author Zach Curll, Matthew Finnegan, Alexander Kulpin, Dominic Marandino, Brandon Ostasewski, Paul Sigloch
@@ -36,6 +38,14 @@ public class UserAuditLog extends AppCompatActivity
 
         //currently random pre set id
         et2.setText(reader.readUserAudit("1234567890", this));
+        String passedID = (String) getIntent().getSerializableExtra("id");
+        if(passedID.equals("personal"))
+        {
+            et2.setText(reader.readUserAudit(currentActiveUser.getUserID(), this));
+        }
+        else {
+            et2.setText(reader.readGroupAudit(passedID, this));
+        }
     }
 
     /**

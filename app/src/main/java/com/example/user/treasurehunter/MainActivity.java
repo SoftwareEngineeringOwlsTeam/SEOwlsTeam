@@ -140,8 +140,16 @@ public class MainActivity extends AppCompatActivity  implements AdapterView.OnIt
 
     public void auditClicked(MenuItem menuItem)
     {
-        Intent locIntent = new Intent(this, UserAuditLog.class);
-        startActivity(locIntent);
+        Intent pinIntent = new Intent(this, UserAuditLog.class);
+        if(!selected.equals("Personal"))
+        {
+            pinIntent.putExtra("id", "personal");
+        }
+        else
+        {
+            pinIntent.putExtra("id", selected);
+        }
+        startActivity(pinIntent);
     }
 
     public void logoutClicked(MenuItem menuItem)
