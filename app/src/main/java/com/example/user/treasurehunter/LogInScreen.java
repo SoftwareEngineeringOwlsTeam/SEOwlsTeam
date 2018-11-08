@@ -3,6 +3,7 @@ package com.example.user.treasurehunter;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -75,5 +76,20 @@ public class LogInScreen extends AppCompatActivity {
     {
         Intent pinIntent = new Intent(this, UserCreate.class);
         startActivity(pinIntent);
+    }
+
+    /**
+     * Method that allows the user to close the App.
+     */
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if (keyCode == KeyEvent.KEYCODE_BACK )
+        {
+            finish();
+            System.exit(0);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

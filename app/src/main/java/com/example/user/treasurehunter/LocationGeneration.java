@@ -12,6 +12,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -95,5 +96,20 @@ public class LocationGeneration extends AppCompatActivity
             }
         }
 
+    }
+
+    /**
+     * Method that allows the user to move back to the MainActivity screen.
+     */
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if (keyCode == KeyEvent.KEYCODE_BACK )
+        {
+            Intent mainIntent = new Intent(this, MainActivity.class);
+            startActivity(mainIntent);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

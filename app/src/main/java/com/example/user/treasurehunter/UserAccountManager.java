@@ -134,4 +134,6 @@ public class UserAccountManager extends AppCompatActivity
         Intent pinIntent = new Intent(this, LogInScreen.class);
         startActivity(pinIntent);
     }
+
+
 }

@@ -88,7 +88,7 @@ public class PinViewAttributes extends AppCompatActivity implements Serializable
         {
             if (keyCode == KeyEvent.KEYCODE_BACK )
             {
-                Intent mainIntent = new Intent(this, PinActivity.class);
+                Intent mainIntent = new Intent(this, PinView.class);
                 startActivity(mainIntent);
                 return true;
             }
