@@ -32,7 +32,10 @@ public class MainActivity extends AppCompatActivity  implements AdapterView.OnIt
     private DrawerLayout nDrawerLayout;
     private ActionBarDrawerToggle nToggle;
     static final int REQUEST_LOCATION = 1;
-    ArrayList<String> groupSpinner = new ArrayList<String>();
+    static String currentLayout = "Personal";
+    static String currentLayoutID = "personal";
+    ArrayList<String> groupSpinner = new ArrayList<>();
+    ArrayList<String> idSpinner = new ArrayList<>();
     String selected;
 
     @Override
@@ -41,6 +44,7 @@ public class MainActivity extends AppCompatActivity  implements AdapterView.OnIt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        IOread reader = new IOread();
         nDrawerLayout = findViewById(R.id.drawerLayout);
         nToggle = new ActionBarDrawerToggle(this, nDrawerLayout, R.string.open, R.string.close);
         nDrawerLayout.addDrawerListener(nToggle);
@@ -57,28 +61,40 @@ public class MainActivity extends AppCompatActivity  implements AdapterView.OnIt
         Window window = this.getWindow();
         window.setStatusBarColor(this.getResources().getColor(R.color.colorPrimary));
 
-
-
-
-        IOread reader = new IOread();
         Spinner idselector = findViewById(R.id.spinner2);
         idselector.setOnItemSelectedListener(this);
 
+        idSpinner.add("personal");
         groupSpinner.add("Personal");
         for(int i = 0; i < currentActiveUser.getAssociatedGroupID().size() - 1; i++)
         {
             if(!currentActiveUser.getAssociatedGroupID().get(i).equals("null"))
             {
-                groupSpinner.add(currentActiveUser.getAssociatedGroupID().get(i));
+                idSpinner.add(currentActiveUser.getAssociatedGroupID().get(i));
+                Group group = reader.retrieveGroup(currentActiveUser.getAssociatedGroupID().get(i), this);
+                groupSpinner.add(group.getGroupName());
             }
         }
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 this,
                 android.R.layout.simple_spinner_item,
                 groupSpinner
         );
         idselector.setAdapter(adapter);
+        for(int i = 0; i < groupSpinner.size() - 1; i++)
+        {
+            if(idselector.getSelectedItem().equals(currentLayout))
+            {
+                int selectedPosition = idselector.getSelectedItemPosition();
+                idselector.setSelection(selectedPosition, false);
+                currentLayoutID = idSpinner.get(i);
+            }
+            else{
+                int selectedPosition = idselector.getSelectedItemPosition() + 1;
+                idselector.setSelection(selectedPosition, false);
+            }
+        }
     }
 
     @Override
@@ -92,43 +108,24 @@ public class MainActivity extends AppCompatActivity  implements AdapterView.OnIt
     }
 
     @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        // On selecting a spinner item
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+    {
         String item = parent.getItemAtPosition(position).toString();
-
+        currentLayout = item;
         selected = item;
-        // Showing selected spinner item
-        Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+        Toast.makeText(parent.getContext(), "Current Layout: " + item, Toast.LENGTH_LONG).show();
     }
-    public void onNothingSelected(AdapterView<?> arg0) {
-        // TODO Auto-generated method stub
-    }
+    public void onNothingSelected(AdapterView<?> arg0) {}
 
     public void pinsClicked(MenuItem menuItem)
     {
         Intent pinIntent = new Intent(this, PinActivity.class);
-        if(selected.equals("Personal"))
-        {
-            pinIntent.putExtra("id", "personal");
-        }
-        else
-        {
-            pinIntent.putExtra("id", selected);
-        }
         startActivity(pinIntent);
     }
 
     public void pinsViewClicked(MenuItem menuItem)
     {
         Intent pinIntent = new Intent(this, PinView.class);
-        if(selected.equals("Personal"))
-        {
-            pinIntent.putExtra("id", "personal");
-        }
-        else
-        {
-            pinIntent.putExtra("id", selected);
-        }
         startActivity(pinIntent);
     }
 
@@ -141,20 +138,13 @@ public class MainActivity extends AppCompatActivity  implements AdapterView.OnIt
     public void auditClicked(MenuItem menuItem)
     {
         Intent pinIntent = new Intent(this, UserAuditLog.class);
-        if(!selected.equals("Personal"))
-        {
-            pinIntent.putExtra("id", "personal");
-        }
-        else
-        {
-            pinIntent.putExtra("id", selected);
-        }
         startActivity(pinIntent);
     }
 
     public void logoutClicked(MenuItem menuItem)
     {
         currentActiveUser = null;
+        currentLayout = "";
         Intent locIntent = new Intent(this, LogInScreen.class);
         startActivity(locIntent);
     }
@@ -182,16 +172,16 @@ public class MainActivity extends AppCompatActivity  implements AdapterView.OnIt
         if(!selected.equals("Personal"))
         {
             Intent locIntent = new Intent(this, GroupView.class);
-            locIntent.putExtra("id", selected);
             startActivity(locIntent);
         }
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
+    {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        switch (requestCode) {
+        switch (requestCode)
+        {
             case REQUEST_LOCATION:
                 break;
         }

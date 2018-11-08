@@ -105,7 +105,7 @@ public class IOread extends AppCompatActivity
                     {
                         retrievedPin = new PinClassTreasure();
                     }
-                    else if(foundLine[1].equals("PinClassShipwreck Pin"))
+                    else if(foundLine[1].equals("Shipwreck Pin"))
                     {
                         retrievedPin = new PinClassShipwreck();
                     }

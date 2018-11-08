@@ -14,10 +14,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import static com.example.user.treasurehunter.LogInScreen.currentActiveUser;
+import static com.example.user.treasurehunter.MainActivity.currentLayoutID;
 
 public class PinView extends AppCompatActivity implements Serializable
 {
-    String passedID;
     PinDS currentPin;
 
     @Override
@@ -25,11 +25,10 @@ public class PinView extends AppCompatActivity implements Serializable
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pin_view);
-        passedID = (String) getIntent().getSerializableExtra("id");
-        
+
         IOread reader = new IOread();
         ArrayList<String> listOfPins = new ArrayList<String>();
-        if(passedID.equals("personal"))
+        if(currentLayoutID.equals("personal"))
         {
             if(currentActiveUser.getPersonalPinID() != null)
             {
@@ -37,7 +36,7 @@ public class PinView extends AppCompatActivity implements Serializable
             }
         }
         else{
-            Group group = reader.retrieveGroup(passedID, this);
+            Group group = reader.retrieveGroup(currentLayoutID, this);
             if(group.getAssociatedPinIDs() != null)
             {
                 listOfPins = group.getAssociatedPinIDs();

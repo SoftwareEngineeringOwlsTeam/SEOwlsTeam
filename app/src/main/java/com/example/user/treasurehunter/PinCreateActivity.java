@@ -18,6 +18,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 import static com.example.user.treasurehunter.LogInScreen.currentActiveUser;
+import static com.example.user.treasurehunter.MainActivity.currentLayoutID;
+
 /**
  *
  * @author Zach Curll, Matthew Finnegan, Alexander Kulpin, Dominic Marandino, Brandon Ostasewski, Paul Sigloch
@@ -32,7 +34,6 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
     TableRow speedRow;
     Button goBackButton, placePinButton;
     TextView tvBanner;
-    String passedID;
 
     /**
      * Method displays a screen to the user so they can Create a pin.
@@ -77,8 +78,6 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.color_picker, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        passedID = (String) getIntent().getSerializableExtra("id");
     }
 
     public void createClicked(View view)
@@ -132,7 +131,6 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
             ((PinMoveable) pin).setSpeed(Double.parseDouble(et.getText().toString()));
         }
 
-
         et = findViewById(R.id.radius);
         pin.setRadius(et.getText().toString());
         Intent mainIntent = new Intent(this, MainActivity.class);
@@ -142,12 +140,12 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
 
         ArrayList<String> addingList = new ArrayList<>();
         addingList.add(pin.getPinID());
-        if(passedID.equals("personal"))
+        if(currentLayoutID.equals("personal"))
         {
             writer.addAssociation(addingList, "ppin", "", this);
         }
         else{
-            writer.addAssociation(addingList, "gpin", passedID, this);
+            writer.addAssociation(addingList, "gpin", currentLayoutID, this);
         }
 
         startActivity(mainIntent);

@@ -7,6 +7,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import java.util.ArrayList;
+
+import static com.example.user.treasurehunter.MainActivity.currentLayout;
+import static com.example.user.treasurehunter.MainActivity.currentLayoutID;
+
 /**
  *
  * @author Zach Curll, Matthew Finnegan, Alexander Kulpin, Dominic Marandino, Brandon Ostasewski, Paul Sigloch
@@ -46,6 +50,8 @@ public class LogInScreen extends AppCompatActivity {
                 if(user.getPassword().equals(et.getText().toString()))
                 {
                     currentActiveUser = user;
+                    currentLayout = "Personal";
+                    currentLayoutID = "personal";
                     Intent pinIntent = new Intent(this, MainActivity.class);
                     startActivity(pinIntent);
                 }
@@ -57,6 +63,12 @@ public class LogInScreen extends AppCompatActivity {
                 et2.setError("Username does not exist");
             }
         }
+    }
+
+    public void clearData(View view)
+    {
+        IOwrite writer = new IOwrite();
+        writer.clearData(this);
     }
 
     public void createAccountClicked(View view)

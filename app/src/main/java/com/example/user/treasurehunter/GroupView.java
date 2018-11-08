@@ -7,6 +7,8 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
 
+import static com.example.user.treasurehunter.MainActivity.currentLayoutID;
+
 
 /**
  *
@@ -16,7 +18,6 @@ import android.widget.TextView;
 public class GroupView extends AppCompatActivity
 {
     Group currentGroup;
-    String passedID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -26,13 +27,11 @@ public class GroupView extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_group);
 
-        passedID = (String) getIntent().getSerializableExtra("id");
-
         TextView tvGroupname = findViewById(R.id.tvGroupName);
         TextView tvUsername = findViewById(R.id.tvUserName);
         TextView tvDescription = findViewById(R.id.tvDescription);
 
-        currentGroup = reader.retrieveGroup(passedID, this);
+        currentGroup = reader.retrieveGroup(currentLayoutID, this);
 
         tvGroupname.setText(currentGroup.getGroupName());
         tvUsername.setText(currentGroup.getAdminName());
@@ -45,19 +44,20 @@ public class GroupView extends AppCompatActivity
     public void deleteGroup(View view)
     {
         IOwrite writer = new IOwrite();
-        writer.removeObject("groups", passedID, passedID, this);
-        writer.removeFile("groupaudit", passedID, this);
-        writer.removeFile("members", passedID, this);
+        writer.removeObject("groups", currentLayoutID, currentLayoutID, this);
+        writer.removeFile("groupaudit", currentLayoutID, this);
+        writer.removeFile("members", currentLayoutID, this);
         Intent locIntent = new Intent(this, GroupManager.class);
         startActivity(locIntent);
     }
+
     /**
      * Method that displays the group's audit.
      */
     public void viewGroupAudit(View view)
     {
         Intent locIntent = new Intent(this, GroupAuditLog.class);
-        locIntent.putExtra("id", passedID);
+        locIntent.putExtra("id", currentLayoutID);
         startActivity(locIntent);
     }
 
@@ -67,7 +67,7 @@ public class GroupView extends AppCompatActivity
     public void viewGroupMembers(View view)
     {
         Intent locIntent = new Intent(this, GroupMembers.class);
-        locIntent.putExtra("id", passedID);
+        locIntent.putExtra("id", currentLayoutID);
         startActivity(locIntent);
     }
 
