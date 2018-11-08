@@ -116,26 +116,26 @@ public class IOread extends AppCompatActivity
                     else if(foundLine[1].equals("Survivor Pin"))
                     {
                         retrievedPin = new PinMoveableClassSurvivor();
-                        ((PinMoveableClassSurvivor) retrievedPin).setDegree(Double.parseDouble(foundLine[11]));
-                        ((PinMoveableClassSurvivor) retrievedPin).setSpeed(Double.parseDouble(foundLine[12]));
+                        ((PinMoveableClassSurvivor) retrievedPin).setDegree(Double.parseDouble(foundLine[12]));
+                        ((PinMoveableClassSurvivor) retrievedPin).setSpeed(Double.parseDouble(foundLine[13]));
                     }
                     else if(foundLine[1].equals("Forest Fire Pin"))
                     {
                         retrievedPin = new PinMoveableClassForestFire();
-                        ((PinMoveableClassForestFire) retrievedPin).setDegree(Double.parseDouble(foundLine[11]));
-                        ((PinMoveableClassForestFire) retrievedPin).setSpeed(Double.parseDouble(foundLine[12]));
+                        ((PinMoveableClassForestFire) retrievedPin).setDegree(Double.parseDouble(foundLine[12]));
+                        ((PinMoveableClassForestFire) retrievedPin).setSpeed(Double.parseDouble(foundLine[13]));
                     }
                     else if(foundLine[1].equals("Whale Pin"))
                     {
                         retrievedPin = new PinMoveableClassWhale();
-                        ((PinMoveableClassWhale) retrievedPin).setDegree(Double.parseDouble(foundLine[11]));
-                        ((PinMoveableClassWhale) retrievedPin).setSpeed(Double.parseDouble(foundLine[12]));
+                        ((PinMoveableClassWhale) retrievedPin).setDegree(Double.parseDouble(foundLine[12]));
+                        ((PinMoveableClassWhale) retrievedPin).setSpeed(Double.parseDouble(foundLine[13]));
                     }
                     else if(foundLine[1].equals("Hunting Pin"))
                     {
                         retrievedPin = new PinMoveableClassHunting();
-                        ((PinMoveableClassHunting) retrievedPin).setDegree(Double.parseDouble(foundLine[11]));
-                        ((PinMoveableClassHunting) retrievedPin).setSpeed(Double.parseDouble(foundLine[12]));
+                        ((PinMoveableClassHunting) retrievedPin).setDegree(Double.parseDouble(foundLine[12]));
+                        ((PinMoveableClassHunting) retrievedPin).setSpeed(Double.parseDouble(foundLine[13]));
                     }
                     else
                     {
@@ -151,6 +151,7 @@ public class IOread extends AppCompatActivity
                     retrievedPin.setAltitude(Double.parseDouble(foundLine[8]));
                     retrievedPin.setTime(foundLine[9]);
                     retrievedPin.setDate(foundLine[10]);
+                    retrievedPin.setPublisherID(foundLine[11]);
                 }
             }
         }

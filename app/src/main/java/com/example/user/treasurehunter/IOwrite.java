@@ -79,7 +79,7 @@ public class IOwrite extends AppCompatActivity implements Serializable
     {
         String data = (pin.getPinID()       + "*" + pin.getPinName() + "*" + pin.getPinTitle() + "*" + pin.getPublisher() + "*"
                      + pin.getDescription() + "*" + pin.getRadius()  + "*" + pin.getLatitude() + "*" + pin.getLongitude() + "*"
-                     + pin.getAltitude()    + "*" + pin.getTime()    + "*" + pin.getDate());
+                     + pin.getAltitude()    + "*" + pin.getTime()    + "*" + pin.getDate()     + "*" + pin.getPublisherID());
         if (pin instanceof PinMoveable)
         {
             data += ("*" + ((PinMoveable) pin).getDegree() + "*" + ((PinMoveable) pin).getSpeed());

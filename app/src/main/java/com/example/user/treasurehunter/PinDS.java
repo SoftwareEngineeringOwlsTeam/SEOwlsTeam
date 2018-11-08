@@ -23,7 +23,8 @@ public abstract class PinDS implements Serializable
     protected String color;
     private String time;
     private String date;
-    private String publisher = "";
+    private String publisher;
+    private String publisherID;
     private String pinName;
     private String radius;
     private String pinTitle;
@@ -223,5 +224,23 @@ public abstract class PinDS implements Serializable
     protected void setDefaultColor(int hexColor)
     {
         defaultColor = hexColor;
+    }
+
+    /**
+     * Method to get the ID of the publisher.
+     * @return The publishers ID.
+     */
+    public String getPublisherID()
+    {
+        return publisherID;
+    }
+
+    /**
+     * Method to set the ID of the publisher.
+     * @param publisherID Include the publishers ID.
+     */
+    public void setPublisherID(String publisherID)
+    {
+        this.publisherID = publisherID;
     }
 }

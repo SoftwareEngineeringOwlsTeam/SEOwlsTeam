@@ -118,7 +118,7 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
             }
         }
         pin.setPinID(pinID);
-
+        pin.setPublisherID(currentActiveUser.getUserID());
 
         //et = (EditText)findViewById(R.id.color);
         pin.setColor(pin.getColor());

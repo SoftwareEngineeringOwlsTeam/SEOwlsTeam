@@ -86,6 +86,35 @@
         </TableRow>
 
         <TableRow
+            android:id="@+id/Row2Alt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Pin Name:"
+                android:textSize="20dp"
+                android:textColor="@color/colorPrimary"
+
+                android:textAlignment="textEnd"
+
+                />
+
+            <EditText
+                android:id="@+id/etPinName"
+                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:hint="Enter Pin Name"
+                android:textSize="20dp"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+
+                />
+        </TableRow>
+
+        <TableRow
             android:id="@+id/Row3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -101,6 +130,32 @@
 
             <TextView
                 android:id="@+id/description"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:hint="Enter Description"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="20dp"
+
+                />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/Row3Alt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Description:"
+                android:textSize="20dp"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/colorPrimary"
+                />
+
+            <EditText
+                android:id="@+id/etDescription"
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:hint="Enter Description"
@@ -164,6 +219,33 @@
         </TableRow>
 
         <TableRow
+            android:id="@+id/Row5Alt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Radius(m):"
+                android:textSize="20dp"
+                android:textAlignment="textEnd"
+                android:textColor="@color/colorPrimary"
+                />
+
+            <EditText
+                android:id="@+id/etRadius"
+                android:inputType="numberDecimal"
+                android:layout_height="wrap_content"
+                android:layout_width="50sp"
+
+                android:hint="Enter Radius in meters"
+                android:textAlignment="center"
+                android:textSize="20dp"
+                android:textColor="@android:color/black"
+                />
+        </TableRow>
+
+        <TableRow
             android:id="@+id/Row6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -178,6 +260,31 @@
                 android:textSize="20dp" />
 
             <TextView
+                android:id="@+id/tvLocationLat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:inputType="numberDecimal"
+                android:textColor="@android:color/black"
+                android:textSize="20dp"
+                android:maxLength="15"/>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/Row6Alt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="Latitude:"
+
+                android:textAlignment="textEnd"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20dp" />
+
+            <EditText
                 android:id="@+id/etLocationLat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -205,6 +312,35 @@
                 android:textSize="20dp" />
 
             <TextView
+                android:id="@+id/tvLocationLong"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text=""
+                android:inputType="numberDecimal"
+                android:textAlignment="center"
+                android:textSize="20dp"
+                android:maxLength="15"
+                android:textColor="@android:color/black"
+                />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/Row7Alt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Longitude:"
+
+                android:textAlignment="viewEnd"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20dp" />
+
+            <EditText
                 android:id="@+id/etLocationLong"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
@@ -232,7 +368,7 @@
                 android:textSize="20dp" />
 
             <TextView
-                android:id="@+id/etAltitude"
+                android:id="@+id/tvAltitude"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:text=""
@@ -244,6 +380,32 @@
                 />
         </TableRow>
 
+        <TableRow
+            android:id="@+id/Row8Alt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Altitude:"
+
+                android:textAlignment="viewEnd"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20dp" />
+
+            <EditText
+                android:id="@+id/etAltitude"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text=""
+                android:inputType="numberDecimal"
+                android:textAlignment="center"
+                android:textSize="20dp"
+                android:maxLength="15"
+                android:textColor="@android:color/black"
+                />
+        </TableRow>
 
         <TableRow
             android:id="@+id/Row9"
@@ -285,6 +447,32 @@
                 android:textSize="20dp" />
 
             <TextView
+                android:id="@+id/tvDegree"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text=""
+                android:inputType="numberDecimal"
+                android:textSize="20dp"
+                android:maxLength="15"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/Row10Alt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Degree:"
+                android:textAlignment="textEnd"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20dp" />
+
+            <EditText
                 android:id="@+id/etDegree"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
@@ -311,6 +499,32 @@
                 android:textSize="20dp" />
 
             <TextView
+                android:id="@+id/tvSpeed"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text=""
+                android:textSize="20dp"
+                android:inputType="numberDecimal"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:maxLength="15"
+                />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/Row11Alt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Speed:"
+                android:textAlignment="textEnd"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20dp" />
+
+            <EditText
                 android:id="@+id/etSpeed"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
@@ -371,6 +585,97 @@
                 android:background="@color/colorAccent"
                 android:onClick="backClicked"
                 android:text="Go Back"
+                android:textColor="@android:color/white"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+
+
+        </android.support.constraint.ConstraintLayout>
+
+
+        <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+            android:id="@+id/Row13Alt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/button16"
+            app:layout_constraintTop_toBottomOf="@+id/button16">
+
+
+            <Button
+                android:id="@+id/button18"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="23dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginEnd="23dp"
+                android:background="@color/colorAccent"
+                android:onClick="cancelClicked"
+                android:text="Cancel"
+                android:textColor="@android:color/white"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+
+
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+            android:id="@+id/Row14"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/button16"
+            app:layout_constraintTop_toBottomOf="@+id/button16">
+
+
+            <Button
+                android:id="@+id/button17"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="23dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginEnd="23dp"
+                android:background="@color/colorAccent"
+                android:onClick="editClicked"
+                android:text="Edit Pin"
+                android:textColor="@android:color/white"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+
+
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+            android:id="@+id/Row14Alt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/button16"
+            app:layout_constraintTop_toBottomOf="@+id/button16">
+
+
+            <Button
+                android:id="@+id/button20"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="23dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginEnd="23dp"
+                android:background="@color/colorAccent"
+                android:onClick="saveClicked"
+                android:text="Save Changes"
                 android:textColor="@android:color/white"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
