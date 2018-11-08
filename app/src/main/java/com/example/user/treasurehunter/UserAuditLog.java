@@ -18,12 +18,11 @@ import static com.example.user.treasurehunter.MainActivity.currentLayoutID;
  */
 public class UserAuditLog extends AppCompatActivity
 {
-    PinDS pin;
-    IOread pReader = new IOread();
-    IOwrite pWriter = new IOwrite();
+    private PinDS pin;
+    private IOread reader = new IOread();
+    private IOwrite writer = new IOwrite();
 
-    public UserAuditLog() {
-    }
+    public UserAuditLog() {}
 
     /**
      * Method that sets the screen to display acivity_audit_log.
@@ -33,7 +32,6 @@ public class UserAuditLog extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_audit_log);
-        IOread reader = new IOread();
         TextView et2 = findViewById(R.id.editText2);
 
         if(currentLayoutID.equals("personal"))

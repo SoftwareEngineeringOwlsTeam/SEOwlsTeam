@@ -10,6 +10,8 @@ import android.widget.EditText;
 import java.util.ArrayList;
 import java.util.Random;
 
+import static com.example.user.treasurehunter.LogInScreen.currentActiveUser;
+
 public class UserCreate extends AppCompatActivity
 {
     EditText etUsername;
@@ -81,6 +83,7 @@ public class UserCreate extends AppCompatActivity
 
                 User user = new User(userID, etUsername.getText().toString(), etPassword1.getText().toString());
                 writer.writeUser(user, this);
+                writer.writeUserAudit(userID,0, "", "", this);
                 Intent pinIntent = new Intent(this, LogInScreen.class);
                 startActivity(pinIntent);
             }

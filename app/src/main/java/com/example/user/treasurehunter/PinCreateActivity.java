@@ -136,18 +136,20 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
         Intent mainIntent = new Intent(this, MainActivity.class);
         writer.writePin(pin, this);
 
-        writer.writeUserAudit(currentActiveUser.getUserID(),4, pinID, pin.getPublisher(), this);
+
 
         ArrayList<String> addingList = new ArrayList<>();
         addingList.add(pin.getPinID());
         if(currentLayoutID.equals("personal"))
         {
             writer.addAssociation(addingList, "ppin", "", this);
+            writer.writeUserAudit(currentActiveUser.getUserID(),5, pinID, pin.getPublisher(), this);
         }
         else{
             writer.addAssociation(addingList, "gpin", currentLayoutID, this);
+            writer.writeGroupAudit(currentLayoutID, 1, currentActiveUser, "", pinID, this);
+            writer.writeUserAudit(currentActiveUser.getUserID(),4, pinID, currentLayoutID, this);
         }
-
         startActivity(mainIntent);
     }
 

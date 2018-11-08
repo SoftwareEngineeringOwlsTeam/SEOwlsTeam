@@ -108,9 +108,6 @@ public class IOwrite extends AppCompatActivity implements Serializable
             }
         }
         write(data,"groups", context);
-
-        data = ("0*" + currentTime + "*" + currentDate + "*" + group.getAdminName() + "*" + group.getAdminID());
-        write(data,group.getGroupID() + "groupaudit", context);
     }
 
     /**
@@ -207,7 +204,7 @@ public class IOwrite extends AppCompatActivity implements Serializable
         if(!pinID.equals(""))
         {
             PinDS pin = reader.retrievePin(pinID, context);
-            if(action == 2)
+            if(action == 2 || action == 1)
             {
                 data += ("*" + pin.getPinTitle());
                 if(action == 1)
@@ -234,11 +231,22 @@ public class IOwrite extends AppCompatActivity implements Serializable
         //5. You deleted a pin for a group
 
         //for testing
-        String data = (action + "*" + currentTime + "*" + currentDate + "*" + groupID);
+        String data = (action + "*" + currentTime + "*" + currentDate);
+        if(action == 1)
+        {
+            Group group = reader.retrieveGroup(groupID, context);
+            data += ("*" + group.getGroupName());
+        }
         if(action == 4)
         {
+            Group group = reader.retrieveGroup(groupID, context);
             PinDS pin = reader.retrievePin(pinID, context);
-            data += ("*TestGroup*" + pin.getPinTitle());
+            data += ("*" + group.getGroupName() + "*" + pin.getPinTitle());
+        }
+        if(action == 5)
+        {
+            PinDS pin = reader.retrievePin(pinID, context);
+            data += ("*" + pin.getPinTitle());
         }
 
         /*

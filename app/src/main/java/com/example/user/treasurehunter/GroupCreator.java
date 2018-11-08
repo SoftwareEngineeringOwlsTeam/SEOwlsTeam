@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import static com.example.user.treasurehunter.LogInScreen.currentActiveUser;
+import static com.example.user.treasurehunter.MainActivity.currentLayoutID;
 
 
 /**
@@ -86,7 +87,9 @@ public class GroupCreator extends AppCompatActivity
                                     etTitle.getText().toString(), tvUsername.getText().toString(), newGroupID);
         writer.writeGroup(newGroup, this);
         writer.writeMembers(members, permissions, newGroup.getGroupID(),this);
+
         writer.writeGroupAudit(newGroupID,0,currentActiveUser,"","",this);
+        writer.writeUserAudit(currentActiveUser.getUserID(),1, "", newGroupID, this);
 
         ArrayList<String> addingAssociation = new ArrayList<>();
         addingAssociation.add(newGroup.getGroupID());
