@@ -9,6 +9,7 @@ import android.widget.TextView;
 import java.io.FileNotFoundException;
 
 import static com.example.user.treasurehunter.LogInScreen.currentActiveUser;
+import static com.example.user.treasurehunter.MainActivity.currentLayoutID;
 
 /**
  *
@@ -30,21 +31,17 @@ public class UserAuditLog extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
-        String previousText = "";
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_audit_log);
         IOread reader = new IOread();
         TextView et2 = findViewById(R.id.editText2);
 
-        //currently random pre set id
-        et2.setText(reader.readUserAudit("1234567890", this));
-        String passedID = (String) getIntent().getSerializableExtra("id");
-        if(passedID.equals("personal"))
+        if(currentLayoutID.equals("personal"))
         {
             et2.setText(reader.readUserAudit(currentActiveUser.getUserID(), this));
         }
         else {
-            et2.setText(reader.readGroupAudit(passedID, this));
+            et2.setText(reader.readGroupAudit(currentLayoutID, this));
         }
     }
 

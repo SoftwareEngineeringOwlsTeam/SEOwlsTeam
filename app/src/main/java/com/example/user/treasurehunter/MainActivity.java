@@ -112,6 +112,7 @@ public class MainActivity extends AppCompatActivity  implements AdapterView.OnIt
     {
         String item = parent.getItemAtPosition(position).toString();
         currentLayout = item;
+        currentLayoutID = idSpinner.get(position);
         selected = item;
         Toast.makeText(parent.getContext(), "Current Layout: " + item, Toast.LENGTH_LONG).show();
     }
