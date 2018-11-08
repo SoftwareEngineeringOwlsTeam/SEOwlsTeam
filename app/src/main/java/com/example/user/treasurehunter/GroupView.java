@@ -5,12 +5,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 
-public class ViewGroup extends AppCompatActivity
+/**
+ *
+ * @author Zach Curll, Matthew Finnegan, Alexander Kulpin, Dominic Marandino, Brandon Ostasewski, Paul Sigloch
+ * @version Sprint 2
+ */
+public class GroupView extends AppCompatActivity
 {
     Group currentGroup;
     String passedID;
@@ -18,33 +21,39 @@ public class ViewGroup extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
-        PinWriter writer = new PinWriter();
-        PinReader reader = new PinReader();
+        IOwrite writer = new IOwrite();
+        IOread reader = new IOread();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_group);
 
         passedID = (String) getIntent().getSerializableExtra("id");
 
-        TextView tvUsername = (TextView)findViewById(R.id.tvUserName);
-        TextView tvGroupname = (TextView)findViewById(R.id.tvGroupName);
-        TextView tvDescription = (TextView)findViewById(R.id.tvDescription);
+        TextView tvGroupname = findViewById(R.id.tvGroupName);
+        TextView tvUsername = findViewById(R.id.tvUserName);
+        TextView tvDescription = findViewById(R.id.tvDescription);
 
-        currentGroup = reader.retrieveGroup(this, passedID);
+        currentGroup = reader.retrieveGroup(passedID, this);
 
-        tvUsername.setText(currentGroup.getAdminName());
         tvGroupname.setText(currentGroup.getGroupName());
+        tvUsername.setText(currentGroup.getAdminName());
         tvDescription.setText(currentGroup.getGroupDescription());
     }
 
+    /**
+     * Method that deletes a group.
+     */
     public void deleteGroup(View view)
     {
-        PinWriter writer = new PinWriter();
-        writer.removeObject(this, "groups", passedID);
-        writer.removeGroupAudit(this, passedID);
+        IOwrite writer = new IOwrite();
+        writer.removeObject("groups", passedID, passedID, this);
+        writer.removeFile("groupaudit", passedID, this);
+        writer.removeFile("members", passedID, this);
         Intent locIntent = new Intent(this, GroupManager.class);
         startActivity(locIntent);
     }
-
+    /**
+     * Method that displays the group's audit.
+     */
     public void viewGroupAudit(View view)
     {
         Intent locIntent = new Intent(this, GroupAuditLog.class);
@@ -52,6 +61,9 @@ public class ViewGroup extends AppCompatActivity
         startActivity(locIntent);
     }
 
+    /**
+     * Method that displays the group's members.
+     */
     public void viewGroupMembers(View view)
     {
         Intent locIntent = new Intent(this, GroupMembers.class);
@@ -59,6 +71,9 @@ public class ViewGroup extends AppCompatActivity
         startActivity(locIntent);
     }
 
+    /**
+     * Method that allows the user to move back to the MainActivity screen.
+     */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)
     {

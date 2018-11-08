@@ -20,7 +20,12 @@ import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class location_generation extends AppCompatActivity
+/**
+ *
+ * @author Zach Curll, Matthew Finnegan, Alexander Kulpin, Dominic Marandino, Brandon Ostasewski, Paul Sigloch
+ * @version Sprint 2
+ */
+public class LocationGeneration extends AppCompatActivity
 {
     static final int REQUEST_LOCATION = 1;
     LocationManager locationManager;
@@ -51,12 +56,19 @@ public class location_generation extends AppCompatActivity
         pin.setTime(currentTime);
         currentDate = DateFormat.getDateInstance().format(calendar.getTime());
         pin.setDate(currentDate);
+        String passedID = (String) getIntent().getSerializableExtra("id");
 
         Intent mainIntent = new Intent(this, PinCreateActivity.class);
         mainIntent.putExtra("pin", pin);
+        mainIntent.putExtra("id", passedID);
         startActivity(mainIntent);
     }
 
+    /**
+     * Method to get current GPS location. This information includes, Latitude, Longitude, Altitude.
+     * If the above information is not obtainable the values are set to "-1".
+     * Also asks the user permission to access their GPS.
+     */
     void getLocation()
     {
         if(ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION) !=

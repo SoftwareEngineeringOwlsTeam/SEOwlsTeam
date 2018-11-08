@@ -2,28 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/nav_account"
-        android:icon="@mipmap/baseline_account_circle_black_48"
-        android:onClick="accountClicked"
-        android:title="Account" />
-
-    <item
-        android:id="@+id/nav_logout"
-        android:icon="@mipmap/baseline_subdirectory_arrow_left_black_48"
-        android:onClick="logoutClicked"
-        android:title="Log Out" />
-
-    <item
-        android:id="@+id/nav_settings"
-        android:icon="@mipmap/baseline_settings_black_48"
-        android:onClick="settingsClicked"
-        android:title="Settings" />
-
-    <item
-        android:id="@+id/nav_groups"
+        android:id="@+id/nav_create_group"
         android:icon="@mipmap/baseline_people_black_48"
         android:onClick="groupsClicked"
-        android:title="Groups" />
+        android:title="Create Group" />
+
+    <item
+        android:id="@+id/nav_view_group"
+        android:icon="@mipmap/baseline_people_black_48"
+        android:onClick="groupViewClicked"
+        android:title="View Group" />
 
     <item
         android:id="@+id/nav_pin"
@@ -32,11 +20,11 @@
         android:title="Create Pin" />
 
     <item
-        android:id="@+id/nav_tester"
-        android:layout_width="match_parent"
-        android:icon="@mipmap/baseline_gps_fixed_black_48"
-        android:onClick="testClicked"
-        android:title="Test File I/O" />
+        android:id="@+id/nav_pin_view"
+        android:icon="@mipmap/baseline_pin_drop_black_48"
+        android:onClick="pinsViewClicked"
+        android:title="View Pins" />
+
 
     <item
         android:id="@+id/nav_auditlog"

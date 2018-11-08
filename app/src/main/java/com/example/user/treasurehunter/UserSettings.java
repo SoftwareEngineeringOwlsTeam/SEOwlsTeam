@@ -4,15 +4,28 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.MenuItem;
+import android.widget.TextView;
+import static com.example.user.treasurehunter.LogInScreen.currentActiveUser;
+/**
+ *
+ * @author Zach Curll, Matthew Finnegan, Alexander Kulpin, Dominic Marandino, Brandon Ostasewski, Paul Sigloch
+ * @version Sprint 2
+ */
+public class UserSettings extends AppCompatActivity {
 
-public class Settings extends AppCompatActivity {
-
+    /**
+     * Method that sets the screen to display acivity_settings.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
     }
 
+    /**
+     * Method that allows the user to move back to the MainActivity screen.
+     */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)
     {
@@ -24,4 +37,5 @@ public class Settings extends AppCompatActivity {
         }
         return super.onKeyDown(keyCode, event);
     }
+
 }
