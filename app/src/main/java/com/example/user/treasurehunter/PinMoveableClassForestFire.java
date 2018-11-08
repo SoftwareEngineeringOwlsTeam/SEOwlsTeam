@@ -25,6 +25,6 @@ public class PinMoveableClassForestFire extends PinMoveable {
     public PinMoveableClassForestFire()
     {
         setColor("Orange");
-        setDefaultColor("#FF8C00");
+        setDefaultColor(0xffFF8C00);
     }
 }

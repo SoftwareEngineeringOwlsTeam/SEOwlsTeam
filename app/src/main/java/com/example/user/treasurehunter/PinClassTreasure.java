@@ -27,7 +27,7 @@ public class PinClassTreasure extends PinDS
     public PinClassTreasure()
     {
         setColor("Gold");
-        setDefaultColor("#ffbf00");
+        setDefaultColor(0xffffbf00);
     }
     /**
      * Method that gets the Default color.

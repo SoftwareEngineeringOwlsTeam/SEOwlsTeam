@@ -27,6 +27,6 @@ public class PinMoveableClassSurvivor extends PinMoveable
     public PinMoveableClassSurvivor()
     {
         setColor("Red");
-        setDefaultColor("#FF0000");
+        setDefaultColor(0xffFF0000);
     }
 }

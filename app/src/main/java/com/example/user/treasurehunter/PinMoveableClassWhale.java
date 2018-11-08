@@ -27,6 +27,6 @@ public class PinMoveableClassWhale extends PinMoveable
     public PinMoveableClassWhale()
     {
         setColor("Navy Blue");
-        setDefaultColor("#3A4384");
+        setDefaultColor(0xff3A4384);
     }
 }

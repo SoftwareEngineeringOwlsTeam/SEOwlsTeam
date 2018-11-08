@@ -25,6 +25,6 @@ public class PinMoveableClassCustom extends PinMoveable {
     public PinMoveableClassCustom()
     {
         setColor("Grey");
-        setDefaultColor("#696969");
+        setDefaultColor(0xff696969);
     }
 }

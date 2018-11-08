@@ -27,6 +27,6 @@ public class PinClassShipwreck extends PinDS
     public PinClassShipwreck()
     {
         setColor("Blue");
-        setDefaultColor("#0000CC");
+        setDefaultColor(0xff0000CC);
     }
 }

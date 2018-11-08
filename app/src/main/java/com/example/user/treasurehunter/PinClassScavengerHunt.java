@@ -27,6 +27,6 @@ public class PinClassScavengerHunt extends PinDS
     public PinClassScavengerHunt()
     {
         setColor("Purple");
-        setDefaultColor("#A020F0");
+        setDefaultColor(0xffA020F0);
     }
 }

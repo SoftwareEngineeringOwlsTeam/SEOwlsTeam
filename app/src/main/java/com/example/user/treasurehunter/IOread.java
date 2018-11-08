@@ -131,7 +131,7 @@ public class IOread extends AppCompatActivity
                         ((PinMoveableClassWhale) retrievedPin).setDegree(Double.parseDouble(foundLine[11]));
                         ((PinMoveableClassWhale) retrievedPin).setSpeed(Double.parseDouble(foundLine[12]));
                     }
-                    else if(foundLine[1].equals("PinMoveableClassHunting Pin"))
+                    else if(foundLine[1].equals("Hunting Pin"))
                     {
                         retrievedPin = new PinMoveableClassHunting();
                         ((PinMoveableClassHunting) retrievedPin).setDegree(Double.parseDouble(foundLine[11]));

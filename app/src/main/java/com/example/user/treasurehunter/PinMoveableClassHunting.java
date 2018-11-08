@@ -27,6 +27,6 @@ public class PinMoveableClassHunting extends PinMoveable
     public PinMoveableClassHunting()
     {
         setColor("Green");
-        setDefaultColor("#228B22");
+        setDefaultColor(0xff228B22);
     }
 }

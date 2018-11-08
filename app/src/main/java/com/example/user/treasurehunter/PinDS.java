@@ -220,8 +220,8 @@ public abstract class PinDS implements Serializable
      * Method to set the Default Color for a pin.
      * @param hexColor Include the Default Color.
      */
-    protected void setDefaultColor(String hexColor)
+    protected void setDefaultColor(int hexColor)
     {
-        defaultColor = Color.parseColor(hexColor);
+        defaultColor = hexColor;
     }
 }

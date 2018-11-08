@@ -1,5 +1,6 @@
 package com.example.user.treasurehunter;
 
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
@@ -21,7 +22,7 @@ public class PinView extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pin_view);
         passedID = (String) getIntent().getSerializableExtra("id");
-
+        
         IOread reader = new IOread();
         ArrayList<String> listOfPins = new ArrayList<String>();
         if(passedID.equals("personal"))
@@ -42,8 +43,10 @@ public class PinView extends AppCompatActivity
 
         for(int i = 0; i < listOfPins.size() - 1; i++)
         {
+            PinDS pin = reader.retrievePin(listOfPins.get(i), this);
             Button myButton = new Button(this);
             myButton.setText(listOfPins.get(i));
+            myButton.setBackgroundColor(pin.getDefaultColor());
 
             LinearLayout ll = (LinearLayout)findViewById(R.id.pinViewLayout);
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
