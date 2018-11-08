@@ -3,6 +3,7 @@ package com.example.user.treasurehunter;
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -47,6 +48,11 @@ public class PinView extends AppCompatActivity
             Button myButton = new Button(this);
             myButton.setText(listOfPins.get(i));
             myButton.setBackgroundColor(pin.getDefaultColor());
+            myButton.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+
+                }
+            });
 
             LinearLayout ll = (LinearLayout)findViewById(R.id.pinViewLayout);
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
