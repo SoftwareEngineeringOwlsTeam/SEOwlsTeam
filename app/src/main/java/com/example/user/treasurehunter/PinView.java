@@ -1,5 +1,6 @@
 package com.example.user.treasurehunter;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,13 +10,15 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import static com.example.user.treasurehunter.LogInScreen.currentActiveUser;
 
-public class PinView extends AppCompatActivity
+public class PinView extends AppCompatActivity implements Serializable
 {
     String passedID;
+    PinDS currentPin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -44,12 +47,18 @@ public class PinView extends AppCompatActivity
 
         for(int i = 0; i < listOfPins.size() - 1; i++)
         {
-            PinDS pin = reader.retrievePin(listOfPins.get(i), this);
-            Button myButton = new Button(this);
+            currentPin = reader.retrievePin(listOfPins.get(i), this);
+
+            final Button myButton = new Button(this);
             myButton.setText(listOfPins.get(i));
-            myButton.setBackgroundColor(pin.getDefaultColor());
+            myButton.setBackgroundColor(currentPin.getDefaultColor());
+
+            myButton.setHint(currentPin.getPinID());
             myButton.setOnClickListener(new View.OnClickListener() {
+                @Override
                 public void onClick(View v) {
+                    Button myButton = (Button) v;
+
 
                 }
             });
@@ -58,5 +67,12 @@ public class PinView extends AppCompatActivity
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             ll.addView(myButton, lp);
         }
+    }
+
+    public void clickHelper(Button button)
+    {
+        Intent mainIntent = new Intent(this, PinViewAttributes.class);
+        mainIntent.putExtra("pin", currentPin);
+        startActivity(mainIntent);
     }
 }

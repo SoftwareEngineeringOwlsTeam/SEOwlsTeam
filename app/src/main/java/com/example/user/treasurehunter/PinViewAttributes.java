@@ -17,7 +17,7 @@ import java.util.Random;
 
 import static com.example.user.treasurehunter.LogInScreen.currentActiveUser;
 
-public class view_pin_attributes extends AppCompatActivity implements Serializable
+public class PinViewAttributes extends AppCompatActivity implements Serializable
 {
     public PinDS pin;
     public TextView tvColor;
