@@ -16,6 +16,7 @@ public class PinViewAttributes extends AppCompatActivity implements Serializable
     {
         public PinDS pin;
         public TextView tvColor;
+
         EditText text;
         TableRow degreeRow;
         TableRow speedRow;
@@ -32,7 +33,6 @@ public class PinViewAttributes extends AppCompatActivity implements Serializable
         {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_pin_view_attributes);
-
             pin = (PinDS) getIntent().getSerializableExtra("pin");
             degreeRow = findViewById(R.id.Row10);
             speedRow = findViewById(R.id.Row11);
@@ -49,20 +49,26 @@ public class PinViewAttributes extends AppCompatActivity implements Serializable
 
 
             //Hides the degree and speed rows from displaying if the pin is not Moveable.
-            if(!(pin instanceof PinMoveable))
+            degreeRow.setVisibility(View.GONE);
+            speedRow.setVisibility(View.GONE);
+            if(pin instanceof PinMoveable)
             {
-                degreeRow.setVisibility(View.GONE);
-                speedRow.setVisibility(View.GONE);
-
+                PinMoveable movPin = (PinMoveable) pin;
+                degreeRow.setVisibility(View.VISIBLE);
+                speedRow.setVisibility(View.VISIBLE);
+                ((TextView)findViewById(R.id.etDegree)).setText("" + movPin.getDegree());
+                ((TextView)findViewById(R.id.etSpeed)).setText("" + movPin.getSpeed());
             }
 
-
-            ((TextView)findViewById(R.id.etTime)).setText(pin.getTime());
-            ((TextView)findViewById(R.id.etDate)).setText(pin.getDate());
-            ((TextView)findViewById(R.id.etLocationLat)).setText(""+ pin.getLatitude());
+            ((TextView)findViewById(R.id.publisher)).setText(pin.getPublisher());
+            ((TextView)findViewById(R.id.pinName)).setText(pin.getPinTitle());
+            ((TextView)findViewById(R.id.description)).setText(pin.getDescription());
+            ((TextView)findViewById(R.id.radius)).setText(pin.getRadius());
+            ((TextView)findViewById(R.id.etLocationLat)).setText("" + pin.getLatitude());
             ((TextView)findViewById(R.id.etLocationLong)).setText("" + pin.getLongitude());
             ((TextView)findViewById(R.id.etAltitude)).setText("" + pin.getAltitude());
-
+            ((TextView)findViewById(R.id.etTime)).setText(pin.getTime());
+            ((TextView)findViewById(R.id.etDate)).setText(pin.getDate());
 
 
             passedID = (String) getIntent().getSerializableExtra("id");
@@ -70,13 +76,7 @@ public class PinViewAttributes extends AppCompatActivity implements Serializable
 
         public void backClicked(View view)
         {
-
-        }
-
-        public void clickPinSelect(View v)
-        {
-            goBackButton = (Button) v;
-            Intent mainIntent = new Intent(this, PinActivity.class);
+            Intent mainIntent = new Intent(this, MainActivity.class);
             startActivity(mainIntent);
         }
 
