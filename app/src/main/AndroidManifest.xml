@@ -64,7 +64,8 @@
             android:resource="@array/preloaded_fonts" />
 
         <activity android:name=".UserCreate" />
-        <activity android:name=".PinView"></activity>
+        <activity android:name=".PinView" />
+        <activity android:name=".PinViewAttributes"></activity>
     </application>
 
 </manifest>

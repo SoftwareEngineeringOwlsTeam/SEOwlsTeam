@@ -37,7 +37,6 @@ public class PinView extends AppCompatActivity implements Serializable
             }
         }
         else{
-            System.out.println(passedID);
             Group group = reader.retrieveGroup(passedID, this);
             if(group.getAssociatedPinIDs() != null)
             {
@@ -50,16 +49,17 @@ public class PinView extends AppCompatActivity implements Serializable
             currentPin = reader.retrievePin(listOfPins.get(i), this);
 
             final Button myButton = new Button(this);
-            myButton.setText(listOfPins.get(i));
+            myButton.setText(currentPin.getPinTitle());
             myButton.setBackgroundColor(currentPin.getDefaultColor());
 
             myButton.setHint(currentPin.getPinID());
+
+
             myButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Button myButton = (Button) v;
-
-
+                    clickHelper(myButton);
+                    //Button myButton = (Button) v;
                 }
             });
 
@@ -71,8 +71,9 @@ public class PinView extends AppCompatActivity implements Serializable
 
     public void clickHelper(Button button)
     {
+        IOread reader = new IOread();
         Intent mainIntent = new Intent(this, PinViewAttributes.class);
-        mainIntent.putExtra("pin", currentPin);
+        mainIntent.putExtra("pin", reader.retrievePin(button.getHint().toString(),this));
         startActivity(mainIntent);
     }
 }
