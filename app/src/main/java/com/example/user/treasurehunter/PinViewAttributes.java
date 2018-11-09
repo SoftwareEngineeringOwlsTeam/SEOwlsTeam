@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 import java.io.Serializable;
 
+import static com.example.user.treasurehunter.LogInScreen.currentActiveUser;
+
 public class PinViewAttributes extends AppCompatActivity implements Serializable
     {
         public PinDS pin;
@@ -44,10 +46,21 @@ public class PinViewAttributes extends AppCompatActivity implements Serializable
         ConstraintLayout row13alt;
         ConstraintLayout row14alt;
 
-        EditText text;
-        Button goBackButton, placePinButton;
+        Button goBackButton;
+        Button editButton;
+        Button cancelButton;
+        Button saveButton;
+
+        EditText etPinName;
+        EditText etDescription;
+        EditText etRadius;
+        EditText etLocationLat;
+        EditText etLocationLong;
+        EditText etAltitude;
+        EditText etDegree;
+        EditText etSpeed;
+
         TextView tvBanner;
-        String passedID;
 
         /**
          * Method displays a screen to the user so they can Create a pin.
@@ -96,18 +109,34 @@ public class PinViewAttributes extends AppCompatActivity implements Serializable
             row13alt.setVisibility(View.GONE);
             row14alt.setVisibility(View.GONE);
 
+            goBackButton = findViewById(R.id.button16);
+            editButton = findViewById(R.id.button17);
+            cancelButton = findViewById(R.id.button18);
+            saveButton = findViewById(R.id.button19);
+
+            etPinName = findViewById(R.id.etPinName);
+            etDescription = findViewById(R.id.etDescription);
+            etRadius = findViewById(R.id.etRadius);
+            etLocationLat = findViewById(R.id.etLocationLat);
+            etLocationLong = findViewById(R.id.etLocationLong);
+            etAltitude = findViewById(R.id.etAltitude);
+            etDegree = findViewById(R.id.etDegree);
+            etSpeed = findViewById(R.id.etSpeed);
+
             pin = (PinDS) getIntent().getSerializableExtra("pin");
-            goBackButton = findViewById(R.id.goBack);
-            placePinButton = findViewById(R.id.button16);
+
             tvColor = findViewById(R.id.tvcolor);
             tvColor.setTextColor(pin.getDefaultColor());
             tvColor.setText(pin.getColor());
+
             tvBanner = findViewById(R.id.tvBanner);
             tvBanner.setBackgroundColor(pin.getDefaultColor());
             tvBanner.setText("   " + pin.getPinName());
-            //goBackButton.setBackgroundColor(pin.getDefaultColor());
-            //placePinButton.setBackgroundColor(pin.getDefaultColor());
 
+            goBackButton.setBackgroundColor(pin.getDefaultColor());
+            editButton.setBackgroundColor(pin.getDefaultColor());
+            cancelButton.setBackgroundColor(pin.getDefaultColor());
+            saveButton.setBackgroundColor(pin.getDefaultColor());
 
             //Hides the degree and speed rows from displaying if the pin is not Moveable.
             row10.setVisibility(View.GONE);
@@ -115,24 +144,34 @@ public class PinViewAttributes extends AppCompatActivity implements Serializable
             if(pin instanceof PinMoveable)
             {
                 PinMoveable movPin = (PinMoveable) pin;
+
                 row10.setVisibility(View.VISIBLE);
                 row11.setVisibility(View.VISIBLE);
-                ((TextView)findViewById(R.id.etDegree)).setText("" + movPin.getDegree());
-                ((TextView)findViewById(R.id.etSpeed)).setText("" + movPin.getSpeed());
+
+                ((TextView)findViewById(R.id.tvDegree)).setText("" + movPin.getDegree());
+                ((TextView)findViewById(R.id.tvSpeed)).setText("" + movPin.getSpeed());
+
+                ((EditText)findViewById(R.id.etDegree)).setText("" + movPin.getDegree());
+                ((EditText)findViewById(R.id.etSpeed)).setText("" + movPin.getSpeed());
             }
 
-            ((TextView)findViewById(R.id.publisher)).setText(pin.getPublisher());
-            ((TextView)findViewById(R.id.pinName)).setText(pin.getPinTitle());
-            ((TextView)findViewById(R.id.description)).setText(pin.getDescription());
-            ((TextView)findViewById(R.id.radius)).setText(pin.getRadius());
-            ((TextView)findViewById(R.id.etLocationLat)).setText("" + pin.getLatitude());
-            ((TextView)findViewById(R.id.etLocationLong)).setText("" + pin.getLongitude());
-            ((TextView)findViewById(R.id.etAltitude)).setText("" + pin.getAltitude());
+            ((TextView)findViewById(R.id.tvPinName)).setText(pin.getPinTitle());
+            ((TextView)findViewById(R.id.tvDescription)).setText(pin.getDescription());
+            ((TextView)findViewById(R.id.tvRadius)).setText(pin.getRadius());
+            ((TextView)findViewById(R.id.tvLocationLat)).setText("" + pin.getLatitude());
+            ((TextView)findViewById(R.id.tvLocationLong)).setText("" + pin.getLongitude());
+            ((TextView)findViewById(R.id.tvAltitude)).setText("" + pin.getAltitude());
+
+            ((EditText)findViewById(R.id.etPinName)).setText(pin.getPinTitle());
+            ((EditText)findViewById(R.id.etDescription)).setText(pin.getDescription());
+            ((EditText)findViewById(R.id.etRadius)).setText(pin.getRadius());
+            ((EditText)findViewById(R.id.etLocationLat)).setText("" + pin.getLatitude());
+            ((EditText)findViewById(R.id.etLocationLong)).setText("" + pin.getLongitude());
+            ((EditText)findViewById(R.id.etAltitude)).setText("" + pin.getAltitude());
+
+            ((TextView)findViewById(R.id.tvPublisher)).setText(pin.getPublisher());
             ((TextView)findViewById(R.id.etTime)).setText(pin.getTime());
             ((TextView)findViewById(R.id.etDate)).setText(pin.getDate());
-
-
-            passedID = (String) getIntent().getSerializableExtra("id");
         }
 
         public void backClicked(View view)
@@ -149,10 +188,14 @@ public class PinViewAttributes extends AppCompatActivity implements Serializable
             row6.setVisibility(View.GONE);
             row7.setVisibility(View.GONE);
             row8.setVisibility(View.GONE);
-            row10.setVisibility(View.GONE);
-            row11.setVisibility(View.GONE);
             row13.setVisibility(View.GONE);
             row14.setVisibility(View.GONE);
+
+            if(pin instanceof PinMoveable)
+            {
+                row10.setVisibility(View.GONE);
+                row11.setVisibility(View.GONE);
+            }
 
             row2alt.setVisibility(View.VISIBLE);
             row3alt.setVisibility(View.VISIBLE);
@@ -160,10 +203,14 @@ public class PinViewAttributes extends AppCompatActivity implements Serializable
             row6alt.setVisibility(View.VISIBLE);
             row7alt.setVisibility(View.VISIBLE);
             row8alt.setVisibility(View.VISIBLE);
-            row10alt.setVisibility(View.VISIBLE);
-            row11alt.setVisibility(View.VISIBLE);
             row13alt.setVisibility(View.VISIBLE);
             row14alt.setVisibility(View.VISIBLE);
+
+            if(pin instanceof PinMoveable)
+            {
+                row10alt.setVisibility(View.VISIBLE);
+                row11alt.setVisibility(View.VISIBLE);
+            }
         }
 
         public void cancelClicked(View view)
@@ -174,10 +221,14 @@ public class PinViewAttributes extends AppCompatActivity implements Serializable
             row6alt.setVisibility(View.GONE);
             row7alt.setVisibility(View.GONE);
             row8alt.setVisibility(View.GONE);
-            row10alt.setVisibility(View.GONE);
-            row11alt.setVisibility(View.GONE);
             row13alt.setVisibility(View.GONE);
             row14alt.setVisibility(View.GONE);
+
+            if(pin instanceof PinMoveable)
+            {
+                row10alt.setVisibility(View.GONE);
+                row11alt.setVisibility(View.GONE);
+            }
 
             row2.setVisibility(View.VISIBLE);
             row3.setVisibility(View.VISIBLE);
@@ -185,35 +236,85 @@ public class PinViewAttributes extends AppCompatActivity implements Serializable
             row6.setVisibility(View.VISIBLE);
             row7.setVisibility(View.VISIBLE);
             row8.setVisibility(View.VISIBLE);
-            row10.setVisibility(View.VISIBLE);
-            row11.setVisibility(View.VISIBLE);
             row13.setVisibility(View.VISIBLE);
             row14.setVisibility(View.VISIBLE);
+
+            if(pin instanceof PinMoveable)
+            {
+                row10.setVisibility(View.VISIBLE);
+                row11.setVisibility(View.VISIBLE);
+            }
+
+            ((EditText)findViewById(R.id.etPinName)).setText(pin.getPinTitle());
+            ((EditText)findViewById(R.id.etDescription)).setText(pin.getDescription());
+            ((EditText)findViewById(R.id.etRadius)).setText(pin.getRadius());
+            ((EditText)findViewById(R.id.etLocationLat)).setText("" + pin.getLatitude());
+            ((EditText)findViewById(R.id.etLocationLong)).setText("" + pin.getLongitude());
+            ((EditText)findViewById(R.id.etAltitude)).setText("" + pin.getAltitude());
         }
 
         public void saveClicked(View view)
         {
-            row2.setVisibility(View.GONE);
-            row3.setVisibility(View.GONE);
-            row5.setVisibility(View.GONE);
-            row6.setVisibility(View.GONE);
-            row7.setVisibility(View.GONE);
-            row8.setVisibility(View.GONE);
-            row10.setVisibility(View.GONE);
-            row11.setVisibility(View.GONE);
-            row13.setVisibility(View.GONE);
-            row14.setVisibility(View.GONE);
+            IOwrite writer = new IOwrite();
+            writer.removeObject("pins", pin.getPinID(), "", this);
 
-            row2alt.setVisibility(View.VISIBLE);
-            row3alt.setVisibility(View.VISIBLE);
-            row5alt.setVisibility(View.VISIBLE);
-            row6alt.setVisibility(View.VISIBLE);
-            row7alt.setVisibility(View.VISIBLE);
-            row8alt.setVisibility(View.VISIBLE);
-            row10alt.setVisibility(View.VISIBLE);
-            row11alt.setVisibility(View.VISIBLE);
-            row13alt.setVisibility(View.VISIBLE);
-            row14alt.setVisibility(View.VISIBLE);
+            pin.setPinTitle(((EditText)findViewById(R.id.etPinName)).getText().toString());
+            pin.setDescription(((EditText)findViewById(R.id.etDescription)).getText().toString());
+            pin.setRadius(((EditText)findViewById(R.id.etRadius)).getText().toString());
+            pin.setLatitude(Double.parseDouble(((EditText)findViewById(R.id.etLocationLat)).getText().toString()));
+            pin.setLongitude(Double.parseDouble(((EditText)findViewById(R.id.etLocationLong)).getText().toString()));
+            pin.setAltitude(Double.parseDouble(((EditText)findViewById(R.id.etAltitude)).getText().toString()));
+
+            if(pin instanceof PinMoveable)
+            {
+                ((PinMoveable) pin).setDegree(Double.parseDouble(((EditText)findViewById(R.id.etDegree)).getText().toString()));
+                ((PinMoveable) pin).setSpeed(Double.parseDouble(((EditText)findViewById(R.id.etSpeed)).getText().toString()));
+            }
+
+            writer.writePin(pin, this);
+
+            ((TextView)findViewById(R.id.tvPinName)).setText(pin.getPinTitle());
+            ((TextView)findViewById(R.id.tvDescription)).setText(pin.getDescription());
+            ((TextView)findViewById(R.id.tvRadius)).setText(pin.getRadius());
+            ((TextView)findViewById(R.id.tvLocationLat)).setText("" + pin.getLatitude());
+            ((TextView)findViewById(R.id.tvLocationLong)).setText("" + pin.getLongitude());
+            ((TextView)findViewById(R.id.tvAltitude)).setText("" + pin.getAltitude());
+
+            if(pin instanceof PinMoveable)
+            {
+                ((TextView)findViewById(R.id.tvDegree)).setText("" + ((PinMoveable) pin).getDegree());
+                ((TextView)findViewById(R.id.tvSpeed)).setText("" + ((PinMoveable) pin).getSpeed());
+            }
+
+            row2.setVisibility(View.VISIBLE);
+            row3.setVisibility(View.VISIBLE);
+            row5.setVisibility(View.VISIBLE);
+            row6.setVisibility(View.VISIBLE);
+            row7.setVisibility(View.VISIBLE);
+            row8.setVisibility(View.VISIBLE);
+            row13.setVisibility(View.VISIBLE);
+            row14.setVisibility(View.VISIBLE);
+
+            if(pin instanceof PinMoveable)
+            {
+                row10.setVisibility(View.VISIBLE);
+                row11.setVisibility(View.VISIBLE);
+            }
+
+            row2alt.setVisibility(View.GONE);
+            row3alt.setVisibility(View.GONE);
+            row5alt.setVisibility(View.GONE);
+            row6alt.setVisibility(View.GONE);
+            row7alt.setVisibility(View.GONE);
+            row8alt.setVisibility(View.GONE);
+            row13alt.setVisibility(View.GONE);
+            row14alt.setVisibility(View.GONE);
+
+            if(pin instanceof PinMoveable)
+            {
+                row10alt.setVisibility(View.GONE);
+                row11alt.setVisibility(View.GONE);
+            }
         }
 
         /**

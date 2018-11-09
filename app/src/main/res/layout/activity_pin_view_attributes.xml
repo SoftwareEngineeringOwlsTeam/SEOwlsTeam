@@ -45,7 +45,7 @@
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/publisher"
+                android:id="@+id/tvPublisher"
                 android:layout_width="251dp"
                 android:layout_height="wrap_content"
                 android:hint="Enter User Name"
@@ -74,7 +74,7 @@
                 />
 
             <TextView
-                android:id="@+id/pinName"
+                android:id="@+id/tvPinName"
                 android:layout_height="wrap_content"
                 android:layout_width="40dp"
                 android:hint="Enter Pin Name"
@@ -129,7 +129,7 @@
                 />
 
             <TextView
-                android:id="@+id/description"
+                android:id="@+id/tvDescription"
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:hint="Enter Description"
@@ -206,7 +206,7 @@
                 />
 
             <TextView
-                android:id="@+id/radius"
+                android:id="@+id/tvRadius"
                 android:inputType="numberDecimal"
                 android:layout_height="wrap_content"
                 android:layout_width="50sp"
@@ -665,9 +665,8 @@
             app:layout_constraintBottom_toBottomOf="@+id/button16"
             app:layout_constraintTop_toBottomOf="@+id/button16">
 
-
             <Button
-                android:id="@+id/button20"
+                android:id="@+id/button19"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="23dp"
