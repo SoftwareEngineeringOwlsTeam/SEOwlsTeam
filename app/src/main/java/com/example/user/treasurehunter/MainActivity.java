@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -30,6 +31,8 @@ import static com.example.user.treasurehunter.LogInScreen.currentActiveUser;
 public class MainActivity extends AppCompatActivity  implements AdapterView.OnItemSelectedListener
 {
     private DrawerLayout nDrawerLayout;
+    private NavigationView nView1;
+    private NavigationView nView2;
     private ActionBarDrawerToggle nToggle;
     static final int REQUEST_LOCATION = 1;
     static String currentLayout = "Personal";
@@ -49,7 +52,9 @@ public class MainActivity extends AppCompatActivity  implements AdapterView.OnIt
         nToggle = new ActionBarDrawerToggle(this, nDrawerLayout, R.string.open, R.string.close);
         nDrawerLayout.addDrawerListener(nToggle);
         nToggle.syncState();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        nView1 = findViewById(R.id.nav_view);
+        nView2 = findViewById(R.id.nav_view2);
 
         if(ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION) !=
                 PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission
@@ -68,7 +73,8 @@ public class MainActivity extends AppCompatActivity  implements AdapterView.OnIt
         groupSpinner.add("Personal");
         for(int i = 0; i < currentActiveUser.getAssociatedGroupID().size() - 1; i++)
         {
-            if(!currentActiveUser.getAssociatedGroupID().get(i).equals("null"))
+            if(!currentActiveUser.getAssociatedGroupID().get(i).equals("null") ||
+                        currentActiveUser.getAssociatedGroupID().get(i).charAt(0) != '%')
             {
                 idSpinner.add(currentActiveUser.getAssociatedGroupID().get(i));
                 Group group = reader.retrieveGroup(currentActiveUser.getAssociatedGroupID().get(i), this);
@@ -124,6 +130,16 @@ public class MainActivity extends AppCompatActivity  implements AdapterView.OnIt
         startActivity(pinIntent);
     }
 
+    public void drawRight(View view)
+    {
+        nDrawerLayout.openDrawer(nView2);
+    }
+
+    public void drawLeft(View view)
+    {
+        nDrawerLayout.openDrawer(nView1);
+    }
+
     public void pinsViewClicked(MenuItem menuItem)
     {
         Intent pinIntent = new Intent(this, PinView.class);
@@ -173,6 +189,15 @@ public class MainActivity extends AppCompatActivity  implements AdapterView.OnIt
         if(!selected.equals("Personal"))
         {
             Intent locIntent = new Intent(this, GroupView.class);
+            startActivity(locIntent);
+        }
+    }
+
+    public void groupInvitesClicked(MenuItem menuItem)
+    {
+        if(!selected.equals("Personal"))
+        {
+            Intent locIntent = new Intent(this, GroupInvites.class);
             startActivity(locIntent);
         }
     }
