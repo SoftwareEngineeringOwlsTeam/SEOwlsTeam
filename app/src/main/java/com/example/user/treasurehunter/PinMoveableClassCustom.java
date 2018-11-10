@@ -26,5 +26,10 @@ public class PinMoveableClassCustom extends PinMoveable {
     {
         setColor("Grey");
         setDefaultColor(0xff696969);
+        setPinNameHint("Custom Pin");
+        setDescriptionHint("This is a custom pin.");
+        setRadiusHint("0");
+        setDegreeHint("0");
+        setSpeedHint("0");
     }
 }

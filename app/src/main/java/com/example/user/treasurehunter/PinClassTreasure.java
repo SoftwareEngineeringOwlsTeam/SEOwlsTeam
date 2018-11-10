@@ -28,6 +28,9 @@ public class PinClassTreasure extends PinDS
     {
         setColor("Gold");
         setDefaultColor(0xffffbf00);
+        setPinNameHint("Treasure");
+        setDescriptionHint("'X' marks the spot!");
+        setRadiusHint("0");
     }
     /**
      * Method that gets the Default color.

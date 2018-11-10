@@ -26,5 +26,10 @@ public class PinMoveableClassForestFire extends PinMoveable {
     {
         setColor("Orange");
         setDefaultColor(0xffFF8C00);
+        setPinNameHint("Forest Fire");
+        setDescriptionHint("There is a fire here.");
+        setRadiusHint("0");
+        setDegreeHint("0");
+        setSpeedHint("0");
     }
 }

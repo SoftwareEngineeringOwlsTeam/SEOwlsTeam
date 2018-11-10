@@ -34,6 +34,11 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
     TableRow speedRow;
     Button goBackButton, placePinButton;
     TextView tvBanner;
+    EditText pinName;
+    EditText description;
+    EditText radius;
+    EditText degree;
+    EditText speed;
 
     /**
      * Method displays a screen to the user so they can Create a pin.
@@ -58,6 +63,12 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
         tvBanner.setText("   " + pin.getPinName());
         goBackButton.setBackgroundColor(pin.getDefaultColor());
         placePinButton.setBackgroundColor(pin.getDefaultColor());
+        pinName = findViewById(R.id.pinName);
+        pinName.setHint(pin.getPinNameHint());
+        description = findViewById(R.id.description);
+        description.setHint(pin.getDescriptionHint());
+        radius = findViewById(R.id.radius);
+        radius.setHint(pin.getRadiusHint());
 
 
         //Hides the degree and speed rows from displaying if the pin is not Moveable.
@@ -65,8 +76,18 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
         {
             degreeRow.setVisibility(View.GONE);
             speedRow.setVisibility(View.GONE);
-
         }
+        else
+        {
+            degree = findViewById(R.id.etDegree);
+            degree.setHint(((PinMoveable) pin).getDegreeHint());
+            speed = findViewById(R.id.etSpeed);
+            speed.setHint(((PinMoveable) pin).getSpeedHint());
+        }
+
+
+
+
 
 
         ((TextView)findViewById(R.id.etTime)).setText(pin.getTime());

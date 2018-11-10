@@ -37,8 +37,8 @@ public class GroupManager extends Activity implements OnItemSelectedListener
         IOwrite writer = new IOwrite();
         IOread reader = new IOread();
 
-        TextView groupIDs = findViewById(R.id.groupIDs);
-        groupIDs.setText("The Groups");
+        //TextView groupIDs = findViewById(R.id.groupIDs);
+        //groupIDs.setText("The Groups");
         Spinner idselector = findViewById(R.id.spinner2);
         idselector.setOnItemSelectedListener(this);
 

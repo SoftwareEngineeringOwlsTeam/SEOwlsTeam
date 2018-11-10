@@ -9,6 +9,8 @@ public abstract class PinMoveable extends PinDS
 {
     private double degree;
     private double speed;
+    protected String degreeHint;
+    protected String speedHint;
 
 
     /**
@@ -46,4 +48,19 @@ public abstract class PinMoveable extends PinDS
     {
         this.speed = speed;
     }
+
+    public String getDegreeHint() { return degreeHint;  }
+
+    public void setDegreeHint(String degreeHint)
+    {
+        this.degreeHint = degreeHint;
+    }
+
+    public String getSpeedHint() { return speedHint;  }
+
+    public void setSpeedHint(String speedHint)
+    {
+        this.speedHint = speedHint;
+    }
+
 }
