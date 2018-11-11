@@ -11,6 +11,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
+
+/**
+ *
+ * @author Zach Curll, Matthew Finnegan, Alexander Kulpin, Dominic Marandino, Brandon Ostasewski, Paul Sigloch
+ * @version Sprint 2
+ */
 public class IOread extends AppCompatActivity
 {
     PinDS pin;
@@ -99,7 +105,7 @@ public class IOread extends AppCompatActivity
                     {
                         retrievedPin = new PinClassTreasure();
                     }
-                    else if(foundLine[1].equals("PinClassShipwreck Pin"))
+                    else if(foundLine[1].equals("Shipwreck Pin"))
                     {
                         retrievedPin = new PinClassShipwreck();
                     }
@@ -110,26 +116,26 @@ public class IOread extends AppCompatActivity
                     else if(foundLine[1].equals("Survivor Pin"))
                     {
                         retrievedPin = new PinMoveableClassSurvivor();
-                        ((PinMoveableClassSurvivor) retrievedPin).setDegree(Double.parseDouble(foundLine[11]));
-                        ((PinMoveableClassSurvivor) retrievedPin).setSpeed(Double.parseDouble(foundLine[12]));
+                        ((PinMoveableClassSurvivor) retrievedPin).setDegree(Double.parseDouble(foundLine[12]));
+                        ((PinMoveableClassSurvivor) retrievedPin).setSpeed(Double.parseDouble(foundLine[13]));
                     }
                     else if(foundLine[1].equals("Forest Fire Pin"))
                     {
                         retrievedPin = new PinMoveableClassForestFire();
-                        ((PinMoveableClassForestFire) retrievedPin).setDegree(Double.parseDouble(foundLine[11]));
-                        ((PinMoveableClassForestFire) retrievedPin).setSpeed(Double.parseDouble(foundLine[12]));
+                        ((PinMoveableClassForestFire) retrievedPin).setDegree(Double.parseDouble(foundLine[12]));
+                        ((PinMoveableClassForestFire) retrievedPin).setSpeed(Double.parseDouble(foundLine[13]));
                     }
                     else if(foundLine[1].equals("Whale Pin"))
                     {
                         retrievedPin = new PinMoveableClassWhale();
-                        ((PinMoveableClassWhale) retrievedPin).setDegree(Double.parseDouble(foundLine[11]));
-                        ((PinMoveableClassWhale) retrievedPin).setSpeed(Double.parseDouble(foundLine[12]));
+                        ((PinMoveableClassWhale) retrievedPin).setDegree(Double.parseDouble(foundLine[12]));
+                        ((PinMoveableClassWhale) retrievedPin).setSpeed(Double.parseDouble(foundLine[13]));
                     }
-                    else if(foundLine[1].equals("PinMoveableClassHunting Pin"))
+                    else if(foundLine[1].equals("Hunting Pin"))
                     {
                         retrievedPin = new PinMoveableClassHunting();
-                        ((PinMoveableClassHunting) retrievedPin).setDegree(Double.parseDouble(foundLine[11]));
-                        ((PinMoveableClassHunting) retrievedPin).setSpeed(Double.parseDouble(foundLine[12]));
+                        ((PinMoveableClassHunting) retrievedPin).setDegree(Double.parseDouble(foundLine[12]));
+                        ((PinMoveableClassHunting) retrievedPin).setSpeed(Double.parseDouble(foundLine[13]));
                     }
                     else
                     {
@@ -145,6 +151,7 @@ public class IOread extends AppCompatActivity
                     retrievedPin.setAltitude(Double.parseDouble(foundLine[8]));
                     retrievedPin.setTime(foundLine[9]);
                     retrievedPin.setDate(foundLine[10]);
+                    retrievedPin.setPublisherID(foundLine[11]);
                 }
             }
         }
@@ -174,6 +181,13 @@ public class IOread extends AppCompatActivity
                 if(foundLine[0].equals(groupID))
                 {
                     retrievedGroup = new Group(foundLine[2], foundLine[4], foundLine[1], foundLine[3], foundLine[0]);
+                    String[] eachPersonalPin = foundLine[5].split("/", 1000);
+                    ArrayList<String> allGroupPins = new ArrayList<String>();
+                    for(int j = 0; j < eachPersonalPin.length; j++)
+                    {
+                        allGroupPins.add(eachPersonalPin[j]);
+                    }
+                    retrievedGroup.setAssociatedPinIDs(allGroupPins);
                 }
             }
         }
@@ -266,30 +280,34 @@ public class IOread extends AppCompatActivity
         {
             String everything = read("groupaudit", groupID, context);
             String[] eachLine = everything.split("\n", 1000);
-            for(int i = 0; i < eachLine.length - 1; i++)
+            for(int i = 0; i < eachLine.length; i++)
             {
                 String[] foundLine = eachLine[i].split("\\*",7);
-                System.out.println(foundLine[3]);
                 fullAudit += foundLine[1] + " " + foundLine[2] + " - " + foundLine[3];
                 if(foundLine[0].equals("0"))
                 {
-                    fullAudit += " Created This Group";
+                    fullAudit += " Created This Group" + "\n"
+                            + "*********************************************";
                 }
                 else if (foundLine[0].equals("1"))
                 {
-                    fullAudit += (" Placed Pin: " + foundLine[5] + " ID: " + foundLine[6]);
+                    fullAudit += (" Placed Pin: " + foundLine[5] + " ID: " + foundLine[6] + "\n"
+                            + "*********************************************");
                 }
                 else if (foundLine[0].equals("2"))
                 {
-                    fullAudit += (" Removed Pin: " + foundLine[5]);
+                    fullAudit += (" Removed Pin: " + foundLine[5] + "\n"
+                            + "*********************************************");
                 }
                 else if (foundLine[0].equals("3"))
                 {
-                    fullAudit += (" Added Member: " + foundLine[5] + " ID: " + foundLine[6]);
+                    fullAudit += (" Added Member: " + foundLine[5] + " ID: " + foundLine[6] + "\n"
+                            + "*********************************************");
                 }
                 else
                 {
-                    fullAudit += (" Deleted Member: " + foundLine[5] + " ID: " + foundLine[6]);
+                    fullAudit += (" Deleted Member: " + foundLine[5] + " ID: " + foundLine[6] + "\n"
+                            + "*********************************************");
                 }
                 fullAudit += "\n";
             }
@@ -343,40 +361,45 @@ public class IOread extends AppCompatActivity
         try
         {
             String everything = read("useraudit",userID, context);
-            String[] eachLine = everything.split("\n", 1000);
             System.out.println(everything);
-            for(int i = 0; i < eachLine.length - 1; i++)
+            String[] eachLine = everything.split("\n", 1000);
+            for(int i = 0; i < eachLine.length; i++)
             {
                 String[] foundLine = eachLine[i].split("\\*",7);
-                fullAudit += foundLine[1] + " " + foundLine[2] + " - " + foundLine[3];
+                fullAudit += foundLine[1] + " " + foundLine[2] + " - You";
                 if (foundLine[0].equals("0"))
                 {
                     fullAudit += (" created the account" + "\n"
+                            + "*********************************************" + "\n");
+                }
+                else if (foundLine[0].equals("1"))
+                {
+                    fullAudit += (" created the Group: " + foundLine[3] + "\n"
+                            + "*********************************************" + "\n");
+                }
+                else if (foundLine[0].equals("2"))
+                {
+                    fullAudit += (" deleted the Group: " + foundLine[3] + "\n"
                             + "**********************************************" + "\n");
                 }
-                if (foundLine[0].equals("1"))
+                else if (foundLine[0].equals("3"))
                 {
-                    fullAudit += (" created the Group: " + foundLine[4] + "\n"
+                    fullAudit += (" left the Group: " + foundLine[3] + "\n"
                             + "**********************************************" + "\n");
                 }
-                if (foundLine[0].equals("2"))
+                else if (foundLine[0].equals("4"))
                 {
-                    fullAudit += (" deleted the Group: " + foundLine[4] + "\n"
-                            + "**********************************************" + "\n");
+                    fullAudit += (" created the Pin: " + foundLine[4] + " for Group: " + foundLine[3] + "\n"
+                            + "*********************************************" + "\n");
                 }
-                if (foundLine[0].equals("3"))
+                else if (foundLine[0].equals("5"))
                 {
-                    fullAudit += (" left the Group: " + foundLine[4] + "\n"
-                            + "**********************************************" + "\n");
-                }
-                if (foundLine[0].equals("4"))
-                {
-                    fullAudit += (" created the Pin: " + foundLine[5] + " for Group: " + foundLine[4] + "\n"
+                    fullAudit += (" created the Pin: " + foundLine[3] + " for Personal record\n"
                             + "*********************************************" + "\n");
                 }
                 else
                 {
-                    fullAudit += (" deleted the Pin: " + foundLine[5] + " for Group: " + foundLine[4] + "\n"
+                    fullAudit += (" deleted the Pin: " + foundLine[4] + " for Group: " + foundLine[3] + "\n"
                             + "*********************************************" + "\n");
                 }
             }

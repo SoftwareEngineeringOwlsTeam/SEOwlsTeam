@@ -12,6 +12,14 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Random;
 
+import static com.example.user.treasurehunter.LogInScreen.currentActiveUser;
+
+
+/**
+ * Method is used for testing, will be removed at a later time.
+ * @author Zach Curll, Matthew Finnegan, Alexander Kulpin, Dominic Marandino, Brandon Ostasewski, Paul Sigloch
+ * @version Sprint 2
+ */
 public class IOtester extends AppCompatActivity
 {
     IOwrite IOwrite;

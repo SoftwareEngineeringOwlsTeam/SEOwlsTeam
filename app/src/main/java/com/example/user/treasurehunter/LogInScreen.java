@@ -3,16 +3,27 @@ package com.example.user.treasurehunter;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-
 import java.util.ArrayList;
 
-public class LogInScreen extends AppCompatActivity
-{
-    public static User currentActiveUser;
+import static com.example.user.treasurehunter.MainActivity.currentLayout;
+import static com.example.user.treasurehunter.MainActivity.currentLayoutID;
 
+/**
+ *
+ * @author Zach Curll, Matthew Finnegan, Alexander Kulpin, Dominic Marandino, Brandon Ostasewski, Paul Sigloch
+ * @version Sprint 2
+ */
+public class LogInScreen extends AppCompatActivity {
+
+  public static User currentActiveUser;
+
+    /**
+     * Method that sets the screen to display activity_log_in_screen.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +33,10 @@ public class LogInScreen extends AppCompatActivity
         edittext.setTransformationMethod(new AsteriskPasswordTransformationMethod());
     }
 
+    /**
+     * Method that, once the user clicks the button to log in, checks if the user name and password is correctly entered.
+     * If the information is entered correctly the user is sent to the MainActivity. If not, the user is given an error message.
+     */
     public void loginClicked(View view)
     {
         EditText et = findViewById(R.id.password);
@@ -36,6 +51,8 @@ public class LogInScreen extends AppCompatActivity
                 if(user.getPassword().equals(et.getText().toString()))
                 {
                     currentActiveUser = user;
+                    currentLayout = "Personal";
+                    currentLayoutID = "personal";
                     Intent pinIntent = new Intent(this, MainActivity.class);
                     startActivity(pinIntent);
                 }
@@ -49,9 +66,30 @@ public class LogInScreen extends AppCompatActivity
         }
     }
 
+    public void clearData(View view)
+    {
+        IOwrite writer = new IOwrite();
+        writer.clearData(this);
+    }
+
     public void createAccountClicked(View view)
     {
         Intent pinIntent = new Intent(this, UserCreate.class);
         startActivity(pinIntent);
+    }
+
+    /**
+     * Method that allows the user to close the App.
+     */
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if (keyCode == KeyEvent.KEYCODE_BACK )
+        {
+            finish();
+            System.exit(0);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

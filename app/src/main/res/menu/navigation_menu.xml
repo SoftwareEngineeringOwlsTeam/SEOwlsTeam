@@ -2,16 +2,34 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/nav_groups"
+        android:id="@+id/nav_create_group"
         android:icon="@mipmap/baseline_people_black_48"
         android:onClick="groupsClicked"
-        android:title="Groups" />
+        android:title="Create Group" />
+
+    <item
+        android:id="@+id/nav_view_group"
+        android:icon="@mipmap/baseline_people_black_48"
+        android:onClick="groupViewClicked"
+        android:title="View Group" />
+
+    <item
+        android:id="@+id/nav_group_invites"
+        android:icon="@mipmap/baseline_people_black_48"
+        android:onClick="groupInvitesClicked"
+        android:title="Group Invites" />
 
     <item
         android:id="@+id/nav_pin"
         android:icon="@mipmap/baseline_pin_drop_black_48"
         android:onClick="pinsClicked"
         android:title="Create Pin" />
+
+    <item
+        android:id="@+id/nav_pin_view"
+        android:icon="@mipmap/baseline_pin_drop_black_48"
+        android:onClick="pinsViewClicked"
+        android:title="View Pins" />
 
 
     <item

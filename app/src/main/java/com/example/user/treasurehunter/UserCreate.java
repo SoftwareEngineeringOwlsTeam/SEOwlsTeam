@@ -3,11 +3,14 @@ package com.example.user.treasurehunter;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 
 import java.util.ArrayList;
 import java.util.Random;
+
+import static com.example.user.treasurehunter.LogInScreen.currentActiveUser;
 
 public class UserCreate extends AppCompatActivity
 {
@@ -80,6 +83,7 @@ public class UserCreate extends AppCompatActivity
 
                 User user = new User(userID, etUsername.getText().toString(), etPassword1.getText().toString());
                 writer.writeUser(user, this);
+                writer.writeUserAudit(userID,0, "", "", this);
                 Intent pinIntent = new Intent(this, LogInScreen.class);
                 startActivity(pinIntent);
             }
@@ -87,5 +91,20 @@ public class UserCreate extends AppCompatActivity
         else{
             etUsername.setError("Username already exists");
         }
+    }
+
+    /**
+     * Method that allows the user to close the App.
+     */
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if (keyCode == KeyEvent.KEYCODE_BACK )
+        {
+            finish();
+            System.exit(0);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

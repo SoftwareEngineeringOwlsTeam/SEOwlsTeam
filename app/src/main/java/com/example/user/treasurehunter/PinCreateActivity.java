@@ -17,9 +17,14 @@ import java.io.FileNotFoundException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
-
 import static com.example.user.treasurehunter.LogInScreen.currentActiveUser;
+import static com.example.user.treasurehunter.MainActivity.currentLayoutID;
 
+/**
+ *
+ * @author Zach Curll, Matthew Finnegan, Alexander Kulpin, Dominic Marandino, Brandon Ostasewski, Paul Sigloch
+ * @version Sprint 2
+ */
 public class PinCreateActivity extends AppCompatActivity implements Serializable
 {
     public PinDS pin;
@@ -29,7 +34,16 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
     TableRow speedRow;
     Button goBackButton, placePinButton;
     TextView tvBanner;
+    EditText pinName;
+    EditText description;
+    EditText radius;
+    EditText degree;
+    EditText speed;
 
+    /**
+     * Method displays a screen to the user so they can Create a pin.
+     * Assigns the entered data into the correct fields.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -49,14 +63,31 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
         tvBanner.setText("   " + pin.getPinName());
         goBackButton.setBackgroundColor(pin.getDefaultColor());
         placePinButton.setBackgroundColor(pin.getDefaultColor());
+        pinName = findViewById(R.id.pinName);
+        pinName.setHint(pin.getPinNameHint());
+        description = findViewById(R.id.description);
+        description.setHint(pin.getDescriptionHint());
+        radius = findViewById(R.id.radius);
+        radius.setHint(pin.getRadiusHint());
 
 
+        //Hides the degree and speed rows from displaying if the pin is not Moveable.
         if(!(pin instanceof PinMoveable))
         {
             degreeRow.setVisibility(View.GONE);
             speedRow.setVisibility(View.GONE);
-
         }
+        else
+        {
+            degree = findViewById(R.id.etDegree);
+            degree.setHint(((PinMoveable) pin).getDegreeHint());
+            speed = findViewById(R.id.etSpeed);
+            speed.setHint(((PinMoveable) pin).getSpeedHint());
+        }
+
+
+
+
 
 
         ((TextView)findViewById(R.id.etTime)).setText(pin.getTime());
@@ -108,7 +139,7 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
             }
         }
         pin.setPinID(pinID);
-
+        pin.setPublisherID(currentActiveUser.getUserID());
 
         //et = (EditText)findViewById(R.id.color);
         pin.setColor(pin.getColor());
@@ -121,29 +152,38 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
             ((PinMoveable) pin).setSpeed(Double.parseDouble(et.getText().toString()));
         }
 
-
         et = findViewById(R.id.radius);
         pin.setRadius(et.getText().toString());
         Intent mainIntent = new Intent(this, MainActivity.class);
         writer.writePin(pin, this);
 
-        ArrayList<String> addingAssociation = new ArrayList<>();
-        addingAssociation.add(pin.getPinID());
-        writer.addAssociation(addingAssociation, "ppin", "", this);
 
-        writer.writeUserAudit(currentActiveUser.getUserID(),4, pinID, pin.getPublisher(), this);
+
+        ArrayList<String> addingList = new ArrayList<>();
+        addingList.add(pin.getPinID());
+        if(currentLayoutID.equals("personal"))
+        {
+            writer.addAssociation(addingList, "ppin", "", this);
+            writer.writeUserAudit(currentActiveUser.getUserID(),5, pinID, pin.getPublisher(), this);
+        }
+        else{
+            writer.addAssociation(addingList, "gpin", currentLayoutID, this);
+            writer.writeGroupAudit(currentLayoutID, 1, currentActiveUser, "", pinID, this);
+            writer.writeUserAudit(currentActiveUser.getUserID(),4, pinID, currentLayoutID, this);
+        }
         startActivity(mainIntent);
     }
 
     public void clickPinSelect(View v)
     {
         goBackButton = (Button) v;
-
-
         Intent mainIntent = new Intent(this, PinActivity.class);
         startActivity(mainIntent);
     }
 
+    /**
+     * Method that allows the user to move back to the MainActivity screen.
+     */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)
     {
@@ -156,10 +196,3 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
         return super.onKeyDown(keyCode, event);
     }
 }
-
-
-
-
-
-
-

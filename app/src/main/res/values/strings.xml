@@ -11,6 +11,7 @@
         <item>Orange</item>
     </string-array>
     <string name="title_activity_iotester">IOtester</string>
+    <string name="enter_user_name">Enter User Name</string>
 </resources>
 
 

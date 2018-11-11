@@ -12,6 +12,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -20,6 +21,11 @@ import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+ *
+ * @author Zach Curll, Matthew Finnegan, Alexander Kulpin, Dominic Marandino, Brandon Ostasewski, Paul Sigloch
+ * @version Sprint 2
+ */
 public class LocationGeneration extends AppCompatActivity
 {
     static final int REQUEST_LOCATION = 1;
@@ -51,12 +57,19 @@ public class LocationGeneration extends AppCompatActivity
         pin.setTime(currentTime);
         currentDate = DateFormat.getDateInstance().format(calendar.getTime());
         pin.setDate(currentDate);
+        String passedID = (String) getIntent().getSerializableExtra("id");
 
         Intent mainIntent = new Intent(this, PinCreateActivity.class);
         mainIntent.putExtra("pin", pin);
+        mainIntent.putExtra("id", passedID);
         startActivity(mainIntent);
     }
 
+    /**
+     * Method to get current GPS location. This information includes, Latitude, Longitude, Altitude.
+     * If the above information is not obtainable the values are set to "-1".
+     * Also asks the user permission to access their GPS.
+     */
     void getLocation()
     {
         if(ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION) !=
@@ -83,5 +96,20 @@ public class LocationGeneration extends AppCompatActivity
             }
         }
 
+    }
+
+    /**
+     * Method that allows the user to move back to the MainActivity screen.
+     */
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if (keyCode == KeyEvent.KEYCODE_BACK )
+        {
+            Intent mainIntent = new Intent(this, MainActivity.class);
+            startActivity(mainIntent);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

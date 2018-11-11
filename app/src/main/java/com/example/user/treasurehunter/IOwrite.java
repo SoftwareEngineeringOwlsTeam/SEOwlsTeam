@@ -13,9 +13,12 @@ import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-
 import static com.example.user.treasurehunter.LogInScreen.currentActiveUser;
-
+/**
+ *
+ * @author Zach Curll, Matthew Finnegan, Alexander Kulpin, Dominic Marandino, Brandon Ostasewski, Paul Sigloch
+ * @version Sprint 2
+ */
 public class IOwrite extends AppCompatActivity implements Serializable
 {
 
@@ -76,7 +79,7 @@ public class IOwrite extends AppCompatActivity implements Serializable
     {
         String data = (pin.getPinID()       + "*" + pin.getPinName() + "*" + pin.getPinTitle() + "*" + pin.getPublisher() + "*"
                      + pin.getDescription() + "*" + pin.getRadius()  + "*" + pin.getLatitude() + "*" + pin.getLongitude() + "*"
-                     + pin.getAltitude()    + "*" + pin.getTime()    + "*" + pin.getDate());
+                     + pin.getAltitude()    + "*" + pin.getTime()    + "*" + pin.getDate()     + "*" + pin.getPublisherID());
         if (pin instanceof PinMoveable)
         {
             data += ("*" + ((PinMoveable) pin).getDegree() + "*" + ((PinMoveable) pin).getSpeed());
@@ -93,10 +96,18 @@ public class IOwrite extends AppCompatActivity implements Serializable
     {
         String data = (group.getGroupID() + "*" + group.getGroupName() + "*" + group.getAdminID() + "*"
                      + group.getAdminName() + "*" + group.getGroupDescription() + "*");
+        if(group.getAssociatedPinIDs() != null)
+        {
+            for(int i = 0; i < group.getAssociatedPinIDs().size(); i++)
+            {
+                if(i != 0)
+                {
+                    data = data + "/";
+                }
+                data = data + group.getAssociatedPinIDs().get(i);
+            }
+        }
         write(data,"groups", context);
-
-        data = ("0*" + currentTime + "*" + currentDate + "*" + group.getAdminName() + "*" + group.getAdminID());
-        write(data,group.getGroupID() + "groupaudit", context);
     }
 
     /**
@@ -106,7 +117,30 @@ public class IOwrite extends AppCompatActivity implements Serializable
      */
     public void writeUser(User user, Context context)
     {
-        String data = (user.getUserID() + "*" + user.getUserName() + "*" + user.getPassword() + "*" + user.getPersonalPinID() + "*" + user.getAssociatedGroupID());
+        String data = (user.getUserID() + "*" + user.getUserName() + "*" + user.getPassword() + "*");
+        if(user.getPersonalPinID() != null)
+        {
+            for(int i = 0; i < user.getPersonalPinID().size(); i++)
+            {
+                if(i != 0)
+                {
+                    data = data + "/";
+                }
+                data = data + user.getPersonalPinID().get(i);
+            }
+        }
+        data += "*";
+        if(user.getAssociatedGroupID() != null)
+        {
+            for (int i = 0; i < user.getAssociatedGroupID().size(); i++)
+            {
+                if (i != 0)
+                {
+                    data = data + "/";
+                }
+                data = data + user.getAssociatedGroupID().get(i);
+            }
+        }
         write(data,"users", context);
     }
 
@@ -170,7 +204,7 @@ public class IOwrite extends AppCompatActivity implements Serializable
         if(!pinID.equals(""))
         {
             PinDS pin = reader.retrievePin(pinID, context);
-            if(action == 2)
+            if(action == 2 || action == 1)
             {
                 data += ("*" + pin.getPinTitle());
                 if(action == 1)
@@ -197,11 +231,22 @@ public class IOwrite extends AppCompatActivity implements Serializable
         //5. You deleted a pin for a group
 
         //for testing
-        String data = (action + "*" + currentTime + "*" + currentDate + "*" + groupID);
+        String data = (action + "*" + currentTime + "*" + currentDate);
+        if(action == 1)
+        {
+            Group group = reader.retrieveGroup(groupID, context);
+            data += ("*" + group.getGroupName());
+        }
         if(action == 4)
         {
+            Group group = reader.retrieveGroup(groupID, context);
             PinDS pin = reader.retrievePin(pinID, context);
-            data += ("*TestGroup*" + pin.getPinTitle());
+            data += ("*" + group.getGroupName() + "*" + pin.getPinTitle());
+        }
+        if(action == 5)
+        {
+            PinDS pin = reader.retrievePin(pinID, context);
+            data += ("*" + pin.getPinTitle());
         }
 
         /*
@@ -249,12 +294,15 @@ public class IOwrite extends AppCompatActivity implements Serializable
         {
             Group changedGroup = reader.retrieveGroup(groupID, context);
             removeObject("groups", groupID, "", context);
-            for(int i = 0; i < changedGroup.getAssociatedPinIDs().size(); i++)
+            if(changedGroup.getAssociatedPinIDs() != null)
             {
-                addingID.add(changedGroup.getAssociatedPinIDs().get(i));
+                for(int i = 0; i < changedGroup.getAssociatedPinIDs().size(); i++)
+                {
+                    addingID.add(changedGroup.getAssociatedPinIDs().get(i));
+                }
+                changedGroup.setAssociatedPinIDs(addingID);
+                writeGroup(changedGroup, context);
             }
-            changedGroup.setAssociatedPinIDs(addingID);
-            writeGroup(changedGroup, context);
         }
         else {
             User changedUser = currentActiveUser;
@@ -361,4 +409,3 @@ public class IOwrite extends AppCompatActivity implements Serializable
         }
     }
 }
-
