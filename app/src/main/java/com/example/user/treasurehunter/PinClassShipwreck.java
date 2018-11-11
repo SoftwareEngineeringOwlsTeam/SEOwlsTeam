@@ -28,5 +28,8 @@ public class PinClassShipwreck extends PinDS
     {
         setColor("Blue");
         setDefaultColor(0xff0000CC);
+        setPinNameHint("Shipwreck");
+        setDescriptionHint("A shipwreck is located here.");
+        setRadiusHint("0");
     }
 }

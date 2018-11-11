@@ -28,5 +28,10 @@ public class PinMoveableClassWhale extends PinMoveable
     {
         setColor("Navy Blue");
         setDefaultColor(0xff3A4384);
+        setPinNameHint("Scavenger Hunt");
+        setDescriptionHint("This pin is part of a scavenger hunt.");
+        setRadiusHint("0");
+        setDegreeHint("0");
+        setSpeedHint("0");
     }
 }

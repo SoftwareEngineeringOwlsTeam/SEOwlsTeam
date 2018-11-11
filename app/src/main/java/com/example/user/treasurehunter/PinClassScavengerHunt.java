@@ -28,5 +28,8 @@ public class PinClassScavengerHunt extends PinDS
     {
         setColor("Purple");
         setDefaultColor(0xffA020F0);
+        setPinNameHint("Scavenger Hunt");
+        setDescriptionHint("This pin is part of a scavenger hunt.");
+        setRadiusHint("0");
     }
 }

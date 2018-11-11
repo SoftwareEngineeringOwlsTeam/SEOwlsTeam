@@ -28,5 +28,10 @@ public class PinMoveableClassSurvivor extends PinMoveable
     {
         setColor("Red");
         setDefaultColor(0xffFF0000);
+        setPinNameHint("Survivor");
+        setDescriptionHint("A survivor has been spotted here!");
+        setRadiusHint("0");
+        setDegreeHint("0");
+        setSpeedHint("0");
     }
 }

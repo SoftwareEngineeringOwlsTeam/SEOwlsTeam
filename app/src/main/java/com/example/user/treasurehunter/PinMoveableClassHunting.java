@@ -28,5 +28,10 @@ public class PinMoveableClassHunting extends PinMoveable
     {
         setColor("Green");
         setDefaultColor(0xff228B22);
+        setPinNameHint("Hunting Pin");
+        setDescriptionHint("Game was spotted here.");
+        setRadiusHint("0");
+        setDegreeHint("0");
+        setSpeedHint("0");
     }
 }

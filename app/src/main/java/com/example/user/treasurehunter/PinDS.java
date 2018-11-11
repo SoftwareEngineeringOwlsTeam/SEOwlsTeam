@@ -30,6 +30,9 @@ public abstract class PinDS implements Serializable
     private String pinTitle;
     private static ArrayList<String> existingPinIDs = new ArrayList<>();
     protected int defaultColor;
+    protected String pinNameHint;
+    protected String descriptionHint;
+    protected String radiusHint;
 
     public PinDS(String pinID, double latitude, double longitude, double altitude,
                  String pinName, String description, String publisher, String color,
@@ -242,5 +245,29 @@ public abstract class PinDS implements Serializable
     public void setPublisherID(String publisherID)
     {
         this.publisherID = publisherID;
+    }
+
+    public String getDescriptionHint() {
+        return descriptionHint;
+    }
+
+    public void setDescriptionHint(String descriptionHint) {
+        this.descriptionHint = descriptionHint;
+    }
+
+    public String getPinNameHint() {
+        return pinNameHint;
+    }
+
+    public void setPinNameHint(String pinNameHint) {
+        this.pinNameHint = pinNameHint;
+    }
+
+    public String getRadiusHint() {
+        return radiusHint;
+    }
+
+    public void setRadiusHint(String radiusHint) {
+        this.radiusHint = radiusHint;
     }
 }
