@@ -54,15 +54,12 @@ public class GroupCreator extends AppCompatActivity
 
 
         /// As a test
-        ArrayList<String> members = new ArrayList<String>();
-        members.add("Aldin");
-        members.add("Deborion");
-        members.add("Estemoor");
+        ArrayList<String> membersIDs = new ArrayList<String>();
+        membersIDs.add(currentActiveUser.getUserID());
+        ArrayList<String> membersNames = new ArrayList<String>();
+        membersNames.add(currentActiveUser.getUserName());
         ArrayList<String> permissions = new ArrayList<String>();
-        permissions.add("RWAD");
-        permissions.add("RWA");
-        permissions.add("RW");
-
+        permissions.add("ADUMP");
 
         boolean generated = false;
         String newGroupID = "";
@@ -86,7 +83,7 @@ public class GroupCreator extends AppCompatActivity
         Group newGroup = new Group(tvUserID.getText().toString(), etDescription.getText().toString(),
                                     etTitle.getText().toString(), tvUsername.getText().toString(), newGroupID);
         writer.writeGroup(newGroup, this);
-        writer.writeMembers(members, permissions, newGroup.getGroupID(),this);
+        writer.writeMembers(membersIDs, membersNames, permissions, newGroup.getGroupID(),this);
 
         writer.writeGroupAudit(newGroupID,0,currentActiveUser,"","",this);
         writer.writeUserAudit(currentActiveUser.getUserID(),1, "", newGroupID, this);

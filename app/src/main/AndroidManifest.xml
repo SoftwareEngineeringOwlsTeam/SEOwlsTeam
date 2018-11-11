@@ -43,9 +43,6 @@
             android:label="Log In"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".GroupManager"
-            android:label="Group Manager" />
-        <activity
             android:name=".UserSettings"
             android:label="Settings" />
         <activity

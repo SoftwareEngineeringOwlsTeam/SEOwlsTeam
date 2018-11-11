@@ -332,10 +332,10 @@ public class IOread extends AppCompatActivity
         {
             String everything = read("members", groupID, context);
             String[] eachLine = everything.split("\n", 1000);
-            for(int i = 0; i < eachLine.length - 1; i++)
+            for(int i = 0; i < eachLine.length; i++)
             {
                 String[] foundLine = eachLine[i].split("\\*",3);
-                fullAudit += (foundLine[0] + " is able to " + foundLine[1]);
+                fullAudit += (foundLine[1] + " is able to " + foundLine[2]);
                 if(i != eachLine.length - 1)
                 {
                     fullAudit += "\n";
@@ -409,5 +409,27 @@ public class IOread extends AppCompatActivity
             e.printStackTrace();
         }
         return fullAudit;
+    }
+
+    public String readGroupMemberPermission(String userID, String groupID, Context context)
+    {
+        try
+        {
+            String everything = read("members", groupID, context);
+            String[] eachLine = everything.split("\n", 1000);
+            for(int i = 0; i < eachLine.length; i++)
+            {
+                String[] foundLine = eachLine[i].split("\\*",3);
+                if(foundLine[0].equals(userID))
+                {
+                    return foundLine[2];
+                }
+            }
+        }
+        catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+        return "";
     }
 }

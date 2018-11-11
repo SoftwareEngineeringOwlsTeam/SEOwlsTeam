@@ -267,13 +267,13 @@ public class IOwrite extends AppCompatActivity implements Serializable
         write(data, (userID + "useraudit"), context);
     }
 
-    public void writeMembers(ArrayList<String> members, ArrayList<String> permissions, String groupID, Context context)
+    public void writeMembers(ArrayList<String> membersID, ArrayList<String> membersName, ArrayList<String> permissions, String groupID, Context context)
     {
         String data = "";
-        for(int i = 0; i < members.size(); i++)
+        for(int i = 0; i < membersName.size(); i++)
         {
-            data += members.get(i) + "*" + permissions.get(i);
-            if(i != members.size() - 1)
+            data += membersID.get(i) + "*" +membersName.get(i) + "*" + permissions.get(i);
+            if(i != membersName.size() - 1)
             {
                 data += "\n";
             }
@@ -328,7 +328,44 @@ public class IOwrite extends AppCompatActivity implements Serializable
         }
     }
 
-
+    public void removeAssociation(ArrayList<String> addingID, String removingFromWhat, String groupID, Context context)
+    {
+        if(removingFromWhat.equals("gpin"))
+        {
+//            Group changedGroup = reader.retrieveGroup(groupID, context);
+//            removeObject("groups", groupID, "", context);
+//            if(changedGroup.getAssociatedPinIDs() != null)
+//            {
+//                for(int i = 0; i < changedGroup.getAssociatedPinIDs().size(); i++)
+//                {
+//                    addingID.add(changedGroup.getAssociatedPinIDs().get(i));
+//                }
+//                changedGroup.setAssociatedPinIDs(addingID);
+//                writeGroup(changedGroup, context);
+//            }
+        }
+        else {
+            User changedUser = currentActiveUser;
+            removeObject("users", currentActiveUser.getUserID(), "", context);
+            if(removingFromWhat.equals("ppin"))
+            {
+                for(int i = 0; i < changedUser.getPersonalPinID().size(); i++)
+                {
+                    addingID.remove(changedUser.getPersonalPinID().get(i));
+                }
+                changedUser.setPersonalPinID(addingID);
+            }
+            else{
+                for(int i = 0; i < changedUser.getAssociatedGroupID().size(); i++)
+                {
+                    addingID.remove(changedUser.getAssociatedGroupID().get(i));
+                }
+                changedUser.setAssociatedGroupID(addingID);
+            }
+            System.out.println(changedUser.getPersonalPinID().get(0));
+            writeUser(changedUser, context);
+        }
+    }
 
 
 
