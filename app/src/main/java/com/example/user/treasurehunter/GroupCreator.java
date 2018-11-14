@@ -7,24 +7,18 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Random;
-
 import static com.example.user.treasurehunter.LogInScreen.currentActiveUser;
-import static com.example.user.treasurehunter.MainActivity.currentLayoutID;
-
 
 /**
- *
  * @author Zach Curll, Matthew Finnegan, Alexander Kulpin, Dominic Marandino, Brandon Ostasewski, Paul Sigloch
  * @version Sprint 2
  */
 public class GroupCreator extends AppCompatActivity
 {
-    TextView tvUsername;
-    TextView tvUserID;
+    private TextView tvUsername;
+    private TextView tvUserID;
 
     /**
      * Method that sets the screen to display activity_group_creator.
@@ -51,14 +45,11 @@ public class GroupCreator extends AppCompatActivity
         EditText etDescription = findViewById(R.id.etDescription);
         EditText etTitle = findViewById(R.id.etTitle);
 
-
-
-        /// As a test
-        ArrayList<String> membersIDs = new ArrayList<String>();
+        ArrayList<String> membersIDs = new ArrayList<>();
         membersIDs.add(currentActiveUser.getUserID());
-        ArrayList<String> membersNames = new ArrayList<String>();
+        ArrayList<String> membersNames = new ArrayList<>();
         membersNames.add(currentActiveUser.getUserName());
-        ArrayList<String> permissions = new ArrayList<String>();
+        ArrayList<String> permissions = new ArrayList<>();
         permissions.add("ADUMP");
 
         boolean generated = false;

@@ -12,7 +12,6 @@ public abstract class PinMoveable extends PinDS
     protected String degreeHint;
     protected String speedHint;
 
-
     /**
      * Method that gets the Degree.
      * @return The Degree.
@@ -49,18 +48,27 @@ public abstract class PinMoveable extends PinDS
         this.speed = speed;
     }
 
-    public String getDegreeHint() { return degreeHint;  }
+    // INCLUDE DOCUMENTATION*****************************************************
+    public String getDegreeHint()
+    {
+        return degreeHint;
+    }
 
+    // INCLUDE DOCUMENTATION*****************************************************
     public void setDegreeHint(String degreeHint)
     {
         this.degreeHint = degreeHint;
     }
 
-    public String getSpeedHint() { return speedHint;  }
+    // INCLUDE DOCUMENTATION*****************************************************
+    public String getSpeedHint()
+    {
+        return speedHint;
+    }
 
+    // INCLUDE DOCUMENTATION*****************************************************
     public void setSpeedHint(String speedHint)
     {
         this.speedHint = speedHint;
     }
-
 }

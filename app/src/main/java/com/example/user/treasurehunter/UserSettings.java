@@ -4,11 +4,8 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
-import android.view.MenuItem;
-import android.widget.TextView;
-import static com.example.user.treasurehunter.LogInScreen.currentActiveUser;
+
 /**
- *
  * @author Zach Curll, Matthew Finnegan, Alexander Kulpin, Dominic Marandino, Brandon Ostasewski, Paul Sigloch
  * @version Sprint 2
  */
@@ -37,5 +34,4 @@ public class UserSettings extends AppCompatActivity {
         }
         return super.onKeyDown(keyCode, event);
     }
-
 }

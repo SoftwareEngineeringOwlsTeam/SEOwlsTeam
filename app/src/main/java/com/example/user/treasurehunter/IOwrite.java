@@ -1,9 +1,7 @@
 package com.example.user.treasurehunter;
 
 import android.content.Context;
-import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -14,14 +12,13 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import static com.example.user.treasurehunter.LogInScreen.currentActiveUser;
+
 /**
- *
  * @author Zach Curll, Matthew Finnegan, Alexander Kulpin, Dominic Marandino, Brandon Ostasewski, Paul Sigloch
  * @version Sprint 2
  */
 public class IOwrite extends AppCompatActivity implements Serializable
 {
-
     private String currentDate;
     private String currentTime;
     private Date time = Calendar.getInstance().getTime();

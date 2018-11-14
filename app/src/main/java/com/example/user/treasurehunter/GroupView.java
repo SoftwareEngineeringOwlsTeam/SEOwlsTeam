@@ -1,37 +1,31 @@
 package com.example.user.treasurehunter;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
-
-import java.util.ArrayList;
-
 import static com.example.user.treasurehunter.LogInScreen.currentActiveUser;
 import static com.example.user.treasurehunter.MainActivity.currentLayout;
 import static com.example.user.treasurehunter.MainActivity.currentLayoutID;
 
-
 /**
- *
  * @author Zach Curll, Matthew Finnegan, Alexander Kulpin, Dominic Marandino, Brandon Ostasewski, Paul Sigloch
  * @version Sprint 2
  */
 public class GroupView extends AppCompatActivity
 {
-    Group currentGroup;
+    private Group currentGroup;
 
+    // INCLUDE DOCUMENTATION*****************************************************
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
-        IOwrite writer = new IOwrite();
-        IOread reader = new IOread();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_group);
+
+        IOread reader = new IOread();
 
         TextView tvGroupname = findViewById(R.id.tvGroupName);
         TextView tvUsername = findViewById(R.id.tvUserName);
@@ -46,7 +40,7 @@ public class GroupView extends AppCompatActivity
         System.out.println(reader.readGroupMemberPermission(currentActiveUser.getUserID(), currentLayoutID, this));
         if(!reader.readGroupMemberPermission(currentActiveUser.getUserID(), currentLayoutID, this).contains("A"))
         {
-            ((Button)findViewById(R.id.buttonMembers5)).setVisibility(View.GONE);
+            findViewById(R.id.buttonMembers5).setVisibility(View.GONE);
         }
     }
 
@@ -63,16 +57,6 @@ public class GroupView extends AppCompatActivity
         currentLayoutID = "personal";
         currentLayout = "Personal";
         Intent locIntent = new Intent(this, MainActivity.class);
-        startActivity(locIntent);
-    }
-
-    /**
-     * Method that displays the group's audit.
-     */
-    public void viewGroupAudit(View view)
-    {
-        Intent locIntent = new Intent(this, GroupAuditLog.class);
-        locIntent.putExtra("id", currentLayoutID);
         startActivity(locIntent);
     }
 

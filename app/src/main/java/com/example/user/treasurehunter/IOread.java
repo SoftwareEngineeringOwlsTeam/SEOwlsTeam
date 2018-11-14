@@ -2,7 +2,6 @@ package com.example.user.treasurehunter;
 
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -11,18 +10,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-
 /**
- *
  * @author Zach Curll, Matthew Finnegan, Alexander Kulpin, Dominic Marandino, Brandon Ostasewski, Paul Sigloch
  * @version Sprint 2
  */
 public class IOread extends AppCompatActivity
 {
-    PinDS pin;
-    Group group;
-    User user;
-
     public IOread() { }
 
     /**
@@ -48,7 +41,7 @@ public class IOread extends AppCompatActivity
             System.out.println("FileOutputStream exception: - " + e.toString());
         }
         FileInputStream fileInputStream = context.openFileInput(file.getName());
-        String words = "";
+        String words;
         StringBuilder resultStringBuilder = new StringBuilder();
         try (BufferedReader br = new BufferedReader(new InputStreamReader(fileInputStream)))
         {
@@ -72,14 +65,6 @@ public class IOread extends AppCompatActivity
                 fin += "\n";
             }
         }
-
-        /*
-        if(!fin.isEmpty())
-        {
-            fin = fin.substring(0, fin.length() - 4);
-        }
-        */
-
         return fin;
     }
 
@@ -411,6 +396,13 @@ public class IOread extends AppCompatActivity
         return fullAudit;
     }
 
+    /**
+     *                      Use this to read and use the permissions a certain member has
+     *  @param userID       Specify the id of the user you are trying to retrieve
+     *  @param groupID      Specify the group ID that you are searching through
+     *  @param context      Include the context you are working in
+     *  @return             The ADUMP permissions the user has
+     */
     public String readGroupMemberPermission(String userID, String groupID, Context context)
     {
         try

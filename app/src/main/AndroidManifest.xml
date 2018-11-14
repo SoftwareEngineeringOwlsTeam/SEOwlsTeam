@@ -54,7 +54,6 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".GroupCreator" />
         <activity android:name=".GroupView" />
-        <activity android:name=".GroupAuditLog" />
         <activity android:name=".GroupMembers" />
 
         <meta-data

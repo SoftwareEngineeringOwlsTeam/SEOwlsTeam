@@ -4,32 +4,30 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import java.util.ArrayList;
-
 import static com.example.user.treasurehunter.MainActivity.currentLayout;
 import static com.example.user.treasurehunter.MainActivity.currentLayoutID;
 
 /**
- *
  * @author Zach Curll, Matthew Finnegan, Alexander Kulpin, Dominic Marandino, Brandon Ostasewski, Paul Sigloch
  * @version Sprint 2
  */
-public class LogInScreen extends AppCompatActivity {
-
+public class LogInScreen extends AppCompatActivity
+{
   public static User currentActiveUser;
 
     /**
      * Method that sets the screen to display activity_log_in_screen.
      */
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in_screen);
 
-        EditText edittext = (EditText)findViewById(R.id.password);
+        EditText edittext = findViewById(R.id.password);
         edittext.setTransformationMethod(new AsteriskPasswordTransformationMethod());
     }
 
@@ -72,12 +70,7 @@ public class LogInScreen extends AppCompatActivity {
         }
     }
 
-    public void clearData(View view)
-    {
-        IOwrite writer = new IOwrite();
-        writer.clearData(this);
-    }
-
+    // INCLUDE DOCUMENTATION*****************************************************
     public void createAccountClicked(View view)
     {
         Intent pinIntent = new Intent(this, UserCreate.class);
@@ -97,5 +90,15 @@ public class LogInScreen extends AppCompatActivity {
             return true;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+
+
+
+    // FOR TESTING, DELETE WHEN TURNING IN
+    public void clearData(View view)
+    {
+        IOwrite writer = new IOwrite();
+        writer.clearData(this);
     }
 }

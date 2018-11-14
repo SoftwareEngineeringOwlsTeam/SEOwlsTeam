@@ -1,26 +1,22 @@
 package com.example.user.treasurehunter;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.ScrollView;
-
 import java.io.Serializable;
 import java.util.ArrayList;
-
 import static com.example.user.treasurehunter.LogInScreen.currentActiveUser;
 import static com.example.user.treasurehunter.MainActivity.currentLayoutID;
 
 public class PinView extends AppCompatActivity implements Serializable
 {
-    PinDS currentPin;
+    private PinDS currentPin;
 
+    // INCLUDE DOCUMENTATION*****************************************************
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -54,21 +50,21 @@ public class PinView extends AppCompatActivity implements Serializable
 
             myButton.setHint(currentPin.getPinID());
 
-
-            myButton.setOnClickListener(new View.OnClickListener() {
+            myButton.setOnClickListener(new View.OnClickListener()
+            {
                 @Override
                 public void onClick(View v) {
                     clickHelper(myButton);
-                    //Button myButton = (Button) v;
                 }
             });
 
-            LinearLayout ll = (LinearLayout)findViewById(R.id.pinViewLayout);
+            LinearLayout ll = findViewById(R.id.pinViewLayout);
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             ll.addView(myButton, lp);
         }
     }
 
+    // INCLUDE DOCUMENTATION*****************************************************
     public void clickHelper(Button button)
     {
         IOread reader = new IOread();

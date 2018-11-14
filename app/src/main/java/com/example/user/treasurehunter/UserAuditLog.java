@@ -5,22 +5,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.widget.TextView;
-
-import java.io.FileNotFoundException;
-
 import static com.example.user.treasurehunter.LogInScreen.currentActiveUser;
 import static com.example.user.treasurehunter.MainActivity.currentLayoutID;
 
 /**
- *
  * @author Zach Curll, Matthew Finnegan, Alexander Kulpin, Dominic Marandino, Brandon Ostasewski, Paul Sigloch
  * @version Sprint 2
  */
 public class UserAuditLog extends AppCompatActivity
 {
-    private PinDS pin;
     private IOread reader = new IOread();
-    private IOwrite writer = new IOwrite();
 
     public UserAuditLog() {}
 
@@ -32,8 +26,8 @@ public class UserAuditLog extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_audit_log);
-        TextView et2 = findViewById(R.id.editText2);
 
+        TextView et2 = findViewById(R.id.editText2);
         if(currentLayoutID.equals("personal"))
         {
             et2.setText(reader.readUserAudit(currentActiveUser.getUserID(), this));

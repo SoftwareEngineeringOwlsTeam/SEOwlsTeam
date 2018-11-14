@@ -3,6 +3,7 @@ package com.example.user.treasurehunter;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -40,15 +41,17 @@ public class GroupInvites extends AppCompatActivity
             final Button myButton2 = new Button(this);
             myButton.setText("Decline");
 
-            myButton.setOnClickListener(new View.OnClickListener() {
+            myButton.setOnClickListener(new View.OnClickListener()
+            {
                 @Override
-                public void onClick(View v) {
+                public void onClick(View v)
+                {
                     removeInvite(myButton);
                     addInvite(myButton2);
                 }
             });
 
-            LinearLayout ll = (LinearLayout)findViewById(R.id.linLayout);
+            LinearLayout ll = findViewById(R.id.linLayout);
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             ll.addView(myTV, lp);
             ll.addView(myButton, lp);
@@ -72,5 +75,20 @@ public class GroupInvites extends AppCompatActivity
         // add propper association
         // Remove from members
         // add propper to members
+    }
+
+    /**
+     * Method that allows the user to move back to the MainActivity screen.
+     */
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if (keyCode == KeyEvent.KEYCODE_BACK )
+        {
+            Intent mainIntent = new Intent(this, MainActivity.class);
+            startActivity(mainIntent);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

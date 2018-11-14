@@ -1,10 +1,8 @@
-
 package com.example.user.treasurehunter;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-//import android.text.format.DateFormat;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -12,8 +10,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TableRow;
 import android.widget.TextView;
-
-import java.io.FileNotFoundException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
@@ -21,7 +17,6 @@ import static com.example.user.treasurehunter.LogInScreen.currentActiveUser;
 import static com.example.user.treasurehunter.MainActivity.currentLayoutID;
 
 /**
- *
  * @author Zach Curll, Matthew Finnegan, Alexander Kulpin, Dominic Marandino, Brandon Ostasewski, Paul Sigloch
  * @version Sprint 2
  */
@@ -29,16 +24,16 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
 {
     public PinDS pin;
     public TextView tvColor;
-    EditText text;
-    TableRow degreeRow;
-    TableRow speedRow;
-    Button goBackButton, placePinButton;
-    TextView tvBanner;
-    EditText pinName;
-    EditText description;
-    EditText radius;
-    EditText degree;
-    EditText speed;
+    private EditText text;
+    private TableRow degreeRow;
+    private TableRow speedRow;
+    private Button placePinButton;
+    private TextView tvBanner;
+    private EditText pinName;
+    private EditText description;
+    private EditText radius;
+    private EditText degree;
+    private EditText speed;
 
     /**
      * Method displays a screen to the user so they can Create a pin.
@@ -53,7 +48,6 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
         pin = (PinDS) getIntent().getSerializableExtra("pin");
         degreeRow = findViewById(R.id.Row10);
         speedRow = findViewById(R.id.Row11);
-        goBackButton = findViewById(R.id.goBack);
         placePinButton = findViewById(R.id.button16);
         tvColor = findViewById(R.id.tvcolor);
         tvColor.setTextColor(pin.getDefaultColor());
@@ -61,7 +55,6 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
         tvBanner = findViewById(R.id.tvBanner);
         tvBanner.setBackgroundColor(pin.getDefaultColor());
         tvBanner.setText("   " + pin.getPinName());
-        goBackButton.setBackgroundColor(pin.getDefaultColor());
         placePinButton.setBackgroundColor(pin.getDefaultColor());
         pinName = findViewById(R.id.pinName);
         pinName.setHint(pin.getPinNameHint());
@@ -69,7 +62,6 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
         description.setHint(pin.getDescriptionHint());
         radius = findViewById(R.id.radius);
         radius.setHint(pin.getRadiusHint());
-
 
         //Hides the degree and speed rows from displaying if the pin is not Moveable.
         if(!(pin instanceof PinMoveable))
@@ -85,11 +77,6 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
             speed.setHint(((PinMoveable) pin).getSpeedHint());
         }
 
-
-
-
-
-
         ((TextView)findViewById(R.id.etTime)).setText(pin.getTime());
         ((TextView)findViewById(R.id.etDate)).setText(pin.getDate());
         ((EditText)findViewById(R.id.etLocationLat)).setText(""+ pin.getLatitude());
@@ -101,6 +88,7 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     }
 
+    // INCLUDE DOCUMENTATION*****************************************************
     public void createClicked(View view)
     {
         IOwrite writer = new IOwrite();
@@ -140,8 +128,6 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
         }
         pin.setPinID(pinID);
         pin.setPublisherID(currentActiveUser.getUserID());
-
-        //et = (EditText)findViewById(R.id.color);
         pin.setColor(pin.getColor());
 
         if(pin instanceof PinMoveable)
@@ -156,8 +142,6 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
         pin.setRadius(et.getText().toString());
         Intent mainIntent = new Intent(this, MainActivity.class);
         writer.writePin(pin, this);
-
-
 
         ArrayList<String> addingList = new ArrayList<>();
         addingList.add(pin.getPinID());
@@ -174,15 +158,8 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
         startActivity(mainIntent);
     }
 
-    public void clickPinSelect(View v)
-    {
-        goBackButton = (Button) v;
-        Intent mainIntent = new Intent(this, PinActivity.class);
-        startActivity(mainIntent);
-    }
-
     /**
-     * Method that allows the user to move back to the MainActivity screen.
+     * Method that allows the user to move back to the PinActivity screen.
      */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)
