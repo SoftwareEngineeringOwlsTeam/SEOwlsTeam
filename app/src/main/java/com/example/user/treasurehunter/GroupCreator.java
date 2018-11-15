@@ -81,7 +81,7 @@ public class GroupCreator extends AppCompatActivity
 
         ArrayList<String> addingAssociation = new ArrayList<>();
         addingAssociation.add(newGroup.getGroupID());
-        writer.addAssociation(currentActiveUser.getUserID(), addingAssociation, "group", "", this);
+        writer.addAssociation(currentActiveUser, addingAssociation, "group", "", this);
 
         Intent locIntent = new Intent(this, MainActivity.class);
         startActivity(locIntent);

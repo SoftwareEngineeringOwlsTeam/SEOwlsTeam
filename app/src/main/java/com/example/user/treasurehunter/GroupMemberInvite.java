@@ -104,7 +104,7 @@ public class GroupMemberInvite extends AppCompatActivity
         ArrayList<String> addingUsersNames = new ArrayList<>();
         ArrayList<String> addingUsersPermissions = new ArrayList<>();
         ArrayList<String> listOfUsers = reader.existingIDs("users", this);
-        for(int i = 0; i < listOfUsers.size() - 1; i++)
+        for(int i = 0; i < listOfUsers.size(); i++)
         {
             String idEntered = memInput1.getText().toString();
             if(idEntered.length() == 10 && idEntered.equals(listOfUsers.get(i)))
@@ -114,7 +114,7 @@ public class GroupMemberInvite extends AppCompatActivity
                 addingUsersPermissions.add("P");
                 ArrayList<String> temp = new ArrayList<>();
                 temp.add("%" + currentLayoutID);
-                writer.addAssociation(idEntered, temp, "groupinvite", "",this);
+                writer.addAssociation(reader.retrieveUser(idEntered, this), temp, "groupinvite", "",this);
             }
         }
         writer.writeMembers(addingUsersIDs, addingUsersNames, addingUsersPermissions, currentLayoutID, this);

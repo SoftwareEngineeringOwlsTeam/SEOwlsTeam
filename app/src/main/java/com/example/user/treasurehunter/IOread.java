@@ -65,6 +65,7 @@ public class IOread extends AppCompatActivity
                 fin += "\n";
             }
         }
+        System.out.println(fin);
         return fin;
     }
 

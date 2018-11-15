@@ -285,7 +285,7 @@ public class IOwrite extends AppCompatActivity implements Serializable
      * @param groupID      If adding to a group, or adding a group, specify the group id
      * @param context      Include the context you are working in
      */
-    public void addAssociation(String toUser, ArrayList<String> addingID, String addingToWhat, String groupID, Context context)
+    public void addAssociation(User toUser, ArrayList<String> addingID, String addingToWhat, String groupID, Context context)
     {
         if(addingToWhat.equals("gpin"))
         {
@@ -303,14 +303,7 @@ public class IOwrite extends AppCompatActivity implements Serializable
         }
         else if(addingToWhat.equals("groupinvite"))
         {
-            try
-            {
-                System.out.println(reader.read("users", "", context));
-            }
-            catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-            User changedUser = reader.retrieveUser(toUser, context);
+            User changedUser = toUser;
             removeObject("users", changedUser.getUserID(), "", context);
             for(int i = 0; i < changedUser.getAssociatedGroupID().size(); i++)
             {

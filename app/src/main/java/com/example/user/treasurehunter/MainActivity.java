@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity  implements AdapterView.OnIt
         groupSpinner.add("Personal");
         for(int i = 0; i < currentActiveUser.getAssociatedGroupID().size() - 1; i++)
         {
-            if(!currentActiveUser.getAssociatedGroupID().get(i).equals("null") ||
+            if(!currentActiveUser.getAssociatedGroupID().get(i).equals("null") &&
                         currentActiveUser.getAssociatedGroupID().get(i).charAt(0) != '%')
             {
                 idSpinner.add(currentActiveUser.getAssociatedGroupID().get(i));

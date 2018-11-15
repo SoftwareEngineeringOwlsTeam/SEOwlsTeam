@@ -147,11 +147,11 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
         addingList.add(pin.getPinID());
         if(currentLayoutID.equals("personal"))
         {
-            writer.addAssociation(currentActiveUser.getUserID(), addingList, "ppin", "", this);
+            writer.addAssociation(currentActiveUser, addingList, "ppin", "", this);
             writer.writeUserAudit(currentActiveUser.getUserID(),5, pinID, pin.getPublisher(), this);
         }
         else{
-            writer.addAssociation(currentActiveUser.getUserID(), addingList, "gpin", currentLayoutID, this);
+            writer.addAssociation(currentActiveUser, addingList, "gpin", currentLayoutID, this);
             writer.writeGroupAudit(currentLayoutID, 1, currentActiveUser, "", pinID, this);
             writer.writeUserAudit(currentActiveUser.getUserID(),4, pinID, currentLayoutID, this);
         }
