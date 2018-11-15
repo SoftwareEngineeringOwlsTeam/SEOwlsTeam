@@ -34,7 +34,7 @@
         <activity
             android:name=".MainActivity"
             android:label="Main Screen"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".LocationGeneration"
             android:label="ERROR LEAVE LEAVE ERROR" />
@@ -63,7 +63,8 @@
         <activity android:name=".UserCreate" />
         <activity android:name=".PinView" />
         <activity android:name=".PinViewAttributes" />
-        <activity android:name=".GroupInvites"></activity>
+        <activity android:name=".GroupInvites" />
+        <activity android:name=".GroupMemberInvite"></activity>
     </application>
 
 </manifest>

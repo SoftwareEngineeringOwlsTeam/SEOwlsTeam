@@ -285,7 +285,7 @@ public class IOwrite extends AppCompatActivity implements Serializable
      * @param groupID      If adding to a group, or adding a group, specify the group id
      * @param context      Include the context you are working in
      */
-    public void addAssociation(ArrayList<String> addingID, String addingToWhat, String groupID, Context context)
+    public void addAssociation(String toUser, ArrayList<String> addingID, String addingToWhat, String groupID, Context context)
     {
         if(addingToWhat.equals("gpin"))
         {
@@ -301,10 +301,27 @@ public class IOwrite extends AppCompatActivity implements Serializable
                 writeGroup(changedGroup, context);
             }
         }
+        else if(addingToWhat.equals("groupinvite"))
+        {
+            try
+            {
+                System.out.println(reader.read("users", "", context));
+            }
+            catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            User changedUser = reader.retrieveUser(toUser, context);
+            removeObject("users", changedUser.getUserID(), "", context);
+            for(int i = 0; i < changedUser.getAssociatedGroupID().size(); i++)
+            {
+                addingID.add(changedUser.getAssociatedGroupID().get(i));
+            }
+            changedUser.setAssociatedGroupID(addingID);
+            writeUser(changedUser, context);
+        }
         else {
             User changedUser = currentActiveUser;
-            System.out.println(changedUser.getUserID());
-            removeObject("users", currentActiveUser.getUserID(), "", context);
+            removeObject("users", changedUser.getUserID(), "", context);
             if(addingToWhat.equals("ppin"))
             {
                 for(int i = 0; i < changedUser.getPersonalPinID().size(); i++)
@@ -320,7 +337,6 @@ public class IOwrite extends AppCompatActivity implements Serializable
                 }
                 changedUser.setAssociatedGroupID(addingID);
             }
-            System.out.println(changedUser.getPersonalPinID().get(0));
             writeUser(changedUser, context);
         }
     }
@@ -363,9 +379,6 @@ public class IOwrite extends AppCompatActivity implements Serializable
             writeUser(changedUser, context);
         }
     }
-
-
-
 
 
 

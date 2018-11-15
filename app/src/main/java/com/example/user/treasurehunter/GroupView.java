@@ -44,6 +44,12 @@ public class GroupView extends AppCompatActivity
         }
     }
 
+    public void groupInvites(View view)
+    {
+        Intent locIntent = new Intent(this, GroupMemberInvite.class);
+        startActivity(locIntent);
+    }
+
     /**
      * Method that deletes a group.
      */
