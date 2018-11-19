@@ -12,6 +12,9 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import java.io.Serializable;
 
+import static com.example.user.treasurehunter.LogInScreen.currentActiveUser;
+import static com.example.user.treasurehunter.MainActivity.currentLayoutID;
+
 public class PinViewAttributes extends AppCompatActivity implements Serializable
 {
     public PinDS pin;
@@ -68,6 +71,8 @@ public class PinViewAttributes extends AppCompatActivity implements Serializable
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pin_view_attributes);
+
+        IOread reader = new IOread();
 
         row1 = findViewById(R.id.Row1);
         row2 = findViewById(R.id.Row2);
@@ -167,6 +172,15 @@ public class PinViewAttributes extends AppCompatActivity implements Serializable
         ((TextView)findViewById(R.id.tvPublisher)).setText(pin.getPublisher());
         ((TextView)findViewById(R.id.etTime)).setText(pin.getTime());
         ((TextView)findViewById(R.id.etDate)).setText(pin.getDate());
+
+        if(!((TextView)findViewById(R.id.tvPublisher)).getText().toString().equals(currentActiveUser.getUserName()));
+        {
+            row14.setVisibility(View.GONE);
+            if(reader.readGroupMemberPermission(currentActiveUser.getUserID(), currentLayoutID, this).contains("A"))
+            {
+                row14.setVisibility(View.VISIBLE);
+            }
+        }
     }
 
     public void backClicked(View view)
