@@ -84,15 +84,16 @@ public class GroupInvites extends AppCompatActivity
     public void addInvite(Button button, Button button2, TextView tv)
     {
         IOwrite writer = new IOwrite();
+        IOread reader = new IOread();
         tv.setVisibility(View.GONE);
         button.setVisibility(View.GONE);
         button2.setVisibility(View.GONE);
         ArrayList<String> removingAssociation = new ArrayList<>();
         removingAssociation.add("%" + tv.getText().toString());
         writer.removeAssociation(currentActiveUser, removingAssociation, "group", "", this);
-        writer.removeObject("members", currentActiveUser.getUserID(), "%" + tv.getText().toString(), this);
+        writer.removeObject("members", "%" + currentActiveUser.getUserID(), tv.getText().toString(), this);
         ArrayList<String> addingAssociation = new ArrayList<>();
-        addingAssociation.add(tv.getText().toString());
+        addingAssociation.add(tv.getText().toString() + "/");
         writer.addAssociation(currentActiveUser, addingAssociation, "      group", "", this);
         ArrayList<String> addingUser = new ArrayList<>();
         addingUser.add(currentActiveUser.getUserID());
@@ -101,6 +102,7 @@ public class GroupInvites extends AppCompatActivity
         ArrayList<String> addingPermission = new ArrayList<>();
         addingPermission.add("P");
         writer.writeMembers(addingUser, addingUserName, addingPermission, tv.getText().toString(), this);
+        currentActiveUser = reader.retrieveUser(currentActiveUser.getUserID(), this);
     }
 
     /**
