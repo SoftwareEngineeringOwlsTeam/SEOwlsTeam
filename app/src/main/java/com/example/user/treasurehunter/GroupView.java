@@ -59,7 +59,7 @@ public class GroupView extends AppCompatActivity
         writer.removeObject("groups", currentLayoutID, currentLayoutID, this);
         writer.removeFile("groupaudit", currentLayoutID, this);
         writer.removeFile("members", currentLayoutID, this);
-        writer.removeAssociation(currentActiveUser.getAssociatedGroupID(), "ppin", currentLayoutID, this);
+        writer.removeAssociation(currentActiveUser, currentActiveUser.getAssociatedGroupID(), "ppin", currentLayoutID, this);
         currentLayoutID = "personal";
         currentLayout = "Personal";
         Intent locIntent = new Intent(this, MainActivity.class);

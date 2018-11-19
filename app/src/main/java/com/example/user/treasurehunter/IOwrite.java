@@ -6,11 +6,14 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Scanner;
+
 import static com.example.user.treasurehunter.LogInScreen.currentActiveUser;
 
 /**
@@ -58,7 +61,24 @@ public class IOwrite extends AppCompatActivity implements Serializable
             }
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(file.getName(), Context.MODE_PRIVATE));
             data += "\nEOF";
-            outputStreamWriter.write(data);
+
+
+            String dataFinal = "";
+
+            String[] eachLine = data.split("\n", 1000);
+            for(int i = 0; i < eachLine.length; i++)
+            {
+                System.out.println("############ " + dataFinal);
+                if(!eachLine[i].equals(""))
+                {
+                    dataFinal += eachLine[i] + "\n";
+                }
+            }
+
+
+
+
+            outputStreamWriter.write(dataFinal);
             outputStreamWriter.close();
         }
         catch (IOException e)
@@ -269,7 +289,7 @@ public class IOwrite extends AppCompatActivity implements Serializable
         String data = "";
         for(int i = 0; i < membersName.size(); i++)
         {
-            data += membersID.get(i) + "*" +membersName.get(i) + "*" + permissions.get(i);
+            data += membersID.get(i) + "*" + membersName.get(i) + "*" + permissions.get(i);
             if(i != membersName.size() - 1)
             {
                 data += "\n";
@@ -334,7 +354,7 @@ public class IOwrite extends AppCompatActivity implements Serializable
         }
     }
 
-    public void removeAssociation(ArrayList<String> addingID, String removingFromWhat, String groupID, Context context)
+    public void removeAssociation(User user, ArrayList<String> addingID, String removingFromWhat, String groupID, Context context)
     {
         if(removingFromWhat.equals("gpin"))
         {
@@ -368,7 +388,6 @@ public class IOwrite extends AppCompatActivity implements Serializable
                 }
                 changedUser.setAssociatedGroupID(addingID);
             }
-            System.out.println(changedUser.getPersonalPinID().get(0));
             writeUser(changedUser, context);
         }
     }

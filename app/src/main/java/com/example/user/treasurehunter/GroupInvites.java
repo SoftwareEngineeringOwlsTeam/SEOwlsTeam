@@ -31,23 +31,33 @@ public class GroupInvites extends AppCompatActivity
             }
         }
 
-        for(int i = 0; i < listOfInvites.size() - 1; i++)
+        for(int i = 0; i < listOfInvites.size(); i++)
         {
             final TextView myTV = new TextView(this);
+            //myTV.setText("You have been invited to group: " + listOfInvites.get(i));
+            myTV.setText(listOfInvites.get(i));
 
             final Button myButton = new Button(this);
             myButton.setText("Accept");
 
             final Button myButton2 = new Button(this);
-            myButton.setText("Decline");
+            myButton2.setText("Decline");
 
             myButton.setOnClickListener(new View.OnClickListener()
             {
                 @Override
                 public void onClick(View v)
                 {
-                    removeInvite(myButton);
-                    addInvite(myButton2);
+                    addInvite(myButton2, myButton, myTV);
+                }
+            });
+
+            myButton2.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+                    removeInvite(myButton, myButton2, myTV);
                 }
             });
 
@@ -59,22 +69,38 @@ public class GroupInvites extends AppCompatActivity
         }
     }
 
-    public void removeInvite(Button button)
+    public void removeInvite(Button button, Button button2, TextView tv)
     {
-        // Remove Text View
-        // Remove Buttons
-        // Remove from associations
-        // Remove from members
+        IOwrite writer = new IOwrite();
+        tv.setVisibility(View.GONE);
+        button.setVisibility(View.GONE);
+        button2.setVisibility(View.GONE);
+        ArrayList<String> removingAssociation = new ArrayList<>();
+        removingAssociation.add("%" + tv.getText().toString());
+        writer.removeAssociation(currentActiveUser, removingAssociation, "group", "", this);
+        writer.removeObject("members", currentActiveUser.getUserID(), "%" + tv.getText().toString(), this);
     }
 
-    public void addInvite(Button button)
+    public void addInvite(Button button, Button button2, TextView tv)
     {
-        // Remove Text View
-        // Remove Buttons
-        // Remove from associations
-        // add propper association
-        // Remove from members
-        // add propper to members
+        IOwrite writer = new IOwrite();
+        tv.setVisibility(View.GONE);
+        button.setVisibility(View.GONE);
+        button2.setVisibility(View.GONE);
+        ArrayList<String> removingAssociation = new ArrayList<>();
+        removingAssociation.add("%" + tv.getText().toString());
+        writer.removeAssociation(currentActiveUser, removingAssociation, "group", "", this);
+        writer.removeObject("members", currentActiveUser.getUserID(), "%" + tv.getText().toString(), this);
+        ArrayList<String> addingAssociation = new ArrayList<>();
+        addingAssociation.add(tv.getText().toString());
+        writer.addAssociation(currentActiveUser, addingAssociation, "      group", "", this);
+        ArrayList<String> addingUser = new ArrayList<>();
+        addingUser.add(currentActiveUser.getUserID());
+        ArrayList<String> addingUserName = new ArrayList<>();
+        addingUserName.add(currentActiveUser.getUserName());
+        ArrayList<String> addingPermission = new ArrayList<>();
+        addingPermission.add("P");
+        writer.writeMembers(addingUser, addingUserName, addingPermission, tv.getText().toString(), this);
     }
 
     /**

@@ -218,11 +218,8 @@ public class MainActivity extends AppCompatActivity  implements AdapterView.OnIt
     // INCLUDE DOCUMENTATION*****************************************************
     public void groupInvitesClicked(MenuItem menuItem)
     {
-        if(!selected.equals("Personal"))
-        {
-            Intent locIntent = new Intent(this, GroupInvites.class);
-            startActivity(locIntent);
-        }
+        Intent locIntent = new Intent(this, GroupInvites.class);
+        startActivity(locIntent);
     }
 
     // INCLUDE DOCUMENTATION*****************************************************

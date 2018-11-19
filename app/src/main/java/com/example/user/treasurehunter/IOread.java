@@ -321,7 +321,14 @@ public class IOread extends AppCompatActivity
             for(int i = 0; i < eachLine.length; i++)
             {
                 String[] foundLine = eachLine[i].split("\\*",3);
-                fullAudit += (foundLine[1] + " is able to " + foundLine[2]);
+                if(foundLine[0].charAt(0) != '%')
+                {
+                    fullAudit += (foundLine[1] + " is able to " + foundLine[2]);
+                }
+                else
+                {
+                    fullAudit += (foundLine[1] + " has not yet accepted invitation");
+                }
                 if(i != eachLine.length - 1)
                 {
                     fullAudit += "\n";
