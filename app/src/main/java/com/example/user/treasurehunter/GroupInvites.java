@@ -78,7 +78,7 @@ public class GroupInvites extends AppCompatActivity
         ArrayList<String> removingAssociation = new ArrayList<>();
         removingAssociation.add("%" + tv.getText().toString());
         writer.removeAssociation(currentActiveUser, removingAssociation, "group", "", this);
-        writer.removeObject("members", currentActiveUser.getUserID(), "%" + tv.getText().toString(), this);
+        writer.removeObject(tv.getText().toString() + "members", currentActiveUser.getUserID(), "%" + tv.getText().toString(), this);
     }
 
     public void addInvite(Button button, Button button2, TextView tv)
@@ -91,7 +91,7 @@ public class GroupInvites extends AppCompatActivity
         ArrayList<String> removingAssociation = new ArrayList<>();
         removingAssociation.add("%" + tv.getText().toString());
         writer.removeAssociation(currentActiveUser, removingAssociation, "group", "", this);
-        writer.removeObject("members", "%" + currentActiveUser.getUserID(), tv.getText().toString(), this);
+        writer.removeObject(tv.getText().toString() + "members", "%" + currentActiveUser.getUserID(), tv.getText().toString(), this);
         ArrayList<String> addingAssociation = new ArrayList<>();
         addingAssociation.add(tv.getText().toString() + "/");
         writer.addAssociation(currentActiveUser, addingAssociation, "      group", "", this);
