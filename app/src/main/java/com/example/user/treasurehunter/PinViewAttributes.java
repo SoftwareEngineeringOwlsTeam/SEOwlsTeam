@@ -5,6 +5,7 @@ import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -326,6 +327,13 @@ public class PinViewAttributes extends AppCompatActivity implements Serializable
         }
     }
 
+    // INCLUDE DOCUMENTATION*****************************************************
+    public void viewCompass(View view)
+    {
+        Intent locIntent = new Intent(this, Compass.class);
+        startActivity(locIntent);
+    }
+
     /**
      * Method that allows the user to move back to the MainActivity screen.
      */
@@ -334,7 +342,7 @@ public class PinViewAttributes extends AppCompatActivity implements Serializable
     {
         if (keyCode == KeyEvent.KEYCODE_BACK )
         {
-            Intent mainIntent = new Intent(this, PinView.class);
+            Intent mainIntent = new Intent(this, YourPins.class);
             startActivity(mainIntent);
             return true;
         }

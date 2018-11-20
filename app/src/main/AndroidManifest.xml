@@ -64,7 +64,9 @@
         <activity android:name=".PinView" />
         <activity android:name=".PinViewAttributes" />
         <activity android:name=".GroupInvites" />
-        <activity android:name=".GroupMemberInvite"></activity>
+        <activity android:name=".GroupMemberInvite" />
+        <activity android:name=".YourPins" />
+        <activity android:name=".Compass"></activity>
     </application>
 
 </manifest>

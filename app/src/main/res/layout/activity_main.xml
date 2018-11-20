@@ -30,7 +30,7 @@
                     android:fontFamily="@font/roboto"
                     android:gravity="center_vertical"
                     android:textAlignment="center"
-                    android:text="Main Activity"
+                    android:text="Your Pins"
                     android:textColor="@android:color/white"
 
                     android:textSize="18sp"
@@ -66,13 +66,36 @@
                     android:onClick="drawLeft"
                     app:srcCompat="@mipmap/ic_launcher7" />
 
+
+
             </android.support.constraint.ConstraintLayout>
+
+            <TableLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TableRow>
+
+                    <Spinner
+                        android:id="@+id/spinner2"
+                        android:layout_width="425dp"
+                        android:layout_height="50dp"
+                        android:scrollbarSize="30sp"
+                        android:gravity="center"
+                        android:textAlignment="center"/>
+                </TableRow>
+            </TableLayout>
 
             <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
                 android:gravity="center_vertical">
+
+                <TableRow>
+
+
+                </TableRow>
 
                 <TableRow
                     android:layout_width="wrap_content"
@@ -84,7 +107,7 @@
                         android:layout_height="wrap_content"
                         android:text="Scavenger Hunt"
                         android:height="100dp"
-                        android:onClick="testClick"
+                        android:onClick="clickScavengerHunt"
 
                         ></Button>
 
@@ -92,7 +115,7 @@
                         android:text="Shipwreck"
                         android:layout_width="150dp"
                         android:height="100dp"
-                        android:onClick="testClick"/>
+                        android:onClick="clickShipwreck"/>
                 </TableRow>
 
                 <TableRow
@@ -100,12 +123,12 @@
                     <Button
                         android:text="Treasure"
                         android:height="100dp"
-                        android:onClick="testClick"/>
+                        android:onClick="clickTreasure"/>
 
                     <Button
                         android:text="Custom"
                         android:height="100dp"
-                        android:onClick="testClick"/>
+                        android:onClick="clickCustom"/>
 
                 </TableRow>
                 <TableRow
@@ -113,12 +136,12 @@
                     <Button
                         android:text="Forrest Fire"
                         android:height="100dp"
-                        android:onClick="testClick"/>
+                        android:onClick="clickForestFire"/>
 
                     <Button
                         android:text="Hunting"
                         android:height="100dp"
-                        android:onClick="testClick"/>
+                        android:onClick="clickHunting"/>
 
                 </TableRow>
                 <TableRow
@@ -127,12 +150,12 @@
                     <Button
                         android:text="Survivor"
                         android:height="100dp"
-                        android:onClick="testClick"/>
+                        android:onClick="clickSurvivor"/>
 
                     <Button
                         android:text="Whale"
                         android:height="100dp"
-                        android:onClick="testClick"/>
+                        android:onClick="clickWhale"/>
 
                 </TableRow>
 
@@ -142,10 +165,7 @@
 
 
 
-            <Spinner
-                android:id="@+id/spinner2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+
 
         </LinearLayout>
 

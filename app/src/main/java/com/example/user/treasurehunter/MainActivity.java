@@ -259,4 +259,54 @@ public class MainActivity extends AppCompatActivity  implements AdapterView.OnIt
         }
         return super.onKeyDown(keyCode, event);
     }
+
+    public void clickScavengerHunt(View v)
+    {
+        Intent yourIntent = new Intent(this, YourPins.class);
+        yourIntent.putExtra("class", "Scavenger Hunt Pin");
+        startActivity(yourIntent);
+    }
+
+    public void clickShipwreck(View v)
+    {
+        Intent yourIntent = new Intent(this, YourPins.class);
+        yourIntent.putExtra("class", "Shipwreck Pin");
+        startActivity(yourIntent);
+    }
+
+    public void clickTreasure(View v) {
+        Intent yourIntent = new Intent(this, YourPins.class);
+        yourIntent.putExtra("class", "Treasure Pin");
+        startActivity(yourIntent);
+    }
+
+    public void clickForestFire(View v) {
+        Intent yourIntent = new Intent(this, YourPins.class);
+        yourIntent.putExtra("class", "Forest Fire Pin");
+        startActivity(yourIntent);
+    }
+
+    public void clickHunting(View v) {
+        Intent yourIntent = new Intent(this, YourPins.class);
+        yourIntent.putExtra("class", "Hunting Pin");
+        startActivity(yourIntent);
+    }
+
+    public void clickSurvivor(View v) {
+        Intent yourIntent = new Intent(this, YourPins.class);
+        yourIntent.putExtra("class", "Survivor Pin");
+        startActivity(yourIntent);
+    }
+
+    public void clickWhale(View v) {
+        Intent yourIntent = new Intent(this, YourPins.class);
+        yourIntent.putExtra("class", "Whale Pin");
+        startActivity(yourIntent);
+    }
+
+    public void clickCustom(View v) {
+        Intent yourIntent = new Intent(this, YourPins.class);
+        yourIntent.putExtra("class", "Custom Pin");
+        startActivity(yourIntent);
+    }
 }

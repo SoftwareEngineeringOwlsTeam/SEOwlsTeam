@@ -686,6 +686,35 @@
 
         </android.support.constraint.ConstraintLayout>
 
+        <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+            android:id="@+id/Row15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/button16"
+            app:layout_constraintTop_toBottomOf="@+id/button16">
+
+            <Button
+                android:id="@+id/button20"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="23dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginEnd="23dp"
+                android:background="@color/colorAccent"
+                android:onClick="viewCompass"
+                android:text="View Compass"
+                android:textColor="@android:color/white"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+
+
+        </android.support.constraint.ConstraintLayout>
+
     </TableLayout>
 
 </ScrollView>

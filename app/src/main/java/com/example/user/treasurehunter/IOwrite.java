@@ -68,7 +68,6 @@ public class IOwrite extends AppCompatActivity implements Serializable
             String[] eachLine = data.split("\n", 1000);
             for(int i = 0; i < eachLine.length; i++)
             {
-                System.out.println("############ " + dataFinal);
                 if(!eachLine[i].equals(""))
                 {
                     dataFinal += eachLine[i] + "\n";
@@ -391,6 +390,8 @@ public class IOwrite extends AppCompatActivity implements Serializable
             writeUser(changedUser, context);
         }
     }
+
+
 
 
 
