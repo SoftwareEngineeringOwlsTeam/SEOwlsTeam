@@ -1,6 +1,7 @@
 package com.example.user.treasurehunter;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
@@ -203,6 +204,16 @@ public class MainActivity extends AppCompatActivity  implements AdapterView.OnIt
     {
     Intent locIntent = new Intent(this, GroupCreator.class);
     startActivity(locIntent);
+    }
+
+    public void testClick(View v)
+    {
+        Context context = getApplicationContext();
+        CharSequence text = "Hello toast!";
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
     }
 
     // INCLUDE DOCUMENTATION*****************************************************

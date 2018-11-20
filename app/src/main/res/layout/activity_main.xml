@@ -68,15 +68,79 @@
 
             </android.support.constraint.ConstraintLayout>
 
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical">
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+
+                    <Button
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="Scavenger Hunt"
+                        android:height="100dp"
+                        android:onClick="testClick"
+
+                        ></Button>
+
+                    <Button
+                        android:text="Shipwreck"
+                        android:layout_width="150dp"
+                        android:height="100dp"
+                        android:onClick="testClick"/>
+                </TableRow>
+
+                <TableRow
+                    android:gravity="center">
+                    <Button
+                        android:text="Treasure"
+                        android:height="100dp"
+                        android:onClick="testClick"/>
+
+                    <Button
+                        android:text="Custom"
+                        android:height="100dp"
+                        android:onClick="testClick"/>
+
+                </TableRow>
+                <TableRow
+                    android:gravity="center">
+                    <Button
+                        android:text="Forrest Fire"
+                        android:height="100dp"
+                        android:onClick="testClick"/>
+
+                    <Button
+                        android:text="Hunting"
+                        android:height="100dp"
+                        android:onClick="testClick"/>
+
+                </TableRow>
+                <TableRow
+                    android:gravity="center">
+
+                    <Button
+                        android:text="Survivor"
+                        android:height="100dp"
+                        android:onClick="testClick"/>
+
+                    <Button
+                        android:text="Whale"
+                        android:height="100dp"
+                        android:onClick="testClick"/>
+
+                </TableRow>
+
+            </TableLayout>
+
            
 
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Choose Layout"
-                android:textAlignment="center"
-                android:textSize="30sp" />
+
 
             <Spinner
                 android:id="@+id/spinner2"
