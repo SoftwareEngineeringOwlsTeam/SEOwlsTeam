@@ -311,35 +311,23 @@ public class IOread extends AppCompatActivity
      *  @param context      Include the context you are working in
      *  @return             The display of all existing members and their permissions
      */
-    public String readGroupMembers(String groupID, Context context)
+    public ArrayList<String> readGroupMembers(String groupID, Context context)
     {
-        String fullAudit = "";
+        ArrayList<String> allMembers = new ArrayList<>();
         try
         {
             String everything = read("members", groupID, context);
             String[] eachLine = everything.split("\n", 1000);
             for(int i = 0; i < eachLine.length; i++)
             {
-                String[] foundLine = eachLine[i].split("\\*",3);
-                if(foundLine[0].charAt(0) != '%')
-                {
-                    fullAudit += (foundLine[1] + " is able to " + foundLine[2]);
-                }
-                else
-                {
-                    fullAudit += (foundLine[1] + " has not yet accepted invitation");
-                }
-                if(i != eachLine.length - 1)
-                {
-                    fullAudit += "\n";
-                }
+                allMembers.add(eachLine[i]);
             }
         }
         catch (FileNotFoundException e)
         {
             e.printStackTrace();
         }
-        return fullAudit;
+        return allMembers;
     }
 
     /**
