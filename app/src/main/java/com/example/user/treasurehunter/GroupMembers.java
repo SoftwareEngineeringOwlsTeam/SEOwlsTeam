@@ -7,7 +7,6 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -22,6 +21,9 @@ import static com.example.user.treasurehunter.MainActivity.currentLayoutID;
  */
 public class GroupMembers extends AppCompatActivity
 {
+    public boolean buttonSet;
+    private ArrayList<String> ids = new ArrayList<>();
+    private ArrayList<String> permissions = new ArrayList<>();
 
     /**
      * Method that sets the screen to display activity_group_members.
@@ -33,6 +35,7 @@ public class GroupMembers extends AppCompatActivity
         setContentView(R.layout.activity_group_members);
 
         IOread reader = new IOread();
+        buttonSet = false;
         ArrayList<String> members = reader.readGroupMembers(currentLayoutID, this);
         for(int i = 0; i < members.size(); i++)
         {
@@ -106,10 +109,59 @@ public class GroupMembers extends AppCompatActivity
                                     !reader.retrieveGroup(currentLayoutID, this).getAdminID().equals(foundLine[0]))
             {
                 checkA.setClickable(true);
+
+                checkA.setOnClickListener(new View.OnClickListener()
+                {
+                    @Override
+                    public void onClick(View v)
+                    {
+                        cretor(foundLine[0], checkA, "A");
+                    }
+                });
+
                 checkD.setClickable(true);
+
+                checkD.setOnClickListener(new View.OnClickListener()
+                {
+                    @Override
+                    public void onClick(View v)
+                    {
+                        cretor(foundLine[0], checkD, "D");
+                    }
+                });
+
                 checkU.setClickable(true);
+
+                checkU.setOnClickListener(new View.OnClickListener()
+                {
+                    @Override
+                    public void onClick(View v)
+                    {
+                        cretor(foundLine[0], checkU, "U");
+                    }
+                });
+
                 checkM.setClickable(true);
+
+                checkM.setOnClickListener(new View.OnClickListener()
+                {
+                    @Override
+                    public void onClick(View v)
+                    {
+                        cretor(foundLine[0], checkM, "M");
+                    }
+                });
+
                 checkP.setClickable(true);
+
+                checkP.setOnClickListener(new View.OnClickListener()
+                {
+                    @Override
+                    public void onClick(View v)
+                    {
+                        cretor(foundLine[0], checkP, "P");
+                    }
+                });
 
                 final Button delete = new Button(this);
                 delete.setWidth(45);
@@ -146,8 +198,79 @@ public class GroupMembers extends AppCompatActivity
         writer.removeAssociation(reader.retrieveUser(id, this), list, "group", currentLayoutID, this);
     }
 
+    public void cretor(String id, CheckBox checkBox, String letter)
+    {
+        IOread reader = new IOread();
+        boolean alreadyEdited = false;
+        for(int i = 0; i < ids.size(); i++)
+        {
+            if(ids.get(i).equals(id))
+            {
+                alreadyEdited = true;
+            }
+        }
+        if(!alreadyEdited)
+        {
+            ids.add(id);
+            permissions.add(reader.readGroupMemberPermission(id, currentLayoutID, this));
+        }
+        for(int i = 0; i < ids.size(); i++)
+        {
+            if(ids.get(i).equals(id))
+            {
+                if(checkBox.isChecked())
+                {
+                    if(!permissions.get(i).contains(letter))
+                    {
+                        permissions.set(i, permissions.get(i) + letter);
+                    }
+                }
+                else{
+                    if(permissions.get(i).contains(letter))
+                    {
+                        permissions.set(i, permissions.get(i).replace(letter,""));
+                    }
+                }
+            }
+        }
+        if(!buttonSet)
+        {
+            final TableRow row = new TableRow(this);
+            TableLayout tl = findViewById(R.id.tableLayout);
+            TableLayout.LayoutParams lp = new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.MATCH_PARENT);
+            tl.addView(row, lp);
 
+            final Button save = new Button(this);
+            TableRow tr = row;
+            TableRow.LayoutParams tp = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT);
 
+            save.setWidth(45);
+            save.setText("Save");
+            save.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v) {
+                    save();
+                }
+            });
+            tr.addView(save, tp);
+            buttonSet = true;
+        }
+
+    }
+
+    public void save()
+    {
+        IOwrite writer = new IOwrite();
+        IOread reader = new IOread();
+        ArrayList<String> names = new ArrayList<>();
+        for(int i = 0; i < ids.size(); i++)
+        {
+            writer.removeObject(currentLayoutID + "members", ids.get(i), currentLayoutID, this);
+            names.add(reader.retrieveUser(ids.get(i), this).getUserName());
+        }
+        writer.writeMembers(ids, names, permissions, currentLayoutID, this);
+    }
 
 
     /**
