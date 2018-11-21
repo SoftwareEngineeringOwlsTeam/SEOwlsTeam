@@ -36,7 +36,7 @@ public class GroupMembers extends AppCompatActivity
         ArrayList<String> members = reader.readGroupMembers(currentLayoutID, this);
         for(int i = 0; i < members.size(); i++)
         {
-            String[] foundLine = members.get(i).split("\\*",14);
+            final String[] foundLine = members.get(i).split("\\*",14);
 
             final TableRow row = new TableRow(this);
 
@@ -52,7 +52,7 @@ public class GroupMembers extends AppCompatActivity
             {
                 status.setText("Pending");
             }
-            else if(reader.retrieveGroup(currentLayoutID, this).getAdminName().equals(foundLine[1]))
+            else if(reader.retrieveGroup(currentLayoutID, this).getAdminID().equals(foundLine[0]))
             {
                 status.setText("Admin");
             }
@@ -91,26 +91,6 @@ public class GroupMembers extends AppCompatActivity
             checkU.setClickable(false);
             checkM.setClickable(false);
             checkP.setClickable(false);
-            if(reader.retrieveGroup(currentLayoutID, this).getAdminName().equals(currentActiveUser.getUserName()) &&
-                                    !reader.retrieveGroup(currentLayoutID, this).getAdminName().equals(foundLine[1]))
-            {
-                checkA.setClickable(true);
-                checkD.setClickable(true);
-                checkU.setClickable(true);
-                checkM.setClickable(true);
-                checkP.setClickable(true);
-            }
-
-            final Button delete = new Button(this);
-            delete.setWidth(45);
-            delete.setText("Remove");
-            delete.setOnClickListener(new View.OnClickListener()
-            {
-                @Override
-                public void onClick(View v) {
-                    clickHelper(delete);
-                }
-            });
 
             TableRow tr = row;
             TableRow.LayoutParams tp = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT);
@@ -121,7 +101,28 @@ public class GroupMembers extends AppCompatActivity
             tr.addView(checkU, tp);
             tr.addView(checkM, tp);
             tr.addView(checkP, tp);
-            tr.addView(delete, tp);
+
+            if(reader.retrieveGroup(currentLayoutID, this).getAdminID().equals(currentActiveUser.getUserID()) &&
+                                    !reader.retrieveGroup(currentLayoutID, this).getAdminID().equals(foundLine[0]))
+            {
+                checkA.setClickable(true);
+                checkD.setClickable(true);
+                checkU.setClickable(true);
+                checkM.setClickable(true);
+                checkP.setClickable(true);
+
+                final Button delete = new Button(this);
+                delete.setWidth(45);
+                delete.setText("Remove");
+                delete.setOnClickListener(new View.OnClickListener()
+                {
+                    @Override
+                    public void onClick(View v) {
+                        clickHelper(foundLine[0], row);
+                    }
+                });
+                tr.addView(delete, tp);
+            }
         }
 
 
@@ -134,9 +135,15 @@ public class GroupMembers extends AppCompatActivity
 
 
 
-    public void clickHelper(Button button)
+    public void clickHelper(String id, TableRow row)
     {
-        //delete member
+        IOwrite writer = new IOwrite();
+        IOread reader = new IOread();
+        row.setVisibility(View.GONE);
+        writer.removeObject(currentLayoutID + "members", id, currentLayoutID, this);
+        ArrayList<String> list = new ArrayList<>();
+        list.add(currentLayoutID);
+        writer.removeAssociation(reader.retrieveUser(id, this), list, "group", currentLayoutID, this);
     }
 
 

@@ -93,7 +93,7 @@ public class GroupInvites extends AppCompatActivity
         writer.removeAssociation(currentActiveUser, removingAssociation, "group", "", this);
         writer.removeObject(tv.getText().toString() + "members", "%" + currentActiveUser.getUserID(), tv.getText().toString(), this);
         ArrayList<String> addingAssociation = new ArrayList<>();
-        addingAssociation.add(tv.getText().toString() + "/");
+        addingAssociation.add(tv.getText().toString());
         writer.addAssociation(currentActiveUser, addingAssociation, "      group", "", this);
         ArrayList<String> addingUser = new ArrayList<>();
         addingUser.add(currentActiveUser.getUserID());

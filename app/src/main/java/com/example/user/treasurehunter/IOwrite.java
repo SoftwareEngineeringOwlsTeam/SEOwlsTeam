@@ -353,8 +353,9 @@ public class IOwrite extends AppCompatActivity implements Serializable
         }
     }
 
-    public void removeAssociation(User user, ArrayList<String> addingID, String removingFromWhat, String groupID, Context context)
+    public void removeAssociation(User user, ArrayList<String> deleteID, String removingFromWhat, String groupID, Context context)
     {
+        ArrayList<String> addingID = new ArrayList<>();
         if(removingFromWhat.equals("gpin"))
         {
 //            Group changedGroup = reader.retrieveGroup(groupID, context);
@@ -370,21 +371,16 @@ public class IOwrite extends AppCompatActivity implements Serializable
 //            }
         }
         else {
-            User changedUser = currentActiveUser;
-            removeObject("users", currentActiveUser.getUserID(), "", context);
+            User changedUser = user;
+            addingID = changedUser.getAssociatedGroupID();
+            removeObject("users", user.getUserID(), "", context);
             if(removingFromWhat.equals("ppin"))
             {
-                for(int i = 0; i < changedUser.getPersonalPinID().size(); i++)
-                {
-                    addingID.remove(changedUser.getPersonalPinID().get(i));
-                }
+                addingID.remove(deleteID.get(0));
                 changedUser.setPersonalPinID(addingID);
             }
             else{
-                for(int i = 0; i < changedUser.getAssociatedGroupID().size(); i++)
-                {
-                    addingID.remove(changedUser.getAssociatedGroupID().get(i));
-                }
+                addingID.remove(deleteID.get(0));
                 changedUser.setAssociatedGroupID(addingID);
             }
             writeUser(changedUser, context);
