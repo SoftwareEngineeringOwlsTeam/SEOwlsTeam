@@ -262,51 +262,81 @@ public class MainActivity extends AppCompatActivity  implements AdapterView.OnIt
 
     public void clickScavengerHunt(View v)
     {
-        Intent yourIntent = new Intent(this, YourPins.class);
-        yourIntent.putExtra("class", "Scavenger Hunt Pin");
-        startActivity(yourIntent);
+        if(!currentLayout.equals("Personal"))
+        {
+            Intent yourIntent = new Intent(this, YourPins.class);
+            yourIntent.putExtra("class", "Scavenger Hunt Pin");
+            startActivity(yourIntent);
+        }
     }
 
     public void clickShipwreck(View v)
     {
-        Intent yourIntent = new Intent(this, YourPins.class);
-        yourIntent.putExtra("class", "Shipwreck Pin");
-        startActivity(yourIntent);
+        if(!currentLayout.equals("Personal"))
+        {
+            Intent yourIntent = new Intent(this, YourPins.class);
+            yourIntent.putExtra("class", "Shipwreck Pin");
+            startActivity(yourIntent);
+        }
     }
 
-    public void clickTreasure(View v) {
-        Intent yourIntent = new Intent(this, YourPins.class);
-        yourIntent.putExtra("class", "Treasure Pin");
-        startActivity(yourIntent);
+    public void clickTreasure(View v)
+    {
+        if (!currentLayout.equals("Personal"))
+        {
+            Intent yourIntent = new Intent(this, YourPins.class);
+            yourIntent.putExtra("class", "Treasure Pin");
+            startActivity(yourIntent);
+        }
     }
 
-    public void clickForestFire(View v) {
-        Intent yourIntent = new Intent(this, YourPins.class);
-        yourIntent.putExtra("class", "Forest Fire Pin");
-        startActivity(yourIntent);
+    public void clickForestFire(View v)
+    {
+        if (!currentLayout.equals("Personal"))
+        {
+            Intent yourIntent = new Intent(this, YourPins.class);
+            yourIntent.putExtra("class", "Forest Fire Pin");
+            startActivity(yourIntent);
+        }
     }
 
-    public void clickHunting(View v) {
-        Intent yourIntent = new Intent(this, YourPins.class);
-        yourIntent.putExtra("class", "Hunting Pin");
-        startActivity(yourIntent);
+    public void clickHunting(View v)
+    {
+        if (!currentLayout.equals("Personal"))
+        {
+            Intent yourIntent = new Intent(this, YourPins.class);
+            yourIntent.putExtra("class", "Hunting Pin");
+            startActivity(yourIntent);
+        }
     }
 
-    public void clickSurvivor(View v) {
-        Intent yourIntent = new Intent(this, YourPins.class);
-        yourIntent.putExtra("class", "Survivor Pin");
-        startActivity(yourIntent);
+    public void clickSurvivor(View v)
+    {
+        if (!currentLayout.equals("Personal"))
+        {
+            Intent yourIntent = new Intent(this, YourPins.class);
+            yourIntent.putExtra("class", "Survivor Pin");
+            startActivity(yourIntent);
+        }
     }
 
-    public void clickWhale(View v) {
-        Intent yourIntent = new Intent(this, YourPins.class);
-        yourIntent.putExtra("class", "Whale Pin");
-        startActivity(yourIntent);
+    public void clickWhale(View v)
+    {
+        if (!currentLayout.equals("Personal"))
+        {
+            Intent yourIntent = new Intent(this, YourPins.class);
+            yourIntent.putExtra("class", "Whale Pin");
+            startActivity(yourIntent);
+        }
     }
 
-    public void clickCustom(View v) {
-        Intent yourIntent = new Intent(this, YourPins.class);
-        yourIntent.putExtra("class", "Custom Pin");
-        startActivity(yourIntent);
+    public void clickCustom(View v)
+    {
+        if (!currentLayout.equals("Personal"))
+        {
+            Intent yourIntent = new Intent(this, YourPins.class);
+            yourIntent.putExtra("class", "Custom Pin");
+            startActivity(yourIntent);
+        }
     }
 }

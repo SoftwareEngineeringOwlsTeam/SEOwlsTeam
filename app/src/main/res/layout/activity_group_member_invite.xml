@@ -23,7 +23,7 @@
             android:textAlignment="center"
             android:textSize="24sp" />
 
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/etNewMem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -32,7 +32,7 @@
             android:inputType="textPersonName"
             android:textAlignment="center" />
 
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/etNewMem2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -41,7 +41,7 @@
             android:inputType="textPersonName"
             android:textAlignment="center" />
 
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/etNewMem3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -50,7 +50,7 @@
             android:inputType="textPersonName"
             android:textAlignment="center" />
 
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/etNewMem4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -59,7 +59,7 @@
             android:inputType="textPersonName"
             android:textAlignment="center" />
 
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/etNewMem5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -68,7 +68,7 @@
             android:inputType="textPersonName"
             android:textAlignment="center" />
 
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/etNewMem6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -77,7 +77,7 @@
             android:inputType="textPersonName"
             android:textAlignment="center" />
 
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/etNewMem7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -86,7 +86,7 @@
             android:inputType="textPersonName"
             android:textAlignment="center" />
 
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/etNewMem8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -95,7 +95,7 @@
             android:inputType="textPersonName"
             android:textAlignment="center" />
 
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/etNewMem9"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -104,7 +104,7 @@
             android:inputType="textPersonName"
             android:textAlignment="center" />
 
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/etNewMem10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -24,7 +24,6 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
 {
     public PinDS pin;
     public TextView tvColor;
-    private EditText text;
     private TableRow degreeRow;
     private TableRow speedRow;
     private Button placePinButton;
@@ -46,6 +45,7 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
         setContentView(R.layout.activity_pincreate2);
 
         pin = (PinDS) getIntent().getSerializableExtra("pin");
+        ((TextView)findViewById(R.id.publisher)).setText(currentActiveUser.getUserName());
         degreeRow = findViewById(R.id.Row10);
         speedRow = findViewById(R.id.Row11);
         placePinButton = findViewById(R.id.button16);
@@ -94,18 +94,56 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
         IOwrite writer = new IOwrite();
         IOread reader = new IOread();
 
-        EditText et = findViewById(R.id.publisher);
+        TextView et = findViewById(R.id.publisher);
         pin.setPublisher(et.getText().toString());
         et = findViewById(R.id.pinName);
-        pin.setPinTitle(et.getText().toString());
+        if(et.getText().toString().equals(""))
+        {
+            pin.setPinTitle(et.getHint().toString());
+        }
+        else{
+            pin.setPinTitle(et.getText().toString());
+        }
         et = findViewById(R.id.description);
-        pin.setDescription(et.getText().toString());
+        if(et.getText().toString().equals(""))
+        {
+            pin.setDescription(et.getHint().toString());
+        }
+        else{
+            pin.setDescription(et.getText().toString());
+        }
         et = findViewById(R.id.etLocationLat);
-        pin.setLatitude(Double.parseDouble(et.getText().toString()));
+        if(et.getText().toString().equals(""))
+        {
+            pin.setLatitude(Double.parseDouble(et.getHint().toString()));
+        }
+        else{
+            pin.setLatitude(Double.parseDouble(et.getText().toString()));
+        }
         et = findViewById(R.id.etLocationLong);
-        pin.setLongitude(Double.parseDouble(et.getText().toString()));
+        if(et.getText().toString().equals(""))
+        {
+            pin.setLongitude(Double.parseDouble(et.getHint().toString()));
+        }
+        else{
+            pin.setLongitude(Double.parseDouble(et.getText().toString()));
+        }
         et = findViewById(R.id.etAltitude);
-        pin.setAltitude(Double.parseDouble(et.getText().toString()));
+        if(et.getText().toString().equals(""))
+        {
+            pin.setAltitude(Double.parseDouble(et.getHint().toString()));
+        }
+        else{
+            pin.setAltitude(Double.parseDouble(et.getText().toString()));
+        }
+        et = findViewById(R.id.radius);
+        if(et.getText().toString().equals(""))
+        {
+            pin.setRadius(et.getHint().toString());
+        }
+        else{
+            pin.setRadius(et.getText().toString());
+        }
 
         String pinID = "";
         boolean generated = false;
@@ -133,13 +171,23 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
         if(pin instanceof PinMoveable)
         {
             et = findViewById(R.id.etDegree);
-            ((PinMoveable) pin).setDegree(Double.parseDouble(et.getText().toString()));
+            if(et.getText().toString().equals(""))
+            {
+                ((PinMoveable) pin).setDegree(Double.parseDouble(et.getHint().toString()));
+            }
+            else{
+                ((PinMoveable) pin).setDegree(Double.parseDouble(et.getText().toString()));
+            }
             et = findViewById(R.id.etSpeed);
-            ((PinMoveable) pin).setSpeed(Double.parseDouble(et.getText().toString()));
+            if(et.getText().toString().equals(""))
+            {
+                ((PinMoveable) pin).setSpeed(Double.parseDouble(et.getHint().toString()));
+            }
+            else{
+                ((PinMoveable) pin).setSpeed(Double.parseDouble(et.getText().toString()));
+            }
         }
 
-        et = findViewById(R.id.radius);
-        pin.setRadius(et.getText().toString());
         Intent mainIntent = new Intent(this, MainActivity.class);
         writer.writePin(pin, this);
 

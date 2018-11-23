@@ -22,6 +22,7 @@ public class YourPins extends AppCompatActivity implements AdapterView.OnItemSel
 
     private ArrayList<String> groupSpinner = new ArrayList<>();
     private ArrayList<String> idSpinner = new ArrayList<>();
+    public String classPassed;
     private String selected;
     private PinDS currentPin;
 
@@ -31,12 +32,9 @@ public class YourPins extends AppCompatActivity implements AdapterView.OnItemSel
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_your_pins);
 
-
         IOread reader = new IOread();
         Spinner idselector = findViewById(R.id.spinner2);
         idselector.setOnItemSelectedListener(this);
-        idSpinner.add("personal");
-        groupSpinner.add("Personal");
         for(int i = 0; i < currentActiveUser.getAssociatedGroupID().size() - 1; i++)
         {
             if(!currentActiveUser.getAssociatedGroupID().get(i).equals("null") &&
@@ -75,7 +73,7 @@ public class YourPins extends AppCompatActivity implements AdapterView.OnItemSel
         }
 
 
-        String classPassed = (String)getIntent().getSerializableExtra("class");
+        classPassed = (String)getIntent().getSerializableExtra("class");
 
 
 
@@ -156,10 +154,17 @@ public class YourPins extends AppCompatActivity implements AdapterView.OnItemSel
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
     {
         String item = parent.getItemAtPosition(position).toString();
+        String savedID = currentLayoutID;
         currentLayout = item;
         currentLayoutID = idSpinner.get(position);
         selected = item;
         Toast.makeText(parent.getContext(), "Current Layout: " + item, Toast.LENGTH_LONG).show();
+        if(!savedID.equals(idSpinner.get(position)))
+        {
+            Intent intent = getIntent();
+            finish();
+            startActivity(intent);
+        }
     }
 
     // INCLUDE DOCUMENTATION*****************************************************
@@ -170,6 +175,7 @@ public class YourPins extends AppCompatActivity implements AdapterView.OnItemSel
         IOread reader = new IOread();
         Intent mainIntent = new Intent(this, PinViewAttributes.class);
         mainIntent.putExtra("pin", reader.retrievePin(button.getHint().toString(),this));
+        mainIntent.putExtra("class", classPassed);
         startActivity(mainIntent);
     }
 

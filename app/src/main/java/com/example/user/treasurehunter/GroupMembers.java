@@ -23,7 +23,7 @@ public class GroupMembers extends AppCompatActivity
 {
     public boolean buttonSet;
     private ArrayList<String> ids = new ArrayList<>();
-    private ArrayList<String> permissions = new ArrayList<>();
+    private ArrayList<String> permissions = new ArrayList<>( );
 
     /**
      * Method that sets the screen to display activity_group_members.

@@ -60,7 +60,7 @@ public class PinViewAttributes extends AppCompatActivity implements Serializable
     public EditText etAltitude;
     public EditText etDegree;
     public EditText etSpeed;
-
+    public String classPassed;
     public TextView tvBanner;
 
     /**
@@ -74,6 +74,7 @@ public class PinViewAttributes extends AppCompatActivity implements Serializable
         setContentView(R.layout.activity_pin_view_attributes);
 
         IOread reader = new IOread();
+        classPassed = (String)getIntent().getSerializableExtra("class");
 
         row1 = findViewById(R.id.Row1);
         row2 = findViewById(R.id.Row2);
@@ -187,6 +188,7 @@ public class PinViewAttributes extends AppCompatActivity implements Serializable
     public void backClicked(View view)
     {
         Intent mainIntent = new Intent(this, MainActivity.class);
+        mainIntent.putExtra("class", classPassed);
         startActivity(mainIntent);
     }
 
@@ -343,6 +345,7 @@ public class PinViewAttributes extends AppCompatActivity implements Serializable
         if (keyCode == KeyEvent.KEYCODE_BACK )
         {
             Intent mainIntent = new Intent(this, YourPins.class);
+            mainIntent.putExtra("class", classPassed);
             startActivity(mainIntent);
             return true;
         }
