@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -51,6 +53,16 @@ public class GroupMemberInvite extends AppCompatActivity
         memInput8.setVisibility(View.GONE);
         memInput9.setVisibility(View.GONE);
         memInput10.setVisibility(View.GONE);
+
+        IOread reader = new IOread();
+
+        ArrayList<String> listOfUsers = reader.existingIDs("users", this);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_dropdown_item_1line, listOfUsers);
+        AutoCompleteTextView textView = (AutoCompleteTextView)
+                memInput1;
+        textView.setAdapter(adapter);
     }
 
     public void addInput(View view)
@@ -100,24 +112,66 @@ public class GroupMemberInvite extends AppCompatActivity
     {
         IOread reader = new IOread();
         IOwrite writer = new IOwrite();
+        ArrayList<String> checkedUsersIDs = new ArrayList<>();
         ArrayList<String> addingUsersIDs = new ArrayList<>();
         ArrayList<String> addingUsersNames = new ArrayList<>();
         ArrayList<String> addingUsersPermissions = new ArrayList<>();
         ArrayList<String> listOfUsers = reader.existingIDs("users", this);
-        for(int i = 0; i < listOfUsers.size(); i++)
+        if(!memInput1.getText().toString().equals(""))
         {
-            String idEntered = memInput1.getText().toString();
-            if(idEntered.length() == 10 && idEntered.equals(listOfUsers.get(i)))
+            checkedUsersIDs.add(memInput1.getText().toString());
+        }
+        if(!memInput2.getText().toString().equals(""))
+        {
+            checkedUsersIDs.add(memInput2.getText().toString());
+        }
+        if(!memInput3.getText().toString().equals(""))
+        {
+            checkedUsersIDs.add(memInput3.getText().toString());
+        }
+        if(!memInput4.getText().toString().equals(""))
+        {
+            checkedUsersIDs.add(memInput4.getText().toString());
+        }
+        if(!memInput5.getText().toString().equals(""))
+        {
+            checkedUsersIDs.add(memInput5.getText().toString());
+        }
+        if(!memInput6.getText().toString().equals(""))
+        {
+            checkedUsersIDs.add(memInput6.getText().toString());
+        }
+        if(!memInput7.getText().toString().equals(""))
+        {
+            checkedUsersIDs.add(memInput7.getText().toString());
+        }
+        if(!memInput8.getText().toString().equals(""))
+        {
+            checkedUsersIDs.add(memInput8.getText().toString());
+        }
+        if(!memInput9.getText().toString().equals(""))
+        {
+            checkedUsersIDs.add(memInput9.getText().toString());
+        }
+        if(!memInput10.getText().toString().equals(""))
+        {
+            checkedUsersIDs.add(memInput10.getText().toString());
+        }
+        for(int j = 0; j < checkedUsersIDs.size(); j++)
+        {
+            for(int i = 0; i < listOfUsers.size(); i++)
             {
-                addingUsersIDs.add("%" + idEntered);
-                addingUsersNames.add(reader.retrieveUser(idEntered, this).getUserName());
+                addingUsersIDs.add("%" + addingUsersIDs.get(j));
+                addingUsersNames.add(reader.retrieveUser(checkedUsersIDs.get(j), this).getUserName());
                 addingUsersPermissions.add("P");
                 ArrayList<String> temp = new ArrayList<>();
                 temp.add("%" + currentLayoutID);
-                writer.addAssociation(reader.retrieveUser(idEntered, this), temp, "groupinvite", "",this);
+                writer.addAssociation(reader.retrieveUser(checkedUsersIDs.get(j), this), temp, "groupinvite", "",this);
             }
         }
         writer.writeMembers(addingUsersIDs, addingUsersNames, addingUsersPermissions, currentLayoutID, this);
+        Intent mainIntent = new Intent(this, GroupView.class);
+        startActivity(mainIntent);
     }
 
     /**
@@ -128,7 +182,7 @@ public class GroupMemberInvite extends AppCompatActivity
     {
         if (keyCode == KeyEvent.KEYCODE_BACK )
         {
-            Intent mainIntent = new Intent(this, MainActivity.class);
+            Intent mainIntent = new Intent(this, GroupView.class);
             startActivity(mainIntent);
             return true;
         }

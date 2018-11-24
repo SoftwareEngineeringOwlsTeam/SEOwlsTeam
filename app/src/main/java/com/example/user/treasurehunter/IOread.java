@@ -268,7 +268,7 @@ public class IOread extends AppCompatActivity
             String[] eachLine = everything.split("\n", 1000);
             for(int i = 0; i < eachLine.length; i++)
             {
-                String[] foundLine = eachLine[i].split("\\*",7);
+                String[] foundLine = eachLine[i].split("\\*",8);
                 fullAudit += foundLine[1] + "\n";
                 fullAudit += foundLine[2] + " " + foundLine[3] + " - " + foundLine[4];
                 if(foundLine[0].equals("0"))

@@ -46,26 +46,32 @@ public class LogInScreen extends AppCompatActivity
             et2.setError("No Users");
         }
         else {
+            boolean foundU = false;
+            boolean foundP = false;
             for(int i = 0; i < listOfUsers.size(); i++)
             {
                 User user = reader.retrieveUser(listOfUsers.get(i), this);
                 if(user.getUserName().equals(et2.getText().toString()))
                 {
+                    foundU = true;
                     if(user.getPassword().equals(et.getText().toString()))
                     {
+                        foundP = true;
                         currentActiveUser = user;
                         currentLayout = "Personal";
                         currentLayoutID = "personal";
                         Intent pinIntent = new Intent(this, MainActivity.class);
                         startActivity(pinIntent);
                     }
-                    else {
-                        et.setError("Wrong password");
-                    }
                 }
-                else {
-                    et2.setError("Username does not exist");
-                }
+            }
+            if(!foundU)
+            {
+                et2.setError("Username does not exist");
+            }
+            if(!foundP)
+            {
+                et.setError("Wrong password");
             }
         }
     }

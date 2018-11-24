@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -131,7 +132,6 @@ public class YourPins extends AppCompatActivity implements AdapterView.OnItemSel
                 final Button myButton = new Button(this);
                 myButton.setText(currentPin.getPinTitle());
                 myButton.setBackgroundColor(currentPin.getDefaultColor());
-
                 myButton.setHint(currentPin.getPinID());
 
                 myButton.setOnClickListener(new View.OnClickListener()
@@ -148,7 +148,7 @@ public class YourPins extends AppCompatActivity implements AdapterView.OnItemSel
             }
         }
 
-
+        ((TextView)findViewById(R.id.aboveSpinner)).setText("Group Selected : " + currentLayout);
     }
 
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
