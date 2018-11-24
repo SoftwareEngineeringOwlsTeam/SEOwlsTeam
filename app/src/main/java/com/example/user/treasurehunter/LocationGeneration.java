@@ -34,17 +34,51 @@ public class LocationGeneration extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_tester);
 
-        pin = (PinDS) getIntent().getSerializableExtra("pin");
-        locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
-        getLocation();
-        Calendar calendar = Calendar.getInstance();
-        currentTime = time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds();
-        pin.setTime(currentTime);
-        currentDate = DateFormat.getDateInstance().format(calendar.getTime());
-        pin.setDate(currentDate);
-        Intent mainIntent = new Intent(this, PinCreateActivity.class);
-        mainIntent.putExtra("pin", pin);
-        startActivity(mainIntent);
+
+
+        if(getIntent().getSerializableExtra("lat") != null)
+        {
+            locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+            Double lati = Double.parseDouble((String)getIntent().getSerializableExtra("lat"));
+            Double longi = Double.parseDouble((String)getIntent().getSerializableExtra("long"));
+            Intent mainIntent = new Intent(this, Compass.class);
+            mainIntent.putExtra("lat", lati);
+            mainIntent.putExtra("long", longi);
+            if(ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION) !=
+                    PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission
+                    (this, Manifest.permission.ACCESS_COARSE_LOCATION) !=
+                    PackageManager.PERMISSION_GRANTED)
+            {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
+            }
+            else
+            {
+                Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                if (location != null)
+                {
+                    mainIntent.putExtra("latY", location.getLatitude());
+                    mainIntent.putExtra("longY", location.getLongitude());
+                }
+                else {
+                    mainIntent.putExtra("latY", -1.0);
+                    mainIntent.putExtra("longY", -1.0);
+                }
+            }
+            startActivity(mainIntent);
+        }
+        else{
+            pin = (PinDS) getIntent().getSerializableExtra("pin");
+            locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+            getLocation();
+            Calendar calendar = Calendar.getInstance();
+            currentTime = time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds();
+            pin.setTime(currentTime);
+            currentDate = DateFormat.getDateInstance().format(calendar.getTime());
+            pin.setDate(currentDate);
+            Intent mainIntent = new Intent(this, PinCreateActivity.class);
+            mainIntent.putExtra("pin", pin);
+            startActivity(mainIntent);
+        }
     }
 
     /**

@@ -10,6 +10,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import static com.example.user.treasurehunter.MainActivity.currentLayoutID;
@@ -60,9 +61,26 @@ public class GroupMemberInvite extends AppCompatActivity
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_dropdown_item_1line, listOfUsers);
-        AutoCompleteTextView textView = (AutoCompleteTextView)
-                memInput1;
-        textView.setAdapter(adapter);
+        AutoCompleteTextView textView1 = (AutoCompleteTextView)memInput1;
+        AutoCompleteTextView textView2 = (AutoCompleteTextView)memInput2;
+        AutoCompleteTextView textView3 = (AutoCompleteTextView)memInput3;
+        AutoCompleteTextView textView4 = (AutoCompleteTextView)memInput4;
+        AutoCompleteTextView textView5 = (AutoCompleteTextView)memInput5;
+        AutoCompleteTextView textView6 = (AutoCompleteTextView)memInput6;
+        AutoCompleteTextView textView7 = (AutoCompleteTextView)memInput7;
+        AutoCompleteTextView textView8 = (AutoCompleteTextView)memInput8;
+        AutoCompleteTextView textView9 = (AutoCompleteTextView)memInput9;
+        AutoCompleteTextView textView10 = (AutoCompleteTextView)memInput10;
+        textView1.setAdapter(adapter);
+        textView2.setAdapter(adapter);
+        textView3.setAdapter(adapter);
+        textView4.setAdapter(adapter);
+        textView5.setAdapter(adapter);
+        textView6.setAdapter(adapter);
+        textView7.setAdapter(adapter);
+        textView8.setAdapter(adapter);
+        textView9.setAdapter(adapter);
+        textView10.setAdapter(adapter);
     }
 
     public void addInput(View view)
@@ -161,12 +179,27 @@ public class GroupMemberInvite extends AppCompatActivity
         {
             for(int i = 0; i < listOfUsers.size(); i++)
             {
-                addingUsersIDs.add("%" + addingUsersIDs.get(j));
-                addingUsersNames.add(reader.retrieveUser(checkedUsersIDs.get(j), this).getUserName());
-                addingUsersPermissions.add("P");
-                ArrayList<String> temp = new ArrayList<>();
-                temp.add("%" + currentLayoutID);
-                writer.addAssociation(reader.retrieveUser(checkedUsersIDs.get(j), this), temp, "groupinvite", "",this);
+                if(checkedUsersIDs.get(j).equals(listOfUsers.get(i)))
+                {
+                    boolean alreadyMember = false;
+                    ArrayList<String> members = reader.existingIDs(currentLayoutID + "members", this);
+                    for(int k = 0; k < members.size(); k++)
+                    {
+                        if(members.get(k).equals(checkedUsersIDs.get(j)))
+                        {
+                            alreadyMember = true;
+                        }
+                    }
+                    if(!alreadyMember)
+                    {
+                        addingUsersIDs.add("%" + checkedUsersIDs.get(j));
+                        addingUsersNames.add(reader.retrieveUser(checkedUsersIDs.get(j), this).getUserName());
+                        addingUsersPermissions.add("P");
+                        ArrayList<String> temp = new ArrayList<>();
+                        temp.add("%" + currentLayoutID);
+                        writer.addAssociation(reader.retrieveUser(checkedUsersIDs.get(j), this), temp, "groupinvite", "", this);
+                    }
+                }
             }
         }
         writer.writeMembers(addingUsersIDs, addingUsersNames, addingUsersPermissions, currentLayoutID, this);
