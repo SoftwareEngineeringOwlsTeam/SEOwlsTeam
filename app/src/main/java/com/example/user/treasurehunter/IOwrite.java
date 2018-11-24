@@ -214,9 +214,9 @@ public class IOwrite extends AppCompatActivity implements Serializable
         }
     }
 
-    public void writeGroupAudit(String groupID, int action, User user, String deletedUserID, String pinID, Context context)
+    public void writeGroupAudit(int viewable, String groupID, int action, User user, String deletedUserID, String pinID, Context context)
     {
-        String data = (action + "*" + currentTime + "*" + currentDate + "*" + user.getUserName() + "*" + user.getUserID());
+        String data = (action + "*" + viewable + "*" + currentTime + "*" + currentDate + "*" + user.getUserName() + "*" + user.getUserID());
         if(!pinID.equals(""))
         {
             PinDS pin = reader.retrievePin(pinID, context);
@@ -385,6 +385,38 @@ public class IOwrite extends AppCompatActivity implements Serializable
             }
             writeUser(changedUser, context);
         }
+    }
+
+    public void editGroupAudit(int viewable, String readAudit, String groupID, int onLine, Context context)
+    {
+        String newEverything = "";
+        String everything = readAudit;
+        String[] eachLine = everything.split("\n", 1000);
+        for(int i = 0; i < eachLine.length; i++)
+        {
+            System.out.println(i + "AAAAAAAA" + eachLine[i]);
+            String[] foundLine = eachLine[i].split("\\*",14);
+            if(i == onLine)
+            {
+                for(int j = 0; j < foundLine.length; j++)
+                {
+                    if(j == 1)
+                    {
+                        newEverything += viewable + "*";
+                    }
+                    else {
+                        newEverything += foundLine[j] + "*";
+                    }
+                }
+                newEverything += "\n";
+            }
+            else{
+                newEverything += eachLine[i] + "\n";
+            }
+        }
+        System.out.println(newEverything);
+        removeFile("groupaudit", groupID, context);
+        write(newEverything, (groupID + "groupaudit"), context);
     }
 
 

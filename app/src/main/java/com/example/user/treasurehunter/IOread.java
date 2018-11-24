@@ -261,7 +261,7 @@ public class IOread extends AppCompatActivity
      */
     public String readGroupAudit(String groupID, Context context)
     {
-        String fullAudit = "";
+        String fullAudit = "*********************************************\n";
         try
         {
             String everything = read("groupaudit", groupID, context);
@@ -269,7 +269,8 @@ public class IOread extends AppCompatActivity
             for(int i = 0; i < eachLine.length; i++)
             {
                 String[] foundLine = eachLine[i].split("\\*",7);
-                fullAudit += foundLine[1] + " " + foundLine[2] + " - " + foundLine[3];
+                fullAudit += foundLine[1] + "\n";
+                fullAudit += foundLine[2] + " " + foundLine[3] + " - " + foundLine[4];
                 if(foundLine[0].equals("0"))
                 {
                     fullAudit += " Created This Group" + "\n"
@@ -277,22 +278,22 @@ public class IOread extends AppCompatActivity
                 }
                 else if (foundLine[0].equals("1"))
                 {
-                    fullAudit += (" Placed Pin: " + foundLine[5] + " ID: " + foundLine[6] + "\n"
+                    fullAudit += (" Placed Pin: " + foundLine[6] + " ID: " + foundLine[7] + "\n"
                             + "*********************************************");
                 }
                 else if (foundLine[0].equals("2"))
                 {
-                    fullAudit += (" Removed Pin: " + foundLine[5] + "\n"
+                    fullAudit += (" Removed Pin: " + foundLine[6] + "\n"
                             + "*********************************************");
                 }
                 else if (foundLine[0].equals("3"))
                 {
-                    fullAudit += (" Added Member: " + foundLine[5] + " ID: " + foundLine[6] + "\n"
+                    fullAudit += (" Added Member: " + foundLine[6] + " ID: " + foundLine[7] + "\n"
                             + "*********************************************");
                 }
                 else
                 {
-                    fullAudit += (" Deleted Member: " + foundLine[5] + " ID: " + foundLine[6] + "\n"
+                    fullAudit += (" Deleted Member: " + foundLine[6] + " ID: " + foundLine[7] + "\n"
                             + "*********************************************");
                 }
                 fullAudit += "\n";
@@ -338,7 +339,7 @@ public class IOread extends AppCompatActivity
      */
     public String readUserAudit(String userID, Context context)
     {
-        String fullAudit = "";
+        String fullAudit = "*********************************************\n";
         try
         {
             String everything = read("useraudit",userID, context);

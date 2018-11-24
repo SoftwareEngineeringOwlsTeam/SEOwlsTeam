@@ -200,7 +200,7 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
         }
         else{
             writer.addAssociation(currentActiveUser, addingList, "gpin", currentLayoutID, this);
-            writer.writeGroupAudit(currentLayoutID, 1, currentActiveUser, "", pinID, this);
+            writer.writeGroupAudit(1, currentLayoutID, 1, currentActiveUser, "", pinID, this);
             writer.writeUserAudit(currentActiveUser.getUserID(),4, pinID, currentLayoutID, this);
         }
         startActivity(mainIntent);

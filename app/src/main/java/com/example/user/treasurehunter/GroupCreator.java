@@ -76,7 +76,7 @@ public class GroupCreator extends AppCompatActivity
         writer.writeGroup(newGroup, this);
         writer.writeMembers(membersIDs, membersNames, permissions, newGroup.getGroupID(),this);
 
-        writer.writeGroupAudit(newGroupID,0,currentActiveUser,"","",this);
+        writer.writeGroupAudit(1, newGroupID,0,currentActiveUser,"","",this);
         writer.writeUserAudit(currentActiveUser.getUserID(),1, "", newGroupID, this);
 
         ArrayList<String> addingAssociation = new ArrayList<>();
