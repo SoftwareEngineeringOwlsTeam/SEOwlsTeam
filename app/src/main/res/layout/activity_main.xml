@@ -105,58 +105,139 @@
                     <Button
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
-                        android:text="Scavenger Hunt"
+                        android:text="Scavenger Hunt emoji"
                         android:height="100dp"
                         android:onClick="clickScavengerHunt"
 
-                        ></Button>
+                        />
 
                     <Button
-                        android:text="Shipwreck"
+                        android:text="Shipwreck emoji"
                         android:layout_width="150dp"
                         android:height="100dp"
                         android:onClick="clickShipwreck"/>
+                </TableRow>
+                <TableRow
+                    android:gravity="center"
+                    >
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="Scavenger Hunt"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimary"
+                        android:textStyle="bold"
+                        />
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="Shipwreck"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimary"
+                        android:textStyle="bold"/>
                 </TableRow>
 
                 <TableRow
                     android:gravity="center">
                     <Button
-                        android:text="Treasure"
+                        android:text="Treasure emoji"
                         android:height="100dp"
                         android:onClick="clickTreasure"/>
 
                     <Button
-                        android:text="Custom"
+                        android:text="Custom emoji"
                         android:height="100dp"
                         android:onClick="clickCustom"/>
 
                 </TableRow>
                 <TableRow
+                    android:gravity="center"
+                    >
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="Treasure"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimary"
+                        android:textStyle="bold"
+                        />
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="Custom"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimary"
+                        android:textStyle="bold"/>
+                </TableRow>
+                <TableRow
                     android:gravity="center">
                     <Button
-                        android:text="Forrest Fire"
+                        android:text="Forrest Fire emoji"
                         android:height="100dp"
                         android:onClick="clickForestFire"/>
 
                     <Button
-                        android:text="Hunting"
+                        android:text="Hunting emoji"
                         android:height="100dp"
                         android:onClick="clickHunting"/>
 
                 </TableRow>
                 <TableRow
+                    android:gravity="center"
+                    >
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="Forrest Fire"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimary"
+                        android:textStyle="bold"
+                        />
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="Hunting"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimary"
+                        android:textStyle="bold"/>
+                </TableRow>
+                <TableRow
                     android:gravity="center">
 
                     <Button
-                        android:text="Survivor"
+                        android:text="Survivor emoji"
                         android:height="100dp"
                         android:onClick="clickSurvivor"/>
 
                     <Button
-                        android:text="Whale"
+                        android:layout_width="152dp"
                         android:height="100dp"
-                        android:onClick="clickWhale"/>
+                        android:onClick="clickWhale"
+                        android:text="Whale emoji"
+                        android:background="mipmap-xxxhdpi/whaleEmoji.gif"/>
 
+
+                </TableRow>
+                <TableRow
+                    android:gravity="center"
+                    android:paddingBottom="50dp"
+                    >
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="Survivor"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimary"
+                        android:textStyle="bold"
+                        />
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="Whale"
+
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimary"
+                        android:textStyle="bold"/>
                 </TableRow>
 
             </TableLayout>
