@@ -30,8 +30,8 @@ public class GroupCreator extends AppCompatActivity
         setContentView(R.layout.activity_group_creator);
         tvUsername = findViewById(R.id.tvUsername);
         tvUserID = findViewById(R.id.tvUserID);
-        tvUsername.setText(currentActiveUser.getUserName());
-        tvUserID.setText(currentActiveUser.getUserID());
+        tvUsername.setText("Admin Name: " + currentActiveUser.getUserName());
+        tvUserID.setText("Admin ID: " + currentActiveUser.getUserID());
     }
 
     /**
