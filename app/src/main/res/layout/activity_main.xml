@@ -213,8 +213,7 @@
                         android:layout_width="152dp"
                         android:height="100dp"
                         android:onClick="clickWhale"
-                        android:text="Whale emoji"
-                        android:background="mipmap-xxxhdpi/whaleEmoji.gif"/>
+                        android:text="Whale emoji" />
 
 
                 </TableRow>
