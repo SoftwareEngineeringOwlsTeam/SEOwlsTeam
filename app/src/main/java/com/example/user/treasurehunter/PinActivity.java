@@ -40,6 +40,8 @@ public class PinActivity extends AppCompatActivity
         forestFireButton = findViewById(R.id.forrestFireButton);
         customButton = findViewById(R.id.customButton);
         huntingButton = findViewById(R.id.huntingButton);
+
+        findViewById(R.id.imageView4).bringToFront();
     }
 
     /**

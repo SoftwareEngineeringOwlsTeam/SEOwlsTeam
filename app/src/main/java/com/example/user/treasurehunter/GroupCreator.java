@@ -71,8 +71,8 @@ public class GroupCreator extends AppCompatActivity
                 }
             }
         }
-        Group newGroup = new Group(tvUserID.getText().toString(), etDescription.getText().toString(),
-                                    etTitle.getText().toString(), tvUsername.getText().toString(), newGroupID);
+        Group newGroup = new Group(currentActiveUser.getUserID(), etDescription.getText().toString(),
+                                    etTitle.getText().toString(), currentActiveUser.getUserName(), newGroupID);
         writer.writeGroup(newGroup, this);
         writer.writeMembers(membersIDs, membersNames, permissions, newGroup.getGroupID(),this);
 

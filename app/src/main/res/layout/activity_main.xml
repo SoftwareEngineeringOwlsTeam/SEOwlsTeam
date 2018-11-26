@@ -152,10 +152,11 @@
                         android:height="100dp"
                         android:onClick="clickSurvivor"/>
 
-                    <Button
-                        android:text="Whale"
-                        android:height="100dp"
-                        android:onClick="clickWhale"/>
+                    <ImageView
+                        android:layout_width="50sp"
+                        android:layout_height="90dp"
+                        android:onClick="clickWhale"
+                        app:srcCompat="@mipmap/whale_emoji" />
 
                 </TableRow>
 
