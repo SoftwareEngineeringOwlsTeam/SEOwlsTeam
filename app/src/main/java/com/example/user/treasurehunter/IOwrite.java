@@ -214,9 +214,9 @@ public class IOwrite extends AppCompatActivity implements Serializable
         }
     }
 
-    public void writeGroupAudit(String groupID, int action, User user, String deletedUserID, String pinID, Context context)
+    public void writeGroupAudit(int viewable, String groupID, int action, User user, String deletedUserID, String pinID, Context context)
     {
-        String data = (action + "*" + currentTime + "*" + currentDate + "*" + user.getUserName() + "*" + user.getUserID());
+        String data = (action + "*" + viewable + "*" + currentTime + "*" + currentDate + "*" + user.getUserName() + "*" + user.getUserID());
         if(!pinID.equals(""))
         {
             PinDS pin = reader.retrievePin(pinID, context);
@@ -353,8 +353,9 @@ public class IOwrite extends AppCompatActivity implements Serializable
         }
     }
 
-    public void removeAssociation(User user, ArrayList<String> addingID, String removingFromWhat, String groupID, Context context)
+    public void removeAssociation(User user, ArrayList<String> deleteID, String removingFromWhat, String groupID, Context context)
     {
+        ArrayList<String> addingID = new ArrayList<>();
         if(removingFromWhat.equals("gpin"))
         {
 //            Group changedGroup = reader.retrieveGroup(groupID, context);
@@ -370,25 +371,52 @@ public class IOwrite extends AppCompatActivity implements Serializable
 //            }
         }
         else {
-            User changedUser = currentActiveUser;
-            removeObject("users", currentActiveUser.getUserID(), "", context);
+            User changedUser = user;
+            addingID = changedUser.getAssociatedGroupID();
+            removeObject("users", user.getUserID(), "", context);
             if(removingFromWhat.equals("ppin"))
             {
-                for(int i = 0; i < changedUser.getPersonalPinID().size(); i++)
-                {
-                    addingID.remove(changedUser.getPersonalPinID().get(i));
-                }
+                addingID.remove(deleteID.get(0));
                 changedUser.setPersonalPinID(addingID);
             }
             else{
-                for(int i = 0; i < changedUser.getAssociatedGroupID().size(); i++)
-                {
-                    addingID.remove(changedUser.getAssociatedGroupID().get(i));
-                }
+                addingID.remove(deleteID.get(0));
                 changedUser.setAssociatedGroupID(addingID);
             }
             writeUser(changedUser, context);
         }
+    }
+
+    public void editGroupAudit(int viewable, String readAudit, String groupID, int onLine, Context context)
+    {
+        String newEverything = "";
+        String everything = readAudit;
+        String[] eachLine = everything.split("\n", 1000);
+        for(int i = 0; i < eachLine.length; i++)
+        {
+            System.out.println(i + "AAAAAAAA" + eachLine[i]);
+            String[] foundLine = eachLine[i].split("\\*",14);
+            if(i == onLine)
+            {
+                for(int j = 0; j < foundLine.length; j++)
+                {
+                    if(j == 1)
+                    {
+                        newEverything += viewable + "*";
+                    }
+                    else {
+                        newEverything += foundLine[j] + "*";
+                    }
+                }
+                newEverything += "\n";
+            }
+            else{
+                newEverything += eachLine[i] + "\n";
+            }
+        }
+        System.out.println(newEverything);
+        removeFile("groupaudit", groupID, context);
+        write(newEverything, (groupID + "groupaudit"), context);
     }
 
 

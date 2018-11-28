@@ -51,6 +51,7 @@ public class PinViewAttributes extends AppCompatActivity implements Serializable
     public Button editButton;
     public Button cancelButton;
     public Button saveButton;
+    public Button compassButton;
 
     public EditText etPinName;
     public EditText etDescription;
@@ -60,7 +61,7 @@ public class PinViewAttributes extends AppCompatActivity implements Serializable
     public EditText etAltitude;
     public EditText etDegree;
     public EditText etSpeed;
-
+    public String classPassed;
     public TextView tvBanner;
 
     /**
@@ -74,6 +75,7 @@ public class PinViewAttributes extends AppCompatActivity implements Serializable
         setContentView(R.layout.activity_pin_view_attributes);
 
         IOread reader = new IOread();
+        classPassed = (String)getIntent().getSerializableExtra("class");
 
         row1 = findViewById(R.id.Row1);
         row2 = findViewById(R.id.Row2);
@@ -116,6 +118,7 @@ public class PinViewAttributes extends AppCompatActivity implements Serializable
         editButton = findViewById(R.id.button17);
         cancelButton = findViewById(R.id.button18);
         saveButton = findViewById(R.id.button19);
+        compassButton = findViewById(R.id.button20);
 
         etPinName = findViewById(R.id.etPinName);
         etDescription = findViewById(R.id.etDescription);
@@ -140,6 +143,7 @@ public class PinViewAttributes extends AppCompatActivity implements Serializable
         editButton.setBackgroundColor(pin.getDefaultColor());
         cancelButton.setBackgroundColor(pin.getDefaultColor());
         saveButton.setBackgroundColor(pin.getDefaultColor());
+        compassButton.setBackgroundColor(pin.getDefaultColor());
 
         //Hides the degree and speed rows from displaying if the pin is not Moveable.
         row10.setVisibility(View.GONE);
@@ -187,6 +191,7 @@ public class PinViewAttributes extends AppCompatActivity implements Serializable
     public void backClicked(View view)
     {
         Intent mainIntent = new Intent(this, MainActivity.class);
+        mainIntent.putExtra("class", classPassed);
         startActivity(mainIntent);
     }
 
@@ -330,7 +335,9 @@ public class PinViewAttributes extends AppCompatActivity implements Serializable
     // INCLUDE DOCUMENTATION*****************************************************
     public void viewCompass(View view)
     {
-        Intent locIntent = new Intent(this, Compass.class);
+        Intent locIntent = new Intent(this, LocationGeneration.class);
+        locIntent.putExtra("lat", ((TextView)findViewById(R.id.tvLocationLat)).getText().toString());
+        locIntent.putExtra("long", ((TextView)findViewById(R.id.tvLocationLong)).getText().toString());
         startActivity(locIntent);
     }
 
@@ -343,6 +350,7 @@ public class PinViewAttributes extends AppCompatActivity implements Serializable
         if (keyCode == KeyEvent.KEYCODE_BACK )
         {
             Intent mainIntent = new Intent(this, YourPins.class);
+            mainIntent.putExtra("class", classPassed);
             startActivity(mainIntent);
             return true;
         }

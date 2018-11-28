@@ -209,30 +209,11 @@
                         android:height="100dp"
                         android:onClick="clickSurvivor"/>
 
-                    <Button
-                        android:layout_width="152dp"
-                        android:height="100dp"
+                    <ImageView
+                        android:layout_width="50sp"
+                        android:layout_height="90dp"
                         android:onClick="clickWhale"
-                        android:text="Whale emoji" />
-
-
-                </TableRow>
-                <TableRow
-                    android:gravity="center"
-                    android:paddingBottom="50dp"
-                    >
-                    <TextView
-                        android:layout_width="150dp"
-                        android:layout_height="wrap_content"
-                        android:text="Survivor"
-                        android:textAlignment="center"
-                        android:textColor="@color/colorPrimary"
-                        android:textStyle="bold"
-                        />
-                    <TextView
-                        android:layout_width="150dp"
-                        android:layout_height="wrap_content"
-                        android:text="Whale"
+                        app:srcCompat="@mipmap/whale_emoji" />
 
                         android:textAlignment="center"
                         android:textColor="@color/colorPrimary"
@@ -241,7 +222,7 @@
 
             </TableLayout>
 
-           
+
 
 
 
@@ -268,7 +249,3 @@
         app:menu="@menu/navigation_menu" />
 
 </android.support.v4.widget.DrawerLayout>
-
-
-
-

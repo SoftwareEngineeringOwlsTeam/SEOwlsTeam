@@ -261,15 +261,16 @@ public class IOread extends AppCompatActivity
      */
     public String readGroupAudit(String groupID, Context context)
     {
-        String fullAudit = "";
+        String fullAudit = "*********************************************\n";
         try
         {
             String everything = read("groupaudit", groupID, context);
             String[] eachLine = everything.split("\n", 1000);
             for(int i = 0; i < eachLine.length; i++)
             {
-                String[] foundLine = eachLine[i].split("\\*",7);
-                fullAudit += foundLine[1] + " " + foundLine[2] + " - " + foundLine[3];
+                String[] foundLine = eachLine[i].split("\\*",8);
+                fullAudit += foundLine[1] + "\n";
+                fullAudit += foundLine[2] + " " + foundLine[3] + " - " + foundLine[4];
                 if(foundLine[0].equals("0"))
                 {
                     fullAudit += " Created This Group" + "\n"
@@ -277,22 +278,22 @@ public class IOread extends AppCompatActivity
                 }
                 else if (foundLine[0].equals("1"))
                 {
-                    fullAudit += (" Placed Pin: " + foundLine[5] + " ID: " + foundLine[6] + "\n"
+                    fullAudit += (" Placed Pin: " + foundLine[6] + " ID: " + foundLine[7] + "\n"
                             + "*********************************************");
                 }
                 else if (foundLine[0].equals("2"))
                 {
-                    fullAudit += (" Removed Pin: " + foundLine[5] + "\n"
+                    fullAudit += (" Removed Pin: " + foundLine[6] + "\n"
                             + "*********************************************");
                 }
                 else if (foundLine[0].equals("3"))
                 {
-                    fullAudit += (" Added Member: " + foundLine[5] + " ID: " + foundLine[6] + "\n"
+                    fullAudit += (" Added Member: " + foundLine[6] + " ID: " + foundLine[7] + "\n"
                             + "*********************************************");
                 }
                 else
                 {
-                    fullAudit += (" Deleted Member: " + foundLine[5] + " ID: " + foundLine[6] + "\n"
+                    fullAudit += (" Deleted Member: " + foundLine[6] + " ID: " + foundLine[7] + "\n"
                             + "*********************************************");
                 }
                 fullAudit += "\n";
@@ -311,35 +312,23 @@ public class IOread extends AppCompatActivity
      *  @param context      Include the context you are working in
      *  @return             The display of all existing members and their permissions
      */
-    public String readGroupMembers(String groupID, Context context)
+    public ArrayList<String> readGroupMembers(String groupID, Context context)
     {
-        String fullAudit = "";
+        ArrayList<String> allMembers = new ArrayList<>();
         try
         {
             String everything = read("members", groupID, context);
             String[] eachLine = everything.split("\n", 1000);
             for(int i = 0; i < eachLine.length; i++)
             {
-                String[] foundLine = eachLine[i].split("\\*",3);
-                if(foundLine[0].charAt(0) != '%')
-                {
-                    fullAudit += (foundLine[1] + " is able to " + foundLine[2]);
-                }
-                else
-                {
-                    fullAudit += (foundLine[1] + " has not yet accepted invitation");
-                }
-                if(i != eachLine.length - 1)
-                {
-                    fullAudit += "\n";
-                }
+                allMembers.add(eachLine[i]);
             }
         }
         catch (FileNotFoundException e)
         {
             e.printStackTrace();
         }
-        return fullAudit;
+        return allMembers;
     }
 
     /**
@@ -350,7 +339,7 @@ public class IOread extends AppCompatActivity
      */
     public String readUserAudit(String userID, Context context)
     {
-        String fullAudit = "";
+        String fullAudit = "*********************************************\n";
         try
         {
             String everything = read("useraudit",userID, context);

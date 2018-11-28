@@ -31,11 +31,13 @@ public class GroupInvites extends AppCompatActivity
             }
         }
 
+        IOread reader = new IOread();
+
         for(int i = 0; i < listOfInvites.size(); i++)
         {
             final TextView myTV = new TextView(this);
-            //myTV.setText("You have been invited to group: " + listOfInvites.get(i));
-            myTV.setText(listOfInvites.get(i));
+            myTV.setText("You have been invited to group: " + reader.retrieveGroup(listOfInvites.get(i), this).getGroupName());
+            myTV.setHint(listOfInvites.get(i));
 
             final Button myButton = new Button(this);
             myButton.setText("Accept");
@@ -76,9 +78,9 @@ public class GroupInvites extends AppCompatActivity
         button.setVisibility(View.GONE);
         button2.setVisibility(View.GONE);
         ArrayList<String> removingAssociation = new ArrayList<>();
-        removingAssociation.add("%" + tv.getText().toString());
+        removingAssociation.add("%" + tv.getHint().toString());
         writer.removeAssociation(currentActiveUser, removingAssociation, "group", "", this);
-        writer.removeObject(tv.getText().toString() + "members", currentActiveUser.getUserID(), "%" + tv.getText().toString(), this);
+        writer.removeObject(tv.getHint().toString() + "members", currentActiveUser.getUserID(), "%" + tv.getHint().toString(), this);
     }
 
     public void addInvite(Button button, Button button2, TextView tv)
@@ -89,11 +91,11 @@ public class GroupInvites extends AppCompatActivity
         button.setVisibility(View.GONE);
         button2.setVisibility(View.GONE);
         ArrayList<String> removingAssociation = new ArrayList<>();
-        removingAssociation.add("%" + tv.getText().toString());
+        removingAssociation.add("%" + tv.getHint().toString());
         writer.removeAssociation(currentActiveUser, removingAssociation, "group", "", this);
-        writer.removeObject(tv.getText().toString() + "members", "%" + currentActiveUser.getUserID(), tv.getText().toString(), this);
+        writer.removeObject(tv.getHint().toString() + "members", "%" + currentActiveUser.getUserID(), tv.getHint().toString(), this);
         ArrayList<String> addingAssociation = new ArrayList<>();
-        addingAssociation.add(tv.getText().toString() + "/");
+        addingAssociation.add(tv.getHint().toString());
         writer.addAssociation(currentActiveUser, addingAssociation, "      group", "", this);
         ArrayList<String> addingUser = new ArrayList<>();
         addingUser.add(currentActiveUser.getUserID());
@@ -101,7 +103,7 @@ public class GroupInvites extends AppCompatActivity
         addingUserName.add(currentActiveUser.getUserName());
         ArrayList<String> addingPermission = new ArrayList<>();
         addingPermission.add("P");
-        writer.writeMembers(addingUser, addingUserName, addingPermission, tv.getText().toString(), this);
+        writer.writeMembers(addingUser, addingUserName, addingPermission, tv.getHint().toString(), this);
         currentActiveUser = reader.retrieveUser(currentActiveUser.getUserID(), this);
     }
 

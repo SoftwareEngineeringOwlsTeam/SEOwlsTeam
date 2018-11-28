@@ -30,8 +30,8 @@ public class GroupCreator extends AppCompatActivity
         setContentView(R.layout.activity_group_creator);
         tvUsername = findViewById(R.id.tvUsername);
         tvUserID = findViewById(R.id.tvUserID);
-        tvUsername.setText(currentActiveUser.getUserName());
-        tvUserID.setText(currentActiveUser.getUserID());
+        tvUsername.setText("Admin Name: " + currentActiveUser.getUserName());
+        tvUserID.setText("Admin ID: " + currentActiveUser.getUserID());
     }
 
     /**
@@ -71,12 +71,12 @@ public class GroupCreator extends AppCompatActivity
                 }
             }
         }
-        Group newGroup = new Group(tvUserID.getText().toString(), etDescription.getText().toString(),
-                                    etTitle.getText().toString(), tvUsername.getText().toString(), newGroupID);
+        Group newGroup = new Group(currentActiveUser.getUserID(), etDescription.getText().toString(),
+                                    etTitle.getText().toString(), currentActiveUser.getUserName(), newGroupID);
         writer.writeGroup(newGroup, this);
         writer.writeMembers(membersIDs, membersNames, permissions, newGroup.getGroupID(),this);
 
-        writer.writeGroupAudit(newGroupID,0,currentActiveUser,"","",this);
+        writer.writeGroupAudit(1, newGroupID,0,currentActiveUser,"","",this);
         writer.writeUserAudit(currentActiveUser.getUserID(),1, "", newGroupID, this);
 
         ArrayList<String> addingAssociation = new ArrayList<>();
