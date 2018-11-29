@@ -38,8 +38,8 @@ public class MainActivity extends AppCompatActivity  implements AdapterView.OnIt
     private ArrayList<String> idSpinner = new ArrayList<>();
     private String selected;
     static final int REQUEST_LOCATION = 1;
-    public static String currentLayout = "Personal";
-    public static String currentLayoutID = "personal";
+    public static String currentLayout = "";
+    public static String currentLayoutID = "";
 
     // INCLUDE DOCUMENTATION Explain what is done on create***********************************
     @Override
@@ -76,8 +76,6 @@ public class MainActivity extends AppCompatActivity  implements AdapterView.OnIt
         // Set up spinner with an array of groups
         Spinner idselector = findViewById(R.id.spinner2);
         idselector.setOnItemSelectedListener(this);
-        idSpinner.add("personal");
-        groupSpinner.add("Personal");
         for(int i = 0; i < currentActiveUser.getAssociatedGroupID().size() - 1; i++)
         {
             if(!currentActiveUser.getAssociatedGroupID().get(i).equals("null") &&
@@ -109,6 +107,7 @@ public class MainActivity extends AppCompatActivity  implements AdapterView.OnIt
                 idselector.setSelection(selectedPosition, false);
             }
         }
+        System.out.println(currentLayout);
     }
 
     // INCLUDE DOCUMENTATION*****************************************************
@@ -135,7 +134,11 @@ public class MainActivity extends AppCompatActivity  implements AdapterView.OnIt
     }
 
     // INCLUDE DOCUMENTATION*****************************************************
-    public void onNothingSelected(AdapterView<?> arg0) {}
+    public void onNothingSelected(AdapterView<?> arg0)
+    {
+        currentLayout = "";
+        currentLayoutID = "";
+    }
 
     // INCLUDE DOCUMENTATION*****************************************************
     public void pinsClicked(MenuItem menuItem)
@@ -173,7 +176,22 @@ public class MainActivity extends AppCompatActivity  implements AdapterView.OnIt
     // INCLUDE DOCUMENTATION*****************************************************
     public void auditClicked(MenuItem menuItem)
     {
+        if(!currentLayout.equals(""))
+        {
+            Intent pinIntent = new Intent(this, UserAuditLog.class);
+            startActivity(pinIntent);
+        }
+        else{
+            Toast.makeText(this, "No group Selected", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    // INCLUDE DOCUMENTATION*****************************************************
+    public void auditUserClicked(MenuItem menuItem)
+    {
         Intent pinIntent = new Intent(this, UserAuditLog.class);
+        currentLayoutID = "personal";
+        currentLayout = "Personal";
         startActivity(pinIntent);
     }
 
@@ -220,10 +238,13 @@ public class MainActivity extends AppCompatActivity  implements AdapterView.OnIt
     // INCLUDE DOCUMENTATION*****************************************************
     public void groupViewClicked(MenuItem menuItem)
     {
-        if(!selected.equals("Personal"))
+        if(!currentLayoutID.equals(""))
         {
             Intent locIntent = new Intent(this, GroupView.class);
             startActivity(locIntent);
+        }
+        else{
+            Toast.makeText(this, "No group Selected", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -263,81 +284,105 @@ public class MainActivity extends AppCompatActivity  implements AdapterView.OnIt
 
     public void clickScavengerHunt(View v)
     {
-        if(!currentLayout.equals("Personal"))
+        if(!currentLayout.equals(""))
         {
             Intent yourIntent = new Intent(this, YourPins.class);
             yourIntent.putExtra("class", "Scavenger Hunt Pin");
             startActivity(yourIntent);
         }
+        else{
+            Toast.makeText(this, "No group Selected", Toast.LENGTH_LONG).show();
+        }
     }
 
     public void clickShipwreck(View v)
     {
-        if(!currentLayout.equals("Personal"))
+        if(!currentLayout.equals(""))
         {
             Intent yourIntent = new Intent(this, YourPins.class);
             yourIntent.putExtra("class", "Shipwreck Pin");
             startActivity(yourIntent);
         }
+        else{
+            Toast.makeText(this, "No group Selected", Toast.LENGTH_LONG).show();
+        }
     }
 
     public void clickTreasure(View v)
     {
-        if (!currentLayout.equals("Personal"))
+        if (!currentLayout.equals(""))
         {
             Intent yourIntent = new Intent(this, YourPins.class);
             yourIntent.putExtra("class", "Treasure Pin");
             startActivity(yourIntent);
         }
+        else{
+            Toast.makeText(this, "No group Selected", Toast.LENGTH_LONG).show();
+        }
     }
 
     public void clickForestFire(View v)
     {
-        if (!currentLayout.equals("Personal"))
+        if (!currentLayout.equals(""))
         {
             Intent yourIntent = new Intent(this, YourPins.class);
             yourIntent.putExtra("class", "Forest Fire Pin");
             startActivity(yourIntent);
         }
+        else{
+            Toast.makeText(this, "No group Selected", Toast.LENGTH_LONG).show();
+        }
     }
 
     public void clickHunting(View v)
     {
-        if (!currentLayout.equals("Personal"))
+        if (!currentLayout.equals(""))
         {
             Intent yourIntent = new Intent(this, YourPins.class);
             yourIntent.putExtra("class", "Hunting Pin");
             startActivity(yourIntent);
         }
+        else{
+            Toast.makeText(this, "No group Selected", Toast.LENGTH_LONG).show();
+        }
     }
 
     public void clickSurvivor(View v)
     {
-        if (!currentLayout.equals("Personal"))
+        if (!currentLayout.equals(""))
         {
             Intent yourIntent = new Intent(this, YourPins.class);
             yourIntent.putExtra("class", "Survivor Pin");
             startActivity(yourIntent);
         }
+        else{
+            Toast.makeText(this, "No group Selected", Toast.LENGTH_LONG).show();
+        }
     }
 
     public void clickWhale(View v)
     {
-        if (!currentLayout.equals("Personal"))
+        if (!currentLayout.equals(""))
         {
             Intent yourIntent = new Intent(this, YourPins.class);
             yourIntent.putExtra("class", "Whale Pin");
             startActivity(yourIntent);
         }
+        else{
+            Toast.makeText(this, "No group Selected", Toast.LENGTH_LONG).show();
+        }
     }
 
     public void clickCustom(View v)
     {
-        if (!currentLayout.equals("Personal"))
+        if (!currentLayout.equals(""))
         {
             Intent yourIntent = new Intent(this, YourPins.class);
             yourIntent.putExtra("class", "Custom Pin");
             startActivity(yourIntent);
+        }
+        else{
+            Toast.makeText(this, "No group Selected", Toast.LENGTH_LONG).show();
         }
     }
 }

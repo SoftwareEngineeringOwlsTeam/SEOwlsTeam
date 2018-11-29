@@ -15,6 +15,7 @@ import android.widget.TextView;
 import java.io.FileNotFoundException;
 
 import static com.example.user.treasurehunter.LogInScreen.currentActiveUser;
+import static com.example.user.treasurehunter.MainActivity.currentLayout;
 import static com.example.user.treasurehunter.MainActivity.currentLayoutID;
 
 /**
@@ -156,6 +157,11 @@ public class UserAuditLog extends AppCompatActivity
     {
         if (keyCode == KeyEvent.KEYCODE_BACK )
         {
+            if(currentLayout.equals("Personal"))
+            {
+                currentLayout = "";
+                currentLayoutID = "";
+            }
             Intent mainIntent = new Intent(this, MainActivity.class);
             startActivity(mainIntent);
             return true;

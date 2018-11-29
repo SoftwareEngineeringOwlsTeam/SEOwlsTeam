@@ -118,35 +118,39 @@ public class YourPins extends AppCompatActivity implements AdapterView.OnItemSel
 
 
         //Populate the ScrollViews
-        listOfPins = new ArrayList<>();
-        Group group = reader.retrieveGroup(currentLayoutID, this);
-        if(group.getAssociatedPinIDs() != null)
+        if(!currentLayoutID.equals(""))
         {
-            listOfPins = group.getAssociatedPinIDs();
-        }
-        for(int i = 0; i < listOfPins.size() - 1; i++)
-        {
-            currentPin = reader.retrievePin(listOfPins.get(i), this);
-            if(currentPin.getPinName().equals(classPassed))
+            listOfPins = new ArrayList<>();
+            Group group = reader.retrieveGroup(currentLayoutID, this);
+            if(group.getAssociatedPinIDs() != null)
             {
-                final Button myButton = new Button(this);
-                myButton.setText(currentPin.getPinTitle());
-                myButton.setBackgroundColor(currentPin.getDefaultColor());
-                myButton.setHint(currentPin.getPinID());
-
-                myButton.setOnClickListener(new View.OnClickListener()
+                listOfPins = group.getAssociatedPinIDs();
+            }
+            for(int i = 0; i < listOfPins.size() - 1; i++)
+            {
+                currentPin = reader.retrievePin(listOfPins.get(i), this);
+                if(currentPin.getPinName().equals(classPassed))
                 {
-                    @Override
-                    public void onClick(View v) {
-                        clickHelper(myButton);
-                    }
-                });
+                    final Button myButton = new Button(this);
+                    myButton.setText(currentPin.getPinTitle());
+                    myButton.setBackgroundColor(currentPin.getDefaultColor());
+                    myButton.setHint(currentPin.getPinID());
 
-                LinearLayout ll = findViewById(R.id.GroupPins);
-                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                ll.addView(myButton, lp);
+                    myButton.setOnClickListener(new View.OnClickListener()
+                    {
+                        @Override
+                        public void onClick(View v) {
+                            clickHelper(myButton);
+                        }
+                    });
+
+                    LinearLayout ll = findViewById(R.id.GroupPins);
+                    LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                    ll.addView(myButton, lp);
+                }
             }
         }
+
 
         ((TextView)findViewById(R.id.aboveSpinner)).setText("Group Selected : " + currentLayout);
     }
@@ -168,7 +172,10 @@ public class YourPins extends AppCompatActivity implements AdapterView.OnItemSel
     }
 
     // INCLUDE DOCUMENTATION*****************************************************
-    public void onNothingSelected(AdapterView<?> arg0) {}
+    public void onNothingSelected(AdapterView<?> arg0)
+    {
+        currentLayoutID = "";
+    }
 
     public void clickHelper(Button button)
     {
@@ -179,9 +186,92 @@ public class YourPins extends AppCompatActivity implements AdapterView.OnItemSel
         startActivity(mainIntent);
     }
 
+    public void clickPPin(View view)
+    {
+        PinDS pin = null;
+        if(classPassed.equals("Treasure Pin"))
+        {
+            pin = new PinClassTreasure();
+        }
+        if(classPassed.equals("Scavenger Hunt Pin"))
+        {
+            pin = new PinClassScavengerHunt();
+        }
+        if(classPassed.equals("Shipwreck Pin"))
+        {
+            pin = new PinClassShipwreck();
+        }
+        if(classPassed.equals("Custom Pin"))
+        {
+            pin = new PinMoveableClassCustom();
+        }
+        if(classPassed.equals("Forest Fire Pin"))
+        {
+            pin = new PinMoveableClassForestFire();
+        }
+        if(classPassed.equals("Hunting Pin"))
+        {
+            pin = new PinMoveableClassHunting();
+        }
+        if(classPassed.equals("Survivor Pin"))
+        {
+            pin = new PinMoveableClassSurvivor();
+        }
+        if(classPassed.equals("Whale Pin"))
+        {
+            pin = new PinMoveableClassWhale();
+        }
+        Intent mainIntent = new Intent(this, LocationGeneration.class);
+        currentLayout = "Personal";
+        currentLayoutID = "personal";
+        mainIntent.putExtra("pin", pin);
+        startActivity(mainIntent);
+    }
+
+    public void clickGPin(View view)
+    {
+        PinDS pin = null;
+        if(classPassed.equals("Treasure Pin"))
+        {
+            pin = new PinClassTreasure();
+        }
+        if(classPassed.equals("Scavenger Hunt Pin"))
+        {
+            pin = new PinClassScavengerHunt();
+        }
+        if(classPassed.equals("Shipwreck Pin"))
+        {
+            pin = new PinClassShipwreck();
+        }
+        if(classPassed.equals("Custom Pin"))
+        {
+            pin = new PinMoveableClassCustom();
+        }
+        if(classPassed.equals("Forest Fire Pin"))
+        {
+            pin = new PinMoveableClassForestFire();
+        }
+        if(classPassed.equals("Hunting Pin"))
+        {
+            pin = new PinMoveableClassHunting();
+        }
+        if(classPassed.equals("Survivor Pin"))
+        {
+            pin = new PinMoveableClassSurvivor();
+        }
+        if(classPassed.equals("Whale Pin"))
+        {
+            pin = new PinMoveableClassWhale();
+        }
+        Intent mainIntent = new Intent(this, LocationGeneration.class);
+        mainIntent.putExtra("pin", pin);
+        startActivity(mainIntent);
+    }
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)
     {
+
         if (keyCode == KeyEvent.KEYCODE_BACK )
         {
             Intent mainIntent = new Intent(this, MainActivity.class);

@@ -58,8 +58,8 @@ public class LogInScreen extends AppCompatActivity
                     {
                         foundP = true;
                         currentActiveUser = user;
-                        currentLayout = "Personal";
-                        currentLayoutID = "personal";
+                        currentLayout = "";
+                        currentLayoutID = "";
                         Intent pinIntent = new Intent(this, MainActivity.class);
                         startActivity(pinIntent);
                     }
