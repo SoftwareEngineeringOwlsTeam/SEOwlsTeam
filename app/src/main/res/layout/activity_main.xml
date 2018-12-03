@@ -9,20 +9,223 @@
     app:theme="@style/AppTheme"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Main Activity"
-        android:textAlignment="center"
-        android:textSize="30sp" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <android.support.design.widget.NavigationView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:fitsSystemWindows="true"
-        app:menu="@menu/navigation_menu" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tvBanner"
+                    android:layout_width="fill_parent"
+                    android:layout_height="53dp"
+                    android:background="@color/colorPrimary"
+                    android:fontFamily="@font/roboto"
+                    android:gravity="center_vertical"
+                    android:textAlignment="center"
+                    android:text="Your Pins"
+                    android:textColor="@android:color/white"
+
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageButton
+                    android:id="@+id/imageButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="45dp"
+                    android:background="@color/colorPrimary"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvBanner"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/tvBanner"
+                    app:layout_constraintTop_toTopOf="@+id/tvBanner"
+                    android:onClick="drawRight"
+                    app:srcCompat="@mipmap/ic_launcher6" />
+
+                <ImageButton
+                    android:id="@+id/imageButton2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="730dp"
+                    android:background="@color/colorPrimary"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvBanner"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/tvBanner"
+                    app:layout_constraintTop_toTopOf="@+id/tvBanner"
+                    android:onClick="drawLeft"
+                    app:srcCompat="@mipmap/ic_launcher7" />
+
+
+
+            </android.support.constraint.ConstraintLayout>
+
+            <TableLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TableRow>
+
+                    <Spinner
+                        android:id="@+id/spinner2"
+                        android:layout_width="425dp"
+                        android:layout_height="50dp"
+                        android:scrollbarSize="30sp"
+                        android:gravity="center"
+                        android:textAlignment="center"/>
+                </TableRow>
+            </TableLayout>
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical">
+
+                <TableRow>
+
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+
+                    <Button
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="Scavenger Hunt emoji"
+                        android:height="100dp"
+                        android:onClick="clickScavengerHunt"
+
+                        />
+
+                    <Button
+                        android:text="Shipwreck emoji"
+                        android:layout_width="150dp"
+                        android:height="100dp"
+                        android:onClick="clickShipwreck"/>
+                </TableRow>
+                <TableRow
+                    android:gravity="center"
+                    >
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="Scavenger Hunt"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimary"
+                        android:textStyle="bold"
+                        />
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="Shipwreck"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimary"
+                        android:textStyle="bold"/>
+                </TableRow>
+
+                <TableRow
+                    android:gravity="center">
+                    <Button
+                        android:text="Treasure emoji"
+                        android:height="100dp"
+                        android:onClick="clickTreasure"/>
+
+                    <Button
+                        android:text="Custom emoji"
+                        android:height="100dp"
+                        android:onClick="clickCustom"/>
+
+                </TableRow>
+                <TableRow
+                    android:gravity="center"
+                    >
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="Treasure"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimary"
+                        android:textStyle="bold"
+                        />
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="Custom"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimary"
+                        android:textStyle="bold"/>
+                </TableRow>
+                <TableRow
+                    android:gravity="center">
+                    <Button
+                        android:text="Forrest Fire emoji"
+                        android:height="100dp"
+                        android:onClick="clickForestFire"/>
+
+                    <Button
+                        android:text="Hunting emoji"
+                        android:height="100dp"
+                        android:onClick="clickHunting"/>
+
+                </TableRow>
+                <TableRow
+                    android:gravity="center"
+                    >
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="Forrest Fire"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimary"
+                        android:textStyle="bold"
+                        />
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="Hunting"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimary"
+                        android:textStyle="bold"/>
+                </TableRow>
+                <TableRow
+                    android:gravity="center">
+
+                    <Button
+                        android:text="Survivor emoji"
+                        android:height="100dp"
+                        android:onClick="clickSurvivor"/>
+
+                    <ImageView
+                        android:layout_width="50sp"
+                        android:layout_height="90dp"
+                        android:onClick="clickWhale"
+                        app:srcCompat="@mipmap/whale_emoji" />
+
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimary"
+                        android:textStyle="bold"/>
+                </TableRow>
+
+            </TableLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
 
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view2"
@@ -32,8 +235,13 @@
         android:fitsSystemWindows="true"
         app:menu="@menu/navigation_menu2" />
 
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:menu="@menu/navigation_menu"
+        app:headerLayout="@layout/navigation_header"/>
+
 </android.support.v4.widget.DrawerLayout>
-
-
-
-

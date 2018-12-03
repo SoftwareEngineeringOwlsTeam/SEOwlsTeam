@@ -33,7 +33,8 @@
             android:label="Audit Log" />
         <activity
             android:name=".MainActivity"
-            android:label="Main Screen" />
+            android:label="Main Screen"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".LocationGeneration"
             android:label="ERROR LEAVE LEAVE ERROR" />
@@ -41,9 +42,6 @@
             android:name=".LogInScreen"
             android:label="Log In"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".GroupManager"
-            android:label="Group Manager" />
         <activity
             android:name=".UserSettings"
             android:label="Settings" />
@@ -56,14 +54,19 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".GroupCreator" />
         <activity android:name=".GroupView" />
-        <activity android:name=".GroupAuditLog" />
         <activity android:name=".GroupMembers" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".UserCreate"></activity>
+        <activity android:name=".UserCreate" />
+        <activity android:name=".PinView" />
+        <activity android:name=".PinViewAttributes" />
+        <activity android:name=".GroupInvites" />
+        <activity android:name=".GroupMemberInvite" />
+        <activity android:name=".YourPins" />
+        <activity android:name=".Compass"></activity>
     </application>
 
 </manifest>
