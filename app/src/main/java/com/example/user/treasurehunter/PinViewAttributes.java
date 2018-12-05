@@ -188,6 +188,7 @@ public class PinViewAttributes extends AppCompatActivity implements Serializable
         }
     }
 
+    // INCLUDE DOCUMENTATION*****************************************************
     public void backClicked(View view)
     {
         Intent mainIntent = new Intent(this, MainActivity.class);
@@ -195,6 +196,7 @@ public class PinViewAttributes extends AppCompatActivity implements Serializable
         startActivity(mainIntent);
     }
 
+    // INCLUDE DOCUMENTATION*****************************************************
     public void editClicked(View view)
     {
         row2.setVisibility(View.GONE);
@@ -228,6 +230,7 @@ public class PinViewAttributes extends AppCompatActivity implements Serializable
         }
     }
 
+    // INCLUDE DOCUMENTATION*****************************************************
     public void cancelClicked(View view)
     {
         row2alt.setVisibility(View.GONE);
@@ -268,6 +271,7 @@ public class PinViewAttributes extends AppCompatActivity implements Serializable
         ((EditText)findViewById(R.id.etAltitude)).setText("" + pin.getAltitude());
     }
 
+    // INCLUDE DOCUMENTATION*****************************************************
     public void saveClicked(View view)
     {
         IOwrite writer = new IOwrite();

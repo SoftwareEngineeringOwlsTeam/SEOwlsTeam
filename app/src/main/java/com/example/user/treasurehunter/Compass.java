@@ -21,6 +21,7 @@ public class Compass extends AppCompatActivity
     private float currentAzimuth;
     private CompassFormat sotwFormatter;
 
+    // INCLUDE DOCUMENTATION*****************************************************
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {

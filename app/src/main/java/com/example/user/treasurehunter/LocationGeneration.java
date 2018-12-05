@@ -34,8 +34,6 @@ public class LocationGeneration extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_tester);
 
-
-
         if(getIntent().getSerializableExtra("lat") != null)
         {
             locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);

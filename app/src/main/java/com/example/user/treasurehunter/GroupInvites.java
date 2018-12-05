@@ -17,6 +17,7 @@ public class GroupInvites extends AppCompatActivity
 {
     private ArrayList<String> listOfInvites = new ArrayList<>();
 
+    // INCLUDE DOCUMENTATION*****************************************************
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -71,6 +72,7 @@ public class GroupInvites extends AppCompatActivity
         }
     }
 
+    // INCLUDE DOCUMENTATION*****************************************************
     public void removeInvite(Button button, Button button2, TextView tv)
     {
         IOwrite writer = new IOwrite();
@@ -83,6 +85,7 @@ public class GroupInvites extends AppCompatActivity
         writer.removeObject(tv.getHint().toString() + "members", currentActiveUser.getUserID(), "%" + tv.getHint().toString(), this);
     }
 
+    // INCLUDE DOCUMENTATION*****************************************************
     public void addInvite(Button button, Button button2, TextView tv)
     {
         IOwrite writer = new IOwrite();

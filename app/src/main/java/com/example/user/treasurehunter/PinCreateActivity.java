@@ -214,7 +214,7 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
     {
         if (keyCode == KeyEvent.KEYCODE_BACK )
         {
-            Intent mainIntent = new Intent(this, PinActivity.class);
+            Intent mainIntent = new Intent(this, MainActivity.class);
             startActivity(mainIntent);
             return true;
         }

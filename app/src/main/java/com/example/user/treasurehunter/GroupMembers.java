@@ -176,17 +176,9 @@ public class GroupMembers extends AppCompatActivity
                 tr.addView(delete, tp);
             }
         }
-
-
-
-
-
-
     }
 
-
-
-
+    // INCLUDE DOCUMENTATION*****************************************************
     public void clickHelper(String id, TableRow row)
     {
         IOwrite writer = new IOwrite();
@@ -198,6 +190,7 @@ public class GroupMembers extends AppCompatActivity
         writer.removeAssociation(reader.retrieveUser(id, this), list, "group", currentLayoutID, this);
     }
 
+    // INCLUDE DOCUMENTATION*****************************************************
     public void cretor(String id, CheckBox checkBox, String letter)
     {
         IOread reader = new IOread();
@@ -244,7 +237,7 @@ public class GroupMembers extends AppCompatActivity
             TableRow tr = row;
             TableRow.LayoutParams tp = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT);
 
-            save.setWidth(45);
+            save.setWidth(20);
             save.setText("Save");
             save.setOnClickListener(new View.OnClickListener()
             {
@@ -256,9 +249,9 @@ public class GroupMembers extends AppCompatActivity
             tr.addView(save, tp);
             buttonSet = true;
         }
-
     }
 
+    // INCLUDE DOCUMENTATION*****************************************************
     public void save()
     {
         IOwrite writer = new IOwrite();
@@ -271,7 +264,6 @@ public class GroupMembers extends AppCompatActivity
         }
         writer.writeMembers(ids, names, permissions, currentLayoutID, this);
     }
-
 
     /**
      * Method that allows the user to move back to the MainActivity screen.
