@@ -76,7 +76,10 @@ public class LogInScreen extends AppCompatActivity
         }
     }
 
-    // INCLUDE DOCUMENTATION*****************************************************
+    /**
+     *  Methods that, once the user clicks the button create account, creates an account for the user after a
+     *  username and password are entered.
+     */
     public void createAccountClicked(View view)
     {
         Intent pinIntent = new Intent(this, UserCreate.class);

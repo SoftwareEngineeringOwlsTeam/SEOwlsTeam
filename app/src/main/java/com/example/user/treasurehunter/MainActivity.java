@@ -41,7 +41,9 @@ public class MainActivity extends AppCompatActivity  implements AdapterView.OnIt
     public static String currentLayout = "";
     public static String currentLayoutID = "";
 
-    // INCLUDE DOCUMENTATION Explain what is done on create***********************************
+    /**
+     *  Creates screen for the main activity screen
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -110,7 +112,10 @@ public class MainActivity extends AppCompatActivity  implements AdapterView.OnIt
         System.out.println(currentLayout);
     }
 
-    // INCLUDE DOCUMENTATION*****************************************************
+    /**
+     *              Opens the options menu
+     * @return      true
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
@@ -121,7 +126,9 @@ public class MainActivity extends AppCompatActivity  implements AdapterView.OnIt
         return super.onOptionsItemSelected(item);
     }
 
-    // INCLUDE DOCUMENTATION*****************************************************
+    /**
+     * Opens up a menu on the main activity page for a selected item
+     */
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
     {
@@ -133,7 +140,9 @@ public class MainActivity extends AppCompatActivity  implements AdapterView.OnIt
         Toast.makeText(parent.getContext(), "Current Layout: " + item, Toast.LENGTH_LONG).show();
     }
 
-    // INCLUDE DOCUMENTATION*****************************************************
+    /**
+     * Nothing is selected
+     */
     public void onNothingSelected(AdapterView<?> arg0)
     {
         currentLayout = "";
@@ -147,13 +156,17 @@ public class MainActivity extends AppCompatActivity  implements AdapterView.OnIt
         startActivity(pinIntent);
     }
 
-    // INCLUDE DOCUMENTATION*****************************************************
+    /**
+     *  Opens the right menu
+     */
     public void drawRight(View view)
     {
         nDrawerLayout.openDrawer(nView2);
     }
 
-    // INCLUDE DOCUMENTATION*****************************************************
+    /**
+     *  Opens the left menu
+     */
     public void drawLeft(View view)
     {
         nDrawerLayout.openDrawer(nView1);
@@ -173,7 +186,9 @@ public class MainActivity extends AppCompatActivity  implements AdapterView.OnIt
         startActivity(locIntent);
     }
 
-    // INCLUDE DOCUMENTATION*****************************************************
+    /**
+     *  Opens the group audit log on click
+     */
     public void auditClicked(MenuItem menuItem)
     {
         if(!currentLayout.equals(""))
@@ -186,7 +201,9 @@ public class MainActivity extends AppCompatActivity  implements AdapterView.OnIt
         }
     }
 
-    // INCLUDE DOCUMENTATION*****************************************************
+    /**
+     *  Opens the user audit log on click
+     */
     public void auditUserClicked(MenuItem menuItem)
     {
         Intent pinIntent = new Intent(this, UserAuditLog.class);
@@ -195,7 +212,9 @@ public class MainActivity extends AppCompatActivity  implements AdapterView.OnIt
         startActivity(pinIntent);
     }
 
-    // INCLUDE DOCUMENTATION*****************************************************
+    /**
+     *  Logs a user out when clicked
+     */
     public void logoutClicked(MenuItem menuItem)
     {
         currentActiveUser = null;
@@ -204,21 +223,27 @@ public class MainActivity extends AppCompatActivity  implements AdapterView.OnIt
         startActivity(locIntent);
     }
 
-    // INCLUDE DOCUMENTATION*****************************************************
+    /**
+     * Opens account info menu when clicked
+     */
     public void accountClicked(MenuItem menuItem)
     {
         Intent locIntent = new Intent(this, UserAccountManager.class);
         startActivity(locIntent);
     }
 
-    // INCLUDE DOCUMENTATION*****************************************************
+    /**
+     *  Opens settings menu when clicked
+     */
     public void settingsClicked(MenuItem menuItem)
     {
         Intent locIntent = new Intent(this, UserSettings.class);
         startActivity(locIntent);
     }
 
-    // INCLUDE DOCUMENTATION*****************************************************
+    /**
+     *  Opens the group menu when clicked
+     */
     public void groupsClicked(MenuItem menuItem)
     {
     Intent locIntent = new Intent(this, GroupCreator.class);
@@ -236,7 +261,9 @@ public class MainActivity extends AppCompatActivity  implements AdapterView.OnIt
         toast.show();
     }
 
-    // INCLUDE DOCUMENTATION*****************************************************
+    /**
+     *  Opens the the group view when clicked
+     */
     public void groupViewClicked(MenuItem menuItem)
     {
         if(!currentLayoutID.equals(""))
@@ -249,14 +276,18 @@ public class MainActivity extends AppCompatActivity  implements AdapterView.OnIt
         }
     }
 
-    // INCLUDE DOCUMENTATION*****************************************************
+    /**
+     *  Opens the group invite menu when clicked
+     */
     public void groupInvitesClicked(MenuItem menuItem)
     {
         Intent locIntent = new Intent(this, GroupInvites.class);
         startActivity(locIntent);
     }
 
-    // INCLUDE DOCUMENTATION*****************************************************
+    /**
+     *  Method that prompts the user to allow the app to use location
+     */
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
     {
@@ -283,7 +314,9 @@ public class MainActivity extends AppCompatActivity  implements AdapterView.OnIt
         return super.onKeyDown(keyCode, event);
     }
 
-    // INCLUDE DOCUMENTATION*****************************************************
+    /**
+     *  Opens the Scavenger Hunt pin when clicked
+     */
     public void clickScavengerHunt(View v)
     {
         if(!currentLayout.equals(""))
@@ -297,7 +330,9 @@ public class MainActivity extends AppCompatActivity  implements AdapterView.OnIt
         }
     }
 
-    // INCLUDE DOCUMENTATION*****************************************************
+    /**
+     *  Opens the Shipwreck pin when clicked
+     */
     public void clickShipwreck(View v)
     {
         if(!currentLayout.equals(""))
@@ -311,7 +346,9 @@ public class MainActivity extends AppCompatActivity  implements AdapterView.OnIt
         }
     }
 
-    // INCLUDE DOCUMENTATION*****************************************************
+    /**
+     *  Opens the Treasure pin when clicked
+     */
     public void clickTreasure(View v)
     {
         if (!currentLayout.equals(""))
@@ -325,7 +362,9 @@ public class MainActivity extends AppCompatActivity  implements AdapterView.OnIt
         }
     }
 
-    // INCLUDE DOCUMENTATION*****************************************************
+    /**
+     *  Opens the Forest Fire pin when clicked
+     */
     public void clickForestFire(View v)
     {
         if (!currentLayout.equals(""))
@@ -339,7 +378,9 @@ public class MainActivity extends AppCompatActivity  implements AdapterView.OnIt
         }
     }
 
-    // INCLUDE DOCUMENTATION*****************************************************
+    /**
+     *  Opens the Hunting pin when clicked
+     */
     public void clickHunting(View v)
     {
         if (!currentLayout.equals(""))
@@ -353,8 +394,9 @@ public class MainActivity extends AppCompatActivity  implements AdapterView.OnIt
         }
     }
 
-    // INCLUDE DOCUMENTATION*****************************************************
-    public void clickSurvivor(View v)
+    /**
+     *  Opens the Survivor pin when clicked
+     */    public void clickSurvivor(View v)
     {
         if (!currentLayout.equals(""))
         {
@@ -367,8 +409,9 @@ public class MainActivity extends AppCompatActivity  implements AdapterView.OnIt
         }
     }
 
-    // INCLUDE DOCUMENTATION*****************************************************
-    public void clickWhale(View v)
+    /**
+     *  Opens the Whale pin when clicked
+     */    public void clickWhale(View v)
     {
         if (!currentLayout.equals(""))
         {
@@ -381,8 +424,9 @@ public class MainActivity extends AppCompatActivity  implements AdapterView.OnIt
         }
     }
 
-    // INCLUDE DOCUMENTATION*****************************************************
-    public void clickCustom(View v)
+    /**
+     *  Opens the Custom pin when clicked
+     */    public void clickCustom(View v)
     {
         if (!currentLayout.equals(""))
         {

@@ -32,7 +32,10 @@ public class GroupView extends AppCompatActivity
     public Button buCancel;
     public Button buSave;
 
-    // INCLUDE DOCUMENTATION*****************************************************
+    /**
+     *                              Creates the group view
+     * @param savedInstanceState    The saved instance state of group view
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -80,7 +83,10 @@ public class GroupView extends AppCompatActivity
         startActivity(locIntent);
     }
 
-    // INCLUDE DOCUMENTATION*****************************************************
+    /**
+     *              This method displays the group edit page
+     * @param view  Displays the group edit screen
+     */
     public void groupEdit(View view)
     {
         tvGroupName.setText("");
@@ -96,7 +102,10 @@ public class GroupView extends AppCompatActivity
         buSave.setVisibility(View.VISIBLE);
     }
 
-    // INCLUDE DOCUMENTATION*****************************************************
+    /**
+     *              This method cancels the edit to a group and does not save the edited changed
+     * @param view  Displays the group edit screen
+     */
     public void cancelEdit(View view)
     {
         tvGroupName.setText(currentGroup.getGroupName());
@@ -114,7 +123,10 @@ public class GroupView extends AppCompatActivity
         etDescription.setText(currentGroup.getGroupDescription());
     }
 
-    // INCLUDE DOCUMENTATION*****************************************************
+    /**
+     *              This methods saves the edit to a group
+     * @param view  Displays the group edit screen
+     */
     public void saveEdit(View view)
     {
         IOwrite writer = new IOwrite();
@@ -166,7 +178,9 @@ public class GroupView extends AppCompatActivity
         startActivity(locIntent);
     }
 
-    // INCLUDE DOCUMENTATION*****************************************************
+    /**
+     * Displays the current layou
+     */
     public void editGroupInfo(View view)
     {
         Intent locIntent = new Intent(this, GroupMembers.class);
