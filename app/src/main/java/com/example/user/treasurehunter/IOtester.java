@@ -7,11 +7,15 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * Method is used for testing, will be removed at a later time.
+ * @author Zach Curll, Matthew Finnegan, Alexander Kulpin, Dominic Marandino, Brandon Ostasewski, Paul Sigloch
+ * @version Sprint 2
+ */
 public class IOtester extends AppCompatActivity
 {
     IOwrite IOwrite;

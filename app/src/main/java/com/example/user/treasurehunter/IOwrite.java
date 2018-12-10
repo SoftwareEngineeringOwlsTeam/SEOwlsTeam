@@ -1,24 +1,27 @@
 package com.example.user.treasurehunter;
 
 import android.content.Context;
-import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Scanner;
 
 import static com.example.user.treasurehunter.LogInScreen.currentActiveUser;
 
+/**
+ * @author Zach Curll, Matthew Finnegan, Alexander Kulpin, Dominic Marandino, Brandon Ostasewski, Paul Sigloch
+ * @version Sprint 2
+ */
 public class IOwrite extends AppCompatActivity implements Serializable
 {
-
     private String currentDate;
     private String currentTime;
     private Date time = Calendar.getInstance().getTime();
@@ -58,7 +61,23 @@ public class IOwrite extends AppCompatActivity implements Serializable
             }
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(file.getName(), Context.MODE_PRIVATE));
             data += "\nEOF";
-            outputStreamWriter.write(data);
+
+
+            String dataFinal = "";
+
+            String[] eachLine = data.split("\n", 1000);
+            for(int i = 0; i < eachLine.length; i++)
+            {
+                if(!eachLine[i].equals(""))
+                {
+                    dataFinal += eachLine[i] + "\n";
+                }
+            }
+
+
+
+
+            outputStreamWriter.write(dataFinal);
             outputStreamWriter.close();
         }
         catch (IOException e)
@@ -76,7 +95,7 @@ public class IOwrite extends AppCompatActivity implements Serializable
     {
         String data = (pin.getPinID()       + "*" + pin.getPinName() + "*" + pin.getPinTitle() + "*" + pin.getPublisher() + "*"
                      + pin.getDescription() + "*" + pin.getRadius()  + "*" + pin.getLatitude() + "*" + pin.getLongitude() + "*"
-                     + pin.getAltitude()    + "*" + pin.getTime()    + "*" + pin.getDate());
+                     + pin.getAltitude()    + "*" + pin.getTime()    + "*" + pin.getDate()     + "*" + pin.getPublisherID());
         if (pin instanceof PinMoveable)
         {
             data += ("*" + ((PinMoveable) pin).getDegree() + "*" + ((PinMoveable) pin).getSpeed());
@@ -93,10 +112,18 @@ public class IOwrite extends AppCompatActivity implements Serializable
     {
         String data = (group.getGroupID() + "*" + group.getGroupName() + "*" + group.getAdminID() + "*"
                      + group.getAdminName() + "*" + group.getGroupDescription() + "*");
+        if(group.getAssociatedPinIDs() != null)
+        {
+            for(int i = 0; i < group.getAssociatedPinIDs().size(); i++)
+            {
+                if(i != 0)
+                {
+                    data = data + "/";
+                }
+                data = data + group.getAssociatedPinIDs().get(i);
+            }
+        }
         write(data,"groups", context);
-
-        data = ("0*" + currentTime + "*" + currentDate + "*" + group.getAdminName() + "*" + group.getAdminID());
-        write(data,group.getGroupID() + "groupaudit", context);
     }
 
     /**
@@ -106,7 +133,30 @@ public class IOwrite extends AppCompatActivity implements Serializable
      */
     public void writeUser(User user, Context context)
     {
-        String data = (user.getUserID() + "*" + user.getUserName() + "*" + user.getPassword() + "*" + user.getPersonalPinID() + "*" + user.getAssociatedGroupID());
+        String data = (user.getUserID() + "*" + user.getUserName() + "*" + user.getPassword() + "*");
+        if(user.getPersonalPinID() != null)
+        {
+            for(int i = 0; i < user.getPersonalPinID().size(); i++)
+            {
+                if(i != 0)
+                {
+                    data = data + "/";
+                }
+                data = data + user.getPersonalPinID().get(i);
+            }
+        }
+        data += "*";
+        if(user.getAssociatedGroupID() != null)
+        {
+            for (int i = 0; i < user.getAssociatedGroupID().size(); i++)
+            {
+                if (i != 0)
+                {
+                    data = data + "/";
+                }
+                data = data + user.getAssociatedGroupID().get(i);
+            }
+        }
         write(data,"users", context);
     }
 
@@ -164,13 +214,13 @@ public class IOwrite extends AppCompatActivity implements Serializable
         }
     }
 
-    public void writeGroupAudit(String groupID, int action, User user, String deletedUserID, String pinID, Context context)
+    public void writeGroupAudit(int viewable, String groupID, int action, User user, String deletedUserID, String pinID, Context context)
     {
-        String data = (action + "*" + currentTime + "*" + currentDate + "*" + user.getUserName() + "*" + user.getUserID());
+        String data = (action + "*" + viewable + "*" + currentTime + "*" + currentDate + "*" + user.getUserName() + "*" + user.getUserID());
         if(!pinID.equals(""))
         {
             PinDS pin = reader.retrievePin(pinID, context);
-            if(action == 2)
+            if(action == 2 || action == 1)
             {
                 data += ("*" + pin.getPinTitle());
                 if(action == 1)
@@ -197,11 +247,22 @@ public class IOwrite extends AppCompatActivity implements Serializable
         //5. You deleted a pin for a group
 
         //for testing
-        String data = (action + "*" + currentTime + "*" + currentDate + "*" + groupID);
+        String data = (action + "*" + currentTime + "*" + currentDate);
+        if(action == 1)
+        {
+            Group group = reader.retrieveGroup(groupID, context);
+            data += ("*" + group.getGroupName());
+        }
         if(action == 4)
         {
+            Group group = reader.retrieveGroup(groupID, context);
             PinDS pin = reader.retrievePin(pinID, context);
-            data += ("*TestGroup*" + pin.getPinTitle());
+            data += ("*" + group.getGroupName() + "*" + pin.getPinTitle());
+        }
+        if(action == 5)
+        {
+            PinDS pin = reader.retrievePin(pinID, context);
+            data += ("*" + pin.getPinTitle());
         }
 
         /*
@@ -222,13 +283,13 @@ public class IOwrite extends AppCompatActivity implements Serializable
         write(data, (userID + "useraudit"), context);
     }
 
-    public void writeMembers(ArrayList<String> members, ArrayList<String> permissions, String groupID, Context context)
+    public void writeMembers(ArrayList<String> membersID, ArrayList<String> membersName, ArrayList<String> permissions, String groupID, Context context)
     {
         String data = "";
-        for(int i = 0; i < members.size(); i++)
+        for(int i = 0; i < membersName.size(); i++)
         {
-            data += members.get(i) + "*" + permissions.get(i);
-            if(i != members.size() - 1)
+            data += membersID.get(i) + "*" + membersName.get(i) + "*" + permissions.get(i);
+            if(i != membersName.size() - 1)
             {
                 data += "\n";
             }
@@ -243,23 +304,36 @@ public class IOwrite extends AppCompatActivity implements Serializable
      * @param groupID      If adding to a group, or adding a group, specify the group id
      * @param context      Include the context you are working in
      */
-    public void addAssociation(ArrayList<String> addingID, String addingToWhat, String groupID, Context context)
+    public void addAssociation(User toUser, ArrayList<String> addingID, String addingToWhat, String groupID, Context context)
     {
         if(addingToWhat.equals("gpin"))
         {
             Group changedGroup = reader.retrieveGroup(groupID, context);
             removeObject("groups", groupID, "", context);
-            for(int i = 0; i < changedGroup.getAssociatedPinIDs().size(); i++)
+            if(changedGroup.getAssociatedPinIDs() != null)
             {
-                addingID.add(changedGroup.getAssociatedPinIDs().get(i));
+                for(int i = 0; i < changedGroup.getAssociatedPinIDs().size(); i++)
+                {
+                    addingID.add(changedGroup.getAssociatedPinIDs().get(i));
+                }
+                changedGroup.setAssociatedPinIDs(addingID);
+                writeGroup(changedGroup, context);
             }
-            changedGroup.setAssociatedPinIDs(addingID);
-            writeGroup(changedGroup, context);
+        }
+        else if(addingToWhat.equals("groupinvite"))
+        {
+            User changedUser = toUser;
+            removeObject("users", changedUser.getUserID(), "", context);
+            for(int i = 0; i < changedUser.getAssociatedGroupID().size(); i++)
+            {
+                addingID.add(changedUser.getAssociatedGroupID().get(i));
+            }
+            changedUser.setAssociatedGroupID(addingID);
+            writeUser(changedUser, context);
         }
         else {
             User changedUser = currentActiveUser;
-            System.out.println(changedUser.getUserID());
-            removeObject("users", currentActiveUser.getUserID(), "", context);
+            removeObject("users", changedUser.getUserID(), "", context);
             if(addingToWhat.equals("ppin"))
             {
                 for(int i = 0; i < changedUser.getPersonalPinID().size(); i++)
@@ -275,13 +349,75 @@ public class IOwrite extends AppCompatActivity implements Serializable
                 }
                 changedUser.setAssociatedGroupID(addingID);
             }
-            System.out.println(changedUser.getPersonalPinID().get(0));
             writeUser(changedUser, context);
         }
     }
 
+    public void removeAssociation(User user, ArrayList<String> deleteID, String removingFromWhat, String groupID, Context context)
+    {
+        ArrayList<String> addingID = new ArrayList<>();
+        if(removingFromWhat.equals("gpin"))
+        {
+//            Group changedGroup = reader.retrieveGroup(groupID, context);
+//            removeObject("groups", groupID, "", context);
+//            if(changedGroup.getAssociatedPinIDs() != null)
+//            {
+//                for(int i = 0; i < changedGroup.getAssociatedPinIDs().size(); i++)
+//                {
+//                    addingID.add(changedGroup.getAssociatedPinIDs().get(i));
+//                }
+//                changedGroup.setAssociatedPinIDs(addingID);
+//                writeGroup(changedGroup, context);
+//            }
+        }
+        else {
+            User changedUser = user;
+            addingID = changedUser.getAssociatedGroupID();
+            removeObject("users", user.getUserID(), "", context);
+            if(removingFromWhat.equals("ppin"))
+            {
+                addingID.remove(deleteID.get(0));
+                changedUser.setPersonalPinID(addingID);
+            }
+            else{
+                addingID.remove(deleteID.get(0));
+                changedUser.setAssociatedGroupID(addingID);
+            }
+            writeUser(changedUser, context);
+        }
+    }
 
-
+    public void editGroupAudit(int viewable, String readAudit, String groupID, int onLine, Context context)
+    {
+        String newEverything = "";
+        String everything = readAudit;
+        String[] eachLine = everything.split("\n", 1000);
+        for(int i = 0; i < eachLine.length; i++)
+        {
+            System.out.println(i + "AAAAAAAA" + eachLine[i]);
+            String[] foundLine = eachLine[i].split("\\*",14);
+            if(i == onLine)
+            {
+                for(int j = 0; j < foundLine.length; j++)
+                {
+                    if(j == 1)
+                    {
+                        newEverything += viewable + "*";
+                    }
+                    else {
+                        newEverything += foundLine[j] + "*";
+                    }
+                }
+                newEverything += "\n";
+            }
+            else{
+                newEverything += eachLine[i] + "\n";
+            }
+        }
+        System.out.println(newEverything);
+        removeFile("groupaudit", groupID, context);
+        write(newEverything, (groupID + "groupaudit"), context);
+    }
 
 
 
@@ -361,4 +497,3 @@ public class IOwrite extends AppCompatActivity implements Serializable
         }
     }
 }
-

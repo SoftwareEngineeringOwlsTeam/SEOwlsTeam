@@ -7,18 +7,22 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Random;
-
 import static com.example.user.treasurehunter.LogInScreen.currentActiveUser;
 
+/**
+ * @author Zach Curll, Matthew Finnegan, Alexander Kulpin, Dominic Marandino, Brandon Ostasewski, Paul Sigloch
+ * @version Sprint 2
+ */
 public class GroupCreator extends AppCompatActivity
 {
-    TextView tvUsername;
-    TextView tvUserID;
+    private TextView tvUsername;
+    private TextView tvUserID;
 
+    /**
+     * Method that sets the screen to display activity_group_creator.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -30,6 +34,9 @@ public class GroupCreator extends AppCompatActivity
         tvUserID.setText(currentActiveUser.getUserID());
     }
 
+    /**
+     * Method that creates a Group.
+     */
     public void createGroup(View view)
     {
         IOwrite writer = new IOwrite();
@@ -38,18 +45,12 @@ public class GroupCreator extends AppCompatActivity
         EditText etDescription = findViewById(R.id.etDescription);
         EditText etTitle = findViewById(R.id.etTitle);
 
-
-
-        /// As a test
-        ArrayList<String> members = new ArrayList<String>();
-        members.add("Aldin");
-        members.add("Deborion");
-        members.add("Estemoor");
-        ArrayList<String> permissions = new ArrayList<String>();
-        permissions.add("RWAD");
-        permissions.add("RWA");
-        permissions.add("RW");
-
+        ArrayList<String> membersIDs = new ArrayList<>();
+        membersIDs.add(currentActiveUser.getUserID());
+        ArrayList<String> membersNames = new ArrayList<>();
+        membersNames.add(currentActiveUser.getUserName());
+        ArrayList<String> permissions = new ArrayList<>();
+        permissions.add("ADUMP");
 
         boolean generated = false;
         String newGroupID = "";
@@ -70,19 +71,25 @@ public class GroupCreator extends AppCompatActivity
                 }
             }
         }
-        Group newGroup = new Group(tvUserID.getText().toString(), etDescription.getText().toString(),
-                                    etTitle.getText().toString(), tvUsername.getText().toString(), newGroupID);
+        Group newGroup = new Group(currentActiveUser.getUserID(), etDescription.getText().toString(),
+                                    etTitle.getText().toString(), currentActiveUser.getUserName(), newGroupID);
         writer.writeGroup(newGroup, this);
-        writer.writeMembers(members, permissions, newGroup.getGroupID(),this);
+        writer.writeMembers(membersIDs, membersNames, permissions, newGroup.getGroupID(),this);
+
+        writer.writeGroupAudit(1, newGroupID,0,currentActiveUser,"","",this);
+        writer.writeUserAudit(currentActiveUser.getUserID(),1, "", newGroupID, this);
 
         ArrayList<String> addingAssociation = new ArrayList<>();
         addingAssociation.add(newGroup.getGroupID());
-        writer.addAssociation(addingAssociation, "group", "", this);
+        writer.addAssociation(currentActiveUser, addingAssociation, "group", "", this);
 
-        Intent locIntent = new Intent(this, GroupManager.class);
+        Intent locIntent = new Intent(this, MainActivity.class);
         startActivity(locIntent);
     }
 
+    /**
+     * Method that allows the user to move back to the MainActivity screen.
+     */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)
     {
