@@ -66,7 +66,8 @@
         <activity android:name=".GroupInvites" />
         <activity android:name=".GroupMemberInvite" />
         <activity android:name=".YourPins" />
-        <activity android:name=".Compass"></activity>
+        <activity android:name=".Compass" />
+        <activity android:name=".Map"></activity>
     </application>
 
 </manifest>

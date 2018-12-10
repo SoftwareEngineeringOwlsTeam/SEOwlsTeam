@@ -28,6 +28,7 @@ public class GroupMemberInvite extends AppCompatActivity
     public EditText memInput9;
     public EditText memInput10;
 
+    // INCLUDE DOCUMENTATION*****************************************************
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -83,6 +84,7 @@ public class GroupMemberInvite extends AppCompatActivity
         textView10.setAdapter(adapter);
     }
 
+    // INCLUDE DOCUMENTATION*****************************************************
     public void addInput(View view)
     {
         if(memInput2.getVisibility() == View.GONE)
@@ -126,6 +128,7 @@ public class GroupMemberInvite extends AppCompatActivity
         }
     }
 
+    // INCLUDE DOCUMENTATION*****************************************************
     public void inviteMembers(View view)
     {
         IOread reader = new IOread();
