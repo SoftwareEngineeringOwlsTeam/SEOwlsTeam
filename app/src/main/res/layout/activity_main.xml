@@ -102,20 +102,25 @@
                     android:layout_height="wrap_content"
                     android:gravity="center">
 
-                    <Button
-                        android:layout_width="150dp"
-                        android:layout_height="wrap_content"
-                        android:text="Scavenger Hunt emoji"
-                        android:height="100dp"
+                    <ImageView
+                        android:layout_width="50sp"
+                        android:layout_height="90dp"
                         android:onClick="clickScavengerHunt"
+                        app:srcCompat="@mipmap/emoji_scavenger_hunt" />
 
-                        />
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"/>
 
-                    <Button
-                        android:text="Shipwreck emoji"
-                        android:layout_width="150dp"
-                        android:height="100dp"
-                        android:onClick="clickShipwreck"/>
+                    <ImageView
+                        android:layout_width="50sp"
+                        android:layout_height="90dp"
+                        android:onClick="clickShipwreck"
+                        app:srcCompat="@mipmap/emoji_shipwreck" />
+
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"/>
                 </TableRow>
                 <TableRow
                     android:gravity="center"
@@ -139,15 +144,25 @@
 
                 <TableRow
                     android:gravity="center">
-                    <Button
-                        android:text="Treasure emoji"
-                        android:height="100dp"
-                        android:onClick="clickTreasure"/>
+                    <ImageView
+                        android:layout_width="50sp"
+                        android:layout_height="90dp"
+                        android:onClick="clickTreasure"
+                        app:srcCompat="@mipmap/emoji_treasure" />
 
-                    <Button
-                        android:text="Custom emoji"
-                        android:height="100dp"
-                        android:onClick="clickCustom"/>
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"/>
+
+                    <ImageView
+                        android:layout_width="50sp"
+                        android:layout_height="90dp"
+                        android:onClick="clickCustom"
+                        app:srcCompat="@mipmap/emoji_custom" />
+
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"/>
 
                 </TableRow>
                 <TableRow
@@ -171,15 +186,25 @@
                 </TableRow>
                 <TableRow
                     android:gravity="center">
-                    <Button
-                        android:text="Forrest Fire emoji"
-                        android:height="100dp"
-                        android:onClick="clickForestFire"/>
+                    <ImageView
+                        android:layout_width="50sp"
+                        android:layout_height="90dp"
+                        android:onClick="clickForestFire"
+                        app:srcCompat="@mipmap/emoji_forest_fire" />
 
-                    <Button
-                        android:text="Hunting emoji"
-                        android:height="100dp"
-                        android:onClick="clickHunting"/>
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"/>
+
+                    <ImageView
+                        android:layout_width="50sp"
+                        android:layout_height="90dp"
+                        android:onClick="clickHunting"
+                        app:srcCompat="@mipmap/emoji_hunting" />
+
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"/>
 
                 </TableRow>
                 <TableRow
@@ -188,7 +213,7 @@
                     <TextView
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
-                        android:text="Forrest Fire"
+                        android:text="Forest Fire"
                         android:textAlignment="center"
                         android:textColor="@color/colorPrimary"
                         android:textStyle="bold"
@@ -204,17 +229,41 @@
                 <TableRow
                     android:gravity="center">
 
-                    <Button
-                        android:text="Survivor emoji"
-                        android:height="100dp"
-                        android:onClick="clickSurvivor"/>
+                    <ImageView
+                        android:layout_width="50sp"
+                        android:layout_height="90dp"
+                        android:onClick="clickSurvivor"
+                        app:srcCompat="@mipmap/emoji_survivor" />
+
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"/>
 
                     <ImageView
                         android:layout_width="50sp"
                         android:layout_height="90dp"
                         android:onClick="clickWhale"
-                        app:srcCompat="@mipmap/whale_emoji" />
+                        app:srcCompat="@mipmap/emoji_whale" />
 
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimary"
+                        android:textStyle="bold"/>
+                </TableRow>
+                <TableRow
+                    android:gravity="center"
+                    >
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="Survivor"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimary"
+                        android:textStyle="bold"
+                        />
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="Whale"
                         android:textAlignment="center"
                         android:textColor="@color/colorPrimary"
                         android:textStyle="bold"/>
