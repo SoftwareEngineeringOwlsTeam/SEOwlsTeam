@@ -125,6 +125,7 @@ public class UserAuditLog extends AppCompatActivity
         }
     }
 
+    // INCLUDE DOCUMENTATION*****************************************************
     public void creator(TableRow row, CheckBox check, int i)
     {
         IOwrite writer = new IOwrite();

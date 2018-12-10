@@ -27,6 +27,7 @@ public class YourPins extends AppCompatActivity implements AdapterView.OnItemSel
     private String selected;
     private PinDS currentPin;
 
+    // INCLUDE DOCUMENTATION*****************************************************
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -53,11 +54,6 @@ public class YourPins extends AppCompatActivity implements AdapterView.OnItemSel
         );
         idselector.setAdapter(adapter);
 
-
-
-
-
-
         // On entering, select the spinner with the current selected layout
         for(int i = 0; i < groupSpinner.size() - 1; i++)
         {
@@ -73,11 +69,7 @@ public class YourPins extends AppCompatActivity implements AdapterView.OnItemSel
             }
         }
 
-
         classPassed = (String)getIntent().getSerializableExtra("class");
-
-
-
 
         //Populate the ScrollViews
         ArrayList<String> listOfPins = new ArrayList<>();
@@ -107,15 +99,7 @@ public class YourPins extends AppCompatActivity implements AdapterView.OnItemSel
                 LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                 ll.addView(myButton, lp);
             }
-
-
         }
-
-
-
-
-
-
 
         //Populate the ScrollViews
         if(!currentLayoutID.equals(""))
@@ -150,11 +134,10 @@ public class YourPins extends AppCompatActivity implements AdapterView.OnItemSel
                 }
             }
         }
-
-
         ((TextView)findViewById(R.id.aboveSpinner)).setText("Group Selected : " + currentLayout);
     }
 
+    // INCLUDE DOCUMENTATION*****************************************************
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
     {
         String item = parent.getItemAtPosition(position).toString();
@@ -177,6 +160,7 @@ public class YourPins extends AppCompatActivity implements AdapterView.OnItemSel
         currentLayoutID = "";
     }
 
+    // INCLUDE DOCUMENTATION*****************************************************
     public void clickHelper(Button button)
     {
         IOread reader = new IOread();
@@ -186,6 +170,7 @@ public class YourPins extends AppCompatActivity implements AdapterView.OnItemSel
         startActivity(mainIntent);
     }
 
+    // INCLUDE DOCUMENTATION*****************************************************
     public void clickPPin(View view)
     {
         PinDS pin = null;
@@ -228,6 +213,7 @@ public class YourPins extends AppCompatActivity implements AdapterView.OnItemSel
         startActivity(mainIntent);
     }
 
+    // INCLUDE DOCUMENTATION*****************************************************
     public void clickGPin(View view)
     {
         PinDS pin = null;
@@ -268,6 +254,7 @@ public class YourPins extends AppCompatActivity implements AdapterView.OnItemSel
         startActivity(mainIntent);
     }
 
+    // INCLUDE DOCUMENTATION*****************************************************
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)
     {

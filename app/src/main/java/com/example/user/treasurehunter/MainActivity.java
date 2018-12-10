@@ -225,6 +225,7 @@ public class MainActivity extends AppCompatActivity  implements AdapterView.OnIt
     startActivity(locIntent);
     }
 
+    // INCLUDE DOCUMENTATION*****************************************************
     public void testClick(View v)
     {
         Context context = getApplicationContext();
@@ -282,6 +283,7 @@ public class MainActivity extends AppCompatActivity  implements AdapterView.OnIt
         return super.onKeyDown(keyCode, event);
     }
 
+    // INCLUDE DOCUMENTATION*****************************************************
     public void clickScavengerHunt(View v)
     {
         if(!currentLayout.equals(""))
@@ -295,6 +297,7 @@ public class MainActivity extends AppCompatActivity  implements AdapterView.OnIt
         }
     }
 
+    // INCLUDE DOCUMENTATION*****************************************************
     public void clickShipwreck(View v)
     {
         if(!currentLayout.equals(""))
@@ -308,6 +311,7 @@ public class MainActivity extends AppCompatActivity  implements AdapterView.OnIt
         }
     }
 
+    // INCLUDE DOCUMENTATION*****************************************************
     public void clickTreasure(View v)
     {
         if (!currentLayout.equals(""))
@@ -321,6 +325,7 @@ public class MainActivity extends AppCompatActivity  implements AdapterView.OnIt
         }
     }
 
+    // INCLUDE DOCUMENTATION*****************************************************
     public void clickForestFire(View v)
     {
         if (!currentLayout.equals(""))
@@ -334,6 +339,7 @@ public class MainActivity extends AppCompatActivity  implements AdapterView.OnIt
         }
     }
 
+    // INCLUDE DOCUMENTATION*****************************************************
     public void clickHunting(View v)
     {
         if (!currentLayout.equals(""))
@@ -347,6 +353,7 @@ public class MainActivity extends AppCompatActivity  implements AdapterView.OnIt
         }
     }
 
+    // INCLUDE DOCUMENTATION*****************************************************
     public void clickSurvivor(View v)
     {
         if (!currentLayout.equals(""))
@@ -360,6 +367,7 @@ public class MainActivity extends AppCompatActivity  implements AdapterView.OnIt
         }
     }
 
+    // INCLUDE DOCUMENTATION*****************************************************
     public void clickWhale(View v)
     {
         if (!currentLayout.equals(""))
@@ -373,6 +381,7 @@ public class MainActivity extends AppCompatActivity  implements AdapterView.OnIt
         }
     }
 
+    // INCLUDE DOCUMENTATION*****************************************************
     public void clickCustom(View v)
     {
         if (!currentLayout.equals(""))

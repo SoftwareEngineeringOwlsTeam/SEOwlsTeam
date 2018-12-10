@@ -80,6 +80,7 @@ public class GroupView extends AppCompatActivity
         startActivity(locIntent);
     }
 
+    // INCLUDE DOCUMENTATION*****************************************************
     public void groupEdit(View view)
     {
         tvGroupName.setText("");
@@ -95,6 +96,7 @@ public class GroupView extends AppCompatActivity
         buSave.setVisibility(View.VISIBLE);
     }
 
+    // INCLUDE DOCUMENTATION*****************************************************
     public void cancelEdit(View view)
     {
         tvGroupName.setText(currentGroup.getGroupName());
@@ -112,6 +114,7 @@ public class GroupView extends AppCompatActivity
         etDescription.setText(currentGroup.getGroupDescription());
     }
 
+    // INCLUDE DOCUMENTATION*****************************************************
     public void saveEdit(View view)
     {
         IOwrite writer = new IOwrite();
@@ -163,6 +166,7 @@ public class GroupView extends AppCompatActivity
         startActivity(locIntent);
     }
 
+    // INCLUDE DOCUMENTATION*****************************************************
     public void editGroupInfo(View view)
     {
         Intent locIntent = new Intent(this, GroupMembers.class);
