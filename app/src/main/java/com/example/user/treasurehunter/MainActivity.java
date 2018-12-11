@@ -394,4 +394,12 @@ public class MainActivity extends AppCompatActivity  implements AdapterView.OnIt
             Toast.makeText(this, "No group Selected", Toast.LENGTH_LONG).show();
         }
     }
+
+    public void clickMap(MenuItem menuItem)
+    {
+        Intent pinIntent = new Intent(this, Map.class);
+        currentLayoutID = "personal";
+        currentLayout = "Personal";
+        startActivity(pinIntent);
+    }
 }

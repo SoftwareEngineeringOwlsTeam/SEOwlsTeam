@@ -31,4 +31,10 @@
         android:onClick="auditUserClicked"
         android:title="User Audit Log" />
 
+    <item
+        android:id="@+id/nav_map"
+        android:icon="@mipmap/baseline_people_black_48"
+        android:title="View Map"
+        android:onClick="clickMap"/>
+
 </menu>
