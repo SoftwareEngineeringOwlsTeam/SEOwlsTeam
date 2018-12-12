@@ -6,31 +6,31 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
-
 import java.util.ArrayList;
 import java.util.Random;
 
-import static com.example.user.treasurehunter.LogInScreen.currentActiveUser;
-
 public class UserCreate extends AppCompatActivity
 {
-    EditText etUsername;
-    EditText etPassword1;
-    EditText etPassword2;
-    String userID = "";
+    private EditText etUsername;
+    private EditText etPassword1;
+    private EditText etPassword2;
+    private String userID = "";
 
+    // INCLUDE DOCUMENTATION*****************************************************
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_create);
 
-        etUsername = (EditText)findViewById(R.id.etUsername);
-        etPassword1 = (EditText)findViewById(R.id.etPassword);
-        etPassword2 = (EditText)findViewById(R.id.etPassword2);
+        etUsername = findViewById(R.id.etUsername);
+        etPassword1 = findViewById(R.id.etPassword);
+        etPassword2 = findViewById(R.id.etPassword2);
         etPassword1.setTransformationMethod(new AsteriskPasswordTransformationMethod());
         etPassword2.setTransformationMethod(new AsteriskPasswordTransformationMethod());
     }
 
+    // INCLUDE DOCUMENTATION*****************************************************
     public void generateAccountClicked(View view)
     {
         IOwrite writer = new IOwrite();
@@ -94,15 +94,15 @@ public class UserCreate extends AppCompatActivity
     }
 
     /**
-     * Method that allows the user to close the App.
+     * Method that allows the user to return to previous screen.
      */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)
     {
         if (keyCode == KeyEvent.KEYCODE_BACK )
         {
-            finish();
-            System.exit(0);
+            Intent mainIntent = new Intent(this, LogInScreen.class);
+            startActivity(mainIntent);
             return true;
         }
         return super.onKeyDown(keyCode, event);

@@ -15,15 +15,14 @@ import android.widget.Button;
  */
 public class PinActivity extends AppCompatActivity
 {
-    Button whaleButton;
-    Button treasureButton;
-    Button shipwreckButton;
-    Button survivorButton;
-    Button scavengerHuntButton;
-    Button forestFireButton;
-    Button customButton;
-    Button huntingButton;
-
+    private Button whaleButton;
+    private Button treasureButton;
+    private Button shipwreckButton;
+    private Button survivorButton;
+    private Button scavengerHuntButton;
+    private Button forestFireButton;
+    private Button customButton;
+    private Button huntingButton;
 
     /**
      * Method that displays a screen to allow a user to select a type of Pin to create.
@@ -41,12 +40,8 @@ public class PinActivity extends AppCompatActivity
         forestFireButton = findViewById(R.id.forrestFireButton);
         customButton = findViewById(R.id.customButton);
         huntingButton = findViewById(R.id.huntingButton);
-    }
 
-    public void classClicked(MenuItem menuItem)
-    {
-        Intent classIntent = new Intent(this, LocationGeneration.class);
-        startActivity(classIntent);
+        findViewById(R.id.imageView4).bringToFront();
     }
 
     /**
@@ -54,11 +49,9 @@ public class PinActivity extends AppCompatActivity
      */
     public void whaleClick(View v)
     {
-
         whaleButton = (Button) v;
         //New Pin of the correct type is created.
         PinMoveableClassWhale pin = new PinMoveableClassWhale();
-
         Intent mainIntent = new Intent(this, LocationGeneration.class);
         mainIntent.putExtra("pin", pin);
         startActivity(mainIntent);
@@ -69,11 +62,9 @@ public class PinActivity extends AppCompatActivity
      */
     public void treasureClick(View v)
     {
-
         treasureButton = (Button) v;
         //New Pin of the correct type is created.
         PinClassTreasure pin = new PinClassTreasure();
-
         Intent mainIntent = new Intent(this, LocationGeneration.class);
         mainIntent.putExtra("pin", pin);
         startActivity(mainIntent);
@@ -87,7 +78,6 @@ public class PinActivity extends AppCompatActivity
         shipwreckButton = (Button) v;
         //New Pin of the correct type is created.
         PinClassShipwreck pin = new PinClassShipwreck();
-
         Intent mainIntent = new Intent(this, LocationGeneration.class);
         mainIntent.putExtra("pin", pin);
         startActivity(mainIntent);
@@ -101,7 +91,6 @@ public class PinActivity extends AppCompatActivity
         survivorButton = (Button) v;
         //New Pin of the correct type is created.
         PinMoveableClassSurvivor pin = new PinMoveableClassSurvivor();
-
         Intent mainIntent = new Intent(this, LocationGeneration.class);
         mainIntent.putExtra("pin", pin);
         startActivity(mainIntent);
@@ -128,7 +117,6 @@ public class PinActivity extends AppCompatActivity
         forestFireButton = (Button) v;
         //New Pin of the correct type is created.
         PinMoveableClassForestFire pin = new PinMoveableClassForestFire();
-
         Intent mainIntent = new Intent(this, LocationGeneration.class);
         mainIntent.putExtra("pin", pin);
         startActivity(mainIntent);
@@ -142,7 +130,6 @@ public class PinActivity extends AppCompatActivity
         customButton = (Button) v;
         //New Pin of the correct type is created.
         PinMoveableClassCustom pin = new PinMoveableClassCustom();
-
         Intent mainIntent = new Intent(this, LocationGeneration.class);
         mainIntent.putExtra("pin", pin);
         startActivity(mainIntent);
@@ -160,6 +147,7 @@ public class PinActivity extends AppCompatActivity
         startActivity(mainIntent);
     }
 
+    // INCLUDE DOCUMENTATION*****************************************************
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)
     {

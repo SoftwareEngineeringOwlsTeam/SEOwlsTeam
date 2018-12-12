@@ -3,7 +3,6 @@ package com.example.user.treasurehunter;
 import java.util.ArrayList;
 
 /**
- *
  * @author Zach Curll, Matthew Finnegan, Alexander Kulpin, Dominic Marandino, Brandon Ostasewski, Paul Sigloch
  * @version Sprint 2
  */
@@ -20,10 +19,7 @@ public class User
         this.userID = userID;
         this.userName = userName;
         this.password = password;
-        // Must also generate a unique ID different from other users
     }
-
-    // All the getters and setters
 
     /**
      * Method that gets an User's ID.

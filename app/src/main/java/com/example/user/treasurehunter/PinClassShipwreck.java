@@ -1,9 +1,6 @@
 package com.example.user.treasurehunter;
 
-import android.graphics.Color;
-
 /**
- *
  * @author Zach Curll, Matthew Finnegan, Alexander Kulpin, Dominic Marandino, Brandon Ostasewski, Paul Sigloch
  * @version Sprint 2
  */

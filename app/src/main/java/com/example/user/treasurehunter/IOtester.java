@@ -7,13 +7,9 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Random;
-
-import static com.example.user.treasurehunter.LogInScreen.currentActiveUser;
-
 
 /**
  * Method is used for testing, will be removed at a later time.

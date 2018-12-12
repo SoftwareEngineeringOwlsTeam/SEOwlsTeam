@@ -2,7 +2,6 @@ package com.example.user.treasurehunter;
 
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -11,18 +10,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-
 /**
- *
  * @author Zach Curll, Matthew Finnegan, Alexander Kulpin, Dominic Marandino, Brandon Ostasewski, Paul Sigloch
  * @version Sprint 2
  */
 public class IOread extends AppCompatActivity
 {
-    PinDS pin;
-    Group group;
-    User user;
-
     public IOread() { }
 
     /**
@@ -48,7 +41,7 @@ public class IOread extends AppCompatActivity
             System.out.println("FileOutputStream exception: - " + e.toString());
         }
         FileInputStream fileInputStream = context.openFileInput(file.getName());
-        String words = "";
+        String words;
         StringBuilder resultStringBuilder = new StringBuilder();
         try (BufferedReader br = new BufferedReader(new InputStreamReader(fileInputStream)))
         {
@@ -72,14 +65,7 @@ public class IOread extends AppCompatActivity
                 fin += "\n";
             }
         }
-
-        /*
-        if(!fin.isEmpty())
-        {
-            fin = fin.substring(0, fin.length() - 4);
-        }
-        */
-
+        System.out.println(fin);
         return fin;
     }
 
@@ -275,15 +261,16 @@ public class IOread extends AppCompatActivity
      */
     public String readGroupAudit(String groupID, Context context)
     {
-        String fullAudit = "";
+        String fullAudit = "*********************************************\n";
         try
         {
             String everything = read("groupaudit", groupID, context);
             String[] eachLine = everything.split("\n", 1000);
             for(int i = 0; i < eachLine.length; i++)
             {
-                String[] foundLine = eachLine[i].split("\\*",7);
-                fullAudit += foundLine[1] + " " + foundLine[2] + " - " + foundLine[3];
+                String[] foundLine = eachLine[i].split("\\*",8);
+                fullAudit += foundLine[1] + "\n";
+                fullAudit += foundLine[2] + " " + foundLine[3] + " - " + foundLine[4];
                 if(foundLine[0].equals("0"))
                 {
                     fullAudit += " Created This Group" + "\n"
@@ -291,22 +278,22 @@ public class IOread extends AppCompatActivity
                 }
                 else if (foundLine[0].equals("1"))
                 {
-                    fullAudit += (" Placed Pin: " + foundLine[5] + " ID: " + foundLine[6] + "\n"
+                    fullAudit += (" Placed Pin: " + foundLine[6] + " ID: " + foundLine[7] + "\n"
                             + "*********************************************");
                 }
                 else if (foundLine[0].equals("2"))
                 {
-                    fullAudit += (" Removed Pin: " + foundLine[5] + "\n"
+                    fullAudit += (" Removed Pin: " + foundLine[6] + "\n"
                             + "*********************************************");
                 }
                 else if (foundLine[0].equals("3"))
                 {
-                    fullAudit += (" Added Member: " + foundLine[5] + " ID: " + foundLine[6] + "\n"
+                    fullAudit += (" Added Member: " + foundLine[6] + " ID: " + foundLine[7] + "\n"
                             + "*********************************************");
                 }
                 else
                 {
-                    fullAudit += (" Deleted Member: " + foundLine[5] + " ID: " + foundLine[6] + "\n"
+                    fullAudit += (" Deleted Member: " + foundLine[6] + " ID: " + foundLine[7] + "\n"
                             + "*********************************************");
                 }
                 fullAudit += "\n";
@@ -325,28 +312,23 @@ public class IOread extends AppCompatActivity
      *  @param context      Include the context you are working in
      *  @return             The display of all existing members and their permissions
      */
-    public String readGroupMembers(String groupID, Context context)
+    public ArrayList<String> readGroupMembers(String groupID, Context context)
     {
-        String fullAudit = "";
+        ArrayList<String> allMembers = new ArrayList<>();
         try
         {
             String everything = read("members", groupID, context);
             String[] eachLine = everything.split("\n", 1000);
-            for(int i = 0; i < eachLine.length - 1; i++)
+            for(int i = 0; i < eachLine.length; i++)
             {
-                String[] foundLine = eachLine[i].split("\\*",3);
-                fullAudit += (foundLine[0] + " is able to " + foundLine[1]);
-                if(i != eachLine.length - 1)
-                {
-                    fullAudit += "\n";
-                }
+                allMembers.add(eachLine[i]);
             }
         }
         catch (FileNotFoundException e)
         {
             e.printStackTrace();
         }
-        return fullAudit;
+        return allMembers;
     }
 
     /**
@@ -357,7 +339,7 @@ public class IOread extends AppCompatActivity
      */
     public String readUserAudit(String userID, Context context)
     {
-        String fullAudit = "";
+        String fullAudit = "*********************************************\n";
         try
         {
             String everything = read("useraudit",userID, context);
@@ -409,5 +391,34 @@ public class IOread extends AppCompatActivity
             e.printStackTrace();
         }
         return fullAudit;
+    }
+
+    /**
+     *                      Use this to read and use the permissions a certain member has
+     *  @param userID       Specify the id of the user you are trying to retrieve
+     *  @param groupID      Specify the group ID that you are searching through
+     *  @param context      Include the context you are working in
+     *  @return             The ADUMP permissions the user has
+     */
+    public String readGroupMemberPermission(String userID, String groupID, Context context)
+    {
+        try
+        {
+            String everything = read("members", groupID, context);
+            String[] eachLine = everything.split("\n", 1000);
+            for(int i = 0; i < eachLine.length; i++)
+            {
+                String[] foundLine = eachLine[i].split("\\*",3);
+                if(foundLine[0].equals(userID))
+                {
+                    return foundLine[2];
+                }
+            }
+        }
+        catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+        return "";
     }
 }

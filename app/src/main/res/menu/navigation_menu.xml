@@ -20,22 +20,15 @@
         android:title="Group Invites" />
 
     <item
-        android:id="@+id/nav_pin"
-        android:icon="@mipmap/baseline_pin_drop_black_48"
-        android:onClick="pinsClicked"
-        android:title="Create Pin" />
-
-    <item
-        android:id="@+id/nav_pin_view"
-        android:icon="@mipmap/baseline_pin_drop_black_48"
-        android:onClick="pinsViewClicked"
-        android:title="View Pins" />
-
-
-    <item
         android:id="@+id/nav_auditlog"
         android:icon="@mipmap/baseline_gps_fixed_black_48"
         android:onClick="auditClicked"
-        android:title="Audit Log" />
+        android:title="Group Audit Log" />
+
+    <item
+        android:id="@+id/nav_personalauditlog"
+        android:icon="@mipmap/baseline_gps_fixed_black_48"
+        android:onClick="auditUserClicked"
+        android:title="User Audit Log" />
 
 </menu>

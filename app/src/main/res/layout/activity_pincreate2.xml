@@ -42,11 +42,11 @@
 
                 android:textSize="20sp" />
 
-            <EditText
+            <TextView
                 android:id="@+id/publisher"
                 android:layout_width="251dp"
                 android:layout_height="wrap_content"
-                android:hint="Enter User Name"
+                android:hint="User Name"
                 android:textAlignment="center"
                 android:textColor="@android:color/black"
                 android:textSize="20dp"
@@ -374,20 +374,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
-            <Button
-                android:id="@+id/goBack"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="23dp"
-                android:layout_marginTop="8dp"
-                android:background="@color/colorAccent"
-                android:onClick="clickPinSelect"
-                android:text="Go Back"
-                android:textColor="@android:color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/button16" />
 
 
         </android.support.constraint.ConstraintLayout>

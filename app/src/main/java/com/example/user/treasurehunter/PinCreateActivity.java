@@ -1,10 +1,8 @@
-
 package com.example.user.treasurehunter;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-//import android.text.format.DateFormat;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -12,8 +10,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TableRow;
 import android.widget.TextView;
-
-import java.io.FileNotFoundException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
@@ -21,7 +17,6 @@ import static com.example.user.treasurehunter.LogInScreen.currentActiveUser;
 import static com.example.user.treasurehunter.MainActivity.currentLayoutID;
 
 /**
- *
  * @author Zach Curll, Matthew Finnegan, Alexander Kulpin, Dominic Marandino, Brandon Ostasewski, Paul Sigloch
  * @version Sprint 2
  */
@@ -29,16 +24,15 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
 {
     public PinDS pin;
     public TextView tvColor;
-    EditText text;
-    TableRow degreeRow;
-    TableRow speedRow;
-    Button goBackButton, placePinButton;
-    TextView tvBanner;
-    EditText pinName;
-    EditText description;
-    EditText radius;
-    EditText degree;
-    EditText speed;
+    private TableRow degreeRow;
+    private TableRow speedRow;
+    private Button placePinButton;
+    private TextView tvBanner;
+    private EditText pinName;
+    private EditText description;
+    private EditText radius;
+    private EditText degree;
+    private EditText speed;
 
     /**
      * Method displays a screen to the user so they can Create a pin.
@@ -51,9 +45,9 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
         setContentView(R.layout.activity_pincreate2);
 
         pin = (PinDS) getIntent().getSerializableExtra("pin");
+        ((TextView)findViewById(R.id.publisher)).setText(currentActiveUser.getUserName());
         degreeRow = findViewById(R.id.Row10);
         speedRow = findViewById(R.id.Row11);
-        goBackButton = findViewById(R.id.goBack);
         placePinButton = findViewById(R.id.button16);
         tvColor = findViewById(R.id.tvcolor);
         tvColor.setTextColor(pin.getDefaultColor());
@@ -61,7 +55,6 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
         tvBanner = findViewById(R.id.tvBanner);
         tvBanner.setBackgroundColor(pin.getDefaultColor());
         tvBanner.setText("   " + pin.getPinName());
-        goBackButton.setBackgroundColor(pin.getDefaultColor());
         placePinButton.setBackgroundColor(pin.getDefaultColor());
         pinName = findViewById(R.id.pinName);
         pinName.setHint(pin.getPinNameHint());
@@ -69,7 +62,6 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
         description.setHint(pin.getDescriptionHint());
         radius = findViewById(R.id.radius);
         radius.setHint(pin.getRadiusHint());
-
 
         //Hides the degree and speed rows from displaying if the pin is not Moveable.
         if(!(pin instanceof PinMoveable))
@@ -85,11 +77,6 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
             speed.setHint(((PinMoveable) pin).getSpeedHint());
         }
 
-
-
-
-
-
         ((TextView)findViewById(R.id.etTime)).setText(pin.getTime());
         ((TextView)findViewById(R.id.etDate)).setText(pin.getDate());
         ((EditText)findViewById(R.id.etLocationLat)).setText(""+ pin.getLatitude());
@@ -101,23 +88,62 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     }
 
+    // INCLUDE DOCUMENTATION*****************************************************
     public void createClicked(View view)
     {
         IOwrite writer = new IOwrite();
         IOread reader = new IOread();
 
-        EditText et = findViewById(R.id.publisher);
+        TextView et = findViewById(R.id.publisher);
         pin.setPublisher(et.getText().toString());
         et = findViewById(R.id.pinName);
-        pin.setPinTitle(et.getText().toString());
+        if(et.getText().toString().equals(""))
+        {
+            pin.setPinTitle(et.getHint().toString());
+        }
+        else{
+            pin.setPinTitle(et.getText().toString());
+        }
         et = findViewById(R.id.description);
-        pin.setDescription(et.getText().toString());
+        if(et.getText().toString().equals(""))
+        {
+            pin.setDescription(et.getHint().toString());
+        }
+        else{
+            pin.setDescription(et.getText().toString());
+        }
         et = findViewById(R.id.etLocationLat);
-        pin.setLatitude(Double.parseDouble(et.getText().toString()));
+        if(et.getText().toString().equals(""))
+        {
+            pin.setLatitude(Double.parseDouble(et.getHint().toString()));
+        }
+        else{
+            pin.setLatitude(Double.parseDouble(et.getText().toString()));
+        }
         et = findViewById(R.id.etLocationLong);
-        pin.setLongitude(Double.parseDouble(et.getText().toString()));
+        if(et.getText().toString().equals(""))
+        {
+            pin.setLongitude(Double.parseDouble(et.getHint().toString()));
+        }
+        else{
+            pin.setLongitude(Double.parseDouble(et.getText().toString()));
+        }
         et = findViewById(R.id.etAltitude);
-        pin.setAltitude(Double.parseDouble(et.getText().toString()));
+        if(et.getText().toString().equals(""))
+        {
+            pin.setAltitude(Double.parseDouble(et.getHint().toString()));
+        }
+        else{
+            pin.setAltitude(Double.parseDouble(et.getText().toString()));
+        }
+        et = findViewById(R.id.radius);
+        if(et.getText().toString().equals(""))
+        {
+            pin.setRadius(et.getHint().toString());
+        }
+        else{
+            pin.setRadius(et.getText().toString());
+        }
 
         String pinID = "";
         boolean generated = false;
@@ -140,56 +166,55 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
         }
         pin.setPinID(pinID);
         pin.setPublisherID(currentActiveUser.getUserID());
-
-        //et = (EditText)findViewById(R.id.color);
         pin.setColor(pin.getColor());
 
         if(pin instanceof PinMoveable)
         {
             et = findViewById(R.id.etDegree);
-            ((PinMoveable) pin).setDegree(Double.parseDouble(et.getText().toString()));
+            if(et.getText().toString().equals(""))
+            {
+                ((PinMoveable) pin).setDegree(Double.parseDouble(et.getHint().toString()));
+            }
+            else{
+                ((PinMoveable) pin).setDegree(Double.parseDouble(et.getText().toString()));
+            }
             et = findViewById(R.id.etSpeed);
-            ((PinMoveable) pin).setSpeed(Double.parseDouble(et.getText().toString()));
+            if(et.getText().toString().equals(""))
+            {
+                ((PinMoveable) pin).setSpeed(Double.parseDouble(et.getHint().toString()));
+            }
+            else{
+                ((PinMoveable) pin).setSpeed(Double.parseDouble(et.getText().toString()));
+            }
         }
 
-        et = findViewById(R.id.radius);
-        pin.setRadius(et.getText().toString());
         Intent mainIntent = new Intent(this, MainActivity.class);
         writer.writePin(pin, this);
-
-
 
         ArrayList<String> addingList = new ArrayList<>();
         addingList.add(pin.getPinID());
         if(currentLayoutID.equals("personal"))
         {
-            writer.addAssociation(addingList, "ppin", "", this);
+            writer.addAssociation(currentActiveUser, addingList, "ppin", "", this);
             writer.writeUserAudit(currentActiveUser.getUserID(),5, pinID, pin.getPublisher(), this);
         }
         else{
-            writer.addAssociation(addingList, "gpin", currentLayoutID, this);
-            writer.writeGroupAudit(currentLayoutID, 1, currentActiveUser, "", pinID, this);
+            writer.addAssociation(currentActiveUser, addingList, "gpin", currentLayoutID, this);
+            writer.writeGroupAudit(1, currentLayoutID, 1, currentActiveUser, "", pinID, this);
             writer.writeUserAudit(currentActiveUser.getUserID(),4, pinID, currentLayoutID, this);
         }
         startActivity(mainIntent);
     }
 
-    public void clickPinSelect(View v)
-    {
-        goBackButton = (Button) v;
-        Intent mainIntent = new Intent(this, PinActivity.class);
-        startActivity(mainIntent);
-    }
-
     /**
-     * Method that allows the user to move back to the MainActivity screen.
+     * Method that allows the user to move back to the PinActivity screen.
      */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)
     {
         if (keyCode == KeyEvent.KEYCODE_BACK )
         {
-            Intent mainIntent = new Intent(this, PinActivity.class);
+            Intent mainIntent = new Intent(this, MainActivity.class);
             startActivity(mainIntent);
             return true;
         }

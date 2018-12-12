@@ -6,9 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 
-
 /**
- *
  * @author Zach Curll, Matthew Finnegan, Alexander Kulpin, Dominic Marandino, Brandon Ostasewski, Paul Sigloch
  * @version Sprint 2
  */
@@ -25,9 +23,11 @@ public class GUISplashScreen extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guisplash_screen);
 
-        new Handler().postDelayed(new Runnable() {
+        new Handler().postDelayed(new Runnable()
+        {
             @Override
-            public void run() {
+            public void run()
+            {
                 Intent homeIntent = new Intent(GUISplashScreen.this, LogInScreen.class);
                 startActivity(homeIntent);
                 finish();

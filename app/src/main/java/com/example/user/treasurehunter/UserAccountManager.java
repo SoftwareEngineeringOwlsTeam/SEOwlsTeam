@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,23 +12,21 @@ import android.widget.TextView;
 import static com.example.user.treasurehunter.LogInScreen.currentActiveUser;
 
 /**
- *
  * @author Zach Curll, Matthew Finnegan, Alexander Kulpin, Dominic Marandino, Brandon Ostasewski, Paul Sigloch
  * @version Sprint 2
  */
 public class UserAccountManager extends AppCompatActivity
 {
-
-  TextView tvHeading;
-  TextView tvUsername;
-  TextView tvID;
-  Button buChangePass1;
-  EditText etOrigin1;
-  EditText etOrigin2;
-  EditText etOrigin3;
-  Button buChangePass2;
-  Button buChangePass3;
-  Button buDeleteUser;
+    public TextView tvHeading;
+    public TextView tvUsername;
+    public TextView tvID;
+    public Button buChangePass1;
+    public EditText etOrigin1;
+    public EditText etOrigin2;
+    public EditText etOrigin3;
+    public Button buChangePass2;
+    public Button buChangePass3;
+    public Button buDeleteUser;
 
     /**
      * Method that sets the screen to display activity_account_manager.
@@ -75,6 +72,7 @@ public class UserAccountManager extends AppCompatActivity
         return super.onKeyDown(keyCode, event);
     }
 
+    // INCLUDE DOCUMENTATION*****************************************************
     public void changePassword(View view)
     {
         tvHeading.setVisibility(View.GONE);
@@ -86,6 +84,7 @@ public class UserAccountManager extends AppCompatActivity
         buDeleteUser.setVisibility(View.GONE);
     }
 
+    // INCLUDE DOCUMENTATION*****************************************************
     public void changePassword2(View view)
     {
         if(etOrigin1.getText().toString().equals(currentActiveUser.getPassword()))
@@ -101,6 +100,7 @@ public class UserAccountManager extends AppCompatActivity
         }
     }
 
+    // INCLUDE DOCUMENTATION*****************************************************
     public void changePassword3(View view)
     {
         if(!etOrigin2.getText().toString().equals(etOrigin3.getText().toString()))
@@ -127,6 +127,7 @@ public class UserAccountManager extends AppCompatActivity
         }
     }
 
+    // INCLUDE DOCUMENTATION*****************************************************
     public void deleteUser(View view)
     {
         IOwrite writer = new IOwrite();

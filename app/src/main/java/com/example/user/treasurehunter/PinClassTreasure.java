@@ -1,9 +1,6 @@
 package com.example.user.treasurehunter;
 
-import android.graphics.Color;
-
 /**
- *
  * @author Zach Curll, Matthew Finnegan, Alexander Kulpin, Dominic Marandino, Brandon Ostasewski, Paul Sigloch
  * @version Sprint 2
  */
@@ -32,6 +29,7 @@ public class PinClassTreasure extends PinDS
         setDescriptionHint("'X' marks the spot!");
         setRadiusHint("0");
     }
+
     /**
      * Method that gets the Default color.
      * @return The default color.

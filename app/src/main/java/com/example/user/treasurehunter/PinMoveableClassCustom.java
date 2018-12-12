@@ -1,13 +1,11 @@
 package com.example.user.treasurehunter;
 
-import android.graphics.Color;
-
 /**
- *
  * @author Zach Curll, Matthew Finnegan, Alexander Kulpin, Dominic Marandino, Brandon Ostasewski, Paul Sigloch
  * @version Sprint 2
  */
-public class PinMoveableClassCustom extends PinMoveable {
+public class PinMoveableClassCustom extends PinMoveable
+{
     private final String pinName = "Custom Pin";
 
     /**
@@ -15,7 +13,8 @@ public class PinMoveableClassCustom extends PinMoveable {
      * @return The pin Name.
      */
     @Override
-    public String getPinName() {
+    public String getPinName()
+    {
         return pinName;
     }
 
