@@ -32,22 +32,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password" />
 
-    <Button
-        android:id="@+id/button7"
-        android:layout_width="47dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="267dp"
-        android:layout_marginTop="172dp"
-        android:layout_marginEnd="70dp"
-        android:layout_marginBottom="105dp"
-        android:text="CD"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password"
-        android:onClick="clearData"/>
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"

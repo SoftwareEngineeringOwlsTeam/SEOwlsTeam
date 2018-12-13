@@ -10,6 +10,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -83,11 +85,17 @@ public class YourPins extends AppCompatActivity implements AdapterView.OnItemSel
 
             if(currentPin.getPinName().equals(classPassed))
             {
+                final TableRow row = new TableRow(this);
+                TableLayout tl = findViewById(R.id.UserPins);
+                TableLayout.LayoutParams lp = new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.WRAP_CONTENT);
+                tl.addView(row, lp);
+
                 final Button myButton = new Button(this);
                 myButton.setText(currentPin.getPinTitle());
                 myButton.setBackgroundColor(currentPin.getDefaultColor());
-
+                myButton.setWidth(800);
                 myButton.setHint(currentPin.getPinID());
+                row.setPadding(0,10,0,10);
 
                 myButton.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -95,9 +103,17 @@ public class YourPins extends AppCompatActivity implements AdapterView.OnItemSel
                         clickHelper(myButton);
                     }
                 });
-                LinearLayout ll = findViewById(R.id.UserPins);
-                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                ll.addView(myButton, lp);
+
+                final TextView time = new TextView(this);
+                time.setText("Made: " + currentPin.getTime() + " " + currentPin.getDate());
+                time.setBackgroundColor(currentPin.getDefaultColor());
+                time.setWidth(650);
+                time.setTextSize(24);
+                TableRow tr = row;
+
+                TableRow.LayoutParams tp = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT);
+                tr.addView(myButton, tp);
+                tr.addView(time, tp);
             }
         }
 
@@ -115,9 +131,16 @@ public class YourPins extends AppCompatActivity implements AdapterView.OnItemSel
                 currentPin = reader.retrievePin(listOfPins.get(i), this);
                 if(currentPin.getPinName().equals(classPassed))
                 {
+                    final TableRow row = new TableRow(this);
+                    TableLayout tl = findViewById(R.id.GroupPins);
+                    TableLayout.LayoutParams lp = new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.WRAP_CONTENT);
+                    tl.addView(row, lp);
+                    row.setPadding(0,10,0,10);
+
                     final Button myButton = new Button(this);
                     myButton.setText(currentPin.getPinTitle());
                     myButton.setBackgroundColor(currentPin.getDefaultColor());
+                    myButton.setWidth(800);
                     myButton.setHint(currentPin.getPinID());
 
                     myButton.setOnClickListener(new View.OnClickListener()
@@ -128,9 +151,16 @@ public class YourPins extends AppCompatActivity implements AdapterView.OnItemSel
                         }
                     });
 
-                    LinearLayout ll = findViewById(R.id.GroupPins);
-                    LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                    ll.addView(myButton, lp);
+                    final TextView time = new TextView(this);
+                    time.setText("Made: " + currentPin.getTime() + " " + currentPin.getDate());
+                    time.setBackgroundColor(currentPin.getDefaultColor());
+                    time.setWidth(650);
+                    time.setTextSize(24);
+                    TableRow tr = row;
+
+                    TableRow.LayoutParams tp = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT);
+                    tr.addView(myButton, tp);
+                    tr.addView(time, tp);
                 }
             }
         }

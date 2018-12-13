@@ -55,6 +55,12 @@ public class UserAccountManager extends AppCompatActivity
         etOrigin3.setVisibility(View.GONE);
         buChangePass2.setVisibility(View.GONE);
         buChangePass3.setVisibility(View.GONE);
+
+        etOrigin1.setTransformationMethod(new AsteriskPasswordTransformationMethod());
+
+        etOrigin2.setTransformationMethod(new AsteriskPasswordTransformationMethod());
+
+        etOrigin3.setTransformationMethod(new AsteriskPasswordTransformationMethod());
     }
 
     /**
