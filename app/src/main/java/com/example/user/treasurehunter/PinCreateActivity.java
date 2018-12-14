@@ -88,7 +88,13 @@ public class PinCreateActivity extends AppCompatActivity implements Serializable
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     }
 
-    // INCLUDE DOCUMENTATION*****************************************************
+    /**
+     *
+     * @param view currently opened screen
+     *
+     *  Method for creating the pin based on user input. Then populates the list of pins held within the file.io system. Also assigns a
+     *             unique PinID to each pin created.
+     */
     public void createClicked(View view)
     {
         IOwrite writer = new IOwrite();

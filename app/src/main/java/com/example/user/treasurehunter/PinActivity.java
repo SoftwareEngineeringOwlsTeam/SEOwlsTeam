@@ -147,7 +147,9 @@ public class PinActivity extends AppCompatActivity
         startActivity(mainIntent);
     }
 
-    // INCLUDE DOCUMENTATION*****************************************************
+    /**
+     *  Method that allows the user to go back to the Main Activity screen
+     */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)
     {

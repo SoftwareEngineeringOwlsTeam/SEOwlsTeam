@@ -72,7 +72,10 @@ public class UserAccountManager extends AppCompatActivity
         return super.onKeyDown(keyCode, event);
     }
 
-    // INCLUDE DOCUMENTATION*****************************************************
+    /**
+     * Method that places the button that takes you to the change password process
+     * @param view current view
+     */
     public void changePassword(View view)
     {
         tvHeading.setVisibility(View.GONE);
@@ -84,7 +87,10 @@ public class UserAccountManager extends AppCompatActivity
         buDeleteUser.setVisibility(View.GONE);
     }
 
-    // INCLUDE DOCUMENTATION*****************************************************
+    /**
+     * Method that checks to make sure that you have typed in your current password
+     * @param view current view
+     */
     public void changePassword2(View view)
     {
         if(etOrigin1.getText().toString().equals(currentActiveUser.getPassword()))
@@ -100,7 +106,10 @@ public class UserAccountManager extends AppCompatActivity
         }
     }
 
-    // INCLUDE DOCUMENTATION*****************************************************
+    /**
+     * Method that actually changes the password based on user input
+     * @param view current view
+     */
     public void changePassword3(View view)
     {
         if(!etOrigin2.getText().toString().equals(etOrigin3.getText().toString()))
@@ -127,7 +136,10 @@ public class UserAccountManager extends AppCompatActivity
         }
     }
 
-    // INCLUDE DOCUMENTATION*****************************************************
+    /**
+     * Method that deletes the current user from the fileIO system
+     * @param view current view
+     */
     public void deleteUser(View view)
     {
         IOwrite writer = new IOwrite();
