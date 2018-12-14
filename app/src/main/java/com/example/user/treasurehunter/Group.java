@@ -117,13 +117,18 @@ public class Group
         this.adminName = adminName;
     }
 
-    // INCLUDE DOCUMENTATION*****************************************************
+    /**
+     *          This method returns the PinIDs
+     * @return  the associated Pin IDs
+     */
     public ArrayList<String> getAssociatedPinIDs()
     {
         return associatedPinIDs;
     }
 
-    // INCLUDE DOCUMENTATION*****************************************************
+    /**
+     * This method sets the PinIDs
+     */
     public void setAssociatedPinIDs(ArrayList<String> associatedPinIDs)
     {
         this.associatedPinIDs = associatedPinIDs;

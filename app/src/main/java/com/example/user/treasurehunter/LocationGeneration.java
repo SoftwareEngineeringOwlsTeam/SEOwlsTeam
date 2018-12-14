@@ -27,7 +27,10 @@ public class LocationGeneration extends AppCompatActivity
     private Date time = Calendar.getInstance().getTime();
     private PinDS pin;
 
-    // INCLUDE DOCUMENTATION*****************************************************
+    /**
+     *                              Generates the location information for a pin
+     * @param savedInstanceState    The saved instace state of Locaton Genration
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {

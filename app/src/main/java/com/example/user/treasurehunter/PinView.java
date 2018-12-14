@@ -17,7 +17,10 @@ public class PinView extends AppCompatActivity implements Serializable
 {
     private PinDS currentPin;
 
-    // INCLUDE DOCUMENTATION*****************************************************
+    /**
+     * Method that populates the user's screen with every pin currently made
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -65,7 +68,9 @@ public class PinView extends AppCompatActivity implements Serializable
         }
     }
 
-    // INCLUDE DOCUMENTATION*****************************************************
+    /**
+     * Method that assigns an action to every pin created within the pin view section
+     */
     public void clickHelper(Button button)
     {
         IOread reader = new IOread();

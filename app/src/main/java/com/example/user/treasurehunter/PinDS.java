@@ -281,37 +281,55 @@ public abstract class PinDS implements Serializable
         this.publisherID = publisherID;
     }
 
-    // INCLUDE DOCUMENTATION*****************************************************
+    /**
+     *  Method to return the description hint for current pin
+     * @return descriptionHint string type
+     */
     public String getDescriptionHint()
     {
         return descriptionHint;
     }
 
-    // INCLUDE DOCUMENTATION*****************************************************
+    /**
+     *  Method to set the previous description hint for current pin
+     * @param descriptionHint desired description hint for current pin
+     */
     public void setDescriptionHint(String descriptionHint)
     {
         this.descriptionHint = descriptionHint;
     }
 
-    // INCLUDE DOCUMENTATION*****************************************************
+    /**
+     * Method to return the current pin's name hint
+     * @return pinNameHint string type
+     */
     public String getPinNameHint()
     {
         return pinNameHint;
     }
 
-    // INCLUDE DOCUMENTATION*****************************************************
+    /**
+     *  Method to set the previous pin name hint for current pin
+     * @param pinNameHint desired pin name hint for current pin
+     */
     public void setPinNameHint(String pinNameHint)
     {
         this.pinNameHint = pinNameHint;
     }
 
-    // INCLUDE DOCUMENTATION*****************************************************
+    /**
+     * Method to return how close a user is to that pin
+     * @return String of current location to pin area
+     */
     public String getRadiusHint()
     {
         return radiusHint;
     }
 
-    // INCLUDE DOCUMENTATION*****************************************************
+    /**
+     * Method to set how close a user is to current pin
+     * @param radiusHint String of desired radius to pin for current pin
+     */
     public void setRadiusHint(String radiusHint)
     {
         this.radiusHint = radiusHint;

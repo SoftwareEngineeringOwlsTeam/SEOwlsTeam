@@ -16,7 +16,10 @@ public class UserCreate extends AppCompatActivity
     private EditText etPassword2;
     private String userID = "";
 
-    // INCLUDE DOCUMENTATION*****************************************************
+    /**
+     * Method that populates the screen with the user create fields of username and password
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -30,7 +33,10 @@ public class UserCreate extends AppCompatActivity
         etPassword2.setTransformationMethod(new AsteriskPasswordTransformationMethod());
     }
 
-    // INCLUDE DOCUMENTATION*****************************************************
+    /**
+     * Method that actually creates the user account, and assigns the user a unique 10 digit user ID
+     * @param view
+     */
     public void generateAccountClicked(View view)
     {
         IOwrite writer = new IOwrite();
